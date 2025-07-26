@@ -346,6 +346,17 @@
         text-align: center;
     }
 
+    /* Desktop (>=1025px) */
+    @media (min-width: 1025px) {
+        .hero-section .col-md-6:first-child {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center; /* Nếu muốn text căn giữa ngang */
+            height: 100vh; /* Căn giữa dọc */
+        }
+    }
+
     /* Tablet (768–1024px) */
     @media (min-width: 768px) and (max-width: 1024px) {
         /* Ẩn ảnh nền của menu items */

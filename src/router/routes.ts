@@ -1,18 +1,18 @@
 import type { AppRoute } from './types'
 
 // Import các components
-import Home from '../views/Home.vue'
-import Guides from '../views/Guides.vue'
 import Community from '../views/Community.vue'
-import Resources from '../views/Resources.vue'
 import Contact from '../views/Contact.vue'
+import Guides from '../views/Guides.vue'
+import Home from '../views/Home.vue'
+import Resources from '../views/Resources.vue'
 
 // Import các pages chi tiết
-import Tournaments from '../pages/Tournaments.vue'
-import History from '../pages/History.vue'
-import HallOfFame from '../pages/HallOfFame.vue'
 import Administration from '../pages/Administration.vue'
+import HallOfFame from '../pages/HallOfFame.vue'
+import History from '../pages/History.vue'
 import Teams from '../pages/Teams.vue'
+import Tournaments from '../pages/Tournaments.vue'
 
 export const routes: AppRoute[] = [
     {
@@ -61,7 +61,7 @@ export const routes: AppRoute[] = [
         name: 'Tournaments',
         component: Tournaments,
         meta: {
-            title: 'Hệ thống giải đấu - DLS Blog'
+            title: 'Giải đấu - GOS DLS'
         }
     },
     {
@@ -69,7 +69,7 @@ export const routes: AppRoute[] = [
         name: 'History',
         component: History,
         meta: {
-            title: 'Lịch sử ra đời - DLS Blog'
+            title: 'Lịch sử - GOS DLS'
         }
     },
     {
@@ -77,7 +77,7 @@ export const routes: AppRoute[] = [
         name: 'HallOfFame',
         component: HallOfFame,
         meta: {
-            title: 'Bảng vàng - DLS Blog'
+            title: 'Bảng vàng - GOS DLS'
         }
     },
     {
@@ -85,7 +85,7 @@ export const routes: AppRoute[] = [
         name: 'Administration',
         component: Administration,
         meta: {
-            title: 'Ban quản trị - DLS Blog'
+            title: 'Ban quản trị - GOS DLS'
         }
     },
     {
@@ -93,7 +93,7 @@ export const routes: AppRoute[] = [
         name: 'Teams',
         component: Teams,
         meta: {
-            title: 'Đội tuyển - DLS Blog'
+            title: 'Đội tuyển - GOS DLS'
         }
     },
     // Route 404
