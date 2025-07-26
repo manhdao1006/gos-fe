@@ -2,7 +2,7 @@ import type { Router } from 'vue-router'
 
 export function setupRouterGuards(router: Router) {
     // Navigation guard để cập nhật title
-    router.beforeEach((to, from, next) => {
+    router.beforeEach((to, _from, next) => {
         if (to.meta.title) {
             document.title = to.meta.title as string
         }
