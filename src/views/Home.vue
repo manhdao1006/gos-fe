@@ -179,7 +179,7 @@
     const navigateToSection = (route: string) => {
         const routesMap: Record<string, string> = {
             '#tournaments': '/tournaments',
-            '#history': '/history',
+            '#history': '/lich-su',
             '#hall-of-fame': '/hall-of-fame',
             '#administration': '/administration',
             '#teams': '/teams'

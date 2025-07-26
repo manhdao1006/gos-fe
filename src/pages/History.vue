@@ -1,136 +1,87 @@
 <template>
     <div class="history-page">
-        <div class="hero-section bg-info text-white py-5 w-100">
+        <div class="hero-section text-white py-3 w-100">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12 text-center">
-                        <h1><i class="bi bi-clock-history"></i> Lịch sử ra đời và phát triển</h1>
+                        <div>
+                            <img
+                                src="https://res.cloudinary.com/springboot-cloud/image/upload/v1753505170/bieu-tuong_n7zetw.jpg"
+                                alt="Lịch sử ra đời và phát triển"
+                            />
+                            <span class="fw-bold fs-1 ms-3">Lịch sử ra đời và phát triển</span>
+                        </div>
                         <p class="lead">
-                            Khám phá hành trình phát triển của cộng đồng DLS từ những ngày đầu thành
-                            lập
+                            Khám phá hành trình phát triển của GOS từ những ngày đầu thành lập
                         </p>
                     </div>
                 </div>
             </div>
         </div>
 
+        <nav class="navbar navbar-expand-lg navbar-dark bg-danger-subtle w-100">
+            <div class="container-fluid">
+                <router-link class="navbar-brand fw-bold text-black" to="/">
+                    <img
+                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1753505199/logo-group_jz2ezw.jpg"
+                        alt="GOS"
+                    />
+                    <span class="ms-3">GOS - Dream League Soccer</span>
+                </router-link>
+
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <router-link class="nav-link" to="/">Trang chủ</router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link class="nav-link" to="/guides">Bảng vàng</router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link class="nav-link" to="/community">Giải đấu</router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link class="nav-link" to="/resources">Quản trị</router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link class="nav-link" to="/contact">Đội tuyển</router-link>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
         <div class="container-fluid py-5">
             <!-- Timeline chính -->
             <div class="timeline-container">
                 <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-marker bg-primary">
-                            <i class="bi bi-calendar-event"></i>
+                    <div v-for="(item, index) in timelineData" :key="item.id" class="timeline-item">
+                        <div :class="`timeline-marker ${item.markerClass}`">
+                            <i :class="item.icon"></i>
                         </div>
                         <div class="timeline-content">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">2020 - Khởi đầu</h4>
-                                    <h6 class="text-muted">Thành lập nhóm</h6>
-                                    <p>
-                                        Nhóm được thành lập bởi một nhóm nhỏ những người yêu thích
-                                        game Dream League Soccer. Ban đầu chỉ có 10 thành viên và
-                                        hoạt động chủ yếu trên Facebook.
-                                    </p>
+                                    <h4 class="card-title">{{ item.title }}</h4>
+                                    <h6 class="text-muted">{{ item.subtitle }}</h6>
+                                    <p>{{ item.description }}</p>
                                     <div class="achievements">
-                                        <span class="badge bg-primary">10 thành viên</span>
-                                        <span class="badge bg-success">Nhóm Facebook</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-marker bg-success">
-                            <i class="bi bi-people"></i>
-                        </div>
-                        <div class="timeline-content">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">2021 - Phát triển cộng đồng</h4>
-                                    <h6 class="text-muted">Mở rộng thành viên</h6>
-                                    <p>
-                                        Cộng đồng bắt đầu phát triển mạnh mẽ với việc tổ chức các
-                                        giải đấu đầu tiên và thu hút thêm nhiều người chơi. Số lượng
-                                        thành viên tăng lên 100 người.
-                                    </p>
-                                    <div class="achievements">
-                                        <span class="badge bg-primary">100 thành viên</span>
-                                        <span class="badge bg-warning">Giải đấu đầu tiên</span>
-                                        <span class="badge bg-info">Discord server</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-marker bg-warning">
-                            <i class="bi bi-trophy"></i>
-                        </div>
-                        <div class="timeline-content">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">2022 - Mở rộng hoạt động</h4>
-                                    <h6 class="text-muted">Hệ thống giải đấu</h6>
-                                    <p>
-                                        Xây dựng hệ thống giải đấu chuyên nghiệp với nhiều loại giải
-                                        đấu khác nhau. Bắt đầu tổ chức các sự kiện lớn và hợp tác
-                                        với các nhóm khác.
-                                    </p>
-                                    <div class="achievements">
-                                        <span class="badge bg-primary">500 thành viên</span>
-                                        <span class="badge bg-warning">10 giải đấu</span>
-                                        <span class="badge bg-success">Website</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-marker bg-danger">
-                            <i class="bi bi-star"></i>
-                        </div>
-                        <div class="timeline-content">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">2023 - Trở thành cộng đồng hàng đầu</h4>
-                                    <h6 class="text-muted">Thành công vượt bậc</h6>
-                                    <p>
-                                        DLS Group trở thành một trong những cộng đồng Dream League
-                                        Soccer lớn nhất Việt Nam với hệ thống quản lý chuyên nghiệp
-                                        và hoạt động đa dạng.
-                                    </p>
-                                    <div class="achievements">
-                                        <span class="badge bg-primary">1000+ thành viên</span>
-                                        <span class="badge bg-warning">50+ giải đấu</span>
-                                        <span class="badge bg-success">Đối tác chính thức</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-marker bg-info">
-                            <i class="bi bi-rocket"></i>
-                        </div>
-                        <div class="timeline-content">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">2024 - Tương lai</h4>
-                                    <h6 class="text-muted">Tiếp tục phát triển</h6>
-                                    <p>
-                                        Kế hoạch mở rộng cộng đồng với việc phát triển ứng dụng
-                                        mobile, tổ chức các giải đấu quốc tế và trở thành cộng đồng
-                                        DLS lớn nhất Đông Nam Á.
-                                    </p>
-                                    <div class="achievements">
-                                        <span class="badge bg-primary">2000+ thành viên</span>
-                                        <span class="badge bg-warning">100+ giải đấu</span>
-                                        <span class="badge bg-success">Mobile App</span>
+                                        <span
+                                            v-for="achievement in item.achievements"
+                                            :key="index"
+                                            :class="`badge ${achievement.class}`"
+                                        >
+                                            {{ achievement.text }}
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -143,39 +94,12 @@
             <section class="mt-5">
                 <h2 class="text-center mb-4"><i class="bi bi-graph-up"></i> Thống kê phát triển</h2>
                 <div class="row">
-                    <div class="col-md-3 mb-4">
+                    <div v-for="stat in statistics" :key="stat.id" class="col-md-4 mb-4">
                         <div class="card text-center">
                             <div class="card-body">
-                                <i class="bi bi-people-fill text-primary display-4"></i>
-                                <h3 class="mt-3">1500+</h3>
-                                <p class="text-muted">Thành viên</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-4">
-                        <div class="card text-center">
-                            <div class="card-body">
-                                <i class="bi bi-trophy-fill text-warning display-4"></i>
-                                <h3 class="mt-3">75+</h3>
-                                <p class="text-muted">Giải đấu</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-4">
-                        <div class="card text-center">
-                            <div class="card-body">
-                                <i class="bi bi-calendar-event-fill text-success display-4"></i>
-                                <h3 class="mt-3">4</h3>
-                                <p class="text-muted">Năm hoạt động</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-4">
-                        <div class="card text-center">
-                            <div class="card-body">
-                                <i class="bi bi-award-fill text-danger display-4"></i>
-                                <h3 class="mt-3">100+</h3>
-                                <p class="text-muted">Danh hiệu</p>
+                                <i :class="`${stat.icon} text-${stat.color} display-4`"></i>
+                                <h3 class="mt-3">{{ stat.value }}</h3>
+                                <p class="text-muted">{{ stat.label }}</p>
                             </div>
                         </div>
                     </div>
@@ -188,40 +112,17 @@
                     <i class="bi bi-flag"></i> Những cột mốc quan trọng
                 </h2>
                 <div class="row">
-                    <div class="col-md-6 mb-4">
+                    <div v-for="milestone in milestones" :key="milestone.id" class="col-md-6 mb-4">
                         <div class="card">
-                            <div class="card-header bg-primary text-white">
+                            <div :class="`card-header bg-${milestone.headerClass} text-white`">
                                 <h5 class="mb-0">
-                                    <i class="bi bi-calendar-check"></i> Sự kiện đầu tiên
+                                    <i :class="milestone.icon"></i> {{ milestone.title }}
                                 </h5>
                             </div>
                             <div class="card-body">
-                                <p><strong>Ngày:</strong> 15/03/2021</p>
-                                <p>
-                                    <strong>Sự kiện:</strong> Giải đấu đầu tiên với 16 đội tham gia
-                                </p>
-                                <p>
-                                    <strong>Kết quả:</strong> Thành công vượt mong đợi, tạo tiền đề
-                                    cho các giải đấu sau
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <div class="card">
-                            <div class="card-header bg-success text-white">
-                                <h5 class="mb-0"><i class="bi bi-globe"></i> Mở rộng quốc tế</h5>
-                            </div>
-                            <div class="card-body">
-                                <p><strong>Ngày:</strong> 20/06/2023</p>
-                                <p>
-                                    <strong>Sự kiện:</strong> Giải đấu quốc tế đầu tiên với các đội
-                                    từ 5 quốc gia
-                                </p>
-                                <p>
-                                    <strong>Kết quả:</strong> Đánh dấu bước ngoặt trong việc mở rộng
-                                    cộng đồng
-                                </p>
+                                <p><strong>Ngày:</strong> {{ milestone.date }}</p>
+                                <p><strong>Sự kiện:</strong> {{ milestone.event }}</p>
+                                <p><strong>Kết quả:</strong> {{ milestone.result }}</p>
                             </div>
                         </div>
                     </div>
@@ -232,10 +133,197 @@
 </template>
 
 <script setup lang="ts">
-    // Component logic here
+    import { onMounted, ref } from 'vue'
+
+    interface TimelineItem {
+        id: number
+        title: string
+        subtitle: string
+        description: string
+        markerClass: string
+        icon: string
+        achievements: Array<{
+            text: string
+            class: string
+        }>
+    }
+
+    interface Statistic {
+        id: number
+        icon: string
+        color: string
+        value: string
+        label: string
+    }
+
+    interface Milestone {
+        id: number
+        title: string
+        icon: string
+        headerClass: string
+        date: string
+        event: string
+        result: string
+    }
+
+    const timelineData = ref<TimelineItem[]>([])
+    const statistics = ref<Statistic[]>([])
+    const milestones = ref<Milestone[]>([])
+
+    // Mock data function
+    const fetchMockData = async () => {
+        // Simulate API delay
+        await new Promise((resolve) => setTimeout(resolve, 500))
+
+        // Timeline data
+        timelineData.value = [
+            {
+                id: 1,
+                title: '06/2022 - Khởi đầu',
+                subtitle: 'Thành lập nhóm',
+                description:
+                    'Nhóm được thành lập bởi một nhóm nhỏ những người yêu thích game Dream League Soccer. Ban đầu chỉ có 3 thành viên và hoạt động chủ yếu trên Facebook.',
+                markerClass: 'bg-primary',
+                icon: 'bi bi-calendar-event',
+                achievements: [
+                    { text: '3 thành viên', class: 'bg-primary' },
+                    { text: 'Nhóm Facebook', class: 'bg-success' }
+                ]
+            },
+            {
+                id: 2,
+                title: '2021 - Phát triển cộng đồng',
+                subtitle: 'Mở rộng thành viên',
+                description:
+                    'Cộng đồng bắt đầu phát triển mạnh mẽ với việc tổ chức các giải đấu đầu tiên và thu hút thêm nhiều người chơi. Số lượng thành viên tăng lên 100 người.',
+                markerClass: 'bg-success',
+                icon: 'bi bi-people',
+                achievements: [
+                    { text: '100 thành viên', class: 'bg-primary' },
+                    { text: 'Giải đấu đầu tiên', class: 'bg-warning' },
+                    { text: 'Discord server', class: 'bg-info' }
+                ]
+            },
+            {
+                id: 3,
+                title: '2022 - Mở rộng hoạt động',
+                subtitle: 'Hệ thống giải đấu',
+                description:
+                    'Xây dựng hệ thống giải đấu chuyên nghiệp với nhiều loại giải đấu khác nhau. Bắt đầu tổ chức các sự kiện lớn và hợp tác với các nhóm khác.',
+                markerClass: 'bg-warning',
+                icon: 'bi bi-trophy',
+                achievements: [
+                    { text: '500 thành viên', class: 'bg-primary' },
+                    { text: '10 giải đấu', class: 'bg-warning' },
+                    { text: 'Website', class: 'bg-success' }
+                ]
+            },
+            {
+                id: 4,
+                title: '2023 - Trở thành cộng đồng hàng đầu',
+                subtitle: 'Thành công vượt bậc',
+                description:
+                    'DLS Group trở thành một trong những cộng đồng Dream League Soccer lớn nhất Việt Nam với hệ thống quản lý chuyên nghiệp và hoạt động đa dạng.',
+                markerClass: 'bg-danger',
+                icon: 'bi bi-star',
+                achievements: [
+                    { text: '1000+ thành viên', class: 'bg-primary' },
+                    { text: '50+ giải đấu', class: 'bg-warning' },
+                    { text: 'Đối tác chính thức', class: 'bg-success' }
+                ]
+            },
+            {
+                id: 5,
+                title: '2024 - Tương lai',
+                subtitle: 'Tiếp tục phát triển',
+                description:
+                    'Kế hoạch mở rộng cộng đồng với việc phát triển ứng dụng mobile, tổ chức các giải đấu quốc tế và trở thành cộng đồng DLS lớn nhất Đông Nam Á.',
+                markerClass: 'bg-info',
+                icon: 'bi bi-rocket',
+                achievements: [
+                    { text: '2000+ thành viên', class: 'bg-primary' },
+                    { text: '100+ giải đấu', class: 'bg-warning' },
+                    { text: 'Mobile App', class: 'bg-success' }
+                ]
+            }
+        ]
+
+        // Statistics data
+        statistics.value = [
+            {
+                id: 1,
+                icon: 'bi bi-people-fill',
+                color: 'primary',
+                value: '~9K',
+                label: 'Thành viên'
+            },
+            {
+                id: 2,
+                icon: 'bi bi-trophy-fill',
+                color: 'warning',
+                value: '12',
+                label: 'Mùa'
+            },
+            {
+                id: 3,
+                icon: 'bi bi-calendar-event-fill',
+                color: 'success',
+                value: '3',
+                label: 'Năm hoạt động'
+            }
+        ]
+
+        // Milestones data
+        milestones.value = [
+            {
+                id: 1,
+                title: 'Sự kiện đầu tiên',
+                icon: 'bi bi-calendar-check',
+                headerClass: 'primary',
+                date: '15/03/2021',
+                event: 'Giải đấu đầu tiên với 16 đội tham gia',
+                result: 'Thành công vượt mong đợi, tạo tiền đề cho các giải đấu sau'
+            },
+            {
+                id: 2,
+                title: 'Mở rộng quốc tế',
+                icon: 'bi bi-globe',
+                headerClass: 'success',
+                date: '20/06/2023',
+                event: 'Giải đấu quốc tế đầu tiên với các đội từ 5 quốc gia',
+                result: 'Đánh dấu bước ngoặt trong việc mở rộng cộng đồng'
+            }
+        ]
+    }
+
+    onMounted(() => {
+        fetchMockData()
+    })
 </script>
 
 <style scoped>
+    .hero-section {
+        background-image: url('https://res.cloudinary.com/springboot-cloud/image/upload/v1753513401/Thi%E1%BA%BFt_k%E1%BA%BF_ch%C6%B0a_c%C3%B3_t%C3%AAn_llaqju.png');
+    }
+
+    .container-fluid img {
+        width: 100px; /* tùy chỉnh kích thước */
+        height: 100px; /* đảm bảo hình vuông */
+        object-fit: cover; /* giữ tỷ lệ ảnh */
+        border-radius: 50%; /* bo tròn */
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* đổ bóng nhẹ */
+    }
+
+    .nav-link {
+        font-weight: 500;
+        color: #000000;
+        transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+        color: red !important;
+    }
+
     .history-page {
         background: #f8f9fa;
     }
