@@ -178,11 +178,11 @@
 
     const navigateToSection = (route: string) => {
         const routesMap: Record<string, string> = {
-            '#tournaments': '/tournaments',
+            '#tournaments': '/gia-dau',
             '#history': '/lich-su',
-            '#hall-of-fame': '/hall-of-fame',
-            '#administration': '/administration',
-            '#teams': '/teams'
+            '#hall-of-fame': '/bang-vang',
+            '#administration': '/quan-tri',
+            '#teams': '/doi-tuyen'
         }
         window.location.href = routesMap[route] || '/'
     }

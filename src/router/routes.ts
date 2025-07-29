@@ -17,7 +17,7 @@ export const routes: AppRoute[] = [
         }
     },
     {
-        path: '/tournaments',
+        path: '/gia-dau',
         name: 'Tournaments',
         component: Tournaments,
         meta: {
@@ -33,7 +33,7 @@ export const routes: AppRoute[] = [
         }
     },
     {
-        path: '/hall-of-fame',
+        path: '/bang-vang',
         name: 'HallOfFame',
         component: HallOfFame,
         meta: {
@@ -41,7 +41,7 @@ export const routes: AppRoute[] = [
         }
     },
     {
-        path: '/administration',
+        path: '/quan-tri',
         name: 'Administration',
         component: Administration,
         meta: {
@@ -49,7 +49,7 @@ export const routes: AppRoute[] = [
         }
     },
     {
-        path: '/teams',
+        path: '/doi-tuyen',
         name: 'Teams',
         component: Teams,
         meta: {
