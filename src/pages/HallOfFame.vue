@@ -1,23 +1,135 @@
 <template>
     <div class="hall-of-fame-page">
-        <div class="hero-section bg-warning text-dark py-5 w-100">
+        <div class="hero-section text-white py-3 w-100">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12 text-center">
-                        <h1><i class="bi bi-star-fill"></i> Bảng vàng</h1>
-                        <p class="lead">
-                            Tôn vinh những thành viên xuất sắc nhất của cộng đồng DLS
+                        <div
+                            class="d-flex flex-column flex-md-row align-items-center justify-content-center"
+                        >
+                            <img
+                                src="https://res.cloudinary.com/springboot-cloud/image/upload/v1753510398/logo-bang-vang_ydkkb7.png"
+                                alt="Bảng vàng danh vọng"
+                                class="logo-hall img-fluid"
+                            />
+                            <span class="fw-bold ms-0 ms-md-3 mt-2 mt-md-0 title-hall"
+                                >Bảng vàng danh vọng</span
+                            >
+                        </div>
+                        <p class="lead description-hall">
+                            Tôn vinh những thành viên xuất sắc nhất của cộng đồng GOS - DLS
                         </p>
                     </div>
                 </div>
             </div>
         </div>
 
+        <Header />
+
         <div class="container-fluid py-5">
             <!-- Hall of Fame chính -->
             <section class="mb-5">
-                <h2 class="text-center mb-4"><i class="bi bi-trophy"></i> Hall of Fame</h2>
-                <div class="row">
+                <h2
+                    class="text-center mb-4 d-flex flex-column flex-md-row align-items-center justify-content-center"
+                >
+                    <img
+                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1753509756/logo-cup_a0op4f.jpg"
+                        alt="GOS League"
+                        class="logo-gos img-fluid"
+                    />
+                    <span class="fw-bold ms-0 ms-md-3 mt-2 mt-md-0 fs-3 fs-md-1 text-nowrap"
+                        >Thành tích GOS League</span
+                    >
+                </h2>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="table-responsive">
+                                <table
+                                    class="table table-bordered table-hover text-center align-middle w-100 shadow-sm rounded"
+                                >
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th scope="col">Mùa</th>
+                                            <th
+                                                v-for="col in columnsGosLeague"
+                                                :key="col"
+                                                scope="col"
+                                            >
+                                                League {{ col }}
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="season in seasons" :key="season">
+                                            <td style="background-color: #88ff55">
+                                                <strong>{{ season }}</strong>
+                                            </td>
+                                            <td
+                                                v-for="col in columnsGosLeague"
+                                                :key="col"
+                                                style="background-color: #88ff55"
+                                            >
+                                                {{ dataGosLeague[season]?.[col] || '-' }}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-5">
+                <h2
+                    class="text-center mb-4 d-flex flex-column flex-md-row align-items-center justify-content-center"
+                >
+                    <img
+                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1753509756/logo-cup_a0op4f.jpg"
+                        alt="GOS League"
+                        class="logo-gos img-fluid"
+                    />
+                    <span class="fw-bold ms-0 ms-md-3 mt-2 mt-md-0 fs-3 fs-md-1 text-nowrap"
+                        >Thành tích GOS Cup</span
+                    >
+                </h2>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="table-responsive">
+                                <table
+                                    class="table table-bordered table-hover text-center align-middle w-100 shadow-sm rounded"
+                                >
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th scope="col">Mùa</th>
+                                            <th v-for="col in columnsGosCup" :key="col" scope="col">
+                                                League {{ col }}
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="season in seasons" :key="season">
+                                            <td style="background-color: #ffb202">
+                                                <strong>{{ season }}</strong>
+                                            </td>
+                                            <td
+                                                v-for="col in columnsGosCup"
+                                                :key="col"
+                                                style="background-color: #ffb202"
+                                            >
+                                                {{ dataGosCup[season]?.[col] || '-' }}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="row">
                     <div class="col-lg-4 mb-4">
                         <div class="card hall-of-fame-card">
                             <div class="card-body text-center">
@@ -116,10 +228,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </section>
 
-            <!-- Danh hiệu đặc biệt -->
             <section class="mb-5">
                 <h2 class="text-center mb-4"><i class="bi bi-award"></i> Danh hiệu đặc biệt</h2>
                 <div class="row">
@@ -235,96 +346,32 @@
                 </div>
             </section>
 
-            <!-- Bảng xếp hạng tất cả thời gian -->
-            <section class="mb-5">
-                <h2 class="text-center mb-4">
-                    <i class="bi bi-list-ol"></i> Bảng xếp hạng tất cả thời gian
-                </h2>
-                <div class="table-responsive">
-                    <table class="table table-hover">
-                        <thead class="table-dark">
-                            <tr>
-                                <th>#</th>
-                                <th>Thành viên</th>
-                                <th>Điểm tổng</th>
-                                <th>Trận thắng</th>
-                                <th>Danh hiệu</th>
-                                <th>Thời gian tham gia</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><span class="badge bg-warning">1</span></td>
-                                <td><strong>Champion_2024</strong></td>
-                                <td>2850</td>
-                                <td>142</td>
-                                <td>15</td>
-                                <td>2 năm</td>
-                            </tr>
-                            <tr>
-                                <td><span class="badge bg-secondary">2</span></td>
-                                <td><strong>Pro_Player</strong></td>
-                                <td>2720</td>
-                                <td>135</td>
-                                <td>12</td>
-                                <td>3 năm</td>
-                            </tr>
-                            <tr>
-                                <td><span class="badge bg-bronze">3</span></td>
-                                <td><strong>Rising_Star</strong></td>
-                                <td>2580</td>
-                                <td>128</td>
-                                <td>8</td>
-                                <td>1 năm</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td><strong>Veteran_Player</strong></td>
-                                <td>2450</td>
-                                <td>120</td>
-                                <td>10</td>
-                                <td>4 năm</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td><strong>Elite_Player</strong></td>
-                                <td>2320</td>
-                                <td>115</td>
-                                <td>9</td>
-                                <td>2 năm</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
-            <!-- Thống kê danh hiệu -->
             <section>
-                <h2 class="text-center mb-4"><i class="bi bi-pie-chart"></i> Thống kê danh hiệu</h2>
+                <h2 class="text-center mb-4"><i class="bi bi-award"></i> Thống kê nổi bật</h2>
                 <div class="row">
                     <div class="col-md-3 mb-4">
                         <div class="card text-center">
                             <div class="card-body">
-                                <i class="bi bi-trophy-fill text-warning display-4"></i>
-                                <h3 class="mt-3">25</h3>
-                                <p class="text-muted">Vô địch</p>
+                                <i class="bi bi-controller text-danger display-4"></i>
+                                <h3 class="mt-3">~20K</h3>
+                                <p class="text-muted">Trận đấu</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3 mb-4">
                         <div class="card text-center">
                             <div class="card-body">
-                                <i class="bi bi-award-fill text-secondary display-4"></i>
-                                <h3 class="mt-3">50</h3>
-                                <p class="text-muted">Danh hiệu đặc biệt</p>
+                                <i class="bi bi-cash-coin text-warning display-4"></i>
+                                <h3 class="mt-3">~3.000.000 VNĐ</h3>
+                                <p class="text-muted">Tiền thưởng</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3 mb-4">
                         <div class="card text-center">
                             <div class="card-body">
-                                <i class="bi bi-star-fill text-warning display-4"></i>
-                                <h3 class="mt-3">100+</h3>
+                                <i class="bi bi-people text-success display-4"></i>
+                                <h3 class="mt-3">50+</h3>
                                 <p class="text-muted">Thành viên xuất sắc</p>
                             </div>
                         </div>
@@ -332,8 +379,8 @@
                     <div class="col-md-3 mb-4">
                         <div class="card text-center">
                             <div class="card-body">
-                                <i class="bi bi-calendar-event-fill text-success display-4"></i>
-                                <h3 class="mt-3">75</h3>
+                                <i class="bi bi-calendar text-primary display-4"></i>
+                                <h3 class="mt-3">60+</h3>
                                 <p class="text-muted">Sự kiện đã tổ chức</p>
                             </div>
                         </div>
@@ -342,13 +389,249 @@
             </section>
         </div>
     </div>
+
+    <Footer />
 </template>
 
 <script setup lang="ts">
-    // Component logic here
+    import Footer from '../components/Footer.vue'
+    import Header from '../components/Header.vue'
+
+    import { onMounted, reactive } from 'vue'
+
+    const columnsGosLeague = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
+    const columnsGosCup = ['C1', 'C2', 'Siêu Cúp', 'Liên Group', 'Gos Cup']
+    const seasons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+
+    const dataGosLeague = reactive<Record<number, Record<string, string>>>({})
+    const dataGosCup = reactive<Record<number, Record<string, string>>>({})
+
+    const datasGosLeague: Record<number, Record<string, string>> = {
+        1: {
+            A: 'Phùng Văn Đạt',
+            B: 'Nhật Tuệ',
+            C: 'Huy Bùi',
+            D: 'Khả Đạt',
+            E: '(KTC)',
+            F: '(KTC)',
+            G: '(KTC)',
+            H: '(KTC)'
+        },
+        2: {
+            A: 'Huy Bùi',
+            B: 'Lương Hoàn',
+            C: '(Hủy)',
+            D: 'Tuấn ManUtd',
+            E: '(KTC)',
+            F: '(KTC)',
+            G: '(KTC)',
+            H: '(KTC)'
+        },
+        3: {
+            A: 'Hữu Hưng',
+            B: 'Phát Võ',
+            C: 'Bình Nguyên',
+            D: 'Quang Huy',
+            E: 'Tên Tớ Là Sơn',
+            F: '(KTC)',
+            G: '(KTC)',
+            H: '(KTC)'
+        },
+        4: {
+            A: 'Hữu Hưng',
+            B: 'Minh Ozil',
+            C: 'Minh Trí Nguyễn',
+            D: 'Hậu Nguyễn',
+            E: 'Ngọc Thịnh',
+            F: 'Minh Nhật',
+            G: 'Minh Đức',
+            H: '(KTC)'
+        },
+        5: {
+            A: 'Trương Đặng',
+            B: 'Nhật Tuệ',
+            C: 'Hậu Nguyễn',
+            D: 'Khả Đạt',
+            E: 'Nhật Huỳnh',
+            F: 'Hoàng Sang',
+            G: 'Đức Duy',
+            H: 'Minh Anh'
+        },
+        6: {
+            A: 'Hữu Hưng',
+            B: 'Hậu Nguyễn',
+            C: 'Phan Điền',
+            D: 'Nhật Huỳnh',
+            E: 'Hoàng Sang',
+            F: 'Nguyễn Luân',
+            G: 'Phi Nang',
+            H: 'Hiệp Thành'
+        },
+        7: {
+            A: 'Hữu Hưng',
+            B: 'Tuấn Hoàng',
+            C: '(Hủy)',
+            D: 'Liên Hương',
+            E: 'Nguyễn Luân',
+            F: 'Bảo Quang',
+            G: 'Đức Khang',
+            H: '(KTC)'
+        },
+        8: {
+            A: 'Hậu Nguyễn',
+            B: 'Phát Võ',
+            C: 'Nguyễn Hoàng',
+            D: 'Lê Quý',
+            E: 'Nam Bao',
+            F: 'Duy Phúc',
+            G: '(KTC)',
+            H: '(KTC)'
+        },
+        9: {
+            A: 'Phát Võ',
+            B: 'Nguyễn Hoàng',
+            C: 'Văn Thuận',
+            D: 'Bảo Quang',
+            E: 'Minh Anh',
+            F: 'Tấn Quang',
+            G: '(KTC)',
+            H: '(KTC)'
+        },
+        10: {
+            A: 'Phát Võ',
+            B: 'Lanh Cao',
+            C: 'Trà Louis',
+            D: 'Toàn Thắngg',
+            E: 'Kiệt Nguyễn',
+            F: 'Huy Lương',
+            G: '(KTC)',
+            H: '(KTC)'
+        },
+        11: {
+            A: 'Phát Võ',
+            B: 'Nguyễn Ngọc Sáng',
+            C: 'Gia Huy',
+            D: 'Trường Nam',
+            E: '(KTC)',
+            F: '(KTC)',
+            G: '(KTC)',
+            H: '(KTC)'
+        }
+    }
+
+    const datasGosCup: Record<number, Record<string, string>> = {
+        1: {
+            C1: 'Khả Đạt (D)',
+            C2: 'Nguyễn Quân (A)',
+            'Siêu Cúp': 'Nguyễn Quân (A)',
+            'Liên Group': 'Nghiêm Quỳnh Như',
+            'Gos Cup': 'Hoàng Chung (Inter Miami) - S11'
+        },
+        2: {
+            C1: 'Thành Mạnh (B)',
+            C2: 'Minh Ozil (B)',
+            'Siêu Cúp': 'Thành Mạnh (B)',
+            'Liên Group': 'Thành Mạnh',
+            'Gos Cup': 'Hữu Hưng (Phần Lan)'
+        },
+        3: {
+            C1: 'Hữu Hưng (A)',
+            C2: 'Tuấn Hoàng (D)',
+            'Siêu Cúp': 'Tuấn Hoàng (D)',
+            'Liên Group': '—',
+            'Gos Cup': 'Nguyễn Văn Đạt (Girona)'
+        },
+        4: {
+            C1: 'Thành Mạnh (A)',
+            C2: 'Đường Tam (A)',
+            'Siêu Cúp': 'Đường Tam (A)',
+            'Liên Group': '—',
+            'Gos Cup': 'Vũ Quang (Mỹ)'
+        },
+        5: {
+            C1: 'Trương Đặng (A)',
+            C2: 'Châu Quốc Toàn (D)',
+            'Siêu Cúp': 'Trương Đặng (A)',
+            'Liên Group': 'Trương Đặng',
+            'Gos Cup': 'Mẫn Tên Tôi (Iran)'
+        },
+        6: {
+            C1: 'Trương Đặng (A)',
+            C2: 'Chí Vậy Thôi (E)',
+            'Siêu Cúp': 'Trương Đặng (A)',
+            'Liên Group': 'Trương Đặng',
+            'Gos Cup': 'Nhân Võ (Iran)'
+        },
+        7: {
+            C1: 'Hoàng Tử Si Tình (F)',
+            C2: 'Nhật Tuệ (A)',
+            'Siêu Cúp': 'Hoàng Tử Si Tình (F)',
+            'Liên Group': '—',
+            'Gos Cup': 'Hoàng Tử Si Tình (Argentina)'
+        },
+        8: {
+            C1: 'Lanh Cao (B)',
+            C2: 'Tuấn Khoa (E)',
+            'Siêu Cúp': 'Lanh Cao (B)',
+            'Liên Group': '—',
+            'Gos Cup': 'Khiêm Định (Ireland)'
+        },
+        9: {
+            C1: 'Lanh Cao (B)',
+            C2: 'Phú Quí (A)',
+            'Siêu Cúp': 'Lanh Cao (B)',
+            'Liên Group': '—',
+            'Gos Cup': 'Gia Bách'
+        },
+        10: {
+            C1: 'Phát Võ (A)',
+            C2: 'Việt Ba Tuổi (E)',
+            'Siêu Cúp': 'Việt Ba Tuổi (E)',
+            'Liên Group': '—',
+            'Gos Cup': 'Đoàn Thanh Long'
+        },
+        11: {
+            C1: 'Phát Võ (A)',
+            C2: 'Tú Nguyên (A)',
+            'Siêu Cúp': 'Phát Võ (A)',
+            'Liên Group': '—',
+            'Gos Cup': 'Gia Huy (C)'
+        }
+    }
+
+    onMounted(() => {
+        for (const season of seasons) {
+            dataGosLeague[season] = {}
+            for (const col of columnsGosLeague) {
+                dataGosLeague[season][col] = datasGosLeague[season]?.[col] || ''
+            }
+        }
+
+        for (const season of seasons) {
+            dataGosCup[season] = {}
+            for (const col of columnsGosCup) {
+                dataGosCup[season][col] = datasGosCup[season]?.[col] || ''
+            }
+        }
+    })
 </script>
 
 <style scoped>
+    table input {
+        min-width: 120px;
+    }
+
+    .hero-section {
+        background-image: url('https://res.cloudinary.com/springboot-cloud/image/upload/v1753513401/Thi%E1%BA%BFt_k%E1%BA%BF_ch%C6%B0a_c%C3%B3_t%C3%AAn_llaqju.png');
+    }
+
+    .container-fluid img {
+        width: 100px; /* tùy chỉnh kích thước */
+        height: 100px; /* đảm bảo hình vuông */
+        object-fit: cover; /* giữ tỷ lệ ảnh */
+        border-radius: 50%; /* bo tròn */
+    }
+
     .hall-of-fame-page {
         background: #f8f9fa;
     }
@@ -394,5 +677,111 @@
 
     .table td {
         vertical-align: middle;
+    }
+
+    .logo-gos {
+        width: 60px;
+        height: auto;
+    }
+
+    .logo-hall {
+        width: 60px;
+        height: auto;
+    }
+
+    .title-hall {
+        font-size: 1.5rem;
+    }
+
+    .description-hall {
+        font-size: 1rem;
+    }
+
+    @media (max-width: 768px) {
+        .logo-hall {
+            width: 60px;
+        }
+
+        .title-hall {
+            font-size: 1.5rem;
+        }
+
+        .description-hall {
+            font-size: 0.9rem;
+        }
+
+        table {
+            font-size: 0.75rem;
+        }
+
+        th,
+        td {
+            padding: 0.25rem !important;
+        }
+
+        .table th,
+        .table td {
+            white-space: nowrap;
+        }
+
+        .logo-gos {
+            width: 60px;
+        }
+    }
+
+    /* Tablet */
+    @media (min-width: 768px) and (max-width: 1024px) {
+        .logo-hall {
+            width: 80px;
+        }
+
+        .title-hall {
+            font-size: 2rem;
+        }
+
+        .description-hall {
+            font-size: 1rem;
+        }
+
+        table {
+            font-size: 0.9rem;
+        }
+
+        th,
+        td {
+            padding: 0.5rem !important;
+        }
+
+        .logo-gos {
+            width: 80px;
+        }
+    }
+
+    /* Desktop */
+    @media (min-width: 1025px) {
+        .logo-hall {
+            width: 100px;
+        }
+
+        .title-hall {
+            font-size: 2.5rem;
+        }
+
+        .description-hall {
+            font-size: 1.1rem;
+        }
+
+        table {
+            font-size: 1rem;
+        }
+
+        th,
+        td {
+            padding: 0.75rem !important;
+        }
+
+        .logo-gos {
+            width: 100px;
+        }
     }
 </style>
