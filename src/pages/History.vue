@@ -4,14 +4,19 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12 text-center">
-                        <div>
+                        <div
+                            class="d-flex flex-column flex-md-row align-items-center justify-content-center"
+                        >
                             <img
                                 src="https://res.cloudinary.com/springboot-cloud/image/upload/v1753505170/bieu-tuong_n7zetw.jpg"
                                 alt="Lịch sử ra đời và phát triển"
+                                class="logo-history img-fluid"
                             />
-                            <span class="fw-bold fs-1 ms-3">Lịch sử ra đời và phát triển</span>
+                            <span class="fw-bold ms-0 ms-md-3 mt-2 mt-md-0 title-history">
+                                Lịch sử ra đời và phát triển</span
+                            >
                         </div>
-                        <p class="lead">
+                        <p class="lead description-history">
                             Khám phá hành trình phát triển của GOS từ những ngày đầu thành lập
                         </p>
                     </div>
@@ -19,46 +24,7 @@
             </div>
         </div>
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-danger-subtle w-100">
-            <div class="container-fluid">
-                <router-link class="navbar-brand fw-bold text-black" to="/">
-                    <img
-                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1753505199/logo-group_jz2ezw.jpg"
-                        alt="GOS"
-                    />
-                    <span class="ms-3">GOS - Dream League Soccer</span>
-                </router-link>
-
-                <button
-                    class="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarNav"
-                >
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <router-link class="nav-link" to="/">Trang chủ</router-link>
-                        </li>
-                        <li class="nav-item">
-                            <router-link class="nav-link" to="/guides">Bảng vàng</router-link>
-                        </li>
-                        <li class="nav-item">
-                            <router-link class="nav-link" to="/community">Giải đấu</router-link>
-                        </li>
-                        <li class="nav-item">
-                            <router-link class="nav-link" to="/resources">Quản trị</router-link>
-                        </li>
-                        <li class="nav-item">
-                            <router-link class="nav-link" to="/contact">Đội tuyển</router-link>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <Header />
 
         <div class="container-fluid py-5">
             <!-- Timeline chính -->
@@ -130,10 +96,14 @@
             </section>
         </div>
     </div>
+
+    <Footer />
 </template>
 
 <script setup lang="ts">
     import { onMounted, ref } from 'vue'
+    import Footer from '../components/Footer.vue'
+    import Header from '../components/Header.vue'
 
     interface TimelineItem {
         id: number
@@ -396,7 +366,62 @@
         margin-bottom: 5px;
     }
 
+    .logo-history {
+        width: 60px;
+        height: auto;
+    }
+
+    .title-history {
+        font-size: 1.5rem;
+    }
+
+    .description-history {
+        font-size: 1rem;
+    }
+
+    /* Desktop */
+    @media (min-width: 1025px) {
+        .logo-history {
+            width: 100px;
+        }
+
+        .title-history {
+            font-size: 2.5rem;
+        }
+
+        .description-history {
+            font-size: 1.1rem;
+        }
+    }
+
+    /* Tablet */
+    @media (min-width: 768px) and (max-width: 1024px) {
+        .logo-history {
+            width: 80px;
+        }
+
+        .title-history {
+            font-size: 2rem;
+        }
+
+        .description-history {
+            font-size: 1rem;
+        }
+    }
+
     @media (max-width: 768px) {
+        .logo-history {
+            width: 60px;
+        }
+
+        .title-history {
+            font-size: 1.5rem;
+        }
+
+        .description-history {
+            font-size: 0.9rem;
+        }
+
         .timeline::before {
             left: 30px;
         }
