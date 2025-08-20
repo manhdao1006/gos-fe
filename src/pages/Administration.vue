@@ -43,13 +43,13 @@
                                 </div>
                                 <h4 class="mt-3">Lý Bình Nguyên</h4>
                                 <h4 class="mt-3">
-                                    <span class="badge bg-success">Trưởng Admin</span>
+                                    <span class="badge bg-success">Quản trị viên</span>
                                 </h4>
                                 <p class="text-muted fw-bolder">Admin League B</p>
                                 <div class="admin-info text-start">
                                     <p>
-                                        <strong>Nhiệm vụ:</strong> Quản lý nội dung, giải quyết xung
-                                        đột, hỗ trợ thành viên
+                                        <strong>Nhiệm vụ:</strong> Hỗ trợ quản lý và điều hành hoạt
+                                        động nhóm
                                     </p>
                                     <p><strong>Ngày sinh:</strong> 02/01/2001</p>
                                     <p><strong>Tỉnh/Thành phố:</strong> Cần Thơ</p>
@@ -126,14 +126,11 @@
                                 </div>
                                 <h4>Phạm Đăng Thắng</h4>
                                 <h4 class="mt-3">
-                                    <span class="badge bg-warning">Tổ chức</span>
+                                    <span class="badge bg-warning">Quản trị viên</span>
                                 </h4>
                                 <p class="text-muted fw-bolder">Admin League C</p>
                                 <div class="admin-info text-start">
-                                    <p>
-                                        <strong>Nhiệm vụ:</strong> Tổ chức các sự kiện, giải đấu và
-                                        hoạt động của Group
-                                    </p>
+                                    <p><strong>Nhiệm vụ:</strong> Quản lý nhân sự</p>
                                     <p><strong>Ngày sinh:</strong> 07/09/2008</p>
                                     <p><strong>Tỉnh/Thành phố:</strong> Hà Nội</p>
                                     <p><strong>CLB yêu thích:</strong> Manchester United</p>
@@ -169,14 +166,11 @@
                                 </div>
                                 <h4>Lý Thanh Hiền</h4>
                                 <h4 class="mt-3">
-                                    <span class="badge bg-primary">Ngoại giao</span>
+                                    <span class="badge bg-primary">Quản trị viên</span>
                                 </h4>
                                 <p class="text-muted fw-bolder">Admin League D</p>
                                 <div class="admin-info text-start">
-                                    <p>
-                                        <strong>Nhiệm vụ:</strong> Giao lưu, kết nối các thành viên
-                                        trong Group và giữa các liên Group
-                                    </p>
+                                    <p><strong>Nhiệm vụ:</strong> Quản lý giải đấu</p>
                                     <p><strong>Ngày sinh:</strong> 01/11/2004</p>
                                     <p><strong>Tỉnh/Thành phố:</strong> Cần Thơ</p>
                                     <p><strong>CLB yêu thích:</strong> Liverpool</p>
@@ -209,11 +203,14 @@
                                 </div>
                                 <h4>Đào Đức Mạnh</h4>
                                 <h4 class="mt-3">
-                                    <span class="badge bg-black">Kỹ thuật</span>
+                                    <span class="badge bg-black">Chuyên viên kỹ thuật</span>
                                 </h4>
                                 <p class="text-muted fw-bolder">Admin</p>
                                 <div class="admin-info text-start">
-                                    <p><strong>Nhiệm vụ:</strong> Làm những gì có thể làm :)</p>
+                                    <p>
+                                        <strong>Nhiệm vụ:</strong> Thiết kế đồ họa và quản trị
+                                        website
+                                    </p>
                                     <p><strong>Ngày sinh:</strong> 10/06/2003</p>
                                     <p><strong>Tỉnh/Thành phố:</strong> Quảng Trị</p>
                                     <p><strong>CLB yêu thích:</strong> Chelsea</p>
@@ -299,7 +296,7 @@
                                     <p><strong>Ngày sinh:</strong> 20/06/2000</p>
                                     <p><strong>Tỉnh/Thành phố:</strong> Hồ Chí Minh</p>
                                     <p><strong>CLB yêu thích:</strong> Fan A7 - Pepe</p>
-                                    <p><strong>Slogan:</strong> "Long Lạc Quan"</p>
+                                    <p><strong>Slogan:</strong> "Long Lạc Quang"</p>
                                 </div>
                                 <div class="contact-info mt-3">
                                     <button class="btn btn-danger btn-sm me-2">
