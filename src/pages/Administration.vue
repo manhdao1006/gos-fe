@@ -1,5 +1,5 @@
 <template>
-    <div class="administration-page">
+    <div class="administration-page" id="all-page">
         <div class="hero-section text-white py-3 w-100">
             <div class="container-fluid">
                 <div class="row">
@@ -487,15 +487,36 @@
                 </div>
             </section>
         </div>
+
+        <Footer />
     </div>
 
-    <Footer />
+    <!-- nút scroll top -->
+    <button
+        v-show="showScrollTop"
+        @click="scrollToTop"
+        class="btn btn-danger rounded-circle shadow"
+        style="position: fixed; bottom: 30px; right: 30px; z-index: 9999"
+    >
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
 </template>
 
 <script setup lang="ts">
+    import { ref } from 'vue'
     import Footer from '../components/Footer.vue'
     import Header from '../components/Header.vue'
-    // Component logic here
+
+    const showScrollTop = ref(true) // 👈 hiện mặc định từ đầu
+
+    const scrollToTop = () => {
+        const el = document.getElementById('all-page') // 👈 hoặc id của phần đầu trang
+        if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' }) // fallback
+        }
+    }
 </script>
 
 <style scoped>

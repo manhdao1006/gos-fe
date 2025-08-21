@@ -1,5 +1,5 @@
 <template>
-    <div class="history-page">
+    <div class="history-page" id="all-page">
         <div class="hero-section text-white py-3 w-100">
             <div class="container-fluid">
                 <div class="row">
@@ -28,31 +28,66 @@
 
         <div class="container-fluid py-5">
             <!-- Timeline chính -->
-            <div class="timeline-container">
-                <div class="timeline">
-                    <div v-for="(item, index) in timelineData" :key="item.id" class="timeline-item">
-                        <div :class="`timeline-marker ${item.markerClass}`">
-                            <i :class="item.icon"></i>
-                        </div>
-                        <div class="timeline-content">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">{{ item.title }}</h4>
-                                    <h6 class="text-muted">{{ item.subtitle }}</h6>
-                                    <p>{{ item.description }}</p>
-                                    <div class="achievements">
-                                        <span
-                                            v-for="achievement in item.achievements"
-                                            :key="index"
-                                            :class="`badge ${achievement.class}`"
-                                        >
-                                            {{ achievement.text }}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="row">
+                <div class="col-12 pe-md-5 ms-2 me-2">
+                    <section
+                        v-for="(item, index) in contentList"
+                        :key="index"
+                        :id="'section-' + index"
+                        class="mb-3"
+                    >
+                        <p class="text-uppercase fw-bolder fs-3">
+                            SƠ LƯỢC VỀ QUÁ TRÌNH THÀNH LẬP NHÓM GOS
+                        </p>
+                        <p class="text-start">{{ item.firstContent }}</p>
+
+                        <p class="text-start">{{ item.secondContent }}</p>
+                        <img
+                            v-if="item.secondImg"
+                            class="img-history"
+                            :src="item.secondImg"
+                            :alt="item.secondNoteImg"
+                        />
+                        <p class="text-center fst-italic">{{ item.secondNoteImg }}</p>
+
+                        <p class="text-start">{{ item.thirdContent }}</p>
+                        <img
+                            v-if="item.thirdImg"
+                            class="img-history"
+                            :src="item.thirdImg"
+                            :alt="item.thirdNoteImg"
+                        />
+                        <p class="text-center fst-italic">{{ item.thirdNoteImg }}</p>
+
+                        <p class="text-start">{{ item.fourthContent }}</p>
+                        <p class="text-start">{{ item.fifthContent }}</p>
+
+                        <p class="text-start">{{ item.sixthContent }}</p>
+                        <img
+                            v-if="item.sixthImg"
+                            class="img-history"
+                            :src="item.sixthImg"
+                            :alt="item.sixthNoteImg"
+                        />
+                        <p class="text-center fst-italic">{{ item.sixthNoteImg }}</p>
+
+                        <img
+                            v-if="item.seventhImg"
+                            class="img-history"
+                            :src="item.seventhImg"
+                            :alt="item.seventhNoteImg"
+                        />
+                        <p class="text-center fst-italic">{{ item.seventhNoteImg }}</p>
+
+                        <p class="text-start">{{ item.eighthContent }}</p>
+                        <img
+                            v-if="item.eighthImg"
+                            class="img-history"
+                            :src="item.eighthImg"
+                            :alt="item.eighthNoteImg"
+                        />
+                        <p class="text-center fst-italic">{{ item.eighthNoteImg }}</p>
+                    </section>
                 </div>
             </div>
 
@@ -71,52 +106,26 @@
                     </div>
                 </div>
             </section>
-
-            <!-- Những cột mốc quan trọng -->
-            <section class="mt-5">
-                <h2 class="text-center mb-4">
-                    <i class="bi bi-flag"></i> Những cột mốc quan trọng
-                </h2>
-                <div class="row">
-                    <div v-for="milestone in milestones" :key="milestone.id" class="col-md-6 mb-4">
-                        <div class="card">
-                            <div :class="`card-header bg-${milestone.headerClass} text-white`">
-                                <h5 class="mb-0">
-                                    <i :class="milestone.icon"></i> {{ milestone.title }}
-                                </h5>
-                            </div>
-                            <div class="card-body">
-                                <p><strong>Ngày:</strong> {{ milestone.date }}</p>
-                                <p><strong>Sự kiện:</strong> {{ milestone.event }}</p>
-                                <p><strong>Kết quả:</strong> {{ milestone.result }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
         </div>
+
+        <Footer />
     </div>
 
-    <Footer />
+    <!-- nút scroll top -->
+    <button
+        v-show="showScrollTop"
+        @click="scrollToTop"
+        class="btn btn-danger rounded-circle shadow"
+        style="position: fixed; bottom: 30px; right: 30px; z-index: 9999"
+    >
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
 </template>
 
 <script setup lang="ts">
     import { onMounted, ref } from 'vue'
     import Footer from '../components/Footer.vue'
     import Header from '../components/Header.vue'
-
-    interface TimelineItem {
-        id: number
-        title: string
-        subtitle: string
-        description: string
-        markerClass: string
-        icon: string
-        achievements: Array<{
-            text: string
-            class: string
-        }>
-    }
 
     interface Statistic {
         id: number
@@ -126,97 +135,12 @@
         label: string
     }
 
-    interface Milestone {
-        id: number
-        title: string
-        icon: string
-        headerClass: string
-        date: string
-        event: string
-        result: string
-    }
-
-    const timelineData = ref<TimelineItem[]>([])
     const statistics = ref<Statistic[]>([])
-    const milestones = ref<Milestone[]>([])
 
     // Mock data function
     const fetchMockData = async () => {
         // Simulate API delay
         await new Promise((resolve) => setTimeout(resolve, 500))
-
-        // Timeline data
-        timelineData.value = [
-            {
-                id: 1,
-                title: '06/2022 - Khởi đầu',
-                subtitle: 'Thành lập nhóm',
-                description:
-                    'Nhóm được thành lập bởi một nhóm nhỏ những người yêu thích game Dream League Soccer. Ban đầu chỉ có 3 thành viên và hoạt động chủ yếu trên Facebook.',
-                markerClass: 'bg-primary',
-                icon: 'bi bi-calendar-event',
-                achievements: [
-                    { text: '3 thành viên', class: 'bg-primary' },
-                    { text: 'Nhóm Facebook', class: 'bg-success' }
-                ]
-            },
-            {
-                id: 2,
-                title: '2021 - Phát triển cộng đồng',
-                subtitle: 'Mở rộng thành viên',
-                description:
-                    'Cộng đồng bắt đầu phát triển mạnh mẽ với việc tổ chức các giải đấu đầu tiên và thu hút thêm nhiều người chơi. Số lượng thành viên tăng lên 100 người.',
-                markerClass: 'bg-success',
-                icon: 'bi bi-people',
-                achievements: [
-                    { text: '100 thành viên', class: 'bg-primary' },
-                    { text: 'Giải đấu đầu tiên', class: 'bg-warning' },
-                    { text: 'Discord server', class: 'bg-info' }
-                ]
-            },
-            {
-                id: 3,
-                title: '2022 - Mở rộng hoạt động',
-                subtitle: 'Hệ thống giải đấu',
-                description:
-                    'Xây dựng hệ thống giải đấu chuyên nghiệp với nhiều loại giải đấu khác nhau. Bắt đầu tổ chức các sự kiện lớn và hợp tác với các nhóm khác.',
-                markerClass: 'bg-warning',
-                icon: 'bi bi-trophy',
-                achievements: [
-                    { text: '500 thành viên', class: 'bg-primary' },
-                    { text: '10 giải đấu', class: 'bg-warning' },
-                    { text: 'Website', class: 'bg-success' }
-                ]
-            },
-            {
-                id: 4,
-                title: '2023 - Trở thành cộng đồng hàng đầu',
-                subtitle: 'Thành công vượt bậc',
-                description:
-                    'DLS Group trở thành một trong những cộng đồng Dream League Soccer lớn nhất Việt Nam với hệ thống quản lý chuyên nghiệp và hoạt động đa dạng.',
-                markerClass: 'bg-danger',
-                icon: 'bi bi-star',
-                achievements: [
-                    { text: '1000+ thành viên', class: 'bg-primary' },
-                    { text: '50+ giải đấu', class: 'bg-warning' },
-                    { text: 'Đối tác chính thức', class: 'bg-success' }
-                ]
-            },
-            {
-                id: 5,
-                title: '2024 - Tương lai',
-                subtitle: 'Tiếp tục phát triển',
-                description:
-                    'Kế hoạch mở rộng cộng đồng với việc phát triển ứng dụng mobile, tổ chức các giải đấu quốc tế và trở thành cộng đồng DLS lớn nhất Đông Nam Á.',
-                markerClass: 'bg-info',
-                icon: 'bi bi-rocket',
-                achievements: [
-                    { text: '2000+ thành viên', class: 'bg-primary' },
-                    { text: '100+ giải đấu', class: 'bg-warning' },
-                    { text: 'Mobile App', class: 'bg-success' }
-                ]
-            }
-        ]
 
         // Statistics data
         statistics.value = [
@@ -242,33 +166,56 @@
                 label: 'Năm hoạt động'
             }
         ]
-
-        // Milestones data
-        milestones.value = [
-            {
-                id: 1,
-                title: 'Sự kiện đầu tiên',
-                icon: 'bi bi-calendar-check',
-                headerClass: 'primary',
-                date: '15/03/2021',
-                event: 'Giải đấu đầu tiên với 16 đội tham gia',
-                result: 'Thành công vượt mong đợi, tạo tiền đề cho các giải đấu sau'
-            },
-            {
-                id: 2,
-                title: 'Mở rộng quốc tế',
-                icon: 'bi bi-globe',
-                headerClass: 'success',
-                date: '20/06/2023',
-                event: 'Giải đấu quốc tế đầu tiên với các đội từ 5 quốc gia',
-                result: 'Đánh dấu bước ngoặt trong việc mở rộng cộng đồng'
-            }
-        ]
     }
 
     onMounted(() => {
         fetchMockData()
     })
+
+    const showScrollTop = ref(true) // 👈 hiện mặc định từ đầu
+
+    const scrollToTop = () => {
+        const el = document.getElementById('all-page') // 👈 hoặc id của phần đầu trang
+        if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' }) // fallback
+        }
+    }
+
+    const contentList = ref([
+        {
+            firstContent:
+                'Trong năm 2022, sau khi tham gia nhiều giải đấu với vai trò là người chơi và có được nhiều kinh nghiệm thì Nguyễn Thắng đã bắt đầu tạo giải với ý tưởng xây dựng từ mô hình các giải đấu như Ngoại hạng Anh, Euro, Seagame, C1,…',
+            secondContent:
+                'Cũng trong năm 2022 thì Bình Nguyên cùng Phạm Đăng Thắng đang hoạt động độc lập với giải đấu riêng, giải mang tên “Giải vô địch DLS” đã hoạt động đá được 3 mùa giải. Thể thức giải và logo gần giống như giải Gos League hiện tại, sau này được Phạm Đăng Thắng phát triển thêm thể thức lên và xuống hạng. Đây cũng được cho là giải đấu tiền thân của Gos League ngày nay.',
+            secondImg:
+                'https://res.cloudinary.com/springboot-cloud/image/upload/v1755782603/secondImg_dvwggn.jpg',
+            secondNoteImg: '(Logo giải vô địch dls22 của Bình Nguyên và Phạm Đăng Thắng)',
+            thirdContent:
+                'Ngày 13/06/2022, Nguyễn Thắng chính thức tạo ra nhóm GROUP ONLINE SPORTS (viết tắt và GOS).',
+            thirdImg:
+                'https://res.cloudinary.com/springboot-cloud/image/upload/v1753505199/logo-group_jz2ezw.jpg',
+            thirdNoteImg: '(Logo liên đoàn GOS từ lúc thành lập đến nay)',
+            fourthContent:
+                'Nhận thấy nhóm cần có một giải đấu mang tính đặc trưng riêng nên Nguyễn Thắng đã mời Bình Nguyên về quản lý giải, sau này Phạm Đăng Thắng được Bình Nguyên mời về cùng quản lý.',
+            fifthContent:
+                'Sau khi được Bình Nguyên và Phạm Đăng Thắng đưa ra ý tưởng về một giải đấu mang tính đặc trưng riêng (giải Gos League) thì được Nguyễn Thắng chấp nhận và hệ thống giải Gos League đã chính thức ra đời.',
+            sixthContent:
+                'Tất cả các giải đấu thuộc GOS đều được Bình Nguyên thiết kế bộ nhận diện thương hiệu riêng.',
+            sixthImg:
+                'https://res.cloudinary.com/springboot-cloud/image/upload/v1755782603/fourthImg_i1libc.jpg',
+            sixthNoteImg: '(8 giải League của GOS)',
+            seventhImg:
+                'https://res.cloudinary.com/springboot-cloud/image/upload/v1755782603/fifthImg_vlgfai.jpg',
+            seventhNoteImg: '(5 giải cúp của GOS)',
+            eighthContent:
+                'Dựa trên tập hợp về các lỗi vi phạm trên game DLS, bộ luật GOS cũng đã được cho ra đời.',
+            eighthImg:
+                'https://res.cloudinary.com/springboot-cloud/image/upload/v1755782604/sixthImg_jtf2tl.jpg',
+            eighthNoteImg: '(Luật GOS đầu tiên được áp dụng)'
+        }
+    ])
 </script>
 
 <style scoped>
@@ -281,7 +228,13 @@
         height: 100px; /* đảm bảo hình vuông */
         object-fit: cover; /* giữ tỷ lệ ảnh */
         border-radius: 50%; /* bo tròn */
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* đổ bóng nhẹ */
+    }
+
+    .img-history {
+        width: 100% !important;
+        height: 300px !important;
+        object-fit: contain !important;
+        border-radius: 0 !important;
     }
 
     .nav-link {
