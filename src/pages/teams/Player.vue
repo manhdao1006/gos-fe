@@ -1,0 +1,338 @@
+<template>
+    <div class="administration-page">
+        <div class="hero-section text-white py-3 w-100">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <div
+                            class="d-flex flex-column flex-md-row align-items-center justify-content-center"
+                        >
+                            <img
+                                src="https://res.cloudinary.com/springboot-cloud/image/upload/v1753505200/logo-team_zzr4nj.jpg"
+                                alt="Tuyển thủ GOS"
+                                class="logo-admin img-fluid"
+                            />
+                            <span class="fw-bold ms-0 ms-md-3 mt-2 mt-md-0 title-admin"
+                                >Tuyển thủ GOS</span
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <Header />
+
+        <div class="container-fluid p-0">
+            <div class="gallery-grid">
+                <div
+                    class="grid-item d-flex align-items-center justify-content-center bg-success text-white fw-bold"
+                    v-for="(img, index) in images"
+                    :key="index"
+                    @click="openModal(index)"
+                    data-bs-toggle="modal"
+                    data-bs-target="#imageModal"
+                >
+                    <span class="item-name">{{ img.name }}</span>
+                    <div class="overlay">Xem hợp đồng</div>
+                </div>
+            </div>
+
+            <!-- Bootstrap Modal -->
+            <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog custom-modal">
+                    <div class="modal-content bg-transparent border-0 shadow-none text-center">
+                        <!-- Close -->
+                        <button
+                            type="button"
+                            class="btn-close btn-danger position-absolute top-0 end-0 m-3"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        ></button>
+
+                        <!-- Prev button -->
+                        <button
+                            type="button"
+                            class="btn btn-dark position-absolute top-50 start-0 translate-middle-y"
+                            style="opacity: 0.7"
+                            @click="prevImage"
+                        >
+                            ‹
+                        </button>
+
+                        <!-- Image -->
+                        <img
+                            :src="images[currentIndex].url"
+                            :alt="images[currentIndex].name"
+                            class="d-block mx-auto w-100 h-100 rounded-0"
+                            style="object-fit: contain"
+                        />
+                        <p class="text-white mt-2">{{ images[currentIndex].name }}</p>
+
+                        <!-- Next button -->
+                        <button
+                            type="button"
+                            class="btn btn-dark position-absolute top-50 end-0 translate-middle-y"
+                            style="opacity: 0.7"
+                            @click="nextImage"
+                        >
+                            ›
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <Footer />
+</template>
+
+<script setup lang="ts">
+    import { ref } from 'vue'
+    import Footer from '../../components/Footer.vue'
+    import Header from '../../components/Header.vue'
+
+    const images = ref<{ url: string; name: string }[]>([
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341818/ly-thanh-hien_tffpi9.jpg',
+            name: '1 Lý Thanh Hiền (VC)'
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341819/nguyen-viet-cuong_mf0dtu.jpg',
+            name: '2 Nguyễn Viết Cường'
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341818/nguyen-sy-hoang_tbgx8d.jpg',
+            name: '3 Nguyễn Sỹ Hoàng'
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341817/doan-vu-phi-long_f1guop.jpg',
+            name: '4 Đoàn Vũ Phi Long'
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341818/vu-duong-dao_agtadg.jpg',
+            name: '5 Vũ Dương Đạo'
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341818/chim-phu-qui_gxe2tn.jpg',
+            name: '6 Chim Phú Quí'
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341817/nguyen-van-hoang_deevyp.jpg',
+            name: '7 Nguyễn Văn Hoàng'
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341818/le-cong-minh_pswiw4.jpg',
+            name: '8 Lê Công Minh'
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341817/hoang-van-chung_ns95ot.jpg',
+            name: '9 Hoàng Văn Chung (C)'
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341818/luong-xuan-viet_cwmzzs.jpg',
+            name: '10 Lương Xuân Việt'
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341817/hoang-dac-hai_lvttce.jpg',
+            name: '11 Hoàng Đắc Hải'
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341817/huynh-van-long_atyfuc.jpg',
+            name: '12 Huỳnh Văn Long'
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341819/trinh-thanh-dung-em_ywwyti.jpg',
+            name: '13 Trịnh Thành Dũng Em'
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341817/pham-kha-dat_k1azwr.jpg',
+            name: '15 Phạm Khả Đạt'
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341818/tran-hai-phong_y2wgdt.jpg',
+            name: '16 Trần Hải Phong'
+        }
+    ])
+
+    const currentIndex = ref(0)
+
+    const openModal = (index: number) => {
+        currentIndex.value = index
+    }
+
+    const nextImage = () => {
+        currentIndex.value = (currentIndex.value + 1) % images.value.length
+    }
+
+    const prevImage = () => {
+        currentIndex.value = (currentIndex.value - 1 + images.value.length) % images.value.length
+    }
+</script>
+
+<style scoped>
+    .hero-section {
+        background-image: url('https://res.cloudinary.com/springboot-cloud/image/upload/v1753513401/Thi%E1%BA%BFt_k%E1%BA%BF_ch%C6%B0a_c%C3%B3_t%C3%AAn_llaqju.png');
+    }
+
+    .container-fluid img {
+        width: 100px; /* tùy chỉnh kích thước */
+        height: 100px; /* đảm bảo hình vuông */
+        object-fit: cover; /* giữ tỷ lệ ảnh */
+        border-radius: 50%; /* bo tròn */
+    }
+
+    .logo-member-admin {
+        width: 150px !important;
+        height: 150px !important;
+    }
+
+    .administration-page {
+        background: #f8f9fa;
+    }
+
+    .title-admin {
+        font-size: 1.5rem;
+    }
+
+    .description-admin {
+        font-size: 1rem;
+    }
+
+    .admin-card {
+        transition:
+            transform 0.3s ease,
+            box-shadow 0.3s ease;
+        border: 2px solid transparent;
+    }
+
+    .admin-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        border-color: red;
+    }
+
+    .admin-avatar {
+        margin-bottom: 20px;
+    }
+
+    .admin-info p {
+        margin-bottom: 10px;
+        font-size: 0.9rem;
+    }
+
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3 cột */
+        grid-template-rows: repeat(5, 1fr); /* 5 hàng */
+        height: 100vh; /* full màn hình */
+        gap: 8px;
+        padding: 8px;
+    }
+
+    .grid-item {
+        cursor: pointer;
+        font-size: 1.2rem;
+        text-align: center;
+        padding: 12px;
+        position: relative;
+        background: #212529; /* bg-dark */
+        color: #fff;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .item-name {
+        z-index: 1;
+    }
+
+    /* Overlay */
+    .overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        font-weight: bold;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .grid-item:hover .overlay {
+        opacity: 1;
+    }
+
+    .grid-item:hover .item-name {
+        opacity: 0; /* Ẩn tên */
+    }
+
+    @media (max-width: 768px) {
+        .custom-modal {
+            max-width: 100vw;
+            height: 100vh;
+            margin: 0;
+        }
+        .modal-content {
+            border-radius: 0; /* full màn hình, bỏ bo góc */
+        }
+
+        .logo-admin {
+            width: 60px;
+        }
+
+        .title-admin {
+            font-size: 1.5rem;
+        }
+
+        .description-admin {
+            font-size: 0.9rem;
+        }
+    }
+
+    /* Tablet */
+    @media (min-width: 768px) and (max-width: 1024px) {
+        .custom-modal {
+            max-width: 90vw;
+            height: 85vh;
+            margin: auto;
+        }
+
+        .logo-admin {
+            width: 80px;
+        }
+
+        .title-admin {
+            font-size: 2rem;
+        }
+
+        .description-admin {
+            font-size: 1rem;
+        }
+    }
+
+    /* Desktop */
+    @media (min-width: 1025px) {
+        .custom-modal {
+            max-width: 70vw;
+            height: 80vh;
+            margin: auto;
+        }
+
+        .logo-admin {
+            width: 100px;
+        }
+
+        .title-admin {
+            font-size: 2.5rem;
+        }
+
+        .description-admin {
+            font-size: 1.1rem;
+        }
+    }
+</style>
