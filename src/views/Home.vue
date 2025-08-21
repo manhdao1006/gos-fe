@@ -178,7 +178,7 @@
 
     const navigateToSection = (route: string) => {
         const routesMap: Record<string, string> = {
-            '#tournaments': '/gia-dau',
+            '#tournaments': '/giai-dau',
             '#history': '/lich-su',
             '#hall-of-fame': '/bang-vang',
             '#administration': '/quan-tri',

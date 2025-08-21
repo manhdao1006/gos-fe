@@ -31,7 +31,7 @@
                         <router-link class="nav-link" to="/bang-vang">Bảng vàng</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link class="nav-link" to="/gia-dau">Giải đấu</router-link>
+                        <router-link class="nav-link" to="/giai-dau">Giải đấu</router-link>
                     </li>
                     <li class="nav-item">
                         <router-link class="nav-link" to="/quan-tri">Quản trị</router-link>
