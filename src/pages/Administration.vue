@@ -36,7 +36,7 @@
                             <div class="card-body text-center p-0">
                                 <div class="admin-avatar">
                                     <img
-                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1755841902/admin-binh-nguyen_lvkf3n.jpg"
+                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1755846190/admin-binh-nguyen_lvkf3n.jpg"
                                         alt="Ban quản trị"
                                         class="logo-member-admin border border-3 border-success rounded-circle"
                                     />
