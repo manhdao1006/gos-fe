@@ -151,6 +151,11 @@
     }
 
     @media (max-width: 768px) {
+        .gallery-grid {
+            grid-template-columns: repeat(2, 1fr); /* tablet: 2 cột */
+            grid-template-rows: repeat(2, 1fr); /* 5 hàng */
+        }
+
         .logo-admin {
             width: 60px;
         }
@@ -166,6 +171,11 @@
 
     /* Tablet */
     @media (min-width: 768px) and (max-width: 1024px) {
+        .gallery-grid {
+            grid-template-columns: repeat(2, 1fr); /* tablet: 2 cột */
+            grid-template-rows: repeat(2, 1fr); /* 5 hàng */
+        }
+
         .logo-admin {
             width: 80px;
         }
