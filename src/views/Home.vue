@@ -3,11 +3,12 @@
         class="home-container"
         style="background: linear-gradient(135deg, #000000 0%, #ff0000 100%)"
     >
-        <!-- Hero Section với Logo trung tâm -->
         <div class="hero-section w-100">
             <div class="container-fluid">
                 <div class="row justify-content-center flex-column flex-xl-row">
                     <div class="col-12 col-md-6 text-center order-1 order-md-1">
+                        <LanguageSwitcher class="text-start" />
+
                         <div class="row mt-5">
                             <div class="col-12">
                                 <div class="text-uppercase fs-2 text-white fw-bold">
@@ -15,7 +16,7 @@
                                 </div>
                                 <div class="text-white fs-4 mt-3 mb-3 fw-bold">13/06/2022</div>
                                 <div class="text-white fs-4 mt-3 mb-3">
-                                    Ý nghĩa Group: GOS - DREAM LEAGUE SOCCER
+                                    {{ $t('HOME.MEANING_GROUP') }}
                                 </div>
                                 <ul class="text-warning fs-5 list-unstyled fw-bold">
                                     <li>G: Group</li>
@@ -23,7 +24,7 @@
                                     <li>S: Sports</li>
                                 </ul>
                                 <div class="fst-italic text-white fw-bold fs-4">
-                                    Slogan: "Kết sức mạnh, nối thành công"
+                                    {{ $t('HOME.SLOGAN_GROUP') }}
                                 </div>
                             </div>
                         </div>
@@ -65,7 +66,6 @@
 
                     <div class="col-12 col-md-6 text-center order-2 order-md-2">
                         <div class="logo-container">
-                            <!-- Main logo ở trung tâm -->
                             <div class="main-logo">
                                 <a
                                     href="/"
@@ -77,11 +77,11 @@
                                         width="250px"
                                         src="https://res.cloudinary.com/springboot-cloud/image/upload/v1753505199/logo-group_jz2ezw.jpg"
                                         alt="GOS"
+                                        title="GOS"
                                     />
                                 </a>
                             </div>
 
-                            <!-- Container cho các menu items quay xung quanh logo -->
                             <div class="orbit-container">
                                 <div
                                     v-for="(item, index) in menuItems"
@@ -95,6 +95,7 @@
                                             <img
                                                 :src="item.image"
                                                 :alt="item.title"
+                                                :title="item.title"
                                                 class="menu-bg-image"
                                             />
                                             <div class="menu-hover-content">
@@ -110,7 +111,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- logo-container -->
                     </div>
                 </div>
             </div>
@@ -119,35 +119,39 @@
 </template>
 
 <script setup lang="ts">
-    import { ref } from 'vue'
+    import { computed } from 'vue'
+    import { useI18n } from 'vue-i18n'
+    import LanguageSwitcher from './LanguageSwitcher.vue'
 
-    const menuItems = ref([
+    const { t } = useI18n()
+
+    const menuItems = computed(() => [
         {
-            title: 'Giải đấu',
+            title: t('HOME.MENU.TOURNAMENT'),
             icon: 'bi bi-trophy',
             image: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1753509756/logo-cup_a0op4f.jpg',
             route: '#tournaments'
         },
         {
-            title: 'Lịch sử',
+            title: t('HOME.MENU.HISTORY'),
             icon: 'bi bi-clock-history',
             image: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1753505170/bieu-tuong_n7zetw.jpg',
             route: '#history'
         },
         {
-            title: 'Bảng vàng',
+            title: t('HOME.MENU.GOLD_BOARD'),
             icon: 'bi bi-star-fill',
             image: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1753510398/logo-bang-vang_ydkkb7.png',
             route: '#hall-of-fame'
         },
         {
-            title: 'Quản trị',
+            title: t('HOME.MENU.ADMINISTRATION'),
             icon: 'bi bi-people-fill',
             image: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1753505185/logo-admin_fh2b4q.jpg',
             route: '#administration'
         },
         {
-            title: 'Đội tuyển',
+            title: t('HOME.MENU.TEAM'),
             icon: 'bi bi-shield-check',
             image: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1753505200/logo-team_zzr4nj.jpg',
             route: '#teams'
@@ -159,9 +163,9 @@
         const isMobile = width <= 768
         const isTablet = width > 768 && width <= 1024
 
-        let baseRadius = 200 // desktop
+        let baseRadius = 200
         if (isMobile) baseRadius = 60
-        if (isTablet) baseRadius = 130 // tablet nhỏ hơn desktop
+        if (isTablet) baseRadius = 130
 
         const offset = 25
         const radius = baseRadius + offset
@@ -283,7 +287,6 @@
         transition: all 0.3s ease;
     }
 
-    /* --- Hiệu ứng ảnh & hover --- */
     .menu-item-content {
         position: relative;
         border-radius: 50%;
@@ -346,32 +349,27 @@
         text-align: center;
     }
 
-    /* Desktop (>=1025px) */
     @media (min-width: 1025px) {
         .hero-section .col-md-6:first-child {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center; /* Nếu muốn text căn giữa ngang */
-            height: 100vh; /* Căn giữa dọc */
+            align-items: center;
+            height: 100vh;
         }
     }
 
-    /* Tablet (768–1024px) */
     @media (min-width: 768px) and (max-width: 1024px) {
-        /* Ẩn ảnh nền của menu items */
         .menu-bg-image {
             display: none !important;
         }
 
-        /* Luôn hiện icon và text */
         .menu-hover-content {
             opacity: 1 !important;
             background: #ffffff !important;
             position: relative;
         }
 
-        /* Kích thước icon và text */
         .menu-icon i {
             font-size: 1.4rem;
             color: red;
@@ -382,7 +380,6 @@
             color: #000000;
         }
 
-        /* Chiếm toàn bộ chiều rộng */
         .hero-section,
         .container-fluid,
         .hero-section .row,
@@ -394,7 +391,6 @@
             padding: 0 !important;
         }
 
-        /* Đảm bảo hero-section không bị giới hạn */
         .hero-section {
             display: flex;
             flex-direction: column;
@@ -407,13 +403,12 @@
             margin: 0 !important;
             padding: 0 !important;
             display: flex;
-            flex-direction: column; /* Text trên, logo dưới */
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 10px; /* Khoảng cách giữa text và logo */
+            gap: 10px;
         }
 
-        /* Logo container */
         .logo-container {
             width: 100% !important;
             height: 35vh;
@@ -429,7 +424,6 @@
             height: 80px;
         }
 
-        /* Chữ trong phần ý nghĩa */
         .col-12 .fs-2 {
             font-size: 2.4rem !important;
         }
@@ -444,14 +438,12 @@
             font-size: 14px;
         }
 
-        /* Bỏ padding của container và col */
         .container-fluid,
         .row > [class*='col-'] {
             padding: 0 !important;
             margin: 0 !important;
         }
 
-        /* Footer thu nhỏ khoảng cách */
         .row footer {
             padding: 5px 0 !important;
             font-size: 18px;
@@ -468,21 +460,17 @@
         }
     }
 
-    /* --- Responsive --- */
     @media (max-width: 768px) {
-        /* Ẩn ảnh nền */
         .menu-bg-image {
             display: none !important;
         }
 
-        /* Luôn hiện icon và text */
         .menu-hover-content {
             opacity: 1 !important;
             background: #ffffff !important;
             position: relative;
         }
 
-        /* Tăng kích thước icon và text cho dễ đọc */
         .menu-icon i {
             font-size: 1.5rem;
             color: red;
@@ -500,13 +488,12 @@
         .logo-container {
             height: 20vh;
         }
-        /* Bỏ margin-top và margin-bottom của tất cả row */
+
         .hero-section .row {
             margin-top: 0 !important;
             margin-bottom: 0 !important;
         }
 
-        /* Xóa margin-bottom mặc định của các col */
         .row > [class*='col-'] {
             margin-bottom: 0 !important;
             padding-bottom: 0 !important;
@@ -517,7 +504,6 @@
             margin-top: 0 !important;
         }
 
-        /* Giảm khoảng cách footer */
         .row footer {
             padding-top: 5px !important;
             padding-bottom: 5px !important;
@@ -545,7 +531,6 @@
             padding: 0 15px;
         }
 
-        /* Giảm chữ */
         .col-6 .fs-2 {
             font-size: 1.2rem !important;
         }
@@ -556,7 +541,6 @@
             font-size: 0.8rem !important;
         }
 
-        /* Chữ nhỏ hơn nữa */
         .col-12 .fs-2 {
             font-size: 1rem !important;
         }
@@ -567,7 +551,6 @@
             font-size: 0.7rem !important;
         }
 
-        /* Bỏ khoảng cách giữa 2 phần */
         .col-12 {
             padding-left: 0 !important;
             padding-right: 0 !important;

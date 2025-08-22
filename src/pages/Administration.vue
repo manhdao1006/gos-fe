@@ -9,15 +9,16 @@
                         >
                             <img
                                 src="https://res.cloudinary.com/springboot-cloud/image/upload/v1753505185/logo-admin_fh2b4q.jpg"
-                                alt="Ban quản trị"
+                                :alt="$t('ADMIN.HEADER')"
+                                :title="$t('ADMIN.HEADER')"
                                 class="logo-admin img-fluid"
                             />
-                            <span class="fw-bold ms-0 ms-md-3 mt-2 mt-md-0 title-admin"
-                                >Ban quản trị</span
-                            >
+                            <span class="fw-bold ms-0 ms-md-3 mt-2 mt-md-0 title-admin">
+                                {{ $t('ADMIN.HEADER') }}
+                            </span>
                         </div>
                         <p class="lead description-admin">
-                            Gặp gỡ đội ngũ quản trị tận tâm của GOS -DLS
+                            {{ $t('ADMIN.SUB_HEADER') }}
                         </p>
                     </div>
                 </div>
@@ -27,9 +28,10 @@
         <Header />
 
         <div class="container-fluid py-5">
-            <!-- Ban quản trị chính -->
             <section class="mb-3">
-                <h2 class="text-center mb-4">Quản lý giải đấu</h2>
+                <h2 class="text-center mb-4">
+                    <i class="bi bi-hourglass-split"></i> {{ $t('ADMIN.MANAGEMENT.TITLE.ADMIN') }}
+                </h2>
                 <div class="row">
                     <div class="col-lg-4 mb-4 border border-1">
                         <div class="card admin-card h-100">
@@ -37,7 +39,8 @@
                                 <div class="admin-avatar">
                                     <img
                                         src="https://res.cloudinary.com/springboot-cloud/image/upload/v1755841901/admin-nguyen-thang_ykuocr.jpg"
-                                        alt="Ban quản trị"
+                                        alt="Nguyễn Văn Thắng"
+                                        title="Nguyễn Văn Thắng"
                                         class="logo-member-admin border border-3 border-danger rounded-circle"
                                     />
                                 </div>
@@ -48,15 +51,25 @@
                                 <p class="text-muted fw-bolder">Admin League A</p>
                                 <div class="admin-info text-start">
                                     <p>
-                                        <strong>Nhiệm vụ:</strong> Điều hành, quản lý và chịu trách
-                                        nhiệm cho toàn bộ hoạt động nhóm
+                                        <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.MISSON') }}:</strong>
+                                        {{ $t('ADMIN.MANAGEMENT.MISSON.NGUYEN_THANG') }}
                                     </p>
-                                    <p><strong>Ngày sinh:</strong> 02/09/1993</p>
-                                    <p><strong>Tỉnh/Thành phố:</strong> Cần Thơ</p>
-                                    <p><strong>CLB yêu thích:</strong> Real Madrid</p>
                                     <p>
-                                        <strong>Slogan:</strong> "Giao lưu- chia sẻ - học hỏi - cùng
-                                        phát triển"
+                                        <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.DOB') }}:</strong>
+                                        02/09/1993
+                                    </p>
+                                    <p>
+                                        <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.ADDRESS') }}:</strong>
+                                        Cần Thơ
+                                    </p>
+                                    <p>
+                                        <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.FAVOR') }}:</strong>
+                                        Real Madrid
+                                    </p>
+                                    <p>
+                                        <strong>Slogan:</strong> "{{
+                                            $t('ADMIN.MANAGEMENT.SLOGAN.NGUYEN_THANG')
+                                        }}"
                                     </p>
                                 </div>
                                 <div class="contact-info mt-3">
@@ -66,7 +79,8 @@
                                             class="text-white"
                                             target="_blank"
                                         >
-                                            <i class="bi bi-envelope"></i> Liên hệ
+                                            <i class="bi bi-envelope"></i>
+                                            {{ $t('ADMIN.MANAGEMENT.TITLE.CONTACT') }}
                                         </a>
                                     </button>
                                 </div>
@@ -80,24 +94,40 @@
                                 <div class="admin-avatar">
                                     <img
                                         src="https://res.cloudinary.com/springboot-cloud/image/upload/v1755846190/admin-binh-nguyen_lvkf3n.jpg"
-                                        alt="Ban quản trị"
+                                        alt="Lý Bình Nguyên"
+                                        title="Lý Bình Nguyên"
                                         class="logo-member-admin border border-3 border-success rounded-circle"
                                     />
                                 </div>
-                                <h4 class="mt-3">Lý Bình Nguyên</h4>
+                                <h4>Lý Bình Nguyên</h4>
                                 <h4 class="mt-3">
-                                    <span class="badge bg-success">Quản trị viên</span>
+                                    <span class="badge bg-success">{{
+                                        $t('ADMIN.MANAGEMENT.POSITION.ADMIN')
+                                    }}</span>
                                 </h4>
                                 <p class="text-muted fw-bolder">Admin League B</p>
                                 <div class="admin-info text-start">
                                     <p>
-                                        <strong>Nhiệm vụ:</strong> Hỗ trợ quản lý và điều hành hoạt
-                                        động nhóm
+                                        <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.MISSON') }}:</strong>
+                                        {{ $t('ADMIN.MANAGEMENT.MISSON.BINH_NGUYEN') }}
                                     </p>
-                                    <p><strong>Ngày sinh:</strong> 02/01/2001</p>
-                                    <p><strong>Tỉnh/Thành phố:</strong> Cần Thơ</p>
-                                    <p><strong>CLB yêu thích:</strong> Manchester City</p>
-                                    <p><strong>Slogan:</strong> "Cùng học hỏi, cùng phát triển"</p>
+                                    <p>
+                                        <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.DOB') }}:</strong>
+                                        02/01/2001
+                                    </p>
+                                    <p>
+                                        <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.ADDRESS') }}:</strong>
+                                        Cần Thơ
+                                    </p>
+                                    <p>
+                                        <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.FAVOR') }}:</strong>
+                                        Manchester City
+                                    </p>
+                                    <p>
+                                        <strong>Slogan:</strong> "{{
+                                            $t('ADMIN.MANAGEMENT.SLOGAN.BINH_NGUYEN')
+                                        }}"
+                                    </p>
                                 </div>
                                 <div class="contact-info mt-3">
                                     <button class="btn btn-danger btn-sm me-2">
@@ -106,7 +136,8 @@
                                             class="text-white"
                                             target="_blank"
                                         >
-                                            <i class="bi bi-envelope"></i> Liên hệ
+                                            <i class="bi bi-envelope"></i>
+                                            {{ $t('ADMIN.MANAGEMENT.TITLE.CONTACT') }}
                                         </a>
                                     </button>
                                 </div>
@@ -120,20 +151,35 @@
                                 <div class="admin-avatar">
                                     <img
                                         src="https://res.cloudinary.com/springboot-cloud/image/upload/v1755843559/admin-pham-dang-thang_n4jvqx.jpg"
-                                        alt="Ban quản trị"
+                                        alt="Phạm Đăng Thắng"
+                                        title="Phạm Đăng Thắng"
                                         class="logo-member-admin border border-3 border-warning rounded-circle"
                                     />
                                 </div>
                                 <h4>Phạm Đăng Thắng</h4>
                                 <h4 class="mt-3">
-                                    <span class="badge bg-warning">Quản trị viên</span>
+                                    <span class="badge bg-warning">{{
+                                        $t('ADMIN.MANAGEMENT.POSITION.ADMIN')
+                                    }}</span>
                                 </h4>
                                 <p class="text-muted fw-bolder">Admin League C</p>
                                 <div class="admin-info text-start">
-                                    <p><strong>Nhiệm vụ:</strong> Quản lý nhân sự</p>
-                                    <p><strong>Ngày sinh:</strong> 07/09/2008</p>
-                                    <p><strong>Tỉnh/Thành phố:</strong> Hà Nội</p>
-                                    <p><strong>CLB yêu thích:</strong> Manchester United</p>
+                                    <p>
+                                        <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.MISSON') }}:</strong>
+                                        {{ $t('ADMIN.MANAGEMENT.MISSON.PHAM_THANG') }}
+                                    </p>
+                                    <p>
+                                        <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.DOB') }}:</strong>
+                                        07/09/2008
+                                    </p>
+                                    <p>
+                                        <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.ADDRESS') }}:</strong>
+                                        Hà Nội
+                                    </p>
+                                    <p>
+                                        <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.FAVOR') }}:</strong>
+                                        Manchester United
+                                    </p>
                                     <p><strong>Slogan:</strong> "Misanthrope"</p>
                                 </div>
                                 <div class="contact-info mt-3">
@@ -143,7 +189,8 @@
                                             class="text-white"
                                             target="_blank"
                                         >
-                                            <i class="bi bi-envelope"></i> Liên hệ
+                                            <i class="bi bi-envelope"></i>
+                                            {{ $t('ADMIN.MANAGEMENT.TITLE.CONTACT') }}
                                         </a>
                                     </button>
                                 </div>
@@ -160,21 +207,40 @@
                                 <div class="admin-avatar">
                                     <img
                                         src="https://res.cloudinary.com/springboot-cloud/image/upload/v1755841901/admin-thanh-hien_ddj2so.jpg"
-                                        alt="Ban quản trị"
+                                        alt="Lý Thanh Hiền"
+                                        title="Lý Thanh Hiền"
                                         class="logo-member-admin border border-3 border-primary rounded-circle"
                                     />
                                 </div>
                                 <h4>Lý Thanh Hiền</h4>
                                 <h4 class="mt-3">
-                                    <span class="badge bg-primary">Quản trị viên</span>
+                                    <span class="badge bg-primary">{{
+                                        $t('ADMIN.MANAGEMENT.POSITION.ADMIN')
+                                    }}</span>
                                 </h4>
                                 <p class="text-muted fw-bolder">Admin League D</p>
                                 <div class="admin-info text-start">
-                                    <p><strong>Nhiệm vụ:</strong> Quản lý giải đấu</p>
-                                    <p><strong>Ngày sinh:</strong> 01/11/2004</p>
-                                    <p><strong>Tỉnh/Thành phố:</strong> Cần Thơ</p>
-                                    <p><strong>CLB yêu thích:</strong> Liverpool</p>
-                                    <p><strong>Slogan:</strong> "Chỉ mình là đúng"</p>
+                                    <p>
+                                        <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.MISSON') }}:</strong>
+                                        {{ $t('ADMIN.MANAGEMENT.MISSON.THANH_HIEN') }}
+                                    </p>
+                                    <p>
+                                        <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.DOB') }}:</strong>
+                                        01/11/2004
+                                    </p>
+                                    <p>
+                                        <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.ADDRESS') }}:</strong>
+                                        Cần Thơ
+                                    </p>
+                                    <p>
+                                        <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.FAVOR') }}:</strong>
+                                        Liverpool
+                                    </p>
+                                    <p>
+                                        <strong>Slogan:</strong> "{{
+                                            $t('ADMIN.MANAGEMENT.SLOGAN.THANH_HIEN')
+                                        }}"
+                                    </p>
                                 </div>
                                 <div class="contact-info mt-3">
                                     <button class="btn btn-danger btn-sm me-2">
@@ -183,7 +249,8 @@
                                             class="text-white"
                                             target="_blank"
                                         >
-                                            <i class="bi bi-envelope"></i> Liên hệ
+                                            <i class="bi bi-envelope"></i>
+                                            {{ $t('ADMIN.MANAGEMENT.TITLE.CONTACT') }}
                                         </a>
                                     </button>
                                 </div>
@@ -197,23 +264,35 @@
                                 <div class="admin-avatar">
                                     <img
                                         src="https://res.cloudinary.com/springboot-cloud/image/upload/v1755841901/admin-manh-dao_fgew6w.jpg"
-                                        alt="Ban quản trị"
+                                        alt="Đào Đức Mạnh"
+                                        title="Đào Đức Mạnh"
                                         class="logo-member-admin border border-3 border-black rounded-circle"
                                     />
                                 </div>
                                 <h4>Đào Đức Mạnh</h4>
                                 <h4 class="mt-3">
-                                    <span class="badge bg-black">Chuyên viên kỹ thuật</span>
+                                    <span class="badge bg-black">{{
+                                        $t('ADMIN.MANAGEMENT.POSITION.TECH')
+                                    }}</span>
                                 </h4>
                                 <p class="text-muted fw-bolder">Admin</p>
                                 <div class="admin-info text-start">
                                     <p>
-                                        <strong>Nhiệm vụ:</strong> Thiết kế đồ họa và quản trị
-                                        website
+                                        <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.MISSON') }}:</strong>
+                                        {{ $t('ADMIN.MANAGEMENT.MISSON.MANH_DAO') }}
                                     </p>
-                                    <p><strong>Ngày sinh:</strong> 10/06/2003</p>
-                                    <p><strong>Tỉnh/Thành phố:</strong> Quảng Trị</p>
-                                    <p><strong>CLB yêu thích:</strong> Chelsea</p>
+                                    <p>
+                                        <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.DOB') }}:</strong>
+                                        10/06/2003
+                                    </p>
+                                    <p>
+                                        <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.ADDRESS') }}:</strong>
+                                        Quảng Trị
+                                    </p>
+                                    <p>
+                                        <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.FAVOR') }}:</strong>
+                                        Chelsea
+                                    </p>
                                     <p><strong>Slogan:</strong> "50:50"</p>
                                 </div>
                                 <div class="contact-info mt-3">
@@ -223,7 +302,8 @@
                                             class="text-white"
                                             target="_blank"
                                         >
-                                            <i class="bi bi-envelope"></i> Liên hệ
+                                            <i class="bi bi-envelope"></i>
+                                            {{ $t('ADMIN.MANAGEMENT.TITLE.CONTACT') }}
                                         </a>
                                     </button>
                                 </div>
@@ -235,9 +315,10 @@
                 </div>
             </section>
 
-            <!-- Nhà tài trợ -->
             <section class="mb-3">
-                <h2 class="text-center mb-4">Nhà tài trợ</h2>
+                <h2 class="text-center mb-4">
+                    <i class="bi bi-wallet2"></i> {{ $t('ADMIN.MANAGEMENT.TITLE.SPONSOR') }}
+                </h2>
                 <div class="row">
                     <div class="col-lg-1 mb-4"></div>
                     <div class="col-lg-4 mb-4 border border-1">
@@ -246,18 +327,30 @@
                                 <div class="admin-avatar">
                                     <img
                                         src="https://res.cloudinary.com/springboot-cloud/image/upload/v1755841901/admin-nguyen-van-hoang_peaaom.jpg"
-                                        alt="Ban quản trị"
+                                        alt="Nguyễn Văn Hoàng"
+                                        title="Nguyễn Văn Hoàng"
                                         class="logo-member-admin border border-3 border-warning rounded-circle"
                                     />
                                 </div>
                                 <h4>Nguyễn Văn Hoàng</h4>
                                 <h4 class="mt-3">
-                                    <span class="badge bg-warning">Thần tài</span>
+                                    <span class="badge bg-warning">{{
+                                        $t('ADMIN.MANAGEMENT.POSITION.FINANCE')
+                                    }}</span>
                                 </h4>
                                 <div class="admin-info text-start">
-                                    <p><strong>Ngày sinh:</strong> 15/06/1999</p>
-                                    <p><strong>Tỉnh/Thành phố:</strong> Đà Nẵng</p>
-                                    <p><strong>CLB yêu thích:</strong> Real Madrid</p>
+                                    <p>
+                                        <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.DOB') }}:</strong>
+                                        15/06/1999
+                                    </p>
+                                    <p>
+                                        <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.ADDRESS') }}:</strong>
+                                        Đà Nẵng
+                                    </p>
+                                    <p>
+                                        <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.FAVOR') }}:</strong>
+                                        Real Madrid
+                                    </p>
                                     <p><strong>Slogan:</strong> "..."</p>
                                 </div>
                                 <div class="contact-info mt-3">
@@ -267,7 +360,8 @@
                                             class="text-white"
                                             target="_blank"
                                         >
-                                            <i class="bi bi-envelope"></i> Liên hệ
+                                            <i class="bi bi-envelope"></i>
+                                            {{ $t('ADMIN.MANAGEMENT.TITLE.CONTACT') }}
                                         </a>
                                     </button>
                                 </div>
@@ -284,18 +378,30 @@
                                 <div class="admin-avatar">
                                     <img
                                         src="https://res.cloudinary.com/springboot-cloud/image/upload/v1755841902/admin-doan-long_ciszqw.jpg"
-                                        alt="Ban quản trị"
+                                        alt="Đoàn Long"
+                                        title="Đoàn Long"
                                         class="logo-member-admin border border-3 border-warning rounded-circle"
                                     />
                                 </div>
                                 <h4>Đoàn Long</h4>
                                 <h4 class="mt-3">
-                                    <span class="badge bg-warning">Thần tài</span>
+                                    <span class="badge bg-warning">{{
+                                        $t('ADMIN.MANAGEMENT.POSITION.FINANCE')
+                                    }}</span>
                                 </h4>
                                 <div class="admin-info text-start">
-                                    <p><strong>Ngày sinh:</strong> 20/06/2000</p>
-                                    <p><strong>Tỉnh/Thành phố:</strong> Hồ Chí Minh</p>
-                                    <p><strong>CLB yêu thích:</strong> Fan A7 - Pepe</p>
+                                    <p>
+                                        <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.DOB') }}:</strong>
+                                        20/06/2000
+                                    </p>
+                                    <p>
+                                        <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.ADDRESS') }}:</strong>
+                                        Hồ Chí Minh
+                                    </p>
+                                    <p>
+                                        <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.FAVOR') }}:</strong>
+                                        Fan A7 - Pepe
+                                    </p>
                                     <p><strong>Slogan:</strong> "Long Lạc Quang"</p>
                                 </div>
                                 <div class="contact-info mt-3">
@@ -305,7 +411,8 @@
                                             class="text-white"
                                             target="_blank"
                                         >
-                                            <i class="bi bi-envelope"></i> Liên hệ
+                                            <i class="bi bi-envelope"></i>
+                                            {{ $t('ADMIN.MANAGEMENT.TITLE.CONTACT') }}
                                         </a>
                                     </button>
                                 </div>
@@ -316,22 +423,23 @@
                 </div>
             </section>
 
-            <!-- Đội ngũ hỗ trợ -->
             <section class="mb-3">
-                <h2 class="text-center mb-4"><i class="bi bi-headset"></i> Đội ngũ hỗ trợ</h2>
+                <h2 class="text-center mb-4">
+                    <i class="bi bi-headset"></i> {{ $t('ADMIN.SUPPORT.TITLE') }}
+                </h2>
                 <div class="row">
                     <div class="col-md-6 mb-4">
                         <div class="card">
                             <div class="card-header bg-black text-white text-capitalize">
                                 <h5 class="mb-0">
-                                    <i class="bi bi-shield-check"></i> Team bảo mật
+                                    <i class="bi bi-shield-check"></i>
+                                    {{ $t('ADMIN.SUPPORT.TEAM.SECURITY.TITLE') }}
                                 </h5>
                             </div>
                             <div class="card-body">
                                 <div>
                                     <p class="text-muted mb-2 text-start">
-                                        Đảm bảo an toàn cho Group và Website, phát hiện và xử lý vi
-                                        phạm
+                                        {{ $t('ADMIN.SUPPORT.TEAM.SECURITY.CONTENT') }}
                                     </p>
                                     <div class="skills text-center">
                                         <p class="badge bg-danger">Lý Bình Nguyên</p>
@@ -346,13 +454,15 @@
                     <div class="col-md-6 mb-4">
                         <div class="card">
                             <div class="card-header bg-black text-white text-capitalize">
-                                <h5 class="mb-0"><i class="bi bi-chat-dots"></i> Team cộng đồng</h5>
+                                <h5 class="mb-0">
+                                    <i class="bi bi-chat-dots"></i>
+                                    {{ $t('ADMIN.SUPPORT.TEAM.COMMUNITY.TITLE') }}
+                                </h5>
                             </div>
                             <div class="card-body">
                                 <div>
                                     <p class="text-muted mb-2 text-start">
-                                        Hỗ trợ thành viên mới, trả lời câu hỏi, hướng dẫn và ngoại
-                                        giao
+                                        {{ $t('ADMIN.SUPPORT.TEAM.COMMUNITY.CONTENT') }}
                                     </p>
                                     <div class="skills text-center">
                                         <p class="badge bg-danger">Nguyễn Văn Thắng</p>
@@ -367,12 +477,15 @@
                     <div class="col-md-6 mb-4">
                         <div class="card">
                             <div class="card-header bg-black text-white text-capitalize">
-                                <h5 class="mb-0"><i class="bi bi-chat-dots"></i> Team nội dung</h5>
+                                <h5 class="mb-0">
+                                    <i class="bi bi-chat-dots"></i>
+                                    {{ $t('ADMIN.SUPPORT.TEAM.CONTENT.TITLE') }}
+                                </h5>
                             </div>
                             <div class="card-body">
                                 <div>
                                     <p class="text-muted mb-2 text-start">
-                                        Tạo nội dung, hướng dẫn và video cho Group
+                                        {{ $t('ADMIN.SUPPORT.TEAM.CONTENT.CONTENT') }}
                                     </p>
                                     <div class="skills text-center">
                                         <p class="badge bg-danger">Nguyễn Văn Thắng</p>
@@ -388,14 +501,14 @@
                         <div class="card">
                             <div class="card-header bg-black text-white text-capitalize">
                                 <h5 class="mb-0">
-                                    <i class="bi bi-person-circle"></i> Team nhân sự
+                                    <i class="bi bi-person-circle"></i>
+                                    {{ $t('ADMIN.SUPPORT.TEAM.HUMAN.TITLE') }}
                                 </h5>
                             </div>
                             <div class="card-body">
                                 <div>
                                     <p class="text-muted mb-2 text-start">
-                                        Đăng tuyển, quản lý và phân chia nhân sự, thành viên tham
-                                        gia giải đấu
+                                        {{ $t('ADMIN.SUPPORT.TEAM.HUMAN.CONTENT') }}
                                     </p>
                                     <div class="skills text-center">
                                         <p class="badge bg-danger">Nguyễn Văn Thắng</p>
@@ -409,43 +522,39 @@
                 </div>
             </section>
 
-            <!-- Quy trình làm việc -->
             <section class="mb-3">
-                <h2 class="text-center mb-4"><i class="bi bi-diagram-3"></i> Quy trình làm việc</h2>
+                <h2 class="text-center mb-4">
+                    <i class="bi bi-diagram-3"></i> {{ $t('ADMIN.WORKING.TITLE') }}
+                </h2>
                 <div class="row">
                     <div class="col-lg-8 mx-auto">
                         <div class="workflow">
                             <div class="workflow-step">
                                 <div class="step-number">1</div>
                                 <div class="step-content">
-                                    <h5>Tiếp nhận yêu cầu</h5>
-                                    <p>Thành viên gửi yêu cầu hỗ trợ hoặc báo cáo vấn đề</p>
+                                    <h5>{{ $t('ADMIN.WORKING.FIRST_STEP.TITLE') }}</h5>
+                                    <p>{{ $t('ADMIN.WORKING.FIRST_STEP.CONTENT') }}</p>
                                 </div>
                             </div>
                             <div class="workflow-step">
                                 <div class="step-number">2</div>
                                 <div class="step-content">
-                                    <h5>Phân loại và phân công</h5>
-                                    <p>
-                                        Admin phân loại yêu cầu và phân công cho thành viên phù hợp
-                                    </p>
+                                    <h5>{{ $t('ADMIN.WORKING.SECOND_STEP.TITLE') }}</h5>
+                                    <p>{{ $t('ADMIN.WORKING.SECOND_STEP.CONTENT') }}</p>
                                 </div>
                             </div>
                             <div class="workflow-step">
                                 <div class="step-number">3</div>
                                 <div class="step-content">
-                                    <h5>Xử lý và giải quyết</h5>
-                                    <p>Đội ngũ hỗ trợ xử lý và giải quyết vấn đề</p>
+                                    <h5>{{ $t('ADMIN.WORKING.THIRD_STEP.TITLE') }}</h5>
+                                    <p>{{ $t('ADMIN.WORKING.THIRD_STEP.CONTENT') }}</p>
                                 </div>
                             </div>
                             <div class="workflow-step">
                                 <div class="step-number">4</div>
                                 <div class="step-content">
-                                    <h5>Phản hồi và theo dõi</h5>
-                                    <p>
-                                        Phản hồi kết quả và theo dõi để đảm bảo vấn đề được giải
-                                        quyết
-                                    </p>
+                                    <h5>{{ $t('ADMIN.WORKING.FOURTH_STEP.TITLE') }}</h5>
+                                    <p>{{ $t('ADMIN.WORKING.FOURTH_STEP.CONTENT') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -453,16 +562,17 @@
                 </div>
             </section>
 
-            <!-- Thống kê hoạt động -->
             <section>
-                <h2 class="text-center mb-4"><i class="bi bi-graph-up"></i> Thống kê hoạt động</h2>
+                <h2 class="text-center mb-4">
+                    <i class="bi bi-graph-up"></i> {{ $t('ADMIN.STATISTICS.TITLE') }}
+                </h2>
                 <div class="row">
                     <div class="col-md-4 mb-4">
                         <div class="card text-center">
                             <div class="card-body">
                                 <i class="bi bi-clock text-warning display-4"></i>
                                 <h3 class="mt-3">2h</h3>
-                                <p class="text-muted">Thời gian phản hồi trung bình</p>
+                                <p class="text-muted">{{ $t('ADMIN.STATISTICS.TIME') }}</p>
                             </div>
                         </div>
                     </div>
@@ -471,7 +581,7 @@
                             <div class="card-body">
                                 <i class="bi bi-check-circle text-success display-4"></i>
                                 <h3 class="mt-3">98%</h3>
-                                <p class="text-muted">Tỷ lệ giải quyết thành công</p>
+                                <p class="text-muted">{{ $t('ADMIN.STATISTICS.SUCCESS') }}</p>
                             </div>
                         </div>
                     </div>
@@ -480,7 +590,7 @@
                             <div class="card-body">
                                 <i class="bi bi-emoji-smile text-info display-4"></i>
                                 <h3 class="mt-3">95%</h3>
-                                <p class="text-muted">Độ hài lòng của thành viên</p>
+                                <p class="text-muted">{{ $t('ADMIN.STATISTICS.SATISFIED') }}</p>
                             </div>
                         </div>
                     </div>
@@ -491,7 +601,6 @@
         <Footer />
     </div>
 
-    <!-- nút scroll top -->
     <button
         v-show="showScrollTop"
         @click="scrollToTop"
@@ -507,14 +616,14 @@
     import Footer from '../components/Footer.vue'
     import Header from '../components/Header.vue'
 
-    const showScrollTop = ref(true) // 👈 hiện mặc định từ đầu
+    const showScrollTop = ref(true)
 
     const scrollToTop = () => {
-        const el = document.getElementById('all-page') // 👈 hoặc id của phần đầu trang
+        const el = document.getElementById('all-page')
         if (el) {
             el.scrollIntoView({ behavior: 'smooth', block: 'start' })
         } else {
-            window.scrollTo({ top: 0, behavior: 'smooth' }) // fallback
+            window.scrollTo({ top: 0, behavior: 'smooth' })
         }
     }
 </script>
@@ -525,10 +634,10 @@
     }
 
     .container-fluid img {
-        width: 100px; /* tùy chỉnh kích thước */
-        height: 100px; /* đảm bảo hình vuông */
-        object-fit: cover; /* giữ tỷ lệ ảnh */
-        border-radius: 50%; /* bo tròn */
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 50%;
     }
 
     .logo-member-admin {
@@ -645,7 +754,6 @@
         }
     }
 
-    /* Tablet */
     @media (min-width: 768px) and (max-width: 1024px) {
         .logo-admin {
             width: 80px;
@@ -660,7 +768,6 @@
         }
     }
 
-    /* Desktop */
     @media (min-width: 1025px) {
         .logo-admin {
             width: 100px;

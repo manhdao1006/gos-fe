@@ -9,15 +9,16 @@
                         >
                             <img
                                 src="https://res.cloudinary.com/springboot-cloud/image/upload/v1753509756/logo-cup_a0op4f.jpg"
-                                alt="Hệ thống giải đấu"
+                                :alt="$t('TOUR.HEADER')"
+                                :title="$t('TOUR.HEADER')"
                                 class="logo-tournaments img-fluid"
                             />
-                            <span class="fw-bold ms-0 ms-md-3 mt-2 mt-md-0 title-tournaments"
-                                >Hệ thống giải đấu</span
-                            >
+                            <span class="fw-bold ms-0 ms-md-3 mt-2 mt-md-0 title-tournaments">{{
+                                $t('TOUR.HEADER')
+                            }}</span>
                         </div>
                         <p class="lead description-tournaments">
-                            Khám phá các giải đấu đa dạng cấp độ từ GOS - DLS
+                            {{ $t('TOUR.SUB_HEADER') }}
                         </p>
                     </div>
                 </div>
@@ -31,19 +32,17 @@
                 <h2 class="text-center mb-4">
                     <img
                         src="https://res.cloudinary.com/springboot-cloud/image/upload/v1753505199/logo-group_jz2ezw.jpg"
-                        alt="Giải GOS League"
-                        title="Giải GOS League"
+                        :alt="$t('TOUR.LEAGUE.TITLE')"
+                        :title="$t('TOUR.LEAGUE.TITLE')"
                         class="logo-tournaments img-fluid"
                     />
                     <span class="fw-bold ms-0 ms-md-3 mt-2 mt-md-0 title-tournaments">
-                        Giải GOS League</span
+                        {{ $t('TOUR.LEAGUE.TITLE') }}</span
                     >
                 </h2>
                 <div class="row">
                     <div class="text-start fs-5">
-                        GOS League là giải đấu thuộc GOS với hệ thống 8 giải đấu, được đá theo thể
-                        thức tính điểm xếp hạng, mỗi League sẽ có 10 đội, các đội đá với nhau theo
-                        thể thức vòng tròn tính điểm xếp hạng (có lượt đi và lượt về).
+                        {{ $t('TOUR.LEAGUE.FIRST_CONTENT') }}
                     </div>
                     <div class="gallery-grid">
                         <div
@@ -57,11 +56,7 @@
                         </div>
                     </div>
                     <div class="text-start fs-5">
-                        Kết thúc mùa giải, đội đứng đầu sẽ là đội vô địch, 3 đội đứng đầu sẽ được
-                        thăng hạng lên hạng đấu cao hơn, 3 đội đứng cuối sẽ rớt hạng xuống hạng đấu
-                        thấp hơn, từ top 1- top 4 sẽ được đá giải C1 (GOS Champions League 1), top
-                        5-6 sẽ đá giải C2 (GOS Champions League 2) thuộc GOS Cup. Mỗi League sẽ có
-                        một Admin quản lý.
+                        {{ $t('TOUR.LEAGUE.SECOND_CONTENT') }}
                     </div>
                 </div>
             </section>
@@ -70,17 +65,17 @@
                 <h2 class="text-center mb-4">
                     <img
                         src="https://res.cloudinary.com/springboot-cloud/image/upload/v1753509756/logo-cup_a0op4f.jpg"
-                        alt="Giải GOS Cup"
+                        :alt="$t('TOUR.CUP.TITLE')"
+                        :title="$t('TOUR.CUP.TITLE')"
                         class="logo-tournaments img-fluid"
                     />
                     <span class="fw-bold ms-0 ms-md-3 mt-2 mt-md-0 title-tournaments">
-                        Giải GOS Cup</span
+                        {{ $t('TOUR.CUP.TITLE') }}</span
                     >
                 </h2>
                 <div class="row">
                     <div class="text-start fs-5">
-                        GOS Cup là tên gọi chung các giải đấu cúp của GOS, giải gồm C1, C2, siêu
-                        cúp, cúp liên đoàn và cúp liên group.
+                        {{ $t('TOUR.CUP.FIRST_CONTENT') }}
                     </div>
                     <div
                         class="row bg-white mb-3"
@@ -89,12 +84,10 @@
                         data-bs-toggle="modal"
                         data-bs-target="#imageModal"
                     >
-                        <!-- Ảnh (40%) -->
                         <div class="col-4">
-                            <img :src="img.url" :alt="img.name" />
+                            <img :src="img.url" :alt="img.name" :title="img.name" />
                         </div>
 
-                        <!-- Content (60%) -->
                         <div class="col-8 align-items-center p-3">
                             <div>
                                 <h5 class="fw-bold">{{ img.name }}</h5>
@@ -111,11 +104,14 @@
 </template>
 
 <script setup lang="ts">
-    import { ref } from 'vue'
+    import { computed } from 'vue'
+    import { useI18n } from 'vue-i18n'
     import Footer from '../components/Footer.vue'
     import Header from '../components/Header.vue'
 
-    const images = ref<{ url: string; name: string }[]>([
+    const { t } = useI18n()
+
+    const images = computed(() => [
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1753505184/logo-la_s4higy.jpg',
             name: 'GOS League A'
@@ -150,34 +146,31 @@
         }
     ])
 
-    const imagesCup = ref<{ url: string; name: string; description: string }[]>([
+    const imagesCup = computed(() => [
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755841173/c1_snlxqy.jpg',
             name: 'GOS Champions League 1',
-            description:
-                'Giải C1 sẽ lấy top 4 mỗi League, chia bảng đá vòng bảng và các vòng sau sẽ đá theo thể thức loại trực tiếp loại trực tiếp.'
+            description: t('TOUR.CUP.C1_DESCRIPTION')
         },
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755841173/c2_mvz3gc.jpg',
             name: 'GOS Champions League 2',
-            description: 'Giải C2 sẽ lấy top 5 và top 6 mỗi bảng chia cặp ra đá loại trực tiếp.'
+            description: t('TOUR.CUP.C2_DESCRIPTION')
         },
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755841502/sieu-cup_xqr24u.jpg',
-            name: 'Siêu Cup',
-            description: 'Siêu cúp sẽ là trận đấu giữa nhà vô địch C1 và nhà vô địch C2.'
+            name: t('TOUR.CUP.SUPER_CUP_NAME'),
+            description: t('TOUR.CUP.SUPER_CUP_DESCRIPTION')
         },
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1753509756/logo-cup_a0op4f.jpg',
-            name: 'Cup Liên Đoàn',
-            description:
-                'Cúp liên đoàn sẽ được đá vào cuối mùa giải, giải sẽ đá theo mô hình giải đấu các đội tuyển quốc gia hoặc CLB.'
+            name: t('TOUR.CUP.LEAGUE_CUP_NAME'),
+            description: t('TOUR.CUP.LEAGUE_CUP_DESCRIPTION')
         },
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755841911/cup-lien-group_zcylef.jpg',
-            name: 'Cup Liên Group',
-            description:
-                'Cúp liên group sẽ cử nhà vô địch siêu cúp của GOS đi đá với nhà vô địch của các nhóm khác.'
+            name: t('TOUR.CUP.GROUP_CUP_NAME'),
+            description: t('TOUR.CUP.GROUP_CUP_DESCRIPTION')
         }
     ])
 </script>
@@ -188,10 +181,10 @@
     }
 
     .container-fluid img {
-        width: 100px; /* tùy chỉnh kích thước */
-        height: 100px; /* đảm bảo hình vuông */
-        object-fit: cover; /* giữ tỷ lệ ảnh */
-        border-radius: 50%; /* bo tròn */
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 50%;
     }
 
     .tournaments-page {
@@ -215,9 +208,9 @@
 
     .gallery-grid {
         display: grid;
-        grid-template-columns: repeat(4, 1fr); /* 3 cột */
-        grid-template-rows: repeat(1, 1fr); /* 5 hàng */
-        height: 100vh; /* full màn hình */
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(1, 1fr);
+        height: 100vh;
         gap: 8px;
         padding: 8px;
     }
@@ -228,7 +221,7 @@
         text-align: center;
         padding: 12px;
         position: relative;
-        background: #212529; /* bg-dark */
+        background: #212529;
         color: #fff;
         font-weight: bold;
         display: flex;
@@ -240,14 +233,14 @@
     .grid-item img {
         width: 100% !important;
         height: 100% !important;
-        object-fit: cover; /* desktop/tablet: ảnh che đầy */
+        object-fit: cover;
         border-radius: 0 !important;
     }
 
     @media (max-width: 768px) {
         .gallery-grid {
-            grid-template-columns: repeat(2, 1fr); /* tablet: 2 cột */
-            grid-template-rows: repeat(2, 1fr); /* 5 hàng */
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
         }
 
         .logo-tournaments {
@@ -263,11 +256,10 @@
         }
     }
 
-    /* Tablet */
     @media (min-width: 768px) and (max-width: 1024px) {
         .gallery-grid {
-            grid-template-columns: repeat(2, 1fr); /* tablet: 2 cột */
-            grid-template-rows: repeat(2, 1fr); /* 5 hàng */
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
         }
 
         .logo-tournaments {
@@ -283,7 +275,6 @@
         }
     }
 
-    /* Desktop */
     @media (min-width: 1025px) {
         .logo-tournaments {
             width: 100px;

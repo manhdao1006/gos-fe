@@ -9,15 +9,16 @@
                         >
                             <img
                                 src="https://res.cloudinary.com/springboot-cloud/image/upload/v1753505170/bieu-tuong_n7zetw.jpg"
-                                alt="Lịch sử ra đời và phát triển"
+                                :alt="$t('HISTORY.HEADER')"
+                                :title="$t('HISTORY.HEADER')"
                                 class="logo-history img-fluid"
                             />
                             <span class="fw-bold ms-0 ms-md-3 mt-2 mt-md-0 title-history">
-                                Lịch sử ra đời và phát triển</span
+                                {{ $t('HISTORY.HEADER') }}</span
                             >
                         </div>
                         <p class="lead description-history">
-                            Khám phá hành trình phát triển của GOS từ những ngày đầu thành lập
+                            {{ $t('HISTORY.SUB_HEADER') }}
                         </p>
                     </div>
                 </div>
@@ -27,7 +28,6 @@
         <Header />
 
         <div class="container-fluid py-5">
-            <!-- Timeline chính -->
             <div class="row">
                 <div class="col-12 pe-md-5 ms-2 me-2">
                     <section
@@ -37,7 +37,7 @@
                         class="mb-3"
                     >
                         <p class="text-uppercase fw-bolder fs-3">
-                            SƠ LƯỢC VỀ QUÁ TRÌNH THÀNH LẬP NHÓM GOS
+                            {{ $t('HISTORY.TITLE') }}
                         </p>
                         <p class="text-start">{{ item.firstContent }}</p>
 
@@ -47,6 +47,7 @@
                             class="img-history"
                             :src="item.secondImg"
                             :alt="item.secondNoteImg"
+                            :title="item.secondNoteImg"
                         />
                         <p class="text-center fst-italic">{{ item.secondNoteImg }}</p>
 
@@ -56,6 +57,7 @@
                             class="img-history"
                             :src="item.thirdImg"
                             :alt="item.thirdNoteImg"
+                            :title="item.thirdNoteImg"
                         />
                         <p class="text-center fst-italic">{{ item.thirdNoteImg }}</p>
 
@@ -68,6 +70,7 @@
                             class="img-history"
                             :src="item.sixthImg"
                             :alt="item.sixthNoteImg"
+                            :title="item.sixthNoteImg"
                         />
                         <p class="text-center fst-italic">{{ item.sixthNoteImg }}</p>
 
@@ -76,6 +79,7 @@
                             class="img-history"
                             :src="item.seventhImg"
                             :alt="item.seventhNoteImg"
+                            :title="item.seventhNoteImg"
                         />
                         <p class="text-center fst-italic">{{ item.seventhNoteImg }}</p>
 
@@ -85,15 +89,17 @@
                             class="img-history"
                             :src="item.eighthImg"
                             :alt="item.eighthNoteImg"
+                            :title="item.eighthNoteImg"
                         />
                         <p class="text-center fst-italic">{{ item.eighthNoteImg }}</p>
                     </section>
                 </div>
             </div>
 
-            <!-- Thống kê -->
             <section class="mt-5">
-                <h2 class="text-center mb-4"><i class="bi bi-graph-up"></i> Thống kê phát triển</h2>
+                <h2 class="text-center mb-4">
+                    <i class="bi bi-graph-up"></i> {{ $t('HISTORY.TITLE_STATISTICS') }}
+                </h2>
                 <div class="row">
                     <div v-for="stat in statistics" :key="stat.id" class="col-md-4 mb-4">
                         <div class="card text-center">
@@ -111,7 +117,6 @@
         <Footer />
     </div>
 
-    <!-- nút scroll top -->
     <button
         v-show="showScrollTop"
         @click="scrollToTop"
@@ -123,99 +128,74 @@
 </template>
 
 <script setup lang="ts">
-    import { onMounted, ref } from 'vue'
+    import { computed, ref } from 'vue'
+    import { useI18n } from 'vue-i18n'
     import Footer from '../components/Footer.vue'
     import Header from '../components/Header.vue'
 
-    interface Statistic {
-        id: number
-        icon: string
-        color: string
-        value: string
-        label: string
-    }
+    const { t } = useI18n()
 
-    const statistics = ref<Statistic[]>([])
+    const contentList = computed(() => [
+        {
+            firstContent: t('HISTORY.CONTENT.FIRST_CONTENT'),
+            secondContent: t('HISTORY.CONTENT.SECOND_CONTENT'),
+            secondImg:
+                'https://res.cloudinary.com/springboot-cloud/image/upload/v1755782603/secondImg_dvwggn.jpg',
+            secondNoteImg: t('HISTORY.CONTENT.SECOND_NOTE_IMG'),
+            thirdContent: t('HISTORY.CONTENT.THIRD_CONTENT'),
+            thirdImg:
+                'https://res.cloudinary.com/springboot-cloud/image/upload/v1753505199/logo-group_jz2ezw.jpg',
+            thirdNoteImg: t('HISTORY.CONTENT.THIRD_NOTE_IMG'),
+            fourthContent: t('HISTORY.CONTENT.FOURTH_CONTENT'),
+            fifthContent: t('HISTORY.CONTENT.FIFTH_CONTENT'),
+            sixthContent: t('HISTORY.CONTENT.SIXTH_CONTENT'),
+            sixthImg:
+                'https://res.cloudinary.com/springboot-cloud/image/upload/v1755782603/fourthImg_i1libc.jpg',
+            sixthNoteImg: t('HISTORY.CONTENT.SIXTH_NOTE_IMG'),
+            seventhImg:
+                'https://res.cloudinary.com/springboot-cloud/image/upload/v1755782603/fifthImg_vlgfai.jpg',
+            seventhNoteImg: t('HISTORY.CONTENT.SEVENTH_NOTE_IMG'),
+            eighthContent: t('HISTORY.CONTENT.EIGHTH_CONTENT'),
+            eighthImg:
+                'https://res.cloudinary.com/springboot-cloud/image/upload/v1755782604/sixthImg_jtf2tl.jpg',
+            eighthNoteImg: t('HISTORY.CONTENT.EIGHTH_NOTE_IMG')
+        }
+    ])
 
-    // Mock data function
-    const fetchMockData = async () => {
-        // Simulate API delay
-        await new Promise((resolve) => setTimeout(resolve, 500))
+    const statistics = computed(() => [
+        {
+            id: 1,
+            icon: 'bi bi-people-fill',
+            color: 'primary',
+            value: '~9K',
+            label: t('HISTORY.STATISTICS.MEMBER')
+        },
+        {
+            id: 2,
+            icon: 'bi bi-trophy-fill',
+            color: 'warning',
+            value: '12',
+            label: t('HISTORY.STATISTICS.SEASON')
+        },
+        {
+            id: 3,
+            icon: 'bi bi-calendar-event-fill',
+            color: 'success',
+            value: '3',
+            label: t('HISTORY.STATISTICS.YEAR_ACTIVITY')
+        }
+    ])
 
-        // Statistics data
-        statistics.value = [
-            {
-                id: 1,
-                icon: 'bi bi-people-fill',
-                color: 'primary',
-                value: '~9K',
-                label: 'Thành viên'
-            },
-            {
-                id: 2,
-                icon: 'bi bi-trophy-fill',
-                color: 'warning',
-                value: '12',
-                label: 'Mùa'
-            },
-            {
-                id: 3,
-                icon: 'bi bi-calendar-event-fill',
-                color: 'success',
-                value: '3',
-                label: 'Năm hoạt động'
-            }
-        ]
-    }
-
-    onMounted(() => {
-        fetchMockData()
-    })
-
-    const showScrollTop = ref(true) // 👈 hiện mặc định từ đầu
+    const showScrollTop = ref(true)
 
     const scrollToTop = () => {
-        const el = document.getElementById('all-page') // 👈 hoặc id của phần đầu trang
+        const el = document.getElementById('all-page')
         if (el) {
             el.scrollIntoView({ behavior: 'smooth', block: 'start' })
         } else {
-            window.scrollTo({ top: 0, behavior: 'smooth' }) // fallback
+            window.scrollTo({ top: 0, behavior: 'smooth' })
         }
     }
-
-    const contentList = ref([
-        {
-            firstContent:
-                'Trong năm 2022, sau khi tham gia nhiều giải đấu với vai trò là người chơi và có được nhiều kinh nghiệm thì Nguyễn Thắng đã bắt đầu tạo giải với ý tưởng xây dựng từ mô hình các giải đấu như Ngoại hạng Anh, Euro, Seagame, C1,…',
-            secondContent:
-                'Cũng trong năm 2022 thì Bình Nguyên cùng Phạm Đăng Thắng đang hoạt động độc lập với giải đấu riêng, giải mang tên “Giải vô địch DLS” đã hoạt động đá được 3 mùa giải. Thể thức giải và logo gần giống như giải Gos League hiện tại, sau này được Phạm Đăng Thắng phát triển thêm thể thức lên và xuống hạng. Đây cũng được cho là giải đấu tiền thân của Gos League ngày nay.',
-            secondImg:
-                'https://res.cloudinary.com/springboot-cloud/image/upload/v1755782603/secondImg_dvwggn.jpg',
-            secondNoteImg: '(Logo giải vô địch dls22 của Bình Nguyên và Phạm Đăng Thắng)',
-            thirdContent:
-                'Ngày 13/06/2022, Nguyễn Thắng chính thức tạo ra nhóm GROUP ONLINE SPORTS (viết tắt và GOS).',
-            thirdImg:
-                'https://res.cloudinary.com/springboot-cloud/image/upload/v1753505199/logo-group_jz2ezw.jpg',
-            thirdNoteImg: '(Logo liên đoàn GOS từ lúc thành lập đến nay)',
-            fourthContent:
-                'Nhận thấy nhóm cần có một giải đấu mang tính đặc trưng riêng nên Nguyễn Thắng đã mời Bình Nguyên về quản lý giải, sau này Phạm Đăng Thắng được Bình Nguyên mời về cùng quản lý.',
-            fifthContent:
-                'Sau khi được Bình Nguyên và Phạm Đăng Thắng đưa ra ý tưởng về một giải đấu mang tính đặc trưng riêng (giải Gos League) thì được Nguyễn Thắng chấp nhận và hệ thống giải Gos League đã chính thức ra đời.',
-            sixthContent:
-                'Tất cả các giải đấu thuộc GOS đều được Bình Nguyên thiết kế bộ nhận diện thương hiệu riêng.',
-            sixthImg:
-                'https://res.cloudinary.com/springboot-cloud/image/upload/v1755782603/fourthImg_i1libc.jpg',
-            sixthNoteImg: '(8 giải League của GOS)',
-            seventhImg:
-                'https://res.cloudinary.com/springboot-cloud/image/upload/v1755782603/fifthImg_vlgfai.jpg',
-            seventhNoteImg: '(5 giải cúp của GOS)',
-            eighthContent:
-                'Dựa trên tập hợp về các lỗi vi phạm trên game DLS, bộ luật GOS cũng đã được cho ra đời.',
-            eighthImg:
-                'https://res.cloudinary.com/springboot-cloud/image/upload/v1755782604/sixthImg_jtf2tl.jpg',
-            eighthNoteImg: '(Luật GOS đầu tiên được áp dụng)'
-        }
-    ])
 </script>
 
 <style scoped>

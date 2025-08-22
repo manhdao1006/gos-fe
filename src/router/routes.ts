@@ -25,7 +25,7 @@ export const routes: AppRoute[] = [
         name: 'Tournaments',
         component: Tournaments,
         meta: {
-            title: 'Giải đấu - GOS DLS'
+            title: 'ROUTE.TITLE.TOUR'
         }
     },
     {
@@ -33,7 +33,7 @@ export const routes: AppRoute[] = [
         name: 'History',
         component: History,
         meta: {
-            title: 'Lịch sử - GOS DLS'
+            title: 'ROUTE.TITLE.HISTORY'
         }
     },
     {
@@ -41,7 +41,7 @@ export const routes: AppRoute[] = [
         name: 'HallOfFame',
         component: HallOfFame,
         meta: {
-            title: 'Bảng vàng - GOS DLS'
+            title: 'ROUTE.TITLE.BOARD'
         }
     },
     {
@@ -49,7 +49,7 @@ export const routes: AppRoute[] = [
         name: 'Administration',
         component: Administration,
         meta: {
-            title: 'Ban quản trị - GOS DLS'
+            title: 'ROUTE.TITLE.ADMIN'
         }
     },
     {
@@ -57,7 +57,7 @@ export const routes: AppRoute[] = [
         name: 'Teams',
         component: Teams,
         meta: {
-            title: 'Đội tuyển - GOS DLS'
+            title: 'ROUTE.TITLE.TEAM'
         }
     },
     {
@@ -65,7 +65,7 @@ export const routes: AppRoute[] = [
         name: 'HistoryTeam',
         component: HistoryTeam,
         meta: {
-            title: 'Lịch sử tuyển GOS'
+            title: 'ROUTE.TITLE.HISTORY_TEAM'
         }
     },
     {
@@ -73,7 +73,7 @@ export const routes: AppRoute[] = [
         name: 'Achievement',
         component: Achievement,
         meta: {
-            title: 'Thành tích tuyển GOS'
+            title: 'ROUTE.TITLE.ACHIEVEMENT'
         }
     },
     {
@@ -81,7 +81,7 @@ export const routes: AppRoute[] = [
         name: 'Coach',
         component: Coach,
         meta: {
-            title: 'Ban huấn luyện GOS'
+            title: 'ROUTE.TITLE.COACH'
         }
     },
     {
@@ -89,7 +89,7 @@ export const routes: AppRoute[] = [
         name: 'Player',
         component: Player,
         meta: {
-            title: 'Tuyển thủ GOS'
+            title: 'ROUTE.TITLE.PLAYER'
         }
     }
 ]

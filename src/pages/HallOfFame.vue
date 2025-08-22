@@ -9,15 +9,16 @@
                         >
                             <img
                                 src="https://res.cloudinary.com/springboot-cloud/image/upload/v1753510398/logo-bang-vang_ydkkb7.png"
-                                alt="Bảng vàng danh vọng"
+                                :alt="$t('BOARD.HEADER')"
+                                :title="$t('BOARD.HEADER')"
                                 class="logo-hall img-fluid"
                             />
-                            <span class="fw-bold ms-0 ms-md-3 mt-2 mt-md-0 title-hall"
-                                >Bảng vàng danh vọng</span
-                            >
+                            <span class="fw-bold ms-0 ms-md-3 mt-2 mt-md-0 title-hall">{{
+                                $t('BOARD.HEADER')
+                            }}</span>
                         </div>
                         <p class="lead description-hall">
-                            Tôn vinh những thành viên xuất sắc nhất của cộng đồng GOS - DLS
+                            {{ $t('BOARD.SUB_HEADER') }}
                         </p>
                     </div>
                 </div>
@@ -27,7 +28,6 @@
         <Header />
 
         <div class="container-fluid py-5">
-            <!-- Hall of Fame chính -->
             <section class="mb-5">
                 <h2
                     class="text-center mb-4 d-flex flex-column flex-md-row align-items-center justify-content-center"
@@ -35,11 +35,12 @@
                     <img
                         src="https://res.cloudinary.com/springboot-cloud/image/upload/v1753505199/logo-group_jz2ezw.jpg"
                         alt="GOS League"
+                        title="GOS League"
                         class="logo-gos img-fluid"
                     />
-                    <span class="fw-bold ms-0 ms-md-3 mt-2 mt-md-0 fs-3 fs-md-1 text-nowrap"
-                        >Thành tích GOS League</span
-                    >
+                    <span class="fw-bold ms-0 ms-md-3 mt-2 mt-md-0 fs-3 fs-md-1 text-nowrap">
+                        {{ $t('BOARD.GOS_LEAGUE') }}
+                    </span>
                 </h2>
                 <div class="container">
                     <div class="row">
@@ -50,7 +51,7 @@
                                 >
                                     <thead class="table-dark">
                                         <tr>
-                                            <th scope="col">Mùa</th>
+                                            <th scope="col">{{ $t('BOARD.SEASON') }}</th>
                                             <th
                                                 v-for="col in columnsGosLeague"
                                                 :key="col"
@@ -87,12 +88,13 @@
                 >
                     <img
                         src="https://res.cloudinary.com/springboot-cloud/image/upload/v1753509756/logo-cup_a0op4f.jpg"
-                        alt="GOS League"
+                        alt="GOS Cup"
+                        title="GOS Cup"
                         class="logo-gos img-fluid"
                     />
-                    <span class="fw-bold ms-0 ms-md-3 mt-2 mt-md-0 fs-3 fs-md-1 text-nowrap"
-                        >Thành tích GOS Cup</span
-                    >
+                    <span class="fw-bold ms-0 ms-md-3 mt-2 mt-md-0 fs-3 fs-md-1 text-nowrap">
+                        {{ $t('BOARD.GOS_CUP') }}
+                    </span>
                 </h2>
                 <div class="container">
                     <div class="row">
@@ -103,7 +105,7 @@
                                 >
                                     <thead class="table-dark">
                                         <tr>
-                                            <th scope="col">Mùa</th>
+                                            <th scope="col">{{ $t('BOARD.SEASON') }}</th>
                                             <th v-for="col in columnsGosCup" :key="col" scope="col">
                                                 League {{ col }}
                                             </th>
@@ -131,14 +133,16 @@
             </section>
 
             <section>
-                <h2 class="text-center mb-4"><i class="bi bi-award"></i> Thống kê nổi bật</h2>
+                <h2 class="text-center mb-4">
+                    <i class="bi bi-award"></i> {{ $t('BOARD.TITLE_STATISTICS') }}
+                </h2>
                 <div class="row">
                     <div class="col-md-3 mb-4">
                         <div class="card text-center">
                             <div class="card-body">
                                 <i class="bi bi-controller text-danger display-4"></i>
                                 <h3 class="mt-3">~20K</h3>
-                                <p class="text-muted">Trận đấu</p>
+                                <p class="text-muted">{{ $t('BOARD.STATISTICS.MATCH') }}</p>
                             </div>
                         </div>
                     </div>
@@ -147,7 +151,7 @@
                             <div class="card-body">
                                 <i class="bi bi-cash-coin text-warning display-4"></i>
                                 <h3 class="mt-3">~2.000.000 VNĐ</h3>
-                                <p class="text-muted">Tiền thưởng</p>
+                                <p class="text-muted">{{ $t('BOARD.STATISTICS.MONEY') }}</p>
                             </div>
                         </div>
                     </div>
@@ -156,7 +160,7 @@
                             <div class="card-body">
                                 <i class="bi bi-people text-success display-4"></i>
                                 <h3 class="mt-3">50+</h3>
-                                <p class="text-muted">Thành viên xuất sắc</p>
+                                <p class="text-muted">{{ $t('BOARD.STATISTICS.MEMBER') }}</p>
                             </div>
                         </div>
                     </div>
@@ -165,7 +169,7 @@
                             <div class="card-body">
                                 <i class="bi bi-calendar text-primary display-4"></i>
                                 <h3 class="mt-3">60+</h3>
-                                <p class="text-muted">Sự kiện đã tổ chức</p>
+                                <p class="text-muted">{{ $t('BOARD.STATISTICS.EVENT') }}</p>
                             </div>
                         </div>
                     </div>
@@ -410,10 +414,10 @@
     }
 
     .container-fluid img {
-        width: 100px; /* tùy chỉnh kích thước */
-        height: 100px; /* đảm bảo hình vuông */
-        object-fit: cover; /* giữ tỷ lệ ảnh */
-        border-radius: 50%; /* bo tròn */
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 50%;
     }
 
     .hall-of-fame-page {
@@ -513,7 +517,6 @@
         }
     }
 
-    /* Tablet */
     @media (min-width: 768px) and (max-width: 1024px) {
         .logo-hall {
             width: 80px;
@@ -541,7 +544,6 @@
         }
     }
 
-    /* Desktop */
     @media (min-width: 1025px) {
         .logo-hall {
             width: 100px;

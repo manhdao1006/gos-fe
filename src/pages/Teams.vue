@@ -3,7 +3,6 @@
         class="home-container"
         style="background: linear-gradient(135deg, #000000 0%, #ff0000 100%)"
     >
-        <!-- Popup hiển thị khi mở trang -->
         <div
             v-if="showPopup"
             class="popup-overlay d-flex align-items-center justify-content-center"
@@ -16,6 +15,7 @@
                 <img
                     src="https://res.cloudinary.com/springboot-cloud/image/upload/v1755693189/meaning-logo_onfw9x.jpg"
                     alt="Ý nghĩa logo"
+                    title="Ý nghĩa logo"
                     class="img-fluid"
                 />
             </div>
@@ -24,7 +24,6 @@
         <div
             class="container-fluid text-white min-vh-100 d-flex align-items-center justify-content-center py-5 bg-team"
         >
-            <!-- Nút Back -->
             <button
                 class="btn bg-white rounded-circle shadow position-absolute top-0 start-0 m-3 d-flex align-items-center justify-content-center"
                 style="width: 40px; height: 40px"
@@ -32,13 +31,16 @@
             >
                 <i class="bi bi-arrow-left text-dark"></i>
             </button>
+            <LanguageSwitcher
+                class="shadow position-absolute top-0 end-0 m-3 d-flex align-items-center justify-content-center"
+            />
 
             <div class="row w-100 align-items-center">
-                <!-- Logo + Tên đội -->
                 <div class="col-12 col-md-4 text-center mb-4 mb-md-0 order-1 order-md-1">
                     <img
                         src="https://res.cloudinary.com/springboot-cloud/image/upload/v1755693657/11zon_cropped-removebg-preview_1_cuywly.png"
                         alt="Phượng Hoàng Đỏ"
+                        title="Phượng Hoàng Đỏ"
                         class="img-fluid mb-3 hover-scale"
                         role="button"
                         style="max-width: 220px"
@@ -50,7 +52,6 @@
                     </h3>
                 </div>
 
-                <!-- Menu chức năng -->
                 <div class="col-12 col-md-8 order-2 order-md-2">
                     <div class="row justify-content-center">
                         <div v-for="item in menuItems" :key="item.label" class="col-6 mb-3">
@@ -74,10 +75,11 @@
 <script setup lang="ts">
     import { onMounted, ref } from 'vue'
     import { useRouter } from 'vue-router'
+    import LanguageSwitcher from '../views/LanguageSwitcher.vue'
 
     interface MenuItem {
         label: string
-        icon: string // bootstrap icon class
+        icon: string
         route: string
     }
 
@@ -102,7 +104,6 @@
         router.push('/')
     }
 
-    // popup state
     const showPopup = ref(true)
     function openPopup() {
         showPopup.value = true
@@ -112,7 +113,6 @@
         showPopup.value = false
     }
 
-    // auto show popup khi load trang
     onMounted(() => {
         showPopup.value = true
     })
@@ -146,7 +146,6 @@
         transform: scale(1.05);
     }
 
-    /* Popup */
     .popup-overlay {
         position: fixed;
         top: 0;
@@ -174,13 +173,12 @@
         }
     }
 
-    /* Desktop (>=1025px) */
     @media (min-width: 1025px) {
         .bg-team {
-            background-size: cover; /* full màn hình */
+            background-size: cover;
         }
         .menu-card {
-            width: 350px; /* card to hơn */
+            width: 350px;
         }
 
         .popup-content {
@@ -191,7 +189,6 @@
         }
     }
 
-    /* Tablet (768–1024px) */
     @media (min-width: 768px) and (max-width: 1024px) {
         .bg-team {
             background-size: contain;
@@ -212,14 +209,13 @@
         }
     }
 
-    /* Mobile (<=768px) */
     @media (max-width: 768px) {
         .bg-team {
             background-size: cover;
             background-position: top;
         }
         .menu-card {
-            width: 170px; /* full width */
+            width: 170px;
             margin: auto;
         }
         .team-img img {
@@ -233,7 +229,7 @@
         }
 
         .popup-content {
-            max-width: 350px; /* gần full màn hình */
+            max-width: 350px;
             padding: 1rem;
         }
         .popup-content img {

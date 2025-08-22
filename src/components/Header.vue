@@ -22,22 +22,37 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <router-link class="nav-link" to="/">Trang chủ</router-link>
+                        <router-link class="nav-link" to="/">{{
+                            $t('HEADER.HOMEPAGE')
+                        }}</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link class="nav-link" to="/lich-su">Lịch sử</router-link>
+                        <router-link class="nav-link" to="/lich-su">{{
+                            $t('HEADER.HISTORY')
+                        }}</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link class="nav-link" to="/bang-vang">Bảng vàng</router-link>
+                        <router-link class="nav-link" to="/bang-vang">{{
+                            $t('HEADER.GOLD_BOARD')
+                        }}</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link class="nav-link" to="/giai-dau">Giải đấu</router-link>
+                        <router-link class="nav-link" to="/giai-dau">{{
+                            $t('HEADER.TOURNAMENT')
+                        }}</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link class="nav-link" to="/quan-tri">Quản trị</router-link>
+                        <router-link class="nav-link" to="/quan-tri">{{
+                            $t('HEADER.ADMINISTRATION')
+                        }}</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link class="nav-link" to="/doi-tuyen">Đội tuyển</router-link>
+                        <router-link class="nav-link" to="/doi-tuyen">{{
+                            $t('HEADER.TEAM')
+                        }}</router-link>
+                    </li>
+                    <li>
+                        <LanguageSwitcher />
                     </li>
                 </ul>
             </div>
@@ -46,6 +61,8 @@
 </template>
 
 <script setup lang="ts">
+    import LanguageSwitcher from '../views/LanguageSwitcher.vue'
+
     // Component logic here
 </script>
 

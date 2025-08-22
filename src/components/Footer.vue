@@ -15,11 +15,11 @@
                         <span class="ms-0 ms-md-3 footer-title">GOS - Dream League Soccer</span>
                     </router-link>
                     <div class="fst-italic text-white fw-bold footer-quote mt-2">
-                        "Kết sức mạnh, nối thành công"
+                        {{ $t('FOOTER.QUOTE') }}
                     </div>
                 </div>
                 <div class="col-12 col-md-6 text-center text-md-end">
-                    <h5>Theo dõi chúng tôi</h5>
+                    <h5>{{ $t('FOOTER.FOLLOW') }}</h5>
                     <div
                         class="d-flex justify-content-center justify-content-md-end gap-4 mt-3 fs-icons"
                     >
