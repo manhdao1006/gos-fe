@@ -36,46 +36,6 @@
                             <div class="card-body text-center p-0">
                                 <div class="admin-avatar">
                                     <img
-                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1755846190/admin-binh-nguyen_lvkf3n.jpg"
-                                        alt="Ban quản trị"
-                                        class="logo-member-admin border border-3 border-success rounded-circle"
-                                    />
-                                </div>
-                                <h4 class="mt-3">Lý Bình Nguyên</h4>
-                                <h4 class="mt-3">
-                                    <span class="badge bg-success">Quản trị viên</span>
-                                </h4>
-                                <p class="text-muted fw-bolder">Admin League B</p>
-                                <div class="admin-info text-start">
-                                    <p>
-                                        <strong>Nhiệm vụ:</strong> Hỗ trợ quản lý và điều hành hoạt
-                                        động nhóm
-                                    </p>
-                                    <p><strong>Ngày sinh:</strong> 02/01/2001</p>
-                                    <p><strong>Tỉnh/Thành phố:</strong> Cần Thơ</p>
-                                    <p><strong>CLB yêu thích:</strong> Manchester City</p>
-                                    <p><strong>Slogan:</strong> "Cùng học hỏi, cùng phát triển"</p>
-                                </div>
-                                <div class="contact-info mt-3">
-                                    <button class="btn btn-danger btn-sm me-2">
-                                        <a
-                                            href="https://www.facebook.com/binh.nguyen.292454"
-                                            class="text-white"
-                                            target="_blank"
-                                        >
-                                            <i class="bi bi-envelope"></i> Liên hệ
-                                        </a>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 mb-4 border border-1">
-                        <div class="card admin-card h-100">
-                            <div class="card-body text-center p-0">
-                                <div class="admin-avatar">
-                                    <img
                                         src="https://res.cloudinary.com/springboot-cloud/image/upload/v1755841901/admin-nguyen-thang_ykuocr.jpg"
                                         alt="Ban quản trị"
                                         class="logo-member-admin border border-3 border-danger rounded-circle"
@@ -103,6 +63,46 @@
                                     <button class="btn btn-danger btn-sm me-2">
                                         <a
                                             href="https://www.facebook.com/thang.nguyenvan.77985741"
+                                            class="text-white"
+                                            target="_blank"
+                                        >
+                                            <i class="bi bi-envelope"></i> Liên hệ
+                                        </a>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 mb-4 border border-1">
+                        <div class="card admin-card h-100">
+                            <div class="card-body text-center p-0">
+                                <div class="admin-avatar">
+                                    <img
+                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1755846190/admin-binh-nguyen_lvkf3n.jpg"
+                                        alt="Ban quản trị"
+                                        class="logo-member-admin border border-3 border-success rounded-circle"
+                                    />
+                                </div>
+                                <h4 class="mt-3">Lý Bình Nguyên</h4>
+                                <h4 class="mt-3">
+                                    <span class="badge bg-success">Quản trị viên</span>
+                                </h4>
+                                <p class="text-muted fw-bolder">Admin League B</p>
+                                <div class="admin-info text-start">
+                                    <p>
+                                        <strong>Nhiệm vụ:</strong> Hỗ trợ quản lý và điều hành hoạt
+                                        động nhóm
+                                    </p>
+                                    <p><strong>Ngày sinh:</strong> 02/01/2001</p>
+                                    <p><strong>Tỉnh/Thành phố:</strong> Cần Thơ</p>
+                                    <p><strong>CLB yêu thích:</strong> Manchester City</p>
+                                    <p><strong>Slogan:</strong> "Cùng học hỏi, cùng phát triển"</p>
+                                </div>
+                                <div class="contact-info mt-3">
+                                    <button class="btn btn-danger btn-sm me-2">
+                                        <a
+                                            href="https://www.facebook.com/binh.nguyen.292454"
                                             class="text-white"
                                             target="_blank"
                                         >
