@@ -36,7 +36,7 @@
                             <div class="card-body text-center p-0">
                                 <div class="admin-avatar">
                                     <img
-                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1753505185/logo-admin_fh2b4q.jpg"
+                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1755841902/admin-binh-nguyen_lvkf3n.jpg"
                                         alt="Ban quản trị"
                                         class="logo-member-admin border border-3 border-success rounded-circle"
                                     />
@@ -76,7 +76,7 @@
                             <div class="card-body text-center p-0">
                                 <div class="admin-avatar">
                                     <img
-                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1753505185/logo-admin_fh2b4q.jpg"
+                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1755841901/admin-nguyen-thang_ykuocr.jpg"
                                         alt="Ban quản trị"
                                         class="logo-member-admin border border-3 border-danger rounded-circle"
                                     />
@@ -119,7 +119,7 @@
                             <div class="card-body text-center p-0">
                                 <div class="admin-avatar">
                                     <img
-                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1753505185/logo-admin_fh2b4q.jpg"
+                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1755841901/admin-pham-dang-thang_n4jvqx.jpg"
                                         alt="Ban quản trị"
                                         class="logo-member-admin border border-3 border-warning rounded-circle"
                                     />
@@ -159,7 +159,7 @@
                             <div class="card-body text-center p-0">
                                 <div class="admin-avatar">
                                     <img
-                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1753505185/logo-admin_fh2b4q.jpg"
+                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1755841901/admin-thanh-hien_ddj2so.jpg"
                                         alt="Ban quản trị"
                                         class="logo-member-admin border border-3 border-primary rounded-circle"
                                     />
@@ -196,7 +196,7 @@
                             <div class="card-body text-center p-0">
                                 <div class="admin-avatar">
                                     <img
-                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1753505185/logo-admin_fh2b4q.jpg"
+                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1755841901/admin-manh-dao_fgew6w.jpg"
                                         alt="Ban quản trị"
                                         class="logo-member-admin border border-3 border-black rounded-circle"
                                     />
@@ -245,7 +245,7 @@
                             <div class="card-body text-center p-0">
                                 <div class="admin-avatar">
                                     <img
-                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1753505185/logo-admin_fh2b4q.jpg"
+                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1755841901/admin-nguyen-van-hoang_peaaom.jpg"
                                         alt="Ban quản trị"
                                         class="logo-member-admin border border-3 border-warning rounded-circle"
                                     />
@@ -283,7 +283,7 @@
                             <div class="card-body text-center p-0">
                                 <div class="admin-avatar">
                                     <img
-                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1753505185/logo-admin_fh2b4q.jpg"
+                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1755841902/admin-doan-long_ciszqw.jpg"
                                         alt="Ban quản trị"
                                         class="logo-member-admin border border-3 border-warning rounded-circle"
                                     />

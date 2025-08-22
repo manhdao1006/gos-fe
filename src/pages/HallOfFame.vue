@@ -33,7 +33,7 @@
                     class="text-center mb-4 d-flex flex-column flex-md-row align-items-center justify-content-center"
                 >
                     <img
-                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1753509756/logo-cup_a0op4f.jpg"
+                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1753505199/logo-group_jz2ezw.jpg"
                         alt="GOS League"
                         class="logo-gos img-fluid"
                     />

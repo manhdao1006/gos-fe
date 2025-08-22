@@ -1,252 +1,199 @@
 <template>
     <div class="tournaments-page">
-        <div class="hero-section bg-warning text-dark py-5 w-100">
+        <div class="hero-section text-white py-3 w-100">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12 text-center">
-                        <h1><i class="bi bi-trophy"></i> Hệ thống giải đấu</h1>
-                        <p class="lead">
-                            Khám phá các giải đấu đa dạng từ cấp độ nghiệp dư đến chuyên nghiệp
+                        <div
+                            class="d-flex flex-column flex-md-row align-items-center justify-content-center"
+                        >
+                            <img
+                                src="https://res.cloudinary.com/springboot-cloud/image/upload/v1753509756/logo-cup_a0op4f.jpg"
+                                alt="Hệ thống giải đấu"
+                                class="logo-tournaments img-fluid"
+                            />
+                            <span class="fw-bold ms-0 ms-md-3 mt-2 mt-md-0 title-tournaments"
+                                >Hệ thống giải đấu</span
+                            >
+                        </div>
+                        <p class="lead description-tournaments">
+                            Khám phá các giải đấu đa dạng cấp độ từ GOS - DLS
                         </p>
                     </div>
                 </div>
             </div>
         </div>
 
+        <Header />
+
         <div class="container-fluid py-5">
-            <!-- Giải đấu hàng tuần -->
             <section class="mb-5">
                 <h2 class="text-center mb-4">
-                    <i class="bi bi-calendar-week text-primary"></i> Giải đấu hàng tuần
+                    <img
+                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1753505199/logo-group_jz2ezw.jpg"
+                        alt="Giải GOS League"
+                        title="Giải GOS League"
+                        class="logo-tournaments img-fluid"
+                    />
+                    <span class="fw-bold ms-0 ms-md-3 mt-2 mt-md-0 title-tournaments">
+                        Giải GOS League</span
+                    >
                 </h2>
                 <div class="row">
-                    <div class="col-md-4 mb-4">
-                        <div class="card h-100">
-                            <div class="card-body text-center">
-                                <i class="bi bi-trophy text-warning display-4 mb-3"></i>
-                                <h5 class="card-title">Giải đấu thường niên</h5>
-                                <p class="card-text">
-                                    Giải đấu diễn ra hàng tuần với phần thưởng hấp dẫn cho top 3.
-                                </p>
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <i class="bi bi-check text-success"></i> Thời gian: Mỗi Chủ
-                                        nhật
-                                    </li>
-                                    <li><i class="bi bi-check text-success"></i> Số đội: 16 đội</li>
-                                    <li>
-                                        <i class="bi bi-check text-success"></i> Phần thưởng:
-                                        1000-500-200 coins
-                                    </li>
-                                </ul>
-                                <button class="btn btn-primary">Đăng ký tham gia</button>
-                            </div>
+                    <div class="text-start fs-5">
+                        GOS League là giải đấu thuộc GOS với hệ thống 8 giải đấu, được đá theo thể
+                        thức tính điểm xếp hạng, mỗi League sẽ có 10 đội, các đội đá với nhau theo
+                        thể thức vòng tròn tính điểm xếp hạng (có lượt đi và lượt về).
+                    </div>
+                    <div class="gallery-grid">
+                        <div
+                            class="grid-item d-flex align-items-center justify-content-center bg-white border border-1 text-white fw-bold"
+                            v-for="(img, index) in images"
+                            :key="index"
+                            data-bs-toggle="modal"
+                            data-bs-target="#imageModal"
+                        >
+                            <img :src="img.url" :alt="img.name" :title="img.name" />
                         </div>
                     </div>
-
-                    <div class="col-md-4 mb-4">
-                        <div class="card h-100">
-                            <div class="card-body text-center">
-                                <i class="bi bi-star text-warning display-4 mb-3"></i>
-                                <h5 class="card-title">Giải đấu VIP</h5>
-                                <p class="card-text">
-                                    Giải đấu dành cho những người chơi có ranking cao.
-                                </p>
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <i class="bi bi-check text-success"></i> Thời gian: Mỗi thứ
-                                        7
-                                    </li>
-                                    <li><i class="bi bi-check text-success"></i> Số đội: 8 đội</li>
-                                    <li>
-                                        <i class="bi bi-check text-success"></i> Phần thưởng:
-                                        2000-1000-500 coins
-                                    </li>
-                                </ul>
-                                <button class="btn btn-warning">Đăng ký tham gia</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 mb-4">
-                        <div class="card h-100">
-                            <div class="card-body text-center">
-                                <i class="bi bi-lightning text-warning display-4 mb-3"></i>
-                                <h5 class="card-title">Giải đấu nhanh</h5>
-                                <p class="card-text">
-                                    Giải đấu tốc độ dành cho những người chơi bận rộn.
-                                </p>
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <i class="bi bi-check text-success"></i> Thời gian: Hàng
-                                        ngày
-                                    </li>
-                                    <li><i class="bi bi-check text-success"></i> Số đội: 4 đội</li>
-                                    <li>
-                                        <i class="bi bi-check text-success"></i> Phần thưởng:
-                                        500-200-100 coins
-                                    </li>
-                                </ul>
-                                <button class="btn btn-success">Đăng ký tham gia</button>
-                            </div>
-                        </div>
+                    <div class="text-start fs-5">
+                        Kết thúc mùa giải, đội đứng đầu sẽ là đội vô địch, 3 đội đứng đầu sẽ được
+                        thăng hạng lên hạng đấu cao hơn, 3 đội đứng cuối sẽ rớt hạng xuống hạng đấu
+                        thấp hơn, từ top 1- top 4 sẽ được đá giải C1 (GOS Champions League 1), top
+                        5-6 sẽ đá giải C2 (GOS Champions League 2) thuộc GOS Cup. Mỗi League sẽ có
+                        một Admin quản lý.
                     </div>
                 </div>
             </section>
 
-            <!-- Cúp mùa giải -->
-            <section class="mb-5">
+            <section class="mb-1">
                 <h2 class="text-center mb-4">
-                    <i class="bi bi-cup-hot text-danger"></i> Cúp mùa giải
+                    <img
+                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1753509756/logo-cup_a0op4f.jpg"
+                        alt="Giải GOS Cup"
+                        class="logo-tournaments img-fluid"
+                    />
+                    <span class="fw-bold ms-0 ms-md-3 mt-2 mt-md-0 title-tournaments">
+                        Giải GOS Cup</span
+                    >
                 </h2>
                 <div class="row">
-                    <div class="col-lg-8 mx-auto">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        <h4>Giải đấu lớn nhất năm</h4>
-                                        <p>
-                                            Tham gia cúp mùa giải để có cơ hội trở thành nhà vô địch
-                                            và nhận phần thưởng khủng.
-                                        </p>
-                                        <ul>
-                                            <li>Thời gian: 3 tháng/mùa</li>
-                                            <li>Số đội: 32 đội</li>
-                                            <li>Phần thưởng: 10000-5000-2000 coins</li>
-                                            <li>Danh hiệu đặc biệt</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-6 text-center">
-                                        <i class="bi bi-trophy-fill text-warning display-1"></i>
-                                        <div class="mt-3">
-                                            <button class="btn btn-danger btn-lg">
-                                                Đăng ký ngay
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
+                    <div class="text-start fs-5">
+                        GOS Cup là tên gọi chung các giải đấu cúp của GOS, giải gồm C1, C2, siêu
+                        cúp, cúp liên đoàn và cúp liên group.
+                    </div>
+                    <div
+                        class="row bg-white mb-3"
+                        v-for="(img, index) in imagesCup"
+                        :key="index"
+                        data-bs-toggle="modal"
+                        data-bs-target="#imageModal"
+                    >
+                        <!-- Ảnh (40%) -->
+                        <div class="col-4">
+                            <img :src="img.url" :alt="img.name" />
+                        </div>
+
+                        <!-- Content (60%) -->
+                        <div class="col-8 align-items-center p-3">
+                            <div>
+                                <h5 class="fw-bold">{{ img.name }}</h5>
+                                <p class="fs-6 text-start">{{ img.description }}</p>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
-
-            <!-- Giải đấu quốc tế -->
-            <section class="mb-5">
-                <h2 class="text-center mb-4">
-                    <i class="bi bi-globe text-info"></i> Giải đấu quốc tế
-                </h2>
-                <div class="row">
-                    <div class="col-md-6 mb-4">
-                        <div class="card">
-                            <div class="card-header bg-primary text-white">
-                                <h5 class="mb-0"><i class="bi bi-flag"></i> Champions League</h5>
-                            </div>
-                            <div class="card-body">
-                                <p>Giải đấu cấp châu lục dành cho các đội mạnh nhất.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <span class="badge bg-primary">Đang diễn ra</span>
-                                    <button class="btn btn-outline-primary">Xem chi tiết</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 mb-4">
-                        <div class="card">
-                            <div class="card-header bg-success text-white">
-                                <h5 class="mb-0"><i class="bi bi-flag"></i> World Cup</h5>
-                            </div>
-                            <div class="card-body">
-                                <p>Giải đấu thế giới được tổ chức mỗi 4 năm một lần.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <span class="badge bg-secondary">Sắp diễn ra</span>
-                                    <button class="btn btn-outline-success">Xem chi tiết</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Bảng xếp hạng -->
-            <section>
-                <h2 class="text-center mb-4">
-                    <i class="bi bi-list-ol text-success"></i> Bảng xếp hạng hiện tại
-                </h2>
-                <div class="table-responsive">
-                    <table class="table table-hover">
-                        <thead class="table-dark">
-                            <tr>
-                                <th>#</th>
-                                <th>Đội bóng</th>
-                                <th>Điểm</th>
-                                <th>Trận thắng</th>
-                                <th>Hòa</th>
-                                <th>Thua</th>
-                                <th>Hiệu số</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><span class="badge bg-warning">1</span></td>
-                                <td><strong>Champion FC</strong></td>
-                                <td>45</td>
-                                <td>14</td>
-                                <td>3</td>
-                                <td>1</td>
-                                <td class="text-success">+25</td>
-                            </tr>
-                            <tr>
-                                <td><span class="badge bg-secondary">2</span></td>
-                                <td><strong>Elite United</strong></td>
-                                <td>42</td>
-                                <td>13</td>
-                                <td>3</td>
-                                <td>2</td>
-                                <td class="text-success">+18</td>
-                            </tr>
-                            <tr>
-                                <td><span class="badge bg-bronze">3</span></td>
-                                <td><strong>Pro Stars</strong></td>
-                                <td>38</td>
-                                <td>11</td>
-                                <td>5</td>
-                                <td>2</td>
-                                <td class="text-success">+12</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td><strong>Rising FC</strong></td>
-                                <td>35</td>
-                                <td>10</td>
-                                <td>5</td>
-                                <td>3</td>
-                                <td class="text-success">+8</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td><strong>Veterans</strong></td>
-                                <td>32</td>
-                                <td>9</td>
-                                <td>5</td>
-                                <td>4</td>
-                                <td class="text-success">+5</td>
-                            </tr>
-                        </tbody>
-                    </table>
                 </div>
             </section>
         </div>
     </div>
+
+    <Footer />
 </template>
 
 <script setup lang="ts">
-    // Component logic here
+    import { ref } from 'vue'
+    import Footer from '../components/Footer.vue'
+    import Header from '../components/Header.vue'
+
+    const images = ref<{ url: string; name: string }[]>([
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1753505184/logo-la_s4higy.jpg',
+            name: 'GOS League A'
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1753505174/logo-lb_l0sjbr.jpg',
+            name: 'GOS League B'
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1753505171/logo-lc_vd87pg.jpg',
+            name: 'GOS League C'
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1753505171/logo-ld_arjajw.jpg',
+            name: 'GOS League D'
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1753505171/logo-le_wyveky.jpg',
+            name: 'GOS League E'
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1753505170/logo-lf_lka3nr.jpg',
+            name: 'GOS League F'
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1753505170/logo-lg_d5rbzm.jpg',
+            name: 'GOS League G'
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1753505170/logo-lh_sexqrq.jpg',
+            name: 'GOS League H'
+        }
+    ])
+
+    const imagesCup = ref<{ url: string; name: string; description: string }[]>([
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755841173/c1_snlxqy.jpg',
+            name: 'GOS Champions League 1',
+            description:
+                'Giải C1 sẽ lấy top 4 mỗi League, chia bảng đá vòng bảng và các vòng sau sẽ đá theo thể thức loại trực tiếp loại trực tiếp.'
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755841173/c2_mvz3gc.jpg',
+            name: 'GOS Champions League 2',
+            description: 'Giải C2 sẽ lấy top 5 và top 6 mỗi bảng chia cặp ra đá loại trực tiếp.'
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755841502/sieu-cup_xqr24u.jpg',
+            name: 'Siêu Cup',
+            description: 'Siêu cúp sẽ là trận đấu giữa nhà vô địch C1 và nhà vô địch C2.'
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1753509756/logo-cup_a0op4f.jpg',
+            name: 'Cup Liên Đoàn',
+            description:
+                'Cúp liên đoàn sẽ được đá vào cuối mùa giải, giải sẽ đá theo mô hình giải đấu các đội tuyển quốc gia hoặc CLB.'
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755841911/cup-lien-group_zcylef.jpg',
+            name: 'Cup Liên Group',
+            description:
+                'Cúp liên group sẽ cử nhà vô địch siêu cúp của GOS đi đá với nhà vô địch của các nhóm khác.'
+        }
+    ])
 </script>
 
 <style scoped>
+    .hero-section {
+        background-image: url('https://res.cloudinary.com/springboot-cloud/image/upload/v1753513401/Thi%E1%BA%BFt_k%E1%BA%BF_ch%C6%B0a_c%C3%B3_t%C3%AAn_llaqju.png');
+    }
+
+    .container-fluid img {
+        width: 100px; /* tùy chỉnh kích thước */
+        height: 100px; /* đảm bảo hình vuông */
+        object-fit: cover; /* giữ tỷ lệ ảnh */
+        border-radius: 50%; /* bo tròn */
+    }
+
     .tournaments-page {
         background: #f8f9fa;
     }
@@ -266,11 +213,88 @@
         background-color: #cd7f32 !important;
     }
 
-    .table th {
-        font-weight: 600;
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* 3 cột */
+        grid-template-rows: repeat(1, 1fr); /* 5 hàng */
+        height: 100vh; /* full màn hình */
+        gap: 8px;
+        padding: 8px;
     }
 
-    .table td {
-        vertical-align: middle;
+    .grid-item {
+        cursor: pointer;
+        font-size: 1.2rem;
+        text-align: center;
+        padding: 12px;
+        position: relative;
+        background: #212529; /* bg-dark */
+        color: #fff;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .grid-item img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover; /* desktop/tablet: ảnh che đầy */
+        border-radius: 0 !important;
+    }
+
+    @media (max-width: 768px) {
+        .gallery-grid {
+            grid-template-columns: repeat(2, 1fr); /* tablet: 2 cột */
+            grid-template-rows: repeat(2, 1fr); /* 5 hàng */
+        }
+
+        .logo-tournaments {
+            width: 60px;
+        }
+
+        .title-tournaments {
+            font-size: 1.5rem;
+        }
+
+        .description-tournaments {
+            font-size: 0.9rem;
+        }
+    }
+
+    /* Tablet */
+    @media (min-width: 768px) and (max-width: 1024px) {
+        .gallery-grid {
+            grid-template-columns: repeat(2, 1fr); /* tablet: 2 cột */
+            grid-template-rows: repeat(2, 1fr); /* 5 hàng */
+        }
+
+        .logo-tournaments {
+            width: 80px;
+        }
+
+        .title-tournaments {
+            font-size: 2rem;
+        }
+
+        .description-tournaments {
+            font-size: 1rem;
+        }
+    }
+
+    /* Desktop */
+    @media (min-width: 1025px) {
+        .logo-tournaments {
+            width: 100px;
+        }
+
+        .title-tournaments {
+            font-size: 2.5rem;
+        }
+
+        .description-tournaments {
+            font-size: 1.1rem;
+        }
     }
 </style>
