@@ -119,7 +119,7 @@
                             <div class="card-body text-center p-0">
                                 <div class="admin-avatar">
                                     <img
-                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1755841901/admin-pham-dang-thang_n4jvqx.jpg"
+                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1755843559/admin-pham-dang-thang_n4jvqx.jpg"
                                         alt="Ban quản trị"
                                         class="logo-member-admin border border-3 border-warning rounded-circle"
                                     />
