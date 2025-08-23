@@ -1,27 +1,33 @@
 <template>
-    <div
+    <main
         class="home-container"
         style="background: linear-gradient(135deg, #000000 0%, #ff0000 100%)"
+        role="main"
+        aria-label="Trang chủ GOS Dream League Soccer"
     >
-        <div class="hero-section w-100">
+        <section class="hero-section w-100" aria-labelledby="hero-title">
             <div class="container-fluid">
                 <div class="row justify-content-center flex-column flex-xl-row">
                     <div class="col-12 col-md-6 text-center order-1 order-md-1">
                         <LanguageSwitcher class="position-absolute top-0 start-0 m-3" />
-                        <div class="row mt-5">
+                        <header class="row mt-5">
                             <div class="col-12">
-                                <div class="text-uppercase fs-2 text-white fw-bold">
+                                <h1 id="hero-title" class="text-uppercase fs-2 text-white fw-bold">
                                     GOS - DREAM LEAGUE SOCCER
-                                </div>
-                                <div class="text-white fs-4 mt-3 mb-3 fw-bold">13/06/2022</div>
-                                <div class="text-white fs-4 mt-3 mb-3">
+                                </h1>
+                                <time
+                                    class="text-white fs-4 mt-3 mb-3 fw-bold d-block"
+                                    datetime="2022-06-13"
+                                    >13/06/2022</time
+                                >
+                                <p class="text-white fs-4 mt-3 mb-3">
                                     {{ $t('HOME.INTRO') }}
-                                </div>
-                                <div class="fst-italic text-white fw-bold fs-4">
+                                </p>
+                                <p class="fst-italic text-white fw-bold fs-4">
                                     {{ $t('HOME.SLOGAN_GROUP') }}
-                                </div>
+                                </p>
                             </div>
-                        </div>
+                        </header>
                         <div class="row mt-3">
                             <div class="col-12 d-flex justify-content-center gap-4 fs-1">
                                 <a
@@ -108,8 +114,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
+    </main>
 </template>
 
 <script setup lang="ts">
