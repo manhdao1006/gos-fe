@@ -1,8 +1,4 @@
 export default {
-    LANGUAGE: {
-        VN: 'Tiếng Việt',
-        EN: 'Tiếng Anh'
-    },
     ROUTE: {
         TITLE: {
             TOUR: 'Giải đấu - GOS DLS',

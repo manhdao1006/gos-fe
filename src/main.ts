@@ -1,7 +1,6 @@
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
-import 'flag-icons/css/flag-icons.min.css'
 import { createApp, watch } from 'vue'
 import { createI18n } from 'vue-i18n'
 
