@@ -70,7 +70,7 @@ export default {
         }
     },
     BOARD: {
-        HEADER: 'Honor Board',
+        HEADER: 'Golden Board',
         SUB_HEADER: 'Honoring the best members of the GOS - DLS community',
         GOS_LEAGUE: 'GOS League Achievements',
         GOS_CUP: 'GOS Cup Achievements',
@@ -84,7 +84,7 @@ export default {
         }
     },
     TOUR: {
-        HEADER: 'League system',
+        HEADER: 'Tournament System',
         SUB_HEADER: 'Explore tournaments of various levels from GOS - DLS',
         LEAGUE: {
             TITLE: 'GOS League',
@@ -203,7 +203,7 @@ export default {
             }
         },
         HISTORY: {
-            TITLE: 'GOS recruitment history',
+            TITLE: 'GOS Team History',
             HEADER: 'Table of contents',
             FIRST_PART: {
                 TITLE: 'I. HISTORY',
@@ -252,7 +252,7 @@ export default {
             }
         },
         ACHIEVEMENT: {
-            TITLE: 'GOS team achievements',
+            TITLE: 'GOS Team Achievements',
             CONTENT: {
                 FIRST_ACHIEVEMENT: 'Incentive prize of Inter-Group DPC Cup season 4'
             }
