@@ -1,14 +1,14 @@
 <template>
     <div class="dropdown">
         <button
-            class="btn btn-light dropdown-toggle d-flex align-items-center w-100"
+            class="btn btn-light dropdown-toggle d-flex align-items-center"
             type="button"
             data-bs-toggle="dropdown"
         >
             <div class="me-2">{{ currentLang.label }}</div>
             <img :src="currentLang.icon" :alt="currentLang.label" width="30px" class="me-2" />
         </button>
-        <ul class="dropdown-menu dropdown-menu-end w-100">
+        <ul class="dropdown-menu dropdown-menu-end">
             <li v-for="lang in languages" :key="lang.code">
                 <a
                     class="dropdown-item d-flex align-items-center"
@@ -58,6 +58,6 @@
 
 <style scoped>
     .dropdown-menu {
-        min-width: 100% !important; /* bằng nút gốc */
+        min-width: 100% !important;
     }
 </style>

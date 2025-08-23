@@ -7,8 +7,7 @@
             <div class="container-fluid">
                 <div class="row justify-content-center flex-column flex-xl-row">
                     <div class="col-12 col-md-6 text-center order-1 order-md-1">
-                        <LanguageSwitcher class="text-start" />
-
+                        <LanguageSwitcher class="position-absolute top-0 start-0 m-3" />
                         <div class="row mt-5">
                             <div class="col-12">
                                 <div class="text-uppercase fs-2 text-white fw-bold">
@@ -16,13 +15,8 @@
                                 </div>
                                 <div class="text-white fs-4 mt-3 mb-3 fw-bold">13/06/2022</div>
                                 <div class="text-white fs-4 mt-3 mb-3">
-                                    {{ $t('HOME.MEANING_GROUP') }}
+                                    {{ $t('HOME.INTRO') }}
                                 </div>
-                                <ul class="text-warning fs-5 list-unstyled fw-bold">
-                                    <li>G: Group</li>
-                                    <li>O: Online</li>
-                                    <li>S: Sports</li>
-                                </ul>
                                 <div class="fst-italic text-white fw-bold fs-4">
                                     {{ $t('HOME.SLOGAN_GROUP') }}
                                 </div>

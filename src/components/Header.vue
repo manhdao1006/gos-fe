@@ -51,7 +51,7 @@
                             $t('HEADER.TEAM')
                         }}</router-link>
                     </li>
-                    <li>
+                    <li class="nav-item mx-auto">
                         <LanguageSwitcher />
                     </li>
                 </ul>
@@ -62,8 +62,6 @@
 
 <script setup lang="ts">
     import LanguageSwitcher from '../views/LanguageSwitcher.vue'
-
-    // Component logic here
 </script>
 
 <style scoped>
@@ -74,12 +72,10 @@
         border-radius: 50%;
     }
 
-    /* Tên thương hiệu */
     .brand-title {
         font-size: 1.2rem;
     }
 
-    /* Link trong nav */
     .nav-link {
         font-weight: 500;
         color: #000000;
@@ -90,7 +86,6 @@
         color: red !important;
     }
 
-    /* Mobile: ≤768px */
     @media (max-width: 768px) {
         .logo-navbar {
             width: 50px;
@@ -106,7 +101,6 @@
         }
     }
 
-    /* Tablet: 769px–1024px */
     @media (min-width: 769px) and (max-width: 1024px) {
         .logo-navbar {
             width: 70px;
@@ -122,7 +116,6 @@
         }
     }
 
-    /* Desktop: ≥1025px */
     @media (min-width: 1025px) {
         .logo-navbar {
             width: 100px;

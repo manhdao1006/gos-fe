@@ -51,7 +51,6 @@
 </template>
 
 <style scoped>
-    /* Base styles */
     .footer-logo {
         width: 60px;
         height: 60px;
@@ -75,7 +74,6 @@
         color: #ffc107 !important;
     }
 
-    /* Mobile: ≤768px */
     @media (max-width: 768px) {
         .footer-logo {
             width: 50px;
@@ -95,7 +93,6 @@
         }
     }
 
-    /* Tablet: 769px – 1024px */
     @media (min-width: 769px) and (max-width: 1024px) {
         .footer-logo {
             width: 70px;
@@ -115,7 +112,6 @@
         }
     }
 
-    /* Desktop: ≥1025px */
     @media (min-width: 1025px) {
         .footer-logo {
             width: 100px;

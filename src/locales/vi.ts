@@ -13,7 +13,7 @@ export default {
         }
     },
     HOME: {
-        MEANING_GROUP: 'Ý nghĩa Group: GOS - DREAM LEAGUE SOCCER',
+        INTRO: 'GOS (Group Online Sports): là nhóm tổ chức các giải đấu và kết nối các game thủ DLS',
         SLOGAN_GROUP: 'Slogan: "Kết sức mạnh, nối thành công"',
         MENU: {
             HOMEPAGE: 'Trang chủ',
