@@ -190,5 +190,79 @@ export default {
             SUCCESS: 'Success resolution rate',
             SATISFIED: 'Member satisfaction'
         }
+    },
+    TEAM: {
+        HOME: {
+            TITLE: 'GOS TEAM',
+            NICK_NAME: 'RED PHOENIX',
+            MENU: {
+                HISTORY: 'History',
+                ACHIEVEMENT: 'Achievements',
+                COACH: 'Coaching staff',
+                PLAYER: 'Players'
+            }
+        },
+        HISTORY: {
+            TITLE: 'GOS recruitment history',
+            HEADER: 'Table of contents',
+            FIRST_PART: {
+                TITLE: 'I. HISTORY',
+                FIRST_CONTENT:
+                    'On February 16, 2023, with the approval of the GOS Board of Directors, the GOS team was officially established. The nickname of the GOS team is “Red Phoenix”.',
+                FIRST_NOTE_IMG: '(The first members of the GOS team)',
+                SECOND_CONTENT:
+                    'The GOS team is quite young and lacks a lot of experience. Since its establishment, the GOS team has only participated in one official tournament.',
+                THIRD_CONTENT:
+                    'On May 17, 2023, the GOS team officially stopped operating. The members of the team began to leave and join other teams.',
+                FOURTH_CONTENT:
+                    'On June 28, 2025, the GOS team was officially re-established. With the call from GOS, many members who were in the team and were joining other teams returned to play for the GOS team once again.',
+                FOURTH_NOTE_IMG: '(The GOS team after re-establishment)'
+            },
+            SECOND_PART: {
+                TITLE: 'II. TOURNAMENT PARTICIPATION PROCESS',
+                FIRST_SUB: {
+                    TITLE: '1. SS4 INTER-GROUP TOURNAMENT (HOST DPC)',
+                    FIRST_CONTENT:
+                        'On February 16, 2023, GOS team received an invitation to participate in the SS4 Inter-group tournament with the host DPC. This is the first official tournament that GOS team participates in. In this tournament, GOS team is in the same group with ST, DSW and the host DPC.',
+                    FIRST_NOTE_IMG: '(Participating squad)',
+                    SECOND_CONTENT:
+                        'This is the first official tournament that GOS team participates in. In this tournament, GOS stopped at the quarter-finals before the PT group and received a consolation prize from the Organizing Committee.',
+                    SECOND_NOTE_IMG: '(Group stage results)',
+                    THIRD_NOTE_IMG: '(Organization awards prizes)'
+                },
+                SECOND_SUB: {
+                    TITLE: '2. VFC 5 TOURNAMENT (HOST SAMURAI)',
+                    FIRST_CONTENT:
+                        'On March 15, 2023, GOS participated in the VFC 5 tournament organized by host SAMURAI. In this tournament, GOS was eliminated if it did not pass the group stage.',
+                    SECOND_NOTE_IMG: '(GOS participated in VFC 5)'
+                },
+                THIRD_SUB: {
+                    TITLE: '3. GKW AND PDH FEDERATION TOURNAMENT SS2 (HOST GKW AND PDH)',
+                    FIRST_CONTENT:
+                        'On May 17, 2023, GOS participated in the GKW and PDH Federation Tournament season 2, jointly organized by hosts GKW and PDH. In this tournament, GOS will be eliminated if they do not pass the group stage.',
+                    THIRD_NOTE_IMG:
+                        '(GOS participates in the GKW and PDH Federation Tournament season 2)'
+                },
+                FOURTH_SUB: {
+                    TITLE: '4. DLS VNM CUP 2025',
+                    FIRST_CONTENT:
+                        'On July 12, 2025, GOS returns to participate after a re-establishment period, participating in the GKW and PDH League season 2, jointly organized by hosts GKW and PDH. In this tournament, GOS will be eliminated if they do not pass the group stage.',
+                    SECOND_NOTE_IMG: '(GOS participates in the DLS VNM CUP 2025)'
+                }
+            }
+        },
+        ACHIEVEMENT: {
+            TITLE: 'GOS team achievements',
+            CONTENT: {
+                FIRST_ACHIEVEMENT: 'Incentive prize of Inter-Group DPC Cup season 4'
+            }
+        },
+        COACH: {
+            TITLE: 'GOS Coaching Team'
+        },
+        PLAYER: {
+            TITLE: 'GOS Player',
+            VIEW_CONTRACT: 'View Contract'
+        }
     }
 }

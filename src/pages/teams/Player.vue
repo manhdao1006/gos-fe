@@ -9,12 +9,13 @@
                         >
                             <img
                                 src="https://res.cloudinary.com/springboot-cloud/image/upload/v1753505200/logo-team_zzr4nj.jpg"
-                                alt="Tuyển thủ GOS"
+                                :alt="$t('TEAM.PLAYER.TITLE')"
+                                :title="$t('TEAM.PLAYER.TITLE')"
                                 class="logo-admin img-fluid"
                             />
-                            <span class="fw-bold ms-0 ms-md-3 mt-2 mt-md-0 title-admin"
-                                >Tuyển thủ GOS</span
-                            >
+                            <span class="fw-bold ms-0 ms-md-3 mt-2 mt-md-0 title-admin">{{
+                                $t('TEAM.PLAYER.TITLE')
+                            }}</span>
                         </div>
                     </div>
                 </div>
@@ -34,15 +35,13 @@
                     data-bs-target="#imageModal"
                 >
                     <span class="item-name">{{ img.name }}</span>
-                    <div class="overlay">Xem hợp đồng</div>
+                    <div class="overlay">{{ $t('TEAM.PLAYER.VIEW_CONTRACT') }}</div>
                 </div>
             </div>
 
-            <!-- Bootstrap Modal -->
             <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog custom-modal">
                     <div class="modal-content bg-transparent border-0 shadow-none text-center">
-                        <!-- Close -->
                         <button
                             type="button"
                             class="btn-close btn-danger position-absolute top-0 end-0 m-3"
@@ -50,7 +49,6 @@
                             aria-label="Close"
                         ></button>
 
-                        <!-- Prev button -->
                         <button
                             type="button"
                             class="btn btn-dark position-absolute top-50 start-0 translate-middle-y"
@@ -60,7 +58,6 @@
                             ‹
                         </button>
 
-                        <!-- Image -->
                         <img
                             :src="images[currentIndex].url"
                             :alt="images[currentIndex].name"
@@ -69,7 +66,6 @@
                         />
                         <p class="text-white mt-2">{{ images[currentIndex].name }}</p>
 
-                        <!-- Next button -->
                         <button
                             type="button"
                             class="btn btn-dark position-absolute top-50 end-0 translate-middle-y"
@@ -176,10 +172,10 @@
     }
 
     .container-fluid img {
-        width: 100px; /* tùy chỉnh kích thước */
-        height: 100px; /* đảm bảo hình vuông */
-        object-fit: cover; /* giữ tỷ lệ ảnh */
-        border-radius: 50%; /* bo tròn */
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 50%;
     }
 
     .logo-member-admin {
@@ -223,9 +219,9 @@
 
     .gallery-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr); /* 3 cột */
-        grid-template-rows: repeat(5, 1fr); /* 5 hàng */
-        height: 100vh; /* full màn hình */
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+        height: 100vh;
         gap: 8px;
         padding: 8px;
     }
@@ -236,7 +232,7 @@
         text-align: center;
         padding: 12px;
         position: relative;
-        background: #212529; /* bg-dark */
+        background: #212529;
         color: #fff;
         font-weight: bold;
         display: flex;
@@ -249,7 +245,6 @@
         z-index: 1;
     }
 
-    /* Overlay */
     .overlay {
         position: absolute;
         inset: 0;
@@ -268,7 +263,7 @@
     }
 
     .grid-item:hover .item-name {
-        opacity: 0; /* Ẩn tên */
+        opacity: 0;
     }
 
     @media (max-width: 768px) {
@@ -278,7 +273,7 @@
             margin: 0;
         }
         .modal-content {
-            border-radius: 0; /* full màn hình, bỏ bo góc */
+            border-radius: 0;
         }
 
         .logo-admin {
@@ -294,7 +289,6 @@
         }
     }
 
-    /* Tablet */
     @media (min-width: 768px) and (max-width: 1024px) {
         .custom-modal {
             max-width: 90vw;
@@ -315,7 +309,6 @@
         }
     }
 
-    /* Desktop */
     @media (min-width: 1025px) {
         .custom-modal {
             max-width: 70vw;

@@ -9,12 +9,13 @@
                         >
                             <img
                                 src="https://res.cloudinary.com/springboot-cloud/image/upload/v1753505200/logo-team_zzr4nj.jpg"
-                                alt="Lịch sử tuyển GOS"
+                                :alt="$t('TEAM.HISTORY.TITLE')"
+                                :title="$t('TEAM.HISTORY.TITLE')"
                                 class="logo-admin img-fluid"
                             />
-                            <span class="fw-bold ms-0 ms-md-3 mt-2 mt-md-0 title-admin"
-                                >Lịch sử tuyển GOS</span
-                            >
+                            <span class="fw-bold ms-0 ms-md-3 mt-2 mt-md-0 title-admin">{{
+                                $t('TEAM.HISTORY.TITLE')
+                            }}</span>
                         </div>
                     </div>
                 </div>
@@ -25,12 +26,11 @@
 
         <div class="container-fluid mt-4">
             <div class="row">
-                <!-- Nội dung chính bên trái -->
                 <div
                     class="col-12 col-md-3 border border-3 mb-3"
                     style="font-size: 14px; line-height: 30px"
                 >
-                    <h5 class="mt-3">Mục lục</h5>
+                    <h5 class="mt-3 text-uppercase">{{ $t('TEAM.HISTORY.HEADER') }}</h5>
                     <ul class="list-unstyled text-start m-3">
                         <li v-for="(item, index) in contentList" :key="'toc-' + index">
                             <a
@@ -56,7 +56,6 @@
                     </ul>
                 </div>
 
-                <!-- Mục lục bên phải -->
                 <div class="col-12 col-md-8 pe-md-5 ms-2 me-2">
                     <section
                         v-for="(item, index) in contentList"
@@ -86,7 +85,6 @@
                         />
                         <p class="text-center fst-italic">{{ item.fourthNoteImg }}</p>
 
-                        <!-- Nội dung con -->
                         <div
                             v-for="(sub, subIndex) in item.subSections"
                             :key="subIndex"
@@ -127,7 +125,6 @@
 
         <Footer />
 
-        <!-- nút scroll top -->
         <button
             v-show="showScrollTop"
             @click="scrollToTop"
@@ -140,89 +137,82 @@
 </template>
 
 <script setup lang="ts">
-    import { ref } from 'vue'
+    import { computed, ref } from 'vue'
+    import { useI18n } from 'vue-i18n'
     import Footer from '../../components/Footer.vue'
     import Header from '../../components/Header.vue'
 
-    const showScrollTop = ref(true) // 👈 hiện mặc định từ đầu
+    const { t } = useI18n()
+    const showScrollTop = ref(true)
 
     const scrollToTop = () => {
-        const el = document.getElementById('all-page') // 👈 hoặc id của phần đầu trang
+        const el = document.getElementById('all-page')
         if (el) {
             el.scrollIntoView({ behavior: 'smooth', block: 'start' })
         } else {
-            window.scrollTo({ top: 0, behavior: 'smooth' }) // fallback
+            window.scrollTo({ top: 0, behavior: 'smooth' })
         }
     }
 
-    const contentList = ref([
+    const contentList = computed(() => [
         {
-            title: 'I. LỊCH SỬ',
-            firstContent:
-                'Ngày 16/02/2023 được sự thống nhất từ Hội đồng quản trị GOS, đội tuyển GOS chính thức được thành lập. Biệt danh của tuyển GOS là “Phượng Hoàng đỏ”.',
+            title: t('TEAM.HISTORY.FIRST_PART.TITLE'),
+            firstContent: t('TEAM.HISTORY.FIRST_PART.FIRST_CONTENT'),
             firstImg:
                 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755777904/first-history_oc4e6t.jpg',
-            firstNoteImg: '(Các thành viên đầu tiên của tuyển GOS)',
-            secondContent:
-                'Đội tuyển GOS còn khá non trẻ và thiếu nhiều kinh nghiệm, từ lúc thành lập đến nay tuyển GOS chỉ mới tham dự duy nhất một giải đấu chính thức duy nhất.',
-            thirdContent:
-                'Ngày 17/05/2023 đội tuyển GOS chính thức ngưng hoạt động.Các thành viên nằm trong tuyển bắt đầu ra đi và đầu quân cho các đội nhóm khác.',
-            fourthContent:
-                'Ngày 28/06/2025 đội tuyển GOS chính thức tái lập lại, được sự kêu gọi từ GOS, nhiều thành viên từng nằm trong đội tuyển đang đầu quân cho nhóm khác đã quay về khoác ác tuyển GOS một lần nữa.',
+            firstNoteImg: t('TEAM.HISTORY.FIRST_PART.FIRST_NOTE_IMG'),
+            secondContent: t('TEAM.HISTORY.FIRST_PART.SECOND_CONTENT'),
+            thirdContent: t('TEAM.HISTORY.FIRST_PART.THIRD_CONTENT'),
+            fourthContent: t('TEAM.HISTORY.FIRST_PART.FOURTH_CONTENT'),
             fourthImg:
                 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755777904/second-history_ccaacn.jpg',
-            fourthNoteImg: '(Tuyển GOS sau khi tái thành lập)'
+            fourthNoteImg: t('TEAM.HISTORY.FIRST_PART.FOURTH_NOTE_IMG')
         },
         {
-            title: 'II. QUÁ TRÌNH THAM GIA CÁC GIẢI ĐẤU',
+            title: t('TEAM.HISTORY.SECOND_PART.TITLE'),
             subSections: [
                 {
-                    title: '1. GIẢI LIÊN GROUP SS4 (CHỦ NHÀ DPC)',
-                    firstContent:
-                        'Ngày 16/02/2023 tuyển GOS nhận lời mời tham dự giải Liên group SS4 với chủ nhà là DPC, đây là giải đấu chính thức đầu tiên mà tuyển GOS tham dự. Ở giải đấu này tuyển GOS nằm cùng bảng vs ST, DSW và chủ DPC.',
+                    title: t('TEAM.HISTORY.SECOND_PART.FIRST_SUB.TITLE'),
+                    firstContent: t('TEAM.HISTORY.SECOND_PART.FIRST_SUB.FIRST_CONTENT'),
                     firstImg:
                         'https://res.cloudinary.com/springboot-cloud/image/upload/v1755777904/first-1_emmif0.jpg',
-                    firstNoteImg: '(Đội hình tham dự)',
-                    secondContent:
-                        'Đây là giải đấu chính thức đầu tiên mà tuyển GOS tham dự. Tại giải này GOS dừng bước tại vòng tứ kết trước nhóm PT và được giải khuyến khích từ BTC.',
+                    firstNoteImg: t('TEAM.HISTORY.SECOND_PART.FIRST_SUB.FIRST_NOTE_IMG'),
+                    secondContent: t('TEAM.HISTORY.SECOND_PART.FIRST_SUB.SECOND_CONTENT'),
                     secondImg:
                         'https://res.cloudinary.com/springboot-cloud/image/upload/v1755777904/first-2_s943u5.jpg',
-                    secondNoteImg: '(Kết quả vòng bảng)',
+                    secondNoteImg: t('TEAM.HISTORY.SECOND_PART.FIRST_SUB.SECOND_NOTE_IMG'),
                     thirdImg:
                         'https://res.cloudinary.com/springboot-cloud/image/upload/v1755698822/first-achievement_zt2q0m.jpg',
-                    thirdNoteImg: '(BTC trao thưởng)'
+                    thirdNoteImg: t('TEAM.HISTORY.SECOND_PART.FIRST_SUB.THIRD_NOTE_IMG')
                 },
                 {
-                    title: '2. GIẢI VFC 5 (CHỦ NHÀ SAMURAI)',
-                    firstContent:
-                        'Ngày 15/03/2023, GOS tham dự giải VFC 5 do chủ nhà SAMURAI tổ chức, tại giải đấu này GOS không vượt qua vòng bảng là bị loại.',
+                    title: t('TEAM.HISTORY.SECOND_PART.SECOND_SUB.TITLE'),
+                    firstContent: t('TEAM.HISTORY.SECOND_PART.SECOND_SUB.FIRST_CONTENT'),
                     firstImg:
                         'https://res.cloudinary.com/springboot-cloud/image/upload/v1755777902/second-1_estygt.jpg',
                     secondImg:
                         'https://res.cloudinary.com/springboot-cloud/image/upload/v1755777902/second-2_ayat62.jpg',
-                    secondNoteImg: '(GOS tham dự VFC 5)'
+                    secondNoteImg: t('TEAM.HISTORY.SECOND_PART.SECOND_SUB.SECOND_NOTE_IMG')
                 },
                 {
-                    title: '3. GIẢI LIÊN ĐOÀN GKW VÀ PDH SS2 (CHỦ NHÀ GKW VÀ PDH)',
-                    firstContent:
-                        'Ngày 17/05/2023, GOS tham dự giải Liên đoàn GKW và PDH mùa 2,  do chủ nhà GKW và PDH cùng tổ chức, tại giải đấu này GOS không vượt qua vòng bảng là bị loại.',
+                    title: t('TEAM.HISTORY.SECOND_PART.THIRD_SUB.TITLE'),
+                    firstContent: t('TEAM.HISTORY.SECOND_PART.THIRD_SUB.FIRST_CONTENT'),
                     firstImg:
                         'https://res.cloudinary.com/springboot-cloud/image/upload/v1755777902/third-1_sxoccb.jpg',
                     secondImg:
                         'https://res.cloudinary.com/springboot-cloud/image/upload/v1755777901/third-2_ks1dfr.jpg',
                     thirdImg:
                         'https://res.cloudinary.com/springboot-cloud/image/upload/v1755777895/third-3_v4nfe0.jpg',
-                    thirdNoteImg: '(GOS tham dự giải Liên đoàn GKW và PDH mùa 2)'
+                    thirdNoteImg: t('TEAM.HISTORY.SECOND_PART.THIRD_SUB.THIRD_NOTE_IMG')
                 },
                 {
-                    title: '4. GIẢI DLS VNM CUP 2025',
-                    firstContent:
-                        'Ngày 12/07/2025, GOS trở lại tham dự sau dời gian tái lập, tham dự giải Liên đoàn GKW và PDH mùa 2,  do chủ nhà GKW và PDH cùng tổ chức, tại giải đấu này GOS không vượt qua vòng bảng là bị loại.',
+                    title: t('TEAM.HISTORY.SECOND_PART.FOURTH_SUB.TITLE'),
+                    firstContent: t('TEAM.HISTORY.SECOND_PART.FOURTH_SUB.FIRST_CONTENT'),
                     firstImg:
                         'https://res.cloudinary.com/springboot-cloud/image/upload/v1755777884/fourth-1_yxzjtz.jpg',
                     secondImg:
                         'https://res.cloudinary.com/springboot-cloud/image/upload/v1755777884/fourth-2_ynnbhh.jpg',
-                    secondNoteImg: '(GOS tham dự giải DLS VNM CUP 2025)'
+                    secondNoteImg: t('TEAM.HISTORY.SECOND_PART.FOURTH_SUB.SECOND_NOTE_IMG')
                 }
             ]
         }
@@ -240,7 +230,6 @@
 </script>
 
 <style scoped>
-    /* Responsive: mobile hiển thị mục lục trên top */
     @media (max-width: 767px) {
         .col-md-2 {
             margin-bottom: 20px;
@@ -317,7 +306,6 @@
         }
     }
 
-    /* Tablet */
     @media (min-width: 768px) and (max-width: 1024px) {
         .logo-admin {
             width: 80px;
@@ -332,7 +320,6 @@
         }
     }
 
-    /* Desktop */
     @media (min-width: 1025px) {
         .logo-admin {
             width: 100px;

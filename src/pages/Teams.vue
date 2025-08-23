@@ -39,16 +39,16 @@
                 <div class="col-12 col-md-4 text-center mb-4 mb-md-0 order-1 order-md-1">
                     <img
                         src="https://res.cloudinary.com/springboot-cloud/image/upload/v1755693657/11zon_cropped-removebg-preview_1_cuywly.png"
-                        alt="Phượng Hoàng Đỏ"
-                        title="Phượng Hoàng Đỏ"
+                        :alt="$t('TEAM.HOME.NICK_NAME')"
+                        :title="$t('TEAM.HOME.NICK_NAME')"
                         class="img-fluid mb-3 hover-scale"
                         role="button"
                         style="max-width: 220px"
                         @click="openPopup"
                     />
-                    <h4 class="fst-italic">"PHƯỢNG HOÀNG ĐỎ"</h4>
+                    <h4 class="fst-italic">"{{ $t('TEAM.HOME.NICK_NAME') }}"</h4>
                     <h3 class="fw-bold bg-warning text-dark px-3 py-2 rounded mt-2 d-inline-block">
-                        ĐỘI TUYỂN GOS
+                        {{ $t('TEAM.HOME.TITLE') }}
                     </h3>
                 </div>
 
@@ -73,28 +73,36 @@
 </template>
 
 <script setup lang="ts">
-    import { onMounted, ref } from 'vue'
+    import { computed, onMounted, ref } from 'vue'
+    import { useI18n } from 'vue-i18n'
     import { useRouter } from 'vue-router'
     import LanguageSwitcher from '../views/LanguageSwitcher.vue'
 
-    interface MenuItem {
-        label: string
-        icon: string
-        route: string
-    }
-
     const router = useRouter()
+    const { t } = useI18n()
 
-    const menuItems: MenuItem[] = [
-        { label: 'Lịch sử', icon: 'bi bi-clock-history', route: '/doi-tuyen/lich-su' },
-        { label: 'Thành tích', icon: 'bi bi-trophy-fill', route: '/doi-tuyen/thanh-tich' },
+    const menuItems = computed(() => [
         {
-            label: 'Ban huấn luyện',
+            label: t('TEAM.HOME.MENU.HISTORY'),
+            icon: 'bi bi-clock-history',
+            route: '/doi-tuyen/lich-su'
+        },
+        {
+            label: t('TEAM.HOME.MENU.ACHIEVEMENT'),
+            icon: 'bi bi-trophy-fill',
+            route: '/doi-tuyen/thanh-tich'
+        },
+        {
+            label: t('TEAM.HOME.MENU.COACH'),
             icon: 'bi bi-person-workspace',
             route: '/doi-tuyen/ban-huan-luyen'
         },
-        { label: 'Tuyển thủ', icon: 'bi bi-people-fill', route: '/doi-tuyen/tuyen-thu' }
-    ]
+        {
+            label: t('TEAM.HOME.MENU.PLAYER'),
+            icon: 'bi bi-people-fill',
+            route: '/doi-tuyen/tuyen-thu'
+        }
+    ])
 
     function goTo(route: string) {
         router.push(route)

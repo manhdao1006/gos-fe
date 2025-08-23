@@ -9,12 +9,13 @@
                         >
                             <img
                                 src="https://res.cloudinary.com/springboot-cloud/image/upload/v1753505200/logo-team_zzr4nj.jpg"
-                                alt="Ban huấn luyện GOS"
+                                :alt="$t('TEAM.COACH.TITLE')"
+                                :title="$t('TEAM.COACH.TITLE')"
                                 class="logo-admin img-fluid"
                             />
-                            <span class="fw-bold ms-0 ms-md-3 mt-2 mt-md-0 title-admin"
-                                >Ban huấn luyện GOS</span
-                            >
+                            <span class="fw-bold ms-0 ms-md-3 mt-2 mt-md-0 title-admin">{{
+                                $t('TEAM.COACH.TITLE')
+                            }}</span>
                         </div>
                     </div>
                 </div>
@@ -72,10 +73,10 @@
     }
 
     .container-fluid img {
-        width: 100px; /* tùy chỉnh kích thước */
-        height: 100px; /* đảm bảo hình vuông */
-        object-fit: cover; /* giữ tỷ lệ ảnh */
-        border-radius: 50%; /* bo tròn */
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 50%;
     }
 
     .logo-member-admin {
@@ -119,9 +120,9 @@
 
     .gallery-grid {
         display: grid;
-        grid-template-columns: repeat(4, 1fr); /* 3 cột */
-        grid-template-rows: repeat(1, 1fr); /* 5 hàng */
-        height: 100vh; /* full màn hình */
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(1, 1fr);
+        height: 100vh;
         gap: 8px;
         padding: 8px;
     }
@@ -132,7 +133,7 @@
         text-align: center;
         padding: 12px;
         position: relative;
-        background: #212529; /* bg-dark */
+        background: #212529;
         color: #fff;
         font-weight: bold;
         display: flex;
@@ -144,14 +145,14 @@
     .grid-item img {
         width: 100%;
         height: 100%;
-        object-fit: cover; /* desktop/tablet: ảnh che đầy */
+        object-fit: cover;
         display: block;
     }
 
     @media (max-width: 768px) {
         .gallery-grid {
-            grid-template-columns: repeat(2, 1fr); /* tablet: 2 cột */
-            grid-template-rows: repeat(2, 1fr); /* 5 hàng */
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
         }
 
         .logo-admin {
@@ -167,11 +168,10 @@
         }
     }
 
-    /* Tablet */
     @media (min-width: 768px) and (max-width: 1024px) {
         .gallery-grid {
-            grid-template-columns: repeat(2, 1fr); /* tablet: 2 cột */
-            grid-template-rows: repeat(2, 1fr); /* 5 hàng */
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
         }
 
         .logo-admin {
@@ -187,7 +187,6 @@
         }
     }
 
-    /* Desktop */
     @media (min-width: 1025px) {
         .logo-admin {
             width: 100px;

@@ -210,7 +210,6 @@
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: repeat(1, 1fr);
-        height: 100vh;
         gap: 8px;
         padding: 8px;
     }
@@ -222,11 +221,6 @@
         padding: 12px;
         position: relative;
         background: #212529;
-        color: #fff;
-        font-weight: bold;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         overflow: hidden;
     }
 

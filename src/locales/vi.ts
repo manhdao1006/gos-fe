@@ -187,5 +187,78 @@ export default {
             SUCCESS: 'Tỷ lệ giải quyết thành công',
             SATISFIED: 'Độ hài lòng của thành viên'
         }
+    },
+    TEAM: {
+        HOME: {
+            TITLE: 'ĐỘI TUYỂN GOS',
+            NICK_NAME: 'PHƯỢNG HOÀNG ĐỎ',
+            MENU: {
+                HISTORY: 'Lịch sử',
+                ACHIEVEMENT: 'Thành tích',
+                COACH: 'Ban huấn luyện',
+                PLAYER: 'Tuyển thủ'
+            }
+        },
+        HISTORY: {
+            TITLE: 'Lịch sử tuyển GOS',
+            HEADER: 'Mục lục',
+            FIRST_PART: {
+                TITLE: 'I. LỊCH SỬ',
+                FIRST_CONTENT:
+                    'Ngày 16/02/2023 được sự thống nhất từ Hội đồng quản trị GOS, đội tuyển GOS chính thức được thành lập. Biệt danh của tuyển GOS là “Phượng Hoàng đỏ”.',
+                FIRST_NOTE_IMG: '(Các thành viên đầu tiên của tuyển GOS)',
+                SECOND_CONTENT:
+                    'Đội tuyển GOS còn khá non trẻ và thiếu nhiều kinh nghiệm, từ lúc thành lập đến nay tuyển GOS chỉ mới tham dự duy nhất một giải đấu chính thức duy nhất.',
+                THIRD_CONTENT:
+                    'Ngày 17/05/2023 đội tuyển GOS chính thức ngưng hoạt động.Các thành viên nằm trong tuyển bắt đầu ra đi và đầu quân cho các đội nhóm khác.',
+                FOURTH_CONTENT:
+                    'Ngày 28/06/2025 đội tuyển GOS chính thức tái lập lại, được sự kêu gọi từ GOS, nhiều thành viên từng nằm trong đội tuyển đang đầu quân cho nhóm khác đã quay về khoác ác tuyển GOS một lần nữa.',
+                FOURTH_NOTE_IMG: '(Tuyển GOS sau khi tái thành lập)'
+            },
+            SECOND_PART: {
+                TITLE: 'II. QUÁ TRÌNH THAM GIA CÁC GIẢI ĐẤU',
+                FIRST_SUB: {
+                    TITLE: '1. GIẢI LIÊN GROUP SS4 (CHỦ NHÀ DPC)',
+                    FIRST_CONTENT:
+                        'Ngày 16/02/2023 tuyển GOS nhận lời mời tham dự giải Liên group SS4 với chủ nhà là DPC, đây là giải đấu chính thức đầu tiên mà tuyển GOS tham dự. Ở giải đấu này tuyển GOS nằm cùng bảng vs ST, DSW và chủ DPC.',
+                    FIRST_NOTE_IMG: '(Đội hình tham dự)',
+                    SECOND_CONTENT:
+                        'Đây là giải đấu chính thức đầu tiên mà tuyển GOS tham dự. Tại giải này GOS dừng bước tại vòng tứ kết trước nhóm PT và được giải khuyến khích từ BTC.',
+                    SECOND_NOTE_IMG: '(Kết quả vòng bảng)',
+                    THIRD_NOTE_IMG: '(BTC trao thưởng)'
+                },
+                SECOND_SUB: {
+                    TITLE: '2. GIẢI VFC 5 (CHỦ NHÀ SAMURAI)',
+                    FIRST_CONTENT:
+                        'Ngày 15/03/2023, GOS tham dự giải VFC 5 do chủ nhà SAMURAI tổ chức, tại giải đấu này GOS không vượt qua vòng bảng là bị loại.',
+                    SECOND_NOTE_IMG: '(GOS tham dự VFC 5)'
+                },
+                THIRD_SUB: {
+                    TITLE: '3. GIẢI LIÊN ĐOÀN GKW VÀ PDH SS2 (CHỦ NHÀ GKW VÀ PDH)',
+                    FIRST_CONTENT:
+                        'Ngày 17/05/2023, GOS tham dự giải Liên đoàn GKW và PDH mùa 2,  do chủ nhà GKW và PDH cùng tổ chức, tại giải đấu này GOS không vượt qua vòng bảng là bị loại.',
+                    THIRD_NOTE_IMG: '(GOS tham dự giải Liên đoàn GKW và PDH mùa 2)'
+                },
+                FOURTH_SUB: {
+                    TITLE: '4. GIẢI DLS VNM CUP 2025',
+                    FIRST_CONTENT:
+                        'Ngày 12/07/2025, GOS trở lại tham dự sau dời gian tái lập, tham dự giải Liên đoàn GKW và PDH mùa 2,  do chủ nhà GKW và PDH cùng tổ chức, tại giải đấu này GOS không vượt qua vòng bảng là bị loại.',
+                    SECOND_NOTE_IMG: '(GOS tham dự giải DLS VNM CUP 2025)'
+                }
+            }
+        },
+        ACHIEVEMENT: {
+            TITLE: 'Thành tích tuyển GOS',
+            CONTENT: {
+                FIRST_ACHIEVEMENT: 'Giải khuyến khích cúp Liên Group DPC mùa 4'
+            }
+        },
+        COACH: {
+            TITLE: 'Ban huấn luyện GOS'
+        },
+        PLAYER: {
+            TITLE: 'Tuyển thủ GOS',
+            VIEW_CONTRACT: 'Xem hợp đồng'
+        }
     }
 }

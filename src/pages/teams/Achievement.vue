@@ -9,12 +9,13 @@
                         >
                             <img
                                 src="https://res.cloudinary.com/springboot-cloud/image/upload/v1753505200/logo-team_zzr4nj.jpg"
-                                alt="Thành tích tuyển GOS"
+                                :alt="$t('TEAM.ACHIEVEMENT.TITLE')"
+                                :title="$t('TEAM.ACHIEVEMENT.TITLE')"
                                 class="logo-admin img-fluid"
                             />
-                            <span class="fw-bold ms-0 ms-md-3 mt-2 mt-md-0 title-admin"
-                                >Thành tích tuyển GOS</span
-                            >
+                            <span class="fw-bold ms-0 ms-md-3 mt-2 mt-md-0 title-admin">{{
+                                $t('TEAM.ACHIEVEMENT.TITLE')
+                            }}</span>
                         </div>
                     </div>
                 </div>
@@ -43,14 +44,17 @@
 </template>
 
 <script setup lang="ts">
-    import { ref } from 'vue'
+    import { computed } from 'vue'
+    import { useI18n } from 'vue-i18n'
     import Footer from '../../components/Footer.vue'
     import Header from '../../components/Header.vue'
 
-    const images = ref<{ url: string; content: string }[]>([
+    const { t } = useI18n()
+
+    const images = computed(() => [
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755698822/first-achievement_zt2q0m.jpg',
-            content: 'Giải khuyến khích cúp Liên Group DPC mùa 4'
+            content: t('TEAM.ACHIEVEMENT.CONTENT.FIRST_ACHIEVEMENT')
         }
     ])
 </script>
@@ -61,10 +65,10 @@
     }
 
     .container-fluid img {
-        width: 100px; /* tùy chỉnh kích thước */
-        height: 100px; /* đảm bảo hình vuông */
-        object-fit: cover; /* giữ tỷ lệ ảnh */
-        border-radius: 50%; /* bo tròn */
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 50%;
     }
 
     .logo-member-admin {
@@ -108,9 +112,9 @@
 
     .gallery-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr); /* 3 cột */
-        grid-template-rows: repeat(1, 1fr); /* 5 hàng */
-        height: 100vh; /* full màn hình */
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(1, 1fr);
+        height: 100vh;
         gap: 8px;
         padding: 8px;
     }
@@ -121,20 +125,20 @@
         text-align: center;
         padding: 12px;
         position: relative;
-        background: #212529; /* bg-dark */
+        background: #212529;
         color: #fff;
         font-weight: bold;
         display: flex;
         align-items: center;
         justify-content: center;
         overflow: hidden;
-        flex-direction: column; /* sắp xếp theo cột */
+        flex-direction: column;
     }
 
     .grid-item img {
         width: 100%;
         height: 100%;
-        object-fit: cover; /* để ảnh fill hết nhưng không méo */
+        object-fit: cover;
         transition: opacity 0.3s ease;
         inset: 0;
         border-radius: 0 !important;
@@ -146,14 +150,14 @@
         font-weight: 500;
         color: #000;
         text-align: center;
-        background: #f8f9fa; /* nền nhạt để tách biệt ảnh */
+        background: #f8f9fa;
         width: 100%;
     }
 
     @media (max-width: 768px) {
         .gallery-grid {
-            grid-template-columns: repeat(2, 1fr); /* tablet: 2 cột */
-            grid-template-rows: repeat(2, 1fr); /* 5 hàng */
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
         }
 
         .logo-admin {
@@ -169,11 +173,10 @@
         }
     }
 
-    /* Tablet */
     @media (min-width: 768px) and (max-width: 1024px) {
         .gallery-grid {
-            grid-template-columns: repeat(2, 1fr); /* tablet: 2 cột */
-            grid-template-rows: repeat(2, 1fr); /* 5 hàng */
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
         }
 
         .logo-admin {
@@ -189,7 +192,6 @@
         }
     }
 
-    /* Desktop */
     @media (min-width: 1025px) {
         .logo-admin {
             width: 100px;
