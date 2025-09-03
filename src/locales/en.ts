@@ -9,7 +9,9 @@ export default {
             HISTORY_TEAM: 'GOS Team History',
             ACHIEVEMENT: 'GOS Team Achievements',
             COACH: 'GOS Coaching Board',
-            PLAYER: 'GOS Players'
+            PLAYER: 'GOS Players',
+            MATCH: 'GOS Team Match',
+            YOUTH_TEAM: 'GOS Youth Team'
         }
     },
     HOME: {
@@ -199,7 +201,9 @@ export default {
                 HISTORY: 'History',
                 ACHIEVEMENT: 'Achievements',
                 COACH: 'Coaching staff',
-                PLAYER: 'Players'
+                PLAYER: 'Players',
+                MATCH: 'Match',
+                YOUTH_TEAM: 'Youth Team'
             }
         },
         HISTORY: {
@@ -263,6 +267,12 @@ export default {
         PLAYER: {
             TITLE: 'GOS Player',
             VIEW_CONTRACT: 'View Contract'
+        },
+        YOUTH_TEAM: {
+            TITLE: 'GOS Youth Team'
+        },
+        MATCH: {
+            TITLE: 'GOS Team Match'
         }
     }
 }

@@ -9,7 +9,9 @@ export default {
             HISTORY_TEAM: 'Lịch sử tuyển GOS',
             ACHIEVEMENT: 'Thành tích tuyển GOS',
             COACH: 'Ban huấn luyện GOS',
-            PLAYER: 'Tuyển thủ GOS'
+            PLAYER: 'Tuyển thủ GOS',
+            MATCH: 'Trận đấu tuyển GOS',
+            YOUTH_TEAM: 'Đội trẻ GOS'
         }
     },
     HOME: {
@@ -196,7 +198,9 @@ export default {
                 HISTORY: 'Lịch sử',
                 ACHIEVEMENT: 'Thành tích',
                 COACH: 'Ban huấn luyện',
-                PLAYER: 'Tuyển thủ'
+                PLAYER: 'Tuyển thủ',
+                MATCH: 'Trận đấu',
+                YOUTH_TEAM: 'Đội trẻ'
             }
         },
         HISTORY: {
@@ -259,6 +263,12 @@ export default {
         PLAYER: {
             TITLE: 'Tuyển thủ GOS',
             VIEW_CONTRACT: 'Xem hợp đồng'
+        },
+        YOUTH_TEAM: {
+            TITLE: 'Đội trẻ GOS'
+        },
+        MATCH: {
+            TITLE: 'Trận đấu tuyển GOS'
         }
     }
 }

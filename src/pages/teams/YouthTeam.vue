@@ -8,13 +8,13 @@
                             class="d-flex flex-column flex-md-row align-items-center justify-content-center"
                         >
                             <img
-                                src="https://res.cloudinary.com/springboot-cloud/image/upload/v1753505200/logo-team_zzr4nj.jpg"
-                                :alt="$t('TEAM.PLAYER.TITLE')"
-                                :title="$t('TEAM.PLAYER.TITLE')"
+                                src="https://res.cloudinary.com/springboot-cloud/image/upload/v1756869052/logo-academy_c7wz7t.jpg"
+                                :alt="$t('TEAM.YOUTH_TEAM.TITLE')"
+                                :title="$t('TEAM.YOUTH_TEAM.TITLE')"
                                 class="logo-admin img-fluid"
                             />
                             <span class="fw-bold ms-0 ms-md-3 mt-2 mt-md-0 title-admin">{{
-                                $t('TEAM.PLAYER.TITLE')
+                                $t('TEAM.YOUTH_TEAM.TITLE')
                             }}</span>
                         </div>
                     </div>
@@ -90,68 +90,12 @@
 
     const images = ref<{ url: string; name: string }[]>([
         {
-            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341818/ly-thanh-hien_tffpi9.jpg',
-            name: '1 Lý Thanh Hiền (VC)'
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1756868932/nguyen-trung-thanh_nq0ish.jpg',
+            name: '98 Nguyễn Trung Thành '
         },
         {
-            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341819/nguyen-viet-cuong_mf0dtu.jpg',
-            name: '2 Nguyễn Viết Cường'
-        },
-        {
-            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341818/nguyen-sy-hoang_tbgx8d.jpg',
-            name: '3 Nguyễn Sỹ Hoàng'
-        },
-        {
-            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341817/doan-vu-phi-long_f1guop.jpg',
-            name: '4 Đoàn Vũ Phi Long'
-        },
-        {
-            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341818/vu-duong-dao_agtadg.jpg',
-            name: '5 Vũ Dương Đạo'
-        },
-        {
-            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341818/chim-phu-qui_gxe2tn.jpg',
-            name: '6 Chim Phú Quí'
-        },
-        {
-            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341817/nguyen-van-hoang_deevyp.jpg',
-            name: '7 Nguyễn Văn Hoàng'
-        },
-        {
-            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341818/le-cong-minh_pswiw4.jpg',
-            name: '8 Lê Công Minh'
-        },
-        {
-            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341817/hoang-van-chung_ns95ot.jpg',
-            name: '9 Hoàng Văn Chung (C)'
-        },
-        {
-            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341818/luong-xuan-viet_cwmzzs.jpg',
-            name: '10 Lương Xuân Việt'
-        },
-        {
-            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341817/hoang-dac-hai_lvttce.jpg',
-            name: '11 Hoàng Đắc Hải'
-        },
-        {
-            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341817/huynh-van-long_atyfuc.jpg',
-            name: '12 Huỳnh Văn Long'
-        },
-        {
-            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341819/trinh-thanh-dung-em_ywwyti.jpg',
-            name: '13 Trịnh Thành Dũng Em'
-        },
-        {
-            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1756869445/tran-hoai-vu_j6tc9w.jpg',
-            name: '14 Trần Hoài Vũ'
-        },
-        {
-            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341817/pham-kha-dat_k1azwr.jpg',
-            name: '15 Phạm Khả Đạt'
-        },
-        {
-            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341818/tran-hai-phong_y2wgdt.jpg',
-            name: '16 Trần Hải Phong'
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1756868933/dao-minh-duc_ncudkp.jpg',
+            name: '95 Đào Minh Đức'
         }
     ])
 
@@ -224,7 +168,7 @@
     .gallery-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(6, 1fr);
+        grid-template-rows: repeat(1, 1fr);
         height: 100vh;
         gap: 8px;
         padding: 8px;

@@ -25,14 +25,14 @@
             class="container-fluid text-white min-vh-100 d-flex align-items-center justify-content-center py-5 bg-team"
         >
             <button
-                class="btn bg-white rounded-circle shadow position-absolute top-0 start-0 m-3 d-flex align-items-center justify-content-center"
+                class="btn bg-white rounded-circle shadow position-absolute bottom-0 start-0 m-3 d-flex align-items-center justify-content-center"
                 style="width: 40px; height: 40px"
                 @click="goBack"
             >
                 <i class="bi bi-arrow-left text-dark"></i>
             </button>
             <LanguageSwitcher
-                class="shadow position-absolute top-0 end-0 m-3 d-flex align-items-center justify-content-center"
+                class="shadow position-absolute top-0 start-0 m-3 d-flex align-items-center justify-content-center"
             />
 
             <div class="row w-100 align-items-center">
@@ -101,6 +101,16 @@
             label: t('TEAM.HOME.MENU.PLAYER'),
             icon: 'bi bi-people-fill',
             route: '/doi-tuyen/tuyen-thu'
+        },
+        {
+            label: t('TEAM.HOME.MENU.MATCH'),
+            icon: 'bi bi-calendar3-event',
+            route: '/doi-tuyen/tran-dau'
+        },
+        {
+            label: t('TEAM.HOME.MENU.YOUTH_TEAM'),
+            icon: 'bi bi-person-check-fill',
+            route: '/doi-tuyen/doi-tre'
         }
     ])
 

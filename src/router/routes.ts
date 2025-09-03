@@ -7,7 +7,9 @@ import Teams from '../pages/Teams.vue'
 import Achievement from '../pages/teams/Achievement.vue'
 import Coach from '../pages/teams/Coach.vue'
 import HistoryTeam from '../pages/teams/HistoryTeam.vue'
+import Match from '../pages/teams/Match.vue'
 import Player from '../pages/teams/Player.vue'
+import YouthTeam from '../pages/teams/YouthTeam.vue'
 import Tournaments from '../pages/Tournaments.vue'
 import Home from '../views/Home.vue'
 
@@ -90,6 +92,22 @@ export const routes: AppRoute[] = [
         component: Player,
         meta: {
             title: 'ROUTE.TITLE.PLAYER'
+        }
+    },
+    {
+        path: '/doi-tuyen/tran-dau',
+        name: 'Match',
+        component: Match,
+        meta: {
+            title: 'ROUTE.TITLE.MATCH'
+        }
+    },
+    {
+        path: '/doi-tuyen/doi-tre',
+        name: 'YouthTeam',
+        component: YouthTeam,
+        meta: {
+            title: 'ROUTE.TITLE.YOUTH_TEAM'
         }
     }
 ]
