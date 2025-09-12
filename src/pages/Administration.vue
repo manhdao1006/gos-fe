@@ -429,91 +429,177 @@
                 </h2>
                 <div class="row">
                     <div class="col-md-6 mb-4">
-                        <div class="card">
+                        <div class="card h-100">
                             <div class="card-header bg-black text-white text-capitalize">
                                 <h5 class="mb-0">
                                     <i class="bi bi-shield-check"></i>
-                                    {{ $t('ADMIN.SUPPORT.TEAM.SECURITY.TITLE') }}
-                                </h5>
-                            </div>
-                            <div class="card-body">
-                                <div>
-                                    <p class="text-muted mb-2 text-start">
-                                        {{ $t('ADMIN.SUPPORT.TEAM.SECURITY.CONTENT') }}
-                                    </p>
-                                    <div class="skills text-center">
-                                        <p class="badge bg-danger">Lý Bình Nguyên</p>
-                                        <p class="badge bg-danger">Phạm Đăng Thắng</p>
-                                        <p class="badge bg-danger">Đào Đức Mạnh</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 mb-4">
-                        <div class="card">
-                            <div class="card-header bg-black text-white text-capitalize">
-                                <h5 class="mb-0">
-                                    <i class="bi bi-chat-dots"></i>
-                                    {{ $t('ADMIN.SUPPORT.TEAM.COMMUNITY.TITLE') }}
-                                </h5>
-                            </div>
-                            <div class="card-body">
-                                <div>
-                                    <p class="text-muted mb-2 text-start">
-                                        {{ $t('ADMIN.SUPPORT.TEAM.COMMUNITY.CONTENT') }}
-                                    </p>
-                                    <div class="skills text-center">
-                                        <p class="badge bg-danger">Nguyễn Văn Thắng</p>
-                                        <p class="badge bg-danger">Lý Bình Nguyên</p>
-                                        <p class="badge bg-danger">Lý Thanh Hiền</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 mb-4">
-                        <div class="card">
-                            <div class="card-header bg-black text-white text-capitalize">
-                                <h5 class="mb-0">
-                                    <i class="bi bi-chat-dots"></i>
-                                    {{ $t('ADMIN.SUPPORT.TEAM.CONTENT.TITLE') }}
-                                </h5>
-                            </div>
-                            <div class="card-body">
-                                <div>
-                                    <p class="text-muted mb-2 text-start">
-                                        {{ $t('ADMIN.SUPPORT.TEAM.CONTENT.CONTENT') }}
-                                    </p>
-                                    <div class="skills text-center">
-                                        <p class="badge bg-danger">Nguyễn Văn Thắng</p>
-                                        <p class="badge bg-danger">Lý Bình Nguyên</p>
-                                        <p class="badge bg-danger">Phạm Đăng Thắng</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 mb-4">
-                        <div class="card">
-                            <div class="card-header bg-black text-white text-capitalize">
-                                <h5 class="mb-0">
-                                    <i class="bi bi-person-circle"></i>
                                     {{ $t('ADMIN.SUPPORT.TEAM.HUMAN.TITLE') }}
                                 </h5>
                             </div>
                             <div class="card-body">
                                 <div>
                                     <p class="text-muted mb-2 text-start">
-                                        {{ $t('ADMIN.SUPPORT.TEAM.HUMAN.CONTENT') }}
+                                        {{ $t('ADMIN.SUPPORT.TEAM.HUMAN.FIRST_CONTENT') }}
+                                    </p>
+                                    <p class="text-muted mb-2 text-start">
+                                        {{ $t('ADMIN.SUPPORT.TEAM.HUMAN.SECOND_CONTENT') }}
+                                    </p>
+                                    <p class="text-muted mb-2 text-start">
+                                        {{ $t('ADMIN.SUPPORT.TEAM.HUMAN.THIRD_CONTENT') }}
+                                    </p>
+                                    <p class="text-muted mb-2 text-start">
+                                        {{ $t('ADMIN.SUPPORT.TEAM.HUMAN.FOURTH_CONTENT') }}
+                                    </p>
+                                    <p class="text-muted mb-2 text-start">
+                                        {{ $t('ADMIN.SUPPORT.TEAM.HUMAN.FIFTH_CONTENT') }}
                                     </p>
                                     <div class="skills text-center">
                                         <p class="badge bg-danger">Nguyễn Văn Thắng</p>
                                         <p class="badge bg-danger">Lý Bình Nguyên</p>
                                         <p class="badge bg-danger">Phạm Đăng Thắng</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-header bg-black text-white text-capitalize">
+                                <h5 class="mb-0">
+                                    <i class="bi bi-chat-dots"></i>
+                                    {{ $t('ADMIN.SUPPORT.TEAM.EXECUTIVE.TITLE') }}
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div>
+                                    <p class="text-muted mb-2 text-start">
+                                        {{ $t('ADMIN.SUPPORT.TEAM.EXECUTIVE.FIRST_CONTENT') }}
+                                    </p>
+                                    <p class="text-muted mb-2 text-start">
+                                        {{ $t('ADMIN.SUPPORT.TEAM.EXECUTIVE.SECOND_CONTENT') }}
+                                    </p>
+                                    <div class="skills text-center">
+                                        <p class="badge bg-danger">Nguyễn Văn Thắng</p>
+                                        <p class="badge bg-danger">Lý Bình Nguyên</p>
+                                        <p class="badge bg-danger">Phạm Đăng Thắng</p>
+                                        <p class="badge bg-danger">Lý Thanh Hiền</p>
+                                        <p class="badge bg-danger">Mạnh Đào</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-header bg-black text-white text-capitalize">
+                                <h5 class="mb-0">
+                                    <i class="bi bi-chat-dots"></i>
+                                    {{ $t('ADMIN.SUPPORT.TEAM.MEDIA.TITLE') }}
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div>
+                                    <p class="text-muted mb-2 text-start">
+                                        {{ $t('ADMIN.SUPPORT.TEAM.MEDIA.FIRST_CONTENT') }}
+                                    </p>
+                                    <p class="text-muted mb-2 text-start">
+                                        {{ $t('ADMIN.SUPPORT.TEAM.MEDIA.SECOND_CONTENT') }}
+                                    </p>
+                                    <p class="text-muted mb-2 text-start">
+                                        {{ $t('ADMIN.SUPPORT.TEAM.MEDIA.THIRD_CONTENT') }}
+                                    </p>
+                                    <p class="text-muted mb-2 text-start">
+                                        {{ $t('ADMIN.SUPPORT.TEAM.MEDIA.FOURTH_CONTENT') }}
+                                    </p>
+                                    <div class="skills text-center">
+                                        <p class="badge bg-danger">Lý Bình Nguyên</p>
+                                        <p class="badge bg-danger">Phạm Đăng Thắng</p>
+                                        <p class="badge bg-danger">Mạnh Đào</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-header bg-black text-white text-capitalize">
+                                <h5 class="mb-0">
+                                    <i class="bi bi-person-circle"></i>
+                                    {{ $t('ADMIN.SUPPORT.TEAM.FINANCE.TITLE') }}
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div>
+                                    <p class="text-muted mb-2 text-start">
+                                        {{ $t('ADMIN.SUPPORT.TEAM.FINANCE.FIRST_CONTENT') }}
+                                    </p>
+                                    <p class="text-muted mb-2 text-start">
+                                        {{ $t('ADMIN.SUPPORT.TEAM.FINANCE.SECOND_CONTENT') }}
+                                    </p>
+                                    <p class="text-muted mb-2 text-start">
+                                        {{ $t('ADMIN.SUPPORT.TEAM.FINANCE.THIRD_CONTENT') }}
+                                    </p>
+                                    <div class="skills text-center">
+                                        <p class="badge bg-danger">Nguyễn Văn Hoàng</p>
+                                        <p class="badge bg-danger">Đoàn Long</p>
+                                        <p class="badge bg-danger">Nguyễn Văn Thắng</p>
+                                        <p class="badge bg-danger">Lý Bình Nguyên</p>
+                                        <p class="badge bg-danger">Phạm Đăng Thắng</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-header bg-black text-white text-capitalize">
+                                <h5 class="mb-0">
+                                    <i class="bi bi-person-circle"></i>
+                                    {{ $t('ADMIN.SUPPORT.TEAM.IT.TITLE') }}
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div>
+                                    <p class="text-muted mb-2 text-start">
+                                        {{ $t('ADMIN.SUPPORT.TEAM.IT.FIRST_CONTENT') }}
+                                    </p>
+                                    <div class="skills text-center">
+                                        <p class="badge bg-danger">Mạnh Đào</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-header bg-black text-white text-capitalize">
+                                <h5 class="mb-0">
+                                    <i class="bi bi-person-circle"></i>
+                                    {{ $t('ADMIN.SUPPORT.TEAM.LEGAL.TITLE') }}
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div>
+                                    <p class="text-muted mb-2 text-start">
+                                        {{ $t('ADMIN.SUPPORT.TEAM.LEGAL.FIRST_CONTENT') }}
+                                    </p>
+                                    <p class="text-muted mb-2 text-start">
+                                        {{ $t('ADMIN.SUPPORT.TEAM.LEGAL.SECOND_CONTENT') }}
+                                    </p>
+                                    <p class="text-muted mb-2 text-start">
+                                        {{ $t('ADMIN.SUPPORT.TEAM.LEGAL.THIRD_CONTENT') }}
+                                    </p>
+                                    <div class="skills text-center">
+                                        <p class="badge bg-danger">Nguyễn Văn Thắng</p>
+                                        <p class="badge bg-danger">Lý Bình Nguyên</p>
+                                        <p class="badge bg-danger">Phạm Đăng Thắng</p>
+                                        <p class="badge bg-danger">Lý Thanh Hiền</p>
+                                        <p class="badge bg-danger">Mạnh Đào</p>
                                     </div>
                                 </div>
                             </div>
@@ -613,8 +699,8 @@
 
 <script setup lang="ts">
     import { ref } from 'vue'
-    import Footer from '../components/Footer.vue'
-    import Header from '../components/Header.vue'
+import Footer from '../components/Footer.vue'
+import Header from '../components/Header.vue'
 
     const showScrollTop = ref(true)
 

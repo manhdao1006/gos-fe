@@ -95,7 +95,7 @@ import Header from '../../components/Header.vue';
         },
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341819/nguyen-viet-cuong_mf0dtu.jpg',
-            name: '2 Nguyễn Viết Cường'
+            name: '25 Nguyễn Viết Cường'
         },
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341818/nguyen-sy-hoang_tbgx8d.jpg',
@@ -119,15 +119,15 @@ import Header from '../../components/Header.vue';
         },
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341818/le-cong-minh_pswiw4.jpg',
-            name: '8 Lê Công Minh'
+            name: '10 Lê Công Minh'
         },
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341817/hoang-van-chung_ns95ot.jpg',
-            name: '9 Hoàng Văn Chung (C)'
+            name: '89 Hoàng Văn Chung (C)'
         },
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341818/luong-xuan-viet_cwmzzs.jpg',
-            name: '10 Lương Xuân Việt'
+            name: '8 Lương Xuân Việt'
         },
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341817/hoang-dac-hai_lvttce.jpg',
@@ -135,7 +135,7 @@ import Header from '../../components/Header.vue';
         },
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341817/huynh-van-long_atyfuc.jpg',
-            name: '12 Huỳnh Văn Long'
+            name: '68 Huỳnh Văn Long'
         },
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341819/trinh-thanh-dung-em_ywwyti.jpg',
@@ -147,7 +147,7 @@ import Header from '../../components/Header.vue';
         },
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341817/pham-kha-dat_k1azwr.jpg',
-            name: '15 Phạm Khả Đạt'
+            name: '22 Phạm Khả Đạt'
         },
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341818/tran-hai-phong_y2wgdt.jpg',

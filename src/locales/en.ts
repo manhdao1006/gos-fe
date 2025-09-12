@@ -148,22 +148,41 @@ export default {
         SUPPORT: {
             TITLE: 'Support team',
             TEAM: {
-                SECURITY: {
-                    TITLE: 'Security team',
-                    CONTENT: 'Ensure safety for Group and Website, detect and handle violations'
-                },
-                COMMUNITY: {
-                    TITLE: 'Community team',
-                    CONTENT: 'Support new members, answer questions, guide and diplomacy'
-                },
-                CONTENT: {
-                    TITLE: 'Content Team',
-                    CONTENT: 'Create content, instructions and videos for the Group'
-                },
                 HUMAN: {
-                    TITLE: 'HR Team',
-                    CONTENT:
-                        'Recruit, manage and assign personnel and members to participate in the tournament'
+                    TITLE: 'Human resources department',
+                    FIRST_CONTENT: '* Manage records, documents, archives, seals, draft official dispatches, decisions',
+                    SECOND_CONTENT: '* Organize and coordinate daily administrative activities',
+                    THIRD_CONTENT: '* Recruitment, reception, and personnel arrangement',
+                    FOURTH_CONTENT: '* Training and developing human resources',
+                    FIFTH_CONTENT: '* Labor contract management',
+                },
+                EXECUTIVE: {
+                    TITLE: 'Executive department',
+                    FIRST_CONTENT: '* Organize and implement tournaments',
+                    SECOND_CONTENT: '* Manage tournaments',
+                },
+                MEDIA: {
+                    TITLE: 'Communication department',
+                    FIRST_CONTENT: '* Building and managing image and brand',
+                    SECOND_CONTENT: '* Planning and organizing communication activities',
+                    THIRD_CONTENT: '* Producing content',
+                    FOURTH_CONTENT: '* Managing communication channels (Website, Facebook, Tiktok, Zalo,...)',
+                },
+                FINANCE: {
+                    TITLE: 'Finance department',
+                    FIRST_CONTENT: '* Managing and coordinating financial resources',
+                    SECOND_CONTENT: '* Making and controlling financial plans',
+                    THIRD_CONTENT: '* Building and developing group financial funds',
+                },
+                IT: {
+                    TITLE: 'Information technology department',
+                    FIRST_CONTENT: '* System, software, data security management',
+                },
+                LEGAL: {
+                    TITLE: 'Legal department ',
+                    FIRST_CONTENT: '* Ensure members comply with the rules and regulations of the group and tournament',
+                    SECOND_CONTENT: '* Handle disputes and lawsuits between members',
+                    THIRD_CONTENT: '* Receive information, support members in all matters',
                 }
             }
         },

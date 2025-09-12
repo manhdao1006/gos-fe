@@ -145,22 +145,42 @@ export default {
         SUPPORT: {
             TITLE: 'Đội ngũ hỗ trợ',
             TEAM: {
-                SECURITY: {
-                    TITLE: 'Team bảo mật',
-                    CONTENT: 'Đảm bảo an toàn cho Group và Website, phát hiện và xử lý vi phạm'
-                },
-                COMMUNITY: {
-                    TITLE: 'Team cộng đồng',
-                    CONTENT: 'Hỗ trợ thành viên mới, trả lời câu hỏi, hướng dẫn và ngoại giao'
-                },
-                CONTENT: {
-                    TITLE: 'Team nội dung',
-                    CONTENT: 'Tạo nội dung, hướng dẫn và video cho Group'
-                },
                 HUMAN: {
-                    TITLE: 'Team nhân sự',
-                    CONTENT:
-                        'Đăng tuyển, quản lý và phân chia nhân sự, thành viên tham gia giải đấu'
+                    TITLE: 'Ban hành chính - nhân sự',
+                    FIRST_CONTENT:
+                        '* Quản lý hồ sơ, văn thư, lưu trữ, con dấu, soạn thảo công văn, quyết định',
+                    SECOND_CONTENT: '* Tổ chức, điều phối các hoạt động hành chính hằng ngày',
+                    THIRD_CONTENT: '* Tuyển dụng, tiếp nhận, bố trí nhân sự',
+                    FOURTH_CONTENT: '* Đào tạo, phát triển nguồn nhân lực',
+                    FIFTH_CONTENT: '* Quản lý hợp đồng lao động',
+                },
+                EXECUTIVE: {
+                    TITLE: 'Ban điều hành',
+                    FIRST_CONTENT: '* Tổ chức triển khai các giải đấu',
+                    SECOND_CONTENT: '* Quản lý các giải đấu',
+                },
+                MEDIA: {
+                    TITLE: 'Ban truyền thông',
+                    FIRST_CONTENT: '* Xây dựng và quản lý hình ảnh, thương hiệu',
+                    SECOND_CONTENT: '* Lập kế hoạch và tổ chức hoạt động truyền thông',
+                    THIRD_CONTENT: '* Sản xuất nội dung',
+                    FOURTH_CONTENT: '* Quản trị kênh truyền thông (Website, Facebook, Tiktok, Zalo,...)',
+                },
+                FINANCE: {
+                    TITLE: 'Ban tài chính',
+                    FIRST_CONTENT: '* Quản lý và điều phối nguồn lực tài chính',
+                    SECOND_CONTENT: '* Lập và kiểm soát kế hoạch tài chính',
+                    THIRD_CONTENT: '* Xây dựng và phát triển nguồn quỹ tài chính nhóm',
+                },
+                IT: {
+                    TITLE: 'Ban công nghệ thông tin',
+                    FIRST_CONTENT: '* Quản trị hệ thống, phần mềm, bảo mật dữ liệu',
+                },
+                LEGAL: {
+                    TITLE: 'Ban pháp chế',
+                    FIRST_CONTENT: '* Đảm bảo thành viên tuân thủ luật và quy định của nhóm và giải đấu',
+                    SECOND_CONTENT: '* Xử lý các tranh chấp và kiện cáo giữa các thành viên',
+                    THIRD_CONTENT: '* Tiếp nhận thông tin, hỗ trợ thành viên trong mọi vấn đề',
                 }
             }
         },
