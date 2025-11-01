@@ -84,9 +84,9 @@
 </template>
 
 <script setup lang="ts">
-    import { ref } from 'vue';
-import Footer from '../../components/Footer.vue';
-import Header from '../../components/Header.vue';
+    import { ref } from 'vue'
+    import Footer from '../../components/Footer.vue'
+    import Header from '../../components/Header.vue'
 
     const images = ref<{ url: string; name: string }[]>([
         {
@@ -134,8 +134,8 @@ import Header from '../../components/Header.vue';
             name: '11 Hoàng Đắc Hải'
         },
         {
-            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341817/huynh-van-long_atyfuc.jpg',
-            name: '68 Huỳnh Văn Long'
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1761965987/nguyen-van-chien_flxmum.jpg',
+            name: '19 Nguyễn Văn Chiến'
         },
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341819/trinh-thanh-dung-em_ywwyti.jpg',

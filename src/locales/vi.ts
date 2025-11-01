@@ -152,35 +152,37 @@ export default {
                     SECOND_CONTENT: '* Tổ chức, điều phối các hoạt động hành chính hằng ngày',
                     THIRD_CONTENT: '* Tuyển dụng, tiếp nhận, bố trí nhân sự',
                     FOURTH_CONTENT: '* Đào tạo, phát triển nguồn nhân lực',
-                    FIFTH_CONTENT: '* Quản lý hợp đồng lao động',
+                    FIFTH_CONTENT: '* Quản lý hợp đồng lao động'
                 },
                 EXECUTIVE: {
                     TITLE: 'Ban điều hành',
                     FIRST_CONTENT: '* Tổ chức triển khai các giải đấu',
-                    SECOND_CONTENT: '* Quản lý các giải đấu',
+                    SECOND_CONTENT: '* Quản lý các giải đấu'
                 },
                 MEDIA: {
                     TITLE: 'Ban truyền thông',
                     FIRST_CONTENT: '* Xây dựng và quản lý hình ảnh, thương hiệu',
                     SECOND_CONTENT: '* Lập kế hoạch và tổ chức hoạt động truyền thông',
                     THIRD_CONTENT: '* Sản xuất nội dung',
-                    FOURTH_CONTENT: '* Quản trị kênh truyền thông (Website, Facebook, Tiktok, Zalo,...)',
+                    FOURTH_CONTENT:
+                        '* Quản trị kênh truyền thông (Website, Facebook, Tiktok, Zalo,...)'
                 },
                 FINANCE: {
                     TITLE: 'Ban tài chính',
                     FIRST_CONTENT: '* Quản lý và điều phối nguồn lực tài chính',
                     SECOND_CONTENT: '* Lập và kiểm soát kế hoạch tài chính',
-                    THIRD_CONTENT: '* Xây dựng và phát triển nguồn quỹ tài chính nhóm',
+                    THIRD_CONTENT: '* Xây dựng và phát triển nguồn quỹ tài chính nhóm'
                 },
                 IT: {
                     TITLE: 'Ban công nghệ thông tin',
-                    FIRST_CONTENT: '* Quản trị hệ thống, phần mềm, bảo mật dữ liệu',
+                    FIRST_CONTENT: '* Quản trị hệ thống, phần mềm, bảo mật dữ liệu'
                 },
                 LEGAL: {
                     TITLE: 'Ban pháp chế',
-                    FIRST_CONTENT: '* Đảm bảo thành viên tuân thủ luật và quy định của nhóm và giải đấu',
+                    FIRST_CONTENT:
+                        '* Đảm bảo thành viên tuân thủ luật và quy định của nhóm và giải đấu',
                     SECOND_CONTENT: '* Xử lý các tranh chấp và kiện cáo giữa các thành viên',
-                    THIRD_CONTENT: '* Tiếp nhận thông tin, hỗ trợ thành viên trong mọi vấn đề',
+                    THIRD_CONTENT: '* Tiếp nhận thông tin, hỗ trợ thành viên trong mọi vấn đề'
                 }
             }
         },

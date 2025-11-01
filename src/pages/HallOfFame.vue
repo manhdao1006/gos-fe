@@ -107,7 +107,7 @@
                                         <tr>
                                             <th scope="col">{{ $t('BOARD.SEASON') }}</th>
                                             <th v-for="col in columnsGosCup" :key="col" scope="col">
-                                                League {{ col }}
+                                                {{ col }}
                                             </th>
                                         </tr>
                                     </thead>
@@ -189,7 +189,7 @@
 
     const columnsGosLeague = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
     const columnsGosCup = ['C1', 'C2', 'Siêu Cúp', 'Liên Group', 'Gos Cup']
-    const seasons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    const seasons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 
     const dataGosLeague = reactive<Record<number, Record<string, string>>>({})
     const dataGosCup = reactive<Record<number, Record<string, string>>>({})
@@ -304,6 +304,26 @@
             F: '(KTC)',
             G: '(KTC)',
             H: '(KTC)'
+        },
+        12: {
+            A: 'Phát Võ',
+            B: 'Đỗ Bình',
+            C: 'Duy Nguyễn',
+            D: 'Nguyễn Tráng',
+            E: '(KTC)',
+            F: '(KTC)',
+            G: '(KTC)',
+            H: '(KTC)'
+        },
+        13: {
+            A: 'Hậu Nguyễn',
+            B: 'Văn Phúc',
+            C: 'Duy Khang',
+            D: 'Văn Thông',
+            E: '(KTC)',
+            F: '(KTC)',
+            G: '(KTC)',
+            H: '(KTC)'
         }
     }
 
@@ -384,6 +404,20 @@
             'Siêu Cúp': 'Phát Võ (A)',
             'Liên Group': '—',
             'Gos Cup': 'Gia Huy (C)'
+        },
+        12: {
+            C1: 'Phát Võ (A)',
+            C2: 'Duy Khang (C)',
+            'Siêu Cúp': 'Phát Võ (A)',
+            'Liên Group': '—',
+            'Gos Cup': 'Lê Tuấn'
+        },
+        13: {
+            C1: 'Hậu Nguyễn (A)',
+            C2: 'Phát Võ (A)',
+            'Siêu Cúp': 'Hậu Nguyễn (A)',
+            'Liên Group': '—',
+            'Gos Cup': 'Đội 3 (Hậu, Hòa, Bách)'
         }
     }
 
