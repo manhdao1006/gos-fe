@@ -134,12 +134,14 @@ export default {
                 BINH_NGUYEN: 'Hỗ trợ quản lý và điều hành hoạt động nhóm',
                 PHAM_THANG: 'Quản lý nhân sự',
                 THANH_HIEN: 'Quản lý giải đấu',
+                QUANG_MINH: 'Hỗ trợ quản lý ',
                 MANH_DAO: 'Thiết kế đồ họa và quản trị website'
             },
             SLOGAN: {
                 NGUYEN_THANG: 'Giao lưu- chia sẻ - học hỏi - cùng phát triển',
                 BINH_NGUYEN: 'Cùng học hỏi, cùng phát triển',
-                THANH_HIEN: 'Chỉ mình là đúng'
+                THANH_HIEN: 'Chỉ mình là đúng',
+                QUANG_MINH: 'Trai đất tổ tán đổ tim em'
             }
         },
         SUPPORT: {
