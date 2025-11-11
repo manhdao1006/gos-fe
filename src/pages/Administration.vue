@@ -455,7 +455,11 @@
                                         <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.FAVOR') }}:</strong>
                                         Fan A7 - Pepe
                                     </p>
-                                    <p><strong>Slogan:</strong> "Long Lạc Quang"</p>
+                                    <p>
+                                        <strong>Slogan:</strong> "{{
+                                            $t('ADMIN.MANAGEMENT.SLOGAN.DOAN_LONG')
+                                        }}"
+                                    </p>
                                 </div>
                                 <div class="contact-info mt-3">
                                     <button class="btn btn-danger btn-sm me-2">
