@@ -137,12 +137,14 @@ export default {
                 BINH_NGUYEN: 'Support in managing and operating group activities',
                 PHAM_THANG: 'Human resource management',
                 THANH_HIEN: 'Tournament management',
+                QUANG_MINH: 'Support management',
                 MANH_DAO: 'Graphic design and website administration'
             },
             SLOGAN: {
                 NGUYEN_THANG: 'Exchange - share - learn - develop together',
                 BINH_NGUYEN: 'Learn together, develop together',
-                THANH_HIEN: 'Only I am right'
+                THANH_HIEN: 'Only I am right',
+                QUANG_MINH: 'The man from the land of my ancestors won my heart'
             }
         },
         SUPPORT: {
