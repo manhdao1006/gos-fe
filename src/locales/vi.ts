@@ -295,5 +295,32 @@ export default {
         MATCH: {
             TITLE: 'Trận đấu tuyển GOS'
         }
+    },
+    auth: {
+        title: {
+            register: 'Đăng ký tài khoản',
+            login: 'Đăng nhập',
+            hasAccount: 'Bạn đã có tài khoản?',
+            notAccount: 'Bạn chưa có tài khoản?',
+            backToHome: 'Quay về trang chủ'
+        },
+        label: {
+            username: 'Tên đăng nhập',
+            password: 'Mật khẩu',
+            email: 'Email',
+            nameFace: 'Tên Facebook (để thêm vào nhóm chat)',
+            linkFace: 'Link Facebook  (để thêm vào nhóm chat)'
+        },
+        placeholder: {
+            username: 'Nhập tên đăng nhập',
+            password: 'Nhập mật khẩu',
+            email: 'Nhập email',
+            nameFace: 'Nhập tên Facebook',
+            linkFace: 'Nhập link Facebook'
+        },
+        button: {
+            register: 'Đăng ký',
+            login: 'Đăng nhập'
+        }
     }
 }

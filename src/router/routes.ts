@@ -1,7 +1,7 @@
 import type { AppRoute } from './types'
 
-import LoginPage from '../components/account/LoginPage.vue'
-import RegisterPage from '../components/account/RegisterPage.vue'
+import LoginPage from '../components/auth/LoginPage.vue'
+import RegisterPage from '../components/auth/RegisterPage.vue'
 import Administration from '../pages/Administration.vue'
 import HallOfFame from '../pages/HallOfFame.vue'
 import History from '../pages/History.vue'

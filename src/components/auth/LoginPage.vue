@@ -11,10 +11,14 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="mb-5">
-                            <h2 class="fw-bold text-center text-uppercase">Đăng nhập</h2>
+                            <h2 class="fw-bold text-center text-uppercase">
+                                {{ $t('auth.title.login') }}
+                            </h2>
                             <p class="text-center m-0">
-                                Bạn chưa có tài khoản?
-                                <a href="/dang-ky-tai-khoan" class="text-black">Đăng ký</a>
+                                {{ $t('auth.title.notAccount') }}
+                                <a href="/dang-ky-tai-khoan" class="text-black">
+                                    {{ $t('auth.title.register') }}
+                                </a>
                             </p>
                         </div>
                     </div>
@@ -31,14 +35,13 @@
                                                 <input
                                                     type="text"
                                                     class="form-control border-0 rounded"
-                                                    placeholder="Nhập tên tài khoản ..."
+                                                    :placeholder="$t('auth.placeholder.username')"
                                                     required
                                                     v-model="tenTK"
                                                 />
-                                                <label for="tenTK" class="form-label"
-                                                    >Tên tài khoản<span class="text-danger"
-                                                        >*</span
-                                                    ></label
+                                                <label for="tenTK" class="form-label">
+                                                    {{ $t('auth.label.username') }}
+                                                    <span class="text-danger">*</span></label
                                                 >
                                             </div>
                                         </div>
@@ -49,14 +52,13 @@
                                                 <input
                                                     :type="showMatKhau ? 'text' : 'password'"
                                                     class="form-control border-0 rounded-end-0"
-                                                    placeholder="Nhập mật khẩu ..."
+                                                    :placeholder="$t('auth.placeholder.password')"
                                                     required
                                                     v-model="matKhau"
                                                 />
-                                                <label for="password" class="form-label"
-                                                    >Mật khẩu<span class="text-danger"
-                                                        >*</span
-                                                    ></label
+                                                <label for="password" class="form-label">
+                                                    {{ $t('auth.label.password') }}
+                                                    <span class="text-danger">*</span></label
                                                 >
                                             </div>
                                             <div
@@ -78,7 +80,7 @@
                                                     class="btn btn-lg btn-dark rounded fs-6 text-uppercase"
                                                     type="submit"
                                                 >
-                                                    Đăng nhập
+                                                    {{ $t('auth.button.login') }}
                                                 </button>
                                             </div>
                                         </div>
@@ -87,7 +89,7 @@
                                                 href="/"
                                                 class="text-decoration-none fs-6 text-black"
                                             >
-                                                Quay lại trang chủ
+                                                {{ $t('auth.title.backToHome') }}
                                             </a>
                                         </div>
                                     </div>

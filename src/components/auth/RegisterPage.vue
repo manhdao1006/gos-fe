@@ -11,10 +11,14 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="mb-3">
-                            <h2 class="fw-bold text-center text-uppercase">Đăng ký tài khoản</h2>
+                            <h2 class="fw-bold text-center text-uppercase">
+                                {{ $t('auth.title.register') }}
+                            </h2>
                             <p class="text-center m-0">
-                                Bạn đã có tài khoản?
-                                <a href="/dang-nhap" class="text-black">Đăng nhập</a>
+                                {{ $t('auth.title.hasAccount') }}
+                                <a href="/dang-nhap" class="text-black">
+                                    {{ $t('auth.title.login') }}
+                                </a>
                             </p>
                         </div>
                     </div>
@@ -31,14 +35,13 @@
                                                 <input
                                                     type="text"
                                                     class="form-control border-0 rounded"
-                                                    placeholder="Nhập tên tài khoản ..."
+                                                    :placeholder="$t('auth.placeholder.username')"
                                                     required
                                                     v-model="tenTK"
                                                 />
-                                                <label for="tenTK" class="form-label"
-                                                    >Tên tài khoản<span class="text-danger"
-                                                        >*</span
-                                                    ></label
+                                                <label for="tenTK" class="form-label">
+                                                    {{ $t('auth.label.username') }}
+                                                    <span class="text-danger">*</span></label
                                                 >
                                             </div>
                                         </div>
@@ -49,14 +52,13 @@
                                                 <input
                                                     :type="showMatKhau ? 'text' : 'password'"
                                                     class="form-control border-0 rounded-end-0"
-                                                    placeholder="Nhập mật khẩu ..."
+                                                    :placeholder="$t('auth.placeholder.password')"
                                                     required
                                                     v-model="matKhau"
                                                 />
-                                                <label for="password" class="form-label"
-                                                    >Mật khẩu<span class="text-danger"
-                                                        >*</span
-                                                    ></label
+                                                <label for="password" class="form-label">
+                                                    {{ $t('auth.label.password') }}
+                                                    <span class="text-danger">*</span></label
                                                 >
                                             </div>
                                             <div
@@ -76,10 +78,12 @@
                                                 <input
                                                     type="email"
                                                     class="form-control border-0 rounded"
-                                                    placeholder="Nhập email ..."
+                                                    :placeholder="$t('auth.placeholder.email')"
                                                     v-model="email"
                                                 />
-                                                <label for="email" class="form-label">Email</label>
+                                                <label for="email" class="form-label">
+                                                    {{ $t('auth.label.email') }}
+                                                </label>
                                             </div>
                                         </div>
                                         <div class="col-12 mb-3">
@@ -87,15 +91,13 @@
                                                 <input
                                                     type="text"
                                                     class="form-control border-0 rounded"
-                                                    placeholder="Nhập tên Facebook ..."
+                                                    :placeholder="$t('auth.placeholder.nameFace')"
                                                     required
                                                     v-model="tenFace"
                                                 />
-                                                <label for="tenFace" class="form-label"
-                                                    >Tên Facebook (để thêm vào nhóm chat)<span
-                                                        class="text-danger"
-                                                        >*</span
-                                                    ></label
+                                                <label for="tenFace" class="form-label">
+                                                    {{ $t('auth.label.nameFace') }}
+                                                    <span class="text-danger">*</span></label
                                                 >
                                             </div>
                                         </div>
@@ -104,15 +106,13 @@
                                                 <input
                                                     type="text"
                                                     class="form-control border-0 rounded"
-                                                    placeholder="Nhập tên Facebook ..."
+                                                    :placeholder="$t('auth.placeholder.linkFace')"
                                                     required
                                                     v-model="linkFace"
                                                 />
-                                                <label for="linkFace" class="form-label"
-                                                    >Link Facebook (để thêm vào nhóm chat)<span
-                                                        class="text-danger"
-                                                        >*</span
-                                                    ></label
+                                                <label for="linkFace" class="form-label">
+                                                    {{ $t('auth.label.linkFace') }}
+                                                    <span class="text-danger">*</span></label
                                                 >
                                             </div>
                                         </div>
@@ -122,7 +122,7 @@
                                                     class="btn btn-lg btn-dark rounded fs-6 text-uppercase"
                                                     type="submit"
                                                 >
-                                                    Đăng ký
+                                                    {{ $t('auth.button.register') }}
                                                 </button>
                                             </div>
                                         </div>
@@ -131,7 +131,7 @@
                                                 href="/"
                                                 class="text-decoration-none fs-6 text-black"
                                             >
-                                                Quay lại trang chủ
+                                                {{ $t('auth.title.backToHome') }}
                                             </a>
                                         </div>
                                     </div>

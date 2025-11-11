@@ -299,5 +299,32 @@ export default {
         MATCH: {
             TITLE: 'GOS Team Match'
         }
+    },
+    auth: {
+        title: {
+            register: 'Register for an account',
+            login: 'Login',
+            hasAccount: 'Do you already have an account?',
+            notAccount: 'Do you not have an account?',
+            backToHome: 'Back to home page'
+        },
+        label: {
+            username: 'Username',
+            password: 'Password',
+            email: 'Email',
+            nameFace: 'Facebook name (to add to chat group)',
+            linkFace: 'Facebook link (to add to chat group)'
+        },
+        placeholder: {
+            username: 'Enter username',
+            password: 'Enter password',
+            email: 'Enter email',
+            nameFace: 'Enter Facebook name',
+            linkFace: 'Enter Facebook link'
+        },
+        button: {
+            register: 'Register',
+            login: 'Login'
+        }
     }
 }
