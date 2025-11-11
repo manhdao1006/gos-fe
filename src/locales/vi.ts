@@ -141,7 +141,8 @@ export default {
                 NGUYEN_THANG: 'Giao lưu- chia sẻ - học hỏi - cùng phát triển',
                 BINH_NGUYEN: 'Cùng học hỏi, cùng phát triển',
                 THANH_HIEN: 'Chỉ mình là đúng',
-                QUANG_MINH: 'Trai đất tổ tán đổ tim em'
+                QUANG_MINH: 'Trai đất tổ tán đổ tim em',
+                DOAN_LONG: 'Anh chăm chỉ nào đủ trăm chỉ anh cưới em nha'
             }
         },
         SUPPORT: {
