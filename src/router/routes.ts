@@ -1,5 +1,7 @@
 import type { AppRoute } from './types'
 
+import LoginPage from '../components/account/LoginPage.vue'
+import RegisterPage from '../components/account/RegisterPage.vue'
 import Administration from '../pages/Administration.vue'
 import HallOfFame from '../pages/HallOfFame.vue'
 import History from '../pages/History.vue'
@@ -14,6 +16,22 @@ import Tournaments from '../pages/Tournaments.vue'
 import Home from '../views/Home.vue'
 
 export const routes: AppRoute[] = [
+    {
+        path: '/dang-ky-tai-khoan',
+        name: 'RegisterPage',
+        component: RegisterPage,
+        meta: {
+            title: 'ROUTE.TITLE.REGISTER'
+        }
+    },
+    {
+        path: '/dang-nhap',
+        name: 'LoginPage',
+        component: LoginPage,
+        meta: {
+            title: 'ROUTE.TITLE.LOGIN'
+        }
+    },
     {
         path: '/',
         name: 'Home',

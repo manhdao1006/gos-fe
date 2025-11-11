@@ -1,6 +1,8 @@
 export default {
     ROUTE: {
         TITLE: {
+            REGISTER: 'Đăng ký tài khoản',
+            LOGIN: 'Đăng nhập',
             TOUR: 'Giải đấu - GOS DLS',
             HISTORY: 'Lịch sử - GOS DLS',
             BOARD: 'Bảng vàng - GOS DLS',
@@ -15,6 +17,7 @@ export default {
         }
     },
     HOME: {
+        JOIN_TOUR: 'Tham gia giải đấu ngay',
         INTRO: 'GOS (Group Online Sports): là nhóm tổ chức các giải đấu và kết nối các game thủ DLS',
         SLOGAN_GROUP: 'Slogan: "Kết sức mạnh, nối thành công"',
         MENU: {

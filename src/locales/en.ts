@@ -1,6 +1,8 @@
 export default {
     ROUTE: {
         TITLE: {
+            REGISTER: 'Register an account',
+            LOGIN: 'Log in',
             TOUR: 'Tournament - GOS DLS',
             HISTORY: 'History - GOS DLS',
             BOARD: 'Golden Board - GOS DLS',
@@ -15,6 +17,7 @@ export default {
         }
     },
     HOME: {
+        JOIN_TOUR: 'Join the tournament now',
         INTRO: 'GOS (Group Online Sports): is a group that organizes tournaments and connects DLS gamers',
         SLOGAN_GROUP: 'Slogan: "Connecting strength, connecting success"',
         MENU: {
