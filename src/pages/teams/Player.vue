@@ -30,12 +30,18 @@
                     class="grid-item d-flex align-items-center justify-content-center bg-success text-white fw-bold"
                     v-for="(img, index) in images"
                     :key="index"
-                    @click="openModal(index)"
-                    data-bs-toggle="modal"
-                    data-bs-target="#imageModal"
+                    @click="!img.soldOut && openModal(index)"
+                    :data-bs-toggle="!img.soldOut ? 'modal' : null"
+                    :data-bs-target="!img.soldOut ? '#imageModal' : null"
+                    :class="{ 'sold-out': img.soldOut }"
                 >
                     <span class="item-name">{{ img.name }}</span>
-                    <div class="overlay">{{ $t('TEAM.PLAYER.VIEW_CONTRACT') }}</div>
+                    <div v-if="!img.soldOut" class="overlay">
+                        {{ $t('TEAM.PLAYER.VIEW_CONTRACT') }}
+                    </div>
+                    <div v-else class="sold-out-overlay">
+                        <span>Sold Out</span>
+                    </div>
                 </div>
             </div>
 
@@ -88,10 +94,11 @@
     import Footer from '../../components/Footer.vue'
     import Header from '../../components/Header.vue'
 
-    const images = ref<{ url: string; name: string }[]>([
+    const images = ref<{ url: string; name: string; soldOut?: boolean }[]>([
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341818/ly-thanh-hien_tffpi9.jpg',
-            name: '1 Lý Thanh Hiền (VC)'
+            name: '1 Lý Thanh Hiền (VC)',
+            soldOut: true
         },
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341819/nguyen-viet-cuong_mf0dtu.jpg',
@@ -272,6 +279,50 @@
 
     .grid-item:hover .item-name {
         opacity: 0;
+    }
+
+    .grid-item.sold-out {
+        border: 2px solid red;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .sold-out-overlay {
+        position: absolute;
+        inset: 0;
+        background-color: rgba(255, 0, 0, 0.246);
+        pointer-events: none;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .sold-out-overlay span {
+        position: absolute;
+        top: 10px;
+        left: -40px;
+        width: 150px;
+        text-align: center;
+        transform: rotate(-45deg);
+        color: red;
+        font-weight: bold;
+        font-size: 14px;
+        border: 2px solid red;
+        background: transparent;
+        padding: 6px 0;
+        pointer-events: none;
+        text-transform: uppercase;
+        font-family: Arial, sans-serif;
+        z-index: 3;
+    }
+
+    .grid-item.sold-out:hover .item-name {
+        opacity: 1 !important;
+    }
+
+    .grid-item.sold-out:hover .overlay {
+        opacity: 0 !important;
     }
 
     @media (max-width: 768px) {
