@@ -402,9 +402,13 @@
                                     </p>
                                     <p>
                                         <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.FAVOR') }}:</strong>
-                                        Real Madrid
+                                        Real Madrid - Fan A7
                                     </p>
-                                    <p><strong>Slogan:</strong> "..."</p>
+                                    <p>
+                                        <strong>Slogan:</strong> "{{
+                                            $t('ADMIN.MANAGEMENT.SLOGAN.VAN_HOANG')
+                                        }}"
+                                    </p>
                                 </div>
                                 <div class="contact-info mt-3">
                                     <button class="btn btn-danger btn-sm me-2">

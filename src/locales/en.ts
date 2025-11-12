@@ -145,6 +145,7 @@ export default {
                 BINH_NGUYEN: 'Learn together, develop together',
                 THANH_HIEN: 'Only I am right',
                 QUANG_MINH: 'The man from the land of my ancestors won my heart',
+                VAN_HOANG: 'Say it and do it',
                 DOAN_LONG: 'If you work hard enough, I will marry you'
             }
         },
