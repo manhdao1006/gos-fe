@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="row justify-content-center flex-column flex-xl-row">
                     <div class="col-12 col-md-6 text-center order-1 order-md-1">
-                        <LanguageSwitcher class="position-absolute top-0 end-0 m-3" />
+                        <LanguageSwitcher class="position-absolute top-0 end-0 m-3 z-3" />
                         <router-link
                             class="nav-link position-absolute top-0 start-0 m-3 bg-white text-uppercase text-black p-3 rounded fw-bolder"
                             to="/dang-ky-tai-khoan"

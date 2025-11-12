@@ -227,7 +227,7 @@
     })
 </script>
 
-<style>
+<style scoped>
     .block-error {
         color: #ed1c24;
         margin-bottom: 10px;

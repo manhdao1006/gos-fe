@@ -8,6 +8,8 @@ import App from './App.vue'
 import router from './router'
 import './style.css'
 
+import Toast, { type PluginOptions, POSITION } from 'vue-toastification'
+import 'vue-toastification/dist/index.css'
 import en from './locales/en'
 import vi from './locales/vi'
 
@@ -18,9 +20,18 @@ const i18n = createI18n({
     messages: { vi, en }
 })
 
+const options: PluginOptions = {
+    position: POSITION.TOP_RIGHT,
+    timeout: 3000,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true
+}
+
 const app = createApp(App)
 app.use(router)
 app.use(i18n)
+app.use(Toast, options)
 
 router.afterEach((to) => {
     if (to.meta.title) {

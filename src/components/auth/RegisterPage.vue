@@ -30,7 +30,6 @@
                                 <form class="isFormMobile">
                                     <div class="row overflow-hidden">
                                         <div class="col-12 mb-3">
-                                            <div class="block-error">{{ error }}</div>
                                             <div class="form-floating mb-3">
                                                 <input
                                                     type="text"
@@ -52,9 +51,11 @@
                                                 <input
                                                     :type="showMatKhau ? 'text' : 'password'"
                                                     class="form-control border-0 rounded-end-0"
+                                                    :class="{ 'is-invalid': errorMatKhau }"
                                                     :placeholder="$t('auth.placeholder.password')"
                                                     required
                                                     v-model="matKhau"
+                                                    @change="onChangePassword"
                                                 />
                                                 <label for="password" class="form-label">
                                                     {{ $t('auth.label.password') }}
@@ -80,6 +81,7 @@
                                                     class="form-control border-0 rounded"
                                                     :placeholder="$t('auth.placeholder.email')"
                                                     v-model="email"
+                                                    @change="onChangeEmail"
                                                 />
                                                 <label for="email" class="form-label">
                                                     {{ $t('auth.label.email') }}
@@ -109,6 +111,7 @@
                                                     :placeholder="$t('auth.placeholder.linkFace')"
                                                     required
                                                     v-model="linkFace"
+                                                    @change="onChangeLinkFace"
                                                 />
                                                 <label for="linkFace" class="form-label">
                                                     {{ $t('auth.label.linkFace') }}
@@ -185,7 +188,9 @@
 <script lang="ts">
     import { defineComponent, type Ref, ref } from 'vue'
     import { useRouter } from 'vue-router'
+    import { useToastError } from '../../composables/toasts/useToastError'
     import { useTogglePassword } from '../../composables/useTogglePassword'
+    import { useRules } from '../../composables/validations/useRules'
     import LanguageSwitcher from '../../views/LanguageSwitcher.vue'
 
     export default defineComponent({
@@ -199,6 +204,23 @@
             const linkFace = ref('') as Ref<string>
             const error = ref('') as Ref<string>
             const { showMatKhau, toggle: toggleShowPassword } = useTogglePassword()
+            const {
+                errorMatKhau,
+                errorEmail,
+                errorLinkFace,
+                validatePassword,
+                validateEmail,
+                validateLinkFace
+            } = useRules()
+            const { handleChangePassword, handleChangeEmail, handleChangeLinkFace } =
+                useToastError()
+
+            const onChangePassword = () =>
+                handleChangePassword(matKhau, validatePassword, errorMatKhau)
+            const onChangeEmail = () => handleChangeEmail(email, validateEmail, errorEmail)
+            const onChangeLinkFace = () =>
+                handleChangeLinkFace(linkFace, validateLinkFace, errorLinkFace)
+
             const router = useRouter()
 
             const loginWithGoogle = () => {
@@ -225,6 +247,11 @@
                 tenFace,
                 linkFace,
                 showMatKhau,
+                errorMatKhau,
+                validatePassword,
+                onChangePassword,
+                onChangeEmail,
+                onChangeLinkFace,
                 // handleDangKy,
                 toggleShowPassword
             }
@@ -232,7 +259,7 @@
     })
 </script>
 
-<style>
+<style scoped>
     .home-container {
         min-height: 100vh;
         width: 100%;
@@ -278,6 +305,29 @@
 
         .isFormMobile {
             margin: 20px !important;
+        }
+    }
+
+    .toast {
+        animation:
+            slideIn 0.3s ease,
+            fadeOut 0.3s ease 2.7s forwards;
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeOut {
+        to {
+            opacity: 0;
         }
     }
 </style>
