@@ -8,7 +8,7 @@
         <div class="hero-section p-0 bg-white">
             <div class="container pt-3 pb-3">
                 <LanguageSwitcher class="position-absolute top-0 start-0 m-3" />
-                <div class="row">
+                <div class="row mt-5">
                     <div class="col-12">
                         <div class="mb-3">
                             <h2 class="fw-bold text-center text-uppercase">
@@ -27,13 +27,14 @@
                     <div class="col-12 col-lg-10 col-xl-8">
                         <div class="row justify-content-center">
                             <div class="col-12 col-lg-5 text-black">
-                                <form class="isFormMobile">
+                                <form class="isFormMobile" @submit.prevent="handleRegister">
                                     <div class="row overflow-hidden">
                                         <div class="col-12 mb-3">
                                             <div class="form-floating mb-3">
                                                 <input
                                                     type="text"
                                                     class="form-control border-0 rounded"
+                                                    :class="{ 'is-invalid': taiKhoanTonTai }"
                                                     :placeholder="$t('auth.placeholder.username')"
                                                     required
                                                     v-model="tenTK"
@@ -79,6 +80,7 @@
                                                 <input
                                                     type="email"
                                                     class="form-control border-0 rounded"
+                                                    :class="{ 'is-invalid': errorEmail }"
                                                     :placeholder="$t('auth.placeholder.email')"
                                                     v-model="email"
                                                     @change="onChangeEmail"
@@ -108,6 +110,7 @@
                                                 <input
                                                     type="text"
                                                     class="form-control border-0 rounded"
+                                                    :class="{ 'is-invalid': errorLinkFace }"
                                                     :placeholder="$t('auth.placeholder.linkFace')"
                                                     required
                                                     v-model="linkFace"
@@ -119,11 +122,40 @@
                                                 >
                                             </div>
                                         </div>
+                                        <div class="col-12 mb-3 d-flex align-items-center gap-2">
+                                            <input
+                                                type="checkbox"
+                                                id="daCoGroup"
+                                                v-model="daCoGroup"
+                                                class="form-check-input"
+                                            />
+                                            <label for="daCoGroup" class="form-check-label">
+                                                {{ $t('auth.label.hasGroup') }}
+                                            </label>
+                                        </div>
+
+                                        <div class="col-12 mb-3" v-if="daCoGroup">
+                                            <div class="form-floating mb-3">
+                                                <input
+                                                    type="text"
+                                                    class="form-control border-0 rounded"
+                                                    :placeholder="$t('auth.placeholder.nameGroup')"
+                                                    v-model="tenGroup"
+                                                    required
+                                                />
+                                                <label for="tenGroup" class="form-label">
+                                                    {{ $t('auth.label.nameGroup') }}
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                            </div>
+                                        </div>
+
                                         <div class="col-12 mb-3">
                                             <div class="d-grid">
                                                 <button
                                                     class="btn btn-lg btn-dark rounded fs-6 text-uppercase"
                                                     type="submit"
+                                                    :disabled="!isFormValid"
                                                 >
                                                     {{ $t('auth.button.register') }}
                                                 </button>
@@ -183,26 +215,37 @@
             </div>
         </div>
     </div>
+    <PopupLoading :isLoading="isLoadingPage" />
 </template>
 
 <script lang="ts">
-    import { defineComponent, type Ref, ref } from 'vue'
+    import { computed, defineComponent, type Ref, ref, watch } from 'vue'
+    import { useI18n } from 'vue-i18n'
     import { useRouter } from 'vue-router'
+    import { useToast } from 'vue-toastification'
     import { useToastError } from '../../composables/toasts/useToastError'
     import { useTogglePassword } from '../../composables/useTogglePassword'
     import { useRules } from '../../composables/validations/useRules'
+    import { ACCOUNT_URL, GROUP, ROLE } from '../../utils/constants'
     import LanguageSwitcher from '../../views/LanguageSwitcher.vue'
+    import PopupLoading from '../common/PopupLoading.vue'
 
     export default defineComponent({
         name: 'RegisterPage',
-        components: { LanguageSwitcher },
+        components: { LanguageSwitcher, PopupLoading },
         setup() {
+            const { t } = useI18n()
             const tenTK = ref('') as Ref<string>
             const matKhau = ref('') as Ref<string>
             const email = ref('') as Ref<string>
             const tenFace = ref('') as Ref<string>
             const linkFace = ref('') as Ref<string>
+            const daCoGroup = ref(false) as Ref<boolean>
+            const tenGroup = ref('') as Ref<string>
             const error = ref('') as Ref<string>
+            const isLoadingPage = ref(false) as Ref<boolean>
+            const toast = useToast()
+            const router = useRouter()
             const { showMatKhau, toggle: toggleShowPassword } = useTogglePassword()
             const {
                 errorMatKhau,
@@ -211,7 +254,7 @@
                 validatePassword,
                 validateEmail,
                 validateLinkFace
-            } = useRules()
+            } = useRules(t)
             const { handleChangePassword, handleChangeEmail, handleChangeLinkFace } =
                 useToastError()
 
@@ -220,39 +263,155 @@
             const onChangeEmail = () => handleChangeEmail(email, validateEmail, errorEmail)
             const onChangeLinkFace = () =>
                 handleChangeLinkFace(linkFace, validateLinkFace, errorLinkFace)
+            const taiKhoanTonTai = ref(false) as Ref<boolean>
+            const isCheckingUsername = ref(false) as Ref<boolean>
+            let checkScript: HTMLScriptElement | null = null
+            let debounceTimeout: number | null = null
 
-            const router = useRouter()
+            const isFormValid = computed(() => {
+                return (
+                    !errorMatKhau.value &&
+                    !errorEmail.value &&
+                    !errorLinkFace.value &&
+                    tenTK.value.trim() !== '' &&
+                    matKhau.value.trim() !== '' &&
+                    tenFace.value.trim() !== '' &&
+                    linkFace.value.trim() !== '' &&
+                    !taiKhoanTonTai.value &&
+                    !isCheckingUsername.value
+                )
+            })
 
-            const loginWithGoogle = () => {
-                window.location.href = 'http://localhost:8080/oauth2/authorization/google'
+            const checkTaiKhoanExist = () => {
+                if (!tenTK.value) {
+                    taiKhoanTonTai.value = false
+                    isCheckingUsername.value = false
+                    return
+                }
+
+                isCheckingUsername.value = true
+
+                if (checkScript && checkScript.parentNode) {
+                    checkScript.parentNode.removeChild(checkScript)
+                    checkScript = null
+                }
+
+                const callbackName = 'checkUser_' + Date.now()
+                ;(window as any)[callbackName] = (data: any) => {
+                    taiKhoanTonTai.value = data.exists
+                    isCheckingUsername.value = false
+
+                    if (data.exists) {
+                        tenTK.value = ''
+                        toast.error(t('message.error.accountExist'))
+                    }
+
+                    delete (window as any)[callbackName]
+                    if (checkScript && checkScript.parentNode) {
+                        checkScript.parentNode.removeChild(checkScript)
+                        checkScript = null
+                    }
+                }
+
+                const params = new URLSearchParams({
+                    action: 'checkUsername',
+                    taiKhoan: tenTK.value,
+                    callback: callbackName
+                }).toString()
+
+                checkScript = document.createElement('script')
+                checkScript.src = ACCOUNT_URL + params
+                document.body.appendChild(checkScript)
             }
 
-            // const handleDangKy = async () => {
-            //     const response = await dangKy(tenTK.value, matKhau.value, tenFace.value)
+            watch(tenTK, () => {
+                if (!tenTK.value) {
+                    taiKhoanTonTai.value = false
+                    isCheckingUsername.value = false
+                    return
+                }
 
-            //     if (response.success === true) {
-            //         window.alert('Đăng ký tài khoản thành công!')
-            //         router.push('/dang-nhap')
-            //     } else {
-            //         error.value = response.message
-            //     }
-            // }
+                isCheckingUsername.value = true
+
+                if (debounceTimeout) clearTimeout(debounceTimeout)
+                debounceTimeout = window.setTimeout(() => {
+                    checkTaiKhoanExist()
+                }, 500)
+            })
+
+            const handleRegister = () => {
+                if (!tenTK.value || !matKhau.value || !tenFace.value || !linkFace.value) {
+                    toast.error(t('message.error.required'))
+                    return
+                }
+
+                const payload = {
+                    action: 'save',
+                    taiKhoan: tenTK.value,
+                    matKhau: matKhau.value,
+                    email: email.value,
+                    tenFace: tenFace.value,
+                    linkFace: linkFace.value,
+                    vaiTro: ROLE.MEMBER,
+                    daCoGroup: daCoGroup.value ? GROUP.HAS : GROUP.NOT_HAS,
+                    tenGroup: daCoGroup.value ? tenGroup.value : '',
+                    ngayTao: new Date().toLocaleString('vi-VN')
+                }
+
+                const callbackName = 'handleResult_' + Date.now()
+                isLoadingPage.value = true
+                ;(window as any)[callbackName] = (data: any) => {
+                    isLoadingPage.value = false
+
+                    if (data.status === 'success') {
+                        toast.success(data.message)
+                        tenTK.value = ''
+                        matKhau.value = ''
+                        email.value = ''
+                        tenFace.value = ''
+                        linkFace.value = ''
+
+                        router.push('/dang-nhap')
+                    } else {
+                        toast.error(t('message.error.fail') + data.message)
+                    }
+                    delete (window as any)[callbackName]
+                    document.body.removeChild(script)
+                }
+
+                const params = new URLSearchParams({
+                    ...payload,
+                    callback: callbackName
+                }).toString()
+
+                const SHEET_URL = ACCOUNT_URL + params
+
+                const script = document.createElement('script')
+                script.src = SHEET_URL
+                document.body.appendChild(script)
+            }
 
             return {
-                loginWithGoogle,
+                taiKhoanTonTai,
+                isLoadingPage,
+                isFormValid,
                 error,
                 tenTK,
                 matKhau,
                 email,
                 tenFace,
                 linkFace,
+                daCoGroup,
+                tenGroup,
                 showMatKhau,
                 errorMatKhau,
+                errorEmail,
+                errorLinkFace,
                 validatePassword,
                 onChangePassword,
                 onChangeEmail,
                 onChangeLinkFace,
-                // handleDangKy,
+                handleRegister,
                 toggleShowPassword
             }
         }

@@ -1,22 +1,23 @@
 import { ref } from 'vue'
+import type { Composer } from 'vue-i18n'
 
-export const useRules = () => {
+export const useRules = ($t: Composer['t']) => {
     const errorMatKhau = ref('')
     const errorEmail = ref('')
     const errorLinkFace = ref('')
 
     const validatePassword = (value: string): boolean => {
         if (value.length < 8) {
-            errorMatKhau.value = 'Mật khẩu phải có ít nhất 8 ký tự'
+            errorMatKhau.value = $t('message.valid.passwordMin8Chars') as string
             return false
         } else if (!/[A-Z]/.test(value)) {
-            errorMatKhau.value = 'Mật khẩu phải chứa ít nhất 1 chữ hoa'
+            errorMatKhau.value = $t('message.valid.passwordUppercase') as string
             return false
         } else if (!/[0-9]/.test(value)) {
-            errorMatKhau.value = 'Mật khẩu phải chứa ít nhất 1 chữ số'
+            errorMatKhau.value = $t('message.valid.passwordNumber') as string
             return false
         } else if (!/[!@#$%^&*]/.test(value)) {
-            errorMatKhau.value = 'Mật khẩu phải chứa ít nhất 1 ký tự đặc biệt'
+            errorMatKhau.value = $t('message.valid.passwordSpecialChar') as string
             return false
         }
         errorMatKhau.value = ''
@@ -26,7 +27,7 @@ export const useRules = () => {
     const validateEmail = (value: string): boolean => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
         if (!emailRegex.test(value)) {
-            errorEmail.value = 'Email không hợp lệ'
+            errorEmail.value = $t('message.valid.invalidEmail') as string
             return false
         }
         errorEmail.value = ''
@@ -35,7 +36,7 @@ export const useRules = () => {
 
     const validateLinkFace = (value: string): boolean => {
         if (!/^https?:\/\/(www\.)?facebook\.com\/.+$/i.test(value)) {
-            errorLinkFace.value = 'Link Facebook không hợp lệ'
+            errorLinkFace.value = $t('message.valid.invalidLinkFace') as string
             return false
         }
         errorLinkFace.value = ''

@@ -317,18 +317,37 @@ export default {
             password: 'Password',
             email: 'Email',
             nameFace: 'Facebook name (to add to chat group)',
-            linkFace: 'Facebook link (to add to chat group)'
+            linkFace: 'Facebook link (to add to chat group)',
+            hasGroup: 'Already have a group?',
+            nameGroup: 'Group name'
         },
         placeholder: {
             username: 'Enter username',
             password: 'Enter password',
             email: 'Enter email',
             nameFace: 'Enter Facebook name',
-            linkFace: 'Enter Facebook link'
+            linkFace: 'Enter Facebook link',
+            nameGroup: 'Enter group name'
         },
         button: {
             register: 'Register',
             login: 'Login'
         }
+    },
+    message: {
+        valid: {
+            passwordMin8Chars: 'Password must be at least 8 characters',
+            passwordUppercase: 'Password must contain at least 1 uppercase letter',
+            passwordNumber: 'Password must contain at least 1 number',
+            passwordSpecialChar: 'Password must contain at least 1 special character',
+            invalidEmail: 'Invalid email',
+            invalidLinkFace: 'Invalid Facebook link'
+        },
+        error: {
+            fail: 'Error: ',
+            accountExist: 'The account name already exists, please choose another name.',
+            required: 'Please enter all required information.'
+        },
+        success: {}
     }
 }

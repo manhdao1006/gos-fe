@@ -313,18 +313,37 @@ export default {
             password: 'Mật khẩu',
             email: 'Email',
             nameFace: 'Tên Facebook (để thêm vào nhóm chat)',
-            linkFace: 'Link Facebook  (để thêm vào nhóm chat)'
+            linkFace: 'Link Facebook  (để thêm vào nhóm chat)',
+            hasGroup: 'Đã có group?',
+            nameGroup: 'Tên group'
         },
         placeholder: {
             username: 'Nhập tên đăng nhập',
             password: 'Nhập mật khẩu',
             email: 'Nhập email',
             nameFace: 'Nhập tên Facebook',
-            linkFace: 'Nhập link Facebook'
+            linkFace: 'Nhập link Facebook',
+            nameGroup: 'Nhập tên group'
         },
         button: {
             register: 'Đăng ký',
             login: 'Đăng nhập'
         }
+    },
+    message: {
+        valid: {
+            passwordMin8Chars: 'Mật khẩu phải có ít nhất 8 ký tự',
+            passwordUppercase: 'Mật khẩu phải chứa ít nhất 1 chữ hoa',
+            passwordNumber: 'Mật khẩu phải chứa ít nhất 1 chữ số',
+            passwordSpecialChar: 'Mật khẩu phải chứa ít nhất 1 ký tự đặc biệt',
+            invalidEmail: 'Email không hợp lệ',
+            invalidLinkFace: 'Link Facebook không hợp lệ'
+        },
+        error: {
+            fail: 'Lỗi: ',
+            accountExist: 'Tên tài khoản đã tồn tại, vui lòng chọn tên khác.',
+            required: 'Vui lòng nhập đầy đủ thông tin bắt buộc.'
+        },
+        success: {}
     }
 }

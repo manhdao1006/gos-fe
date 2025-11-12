@@ -27,7 +27,7 @@
                     <div class="col-12 col-lg-10 col-xl-8">
                         <div class="row justify-content-center">
                             <div class="col-12 col-lg-5 text-black">
-                                <form class="isFormMobile">
+                                <form class="isFormMobile" @submit.prevent="handleLogin">
                                     <div class="row overflow-hidden">
                                         <div class="col-12 mb-3">
                                             <div class="block-error">{{ error }}</div>
@@ -138,12 +138,16 @@
             </div>
         </div>
     </div>
+    <PopupLoading :isLoading="isLoadingPage" />
 </template>
 
 <script lang="ts">
     import { defineComponent, inject, type Ref, ref } from 'vue'
+    import { useI18n } from 'vue-i18n'
     import { useRouter } from 'vue-router'
+    import { useToast } from 'vue-toastification'
     import { useTogglePassword } from '../../composables/useTogglePassword'
+    import { ACCOUNT_URL } from '../../utils/constants'
     import LanguageSwitcher from '../../views/LanguageSwitcher.vue'
     import PopupLoading from '../common/PopupLoading.vue'
 
@@ -154,6 +158,7 @@
             LanguageSwitcher
         },
         setup() {
+            const { t } = useI18n()
             const isLoggedIn = inject('isLoggedIn') as Ref<boolean> | undefined
             const tenTK = ref('') as Ref<string>
             const matKhau = ref('') as Ref<string>
@@ -163,64 +168,63 @@
             const error = ref('') as Ref<string>
             const { showMatKhau, toggle: toggleShowPassword } = useTogglePassword()
             const router = useRouter()
-            const isLoading = ref(false)
+            const toast = useToast()
+            const isLoadingPage = ref(false) as Ref<boolean>
 
-            const loginWithGoogle = () => {
-                window.location.href = 'http://localhost:8080/oauth2/authorization/google'
+            const handleLogin = () => {
+                if (!tenTK.value || !matKhau.value) {
+                    error.value = t('message.error.required')
+                    return
+                }
+
+                const payload = {
+                    action: 'login',
+                    taiKhoan: tenTK.value,
+                    matKhau: matKhau.value
+                }
+
+                const callbackName = 'handleLoginResult_' + Date.now()
+                isLoadingPage.value = true
+                ;(window as any)[callbackName] = (data: any) => {
+                    isLoadingPage.value = false
+
+                    if (data.status === 'success') {
+                        toast.success(data.message)
+
+                        localStorage.setItem('user', JSON.stringify(data.user))
+                        if (isLoggedIn) isLoggedIn.value = true
+
+                        router.push('/')
+                    } else {
+                        toast.error(data.message)
+                    }
+
+                    delete (window as any)[callbackName]
+                    document.body.removeChild(script)
+                }
+
+                const params = new URLSearchParams({
+                    ...payload,
+                    callback: callbackName
+                }).toString()
+
+                const SHEET_URL = ACCOUNT_URL + params
+
+                const script = document.createElement('script')
+                script.src = SHEET_URL
+                document.body.appendChild(script)
             }
 
-            // const handleDangNhap = async () => {
-            //     isLoading.value = true
-            //     try {
-            //         const response = await dangNhap(email.value, matKhau.value)
-
-            //         if (response?.success) {
-            //             const result = await getNguoiDungByMaNguoiDung(getMaNguoiDung())
-
-            //             if (result.nguoiDung.trangThaiHoatDong === 'Chờ duyệt') {
-            //                 error.value =
-            //                     'Tài khoản của bạn đang chờ duyệt. Vui lòng liên hệ quản trị viên.'
-            //                 return
-            //             }
-
-            //             if (isLoggedIn) isLoggedIn.value = true
-            //             localStorage.setItem('isLoggedIn', 'true')
-
-            //             if (result?.vaiTro?.tenVaiTro?.includes('ROLE_QUANTRIVIEN')) {
-            //                 await router.push({
-            //                     name: 'DanhSachNguoiDungView',
-            //                     params: { maVaiTro: 'VT2' }
-            //                 })
-            //             } else if (result?.vaiTro?.tenVaiTro?.includes('ROLE_CHUCUAHANG')) {
-            //                 await router.push({ name: 'DanhSachXeMayView' })
-            //             } else if (result?.vaiTro?.tenVaiTro?.includes('ROLE_NHANVIEN')) {
-            //                 await router.push({
-            //                     name: 'DanhSachDonHangNhanVienView',
-            //                     params: { trangThaiDonHang: 'Chờ xử lý' }
-            //                 })
-            //             } else {
-            //                 await router.push('/')
-            //             }
-            //         } else {
-            //             error.value = response?.message || 'Đăng nhập thất bại'
-            //         }
-            //     } catch (err) {
-            //         console.error('Lỗi trong quá trình đăng nhập:', err)
-            //     } finally {
-            //         isLoading.value = false
-            //     }
-            // }
-
             return {
-                loginWithGoogle,
                 error,
+                isLoadingPage,
                 tenTK,
                 matKhau,
                 email,
                 tenFace,
                 linkFace,
                 showMatKhau,
-                // handleDangKy,
+                handleLogin,
                 toggleShowPassword
             }
         }
