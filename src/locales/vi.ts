@@ -145,6 +145,7 @@ export default {
                 BINH_NGUYEN: 'Cùng học hỏi, cùng phát triển',
                 THANH_HIEN: 'Chỉ mình là đúng',
                 QUANG_MINH: 'Trai đất tổ tán đổ tim em',
+                VAN_HOANG: 'Nói được làm được',
                 DOAN_LONG: 'Anh chăm chỉ nào đủ trăm chỉ anh cưới em nha'
             }
         },
