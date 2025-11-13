@@ -288,7 +288,10 @@ export default {
         },
         PLAYER: {
             TITLE: 'Tuyển thủ GOS',
-            VIEW_CONTRACT: 'Xem hợp đồng'
+            VIEW_CONTRACT: 'Xem hợp đồng',
+            SOLD: 'Đã bán',
+            LIQUID: 'Thanh lý',
+            LOAN: 'Cho mượn'
         },
         YOUTH_TEAM: {
             TITLE: 'Đội trẻ GOS'

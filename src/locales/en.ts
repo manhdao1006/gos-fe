@@ -292,7 +292,10 @@ export default {
         },
         PLAYER: {
             TITLE: 'GOS Player',
-            VIEW_CONTRACT: 'View Contract'
+            VIEW_CONTRACT: 'View Contract',
+            SOLD: 'Sold out',
+            LIQUID: 'Liquidated',
+            LOAN: 'Loan'
         },
         YOUTH_TEAM: {
             TITLE: 'GOS Youth Team'
