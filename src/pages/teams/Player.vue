@@ -30,17 +30,28 @@
                     class="grid-item d-flex align-items-center justify-content-center bg-success text-white fw-bold"
                     v-for="(img, index) in images"
                     :key="index"
-                    @click="!img.soldOut && openModal(index)"
-                    :data-bs-toggle="!img.soldOut ? 'modal' : null"
-                    :data-bs-target="!img.soldOut ? '#imageModal' : null"
-                    :class="{ 'sold-out': img.soldOut }"
+                    @click="!img.soldOut && !img.liquidated && !img.loan && openModal(index)"
+                    :data-bs-toggle="!img.soldOut && !img.liquidated && !img.loan ? 'modal' : null"
+                    :data-bs-target="
+                        !img.soldOut && !img.liquidated && !img.loan ? '#imageModal' : null
+                    "
+                    :class="{
+                        'sold-out': img.soldOut || img.liquidated,
+                        loan: img.loan
+                    }"
                 >
                     <span class="item-name">{{ img.name }}</span>
-                    <div v-if="!img.soldOut" class="overlay">
-                        {{ $t('TEAM.PLAYER.VIEW_CONTRACT') }}
+                    <div v-if="img.soldOut" class="sold-out-overlay">
+                        <span>{{ $t('TEAM.PLAYER.SOLD') }}</span>
                     </div>
-                    <div v-else class="sold-out-overlay">
-                        <span>Sold Out</span>
+                    <div v-else-if="img.liquidated" class="sold-out-overlay">
+                        <span>{{ $t('TEAM.PLAYER.LIQUID') }}</span>
+                    </div>
+                    <div v-else-if="img.loan" class="loan-overlay">
+                        <span>{{ $t('TEAM.PLAYER.LOAN') }}</span>
+                    </div>
+                    <div v-else class="overlay">
+                        {{ $t('TEAM.PLAYER.VIEW_CONTRACT') }}
                     </div>
                 </div>
             </div>
@@ -94,7 +105,9 @@
     import Footer from '../../components/Footer.vue'
     import Header from '../../components/Header.vue'
 
-    const images = ref<{ url: string; name: string; soldOut?: boolean }[]>([
+    const images = ref<
+        { url: string; name: string; soldOut?: boolean; liquidated?: boolean; loan?: boolean }[]
+    >([
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341818/ly-thanh-hien_tffpi9.jpg',
             name: '1 Lý Thanh Hiền (VC)',
@@ -102,11 +115,13 @@
         },
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341819/nguyen-viet-cuong_mf0dtu.jpg',
-            name: '25 Nguyễn Viết Cường'
+            name: '25 Nguyễn Viết Cường',
+            liquidated: true
         },
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341818/nguyen-sy-hoang_tbgx8d.jpg',
-            name: '3 Nguyễn Sỹ Hoàng'
+            name: '3 Nguyễn Sỹ Hoàng',
+            loan: true
         },
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341817/doan-vu-phi-long_f1guop.jpg',
@@ -300,7 +315,7 @@
 
     .sold-out-overlay span {
         position: absolute;
-        top: 10px;
+        top: 20px;
         left: -40px;
         width: 150px;
         text-align: center;
@@ -322,6 +337,50 @@
     }
 
     .grid-item.sold-out:hover .overlay {
+        opacity: 0 !important;
+    }
+
+    .grid-item.loan {
+        border: 2px solid yellow;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .loan-overlay {
+        position: absolute;
+        inset: 0;
+        background-color: rgba(251, 255, 0, 0.246);
+        pointer-events: none;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .loan-overlay span {
+        position: absolute;
+        top: 20px;
+        left: -40px;
+        width: 150px;
+        text-align: center;
+        transform: rotate(-45deg);
+        color: yellow;
+        font-weight: bold;
+        font-size: 14px;
+        border: 2px solid yellow;
+        background: transparent;
+        padding: 6px 0;
+        pointer-events: none;
+        text-transform: uppercase;
+        font-family: Arial, sans-serif;
+        z-index: 3;
+    }
+
+    .grid-item.loan:hover .item-name {
+        opacity: 1 !important;
+    }
+
+    .grid-item.loan:hover .overlay {
         opacity: 0 !important;
     }
 
