@@ -110,18 +110,30 @@
     >([
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341818/ly-thanh-hien_tffpi9.jpg',
-            name: '1 Lý Thanh Hiền (VC)',
-            soldOut: true
-        },
-        {
-            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341819/nguyen-viet-cuong_mf0dtu.jpg',
-            name: '25 Nguyễn Viết Cường',
+            name: 'Nguyễn Nhật Tuệ',
             liquidated: true
         },
         {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341818/ly-thanh-hien_tffpi9.jpg',
+            name: 'Vi Văn Phúc',
+            liquidated: true
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341818/ly-thanh-hien_tffpi9.jpg',
+            name: 'Trần Văn Long',
+            liquidated: true
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341818/ly-thanh-hien_tffpi9.jpg',
+            name: '1 Lý Thanh Hiền (VC)'
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341819/nguyen-viet-cuong_mf0dtu.jpg',
+            name: '25 Nguyễn Viết Cường'
+        },
+        {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341818/nguyen-sy-hoang_tbgx8d.jpg',
-            name: '3 Nguyễn Sỹ Hoàng',
-            loan: true
+            name: '3 Nguyễn Sỹ Hoàng'
         },
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341817/doan-vu-phi-long_f1guop.jpg',
