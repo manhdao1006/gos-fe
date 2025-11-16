@@ -33,8 +33,10 @@
                     data-bs-toggle="modal"
                     data-bs-target="#imageModal"
                 >
-                    <img :src="img.url" :alt="img.content" />
-                    <div class="text-black">{{ img.content }}</div>
+                    <div class="img-wrap">
+                        <img :src="img.url" :alt="img.content" />
+                    </div>
+                    <div class="grid-caption">{{ img.content }}</div>
                 </div>
             </div>
         </div>
@@ -55,6 +57,10 @@
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755698822/first-achievement_zt2q0m.jpg',
             content: t('TEAM.ACHIEVEMENT.CONTENT.FIRST_ACHIEVEMENT')
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1763259652/nhucac_w3ygea.jpg',
+            content: t('TEAM.ACHIEVEMENT.CONTENT.SECOND_ACHIEVEMENT')
         }
     ])
 </script>
@@ -115,6 +121,7 @@
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(1, 1fr);
         height: 100vh;
+        width: 100% !important;
         gap: 8px;
         padding: 8px;
     }
@@ -124,7 +131,6 @@
         font-size: 1.2rem;
         text-align: center;
         padding: 12px;
-        position: relative;
         background: #212529;
         color: #fff;
         font-weight: bold;
@@ -135,8 +141,20 @@
         flex-direction: column;
     }
 
-    .grid-item img {
-        width: 100%;
+    .grid-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .img-wrap {
+        width: 100% !important;
+        aspect-ratio: 16/9;
+        overflow: hidden;
+        height: 100%;
+    }
+
+    .img-wrap img {
+        width: 100% !important;
         height: 100%;
         object-fit: cover;
         transition: opacity 0.3s ease;
@@ -144,7 +162,7 @@
         border-radius: 0 !important;
     }
 
-    .grid-item div {
+    .grid-caption {
         padding: 8px;
         font-size: 1rem;
         font-weight: 500;
