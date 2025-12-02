@@ -147,6 +147,7 @@
     import { useRouter } from 'vue-router'
     import { useToast } from 'vue-toastification'
     import { useTogglePassword } from '../../composables/useTogglePassword'
+    import { eventBus } from '../../eventBus'
     import { ACCOUNT_URL } from '../../utils/constants'
     import LanguageSwitcher from '../../views/LanguageSwitcher.vue'
     import PopupLoading from '../common/PopupLoading.vue'
@@ -192,9 +193,16 @@
                         toast.success(data.message)
 
                         localStorage.setItem('user', JSON.stringify(data.user))
-                        if (isLoggedIn) isLoggedIn.value = true
+                        console.log('JSON.stringify(data.user): ', JSON.stringify(data.user))
 
-                        router.push('/')
+                        if (isLoggedIn) isLoggedIn.value = true
+                        eventBus.emit('userLoggedIn', data.user)
+
+                        if (data.user?.vaiTro === 'admin') {
+                            router.push('/quan-tri/trang-chu')
+                        } else {
+                            router.push('/')
+                        }
                     } else {
                         toast.error(data.message)
                     }

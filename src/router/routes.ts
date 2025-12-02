@@ -5,6 +5,7 @@ import RegisterPage from '../components/auth/RegisterPage.vue'
 import Administration from '../pages/Administration.vue'
 import HallOfFame from '../pages/HallOfFame.vue'
 import History from '../pages/History.vue'
+import TrangChu from '../pages/organizations/admin/TrangChu.vue'
 import Teams from '../pages/Teams.vue'
 import Achievement from '../pages/teams/Achievement.vue'
 import Coach from '../pages/teams/Coach.vue'
@@ -16,6 +17,14 @@ import Tournaments from '../pages/Tournaments.vue'
 import Home from '../views/Home.vue'
 
 export const routes: AppRoute[] = [
+    {
+        path: '/quan-tri/trang-chu',
+        name: 'TrangChu',
+        component: TrangChu,
+        meta: {
+            title: 'GOS - Dream League Soccer'
+        }
+    },
     {
         path: '/dang-ky-tai-khoan',
         name: 'RegisterPage',

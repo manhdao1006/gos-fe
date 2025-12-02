@@ -5,7 +5,7 @@ import { defineConfig } from 'vite'
 export default defineConfig({
     plugins: [vue()],
     server: {
-        port: 3000
+        port: 3001
     },
     define: {
         __VUE_OPTIONS_API__: true,

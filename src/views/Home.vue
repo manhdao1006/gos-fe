@@ -11,8 +11,9 @@
                     <div class="col-12 col-md-6 text-center order-1 order-md-1">
                         <LanguageSwitcher class="position-absolute top-0 end-0 m-3 z-3" />
                         <router-link
+                            to="/"
                             class="nav-link position-absolute top-0 start-0 m-3 bg-white text-uppercase text-black p-3 rounded fw-bolder"
-                            to="/dang-ky-tai-khoan"
+                            @click.prevent="goToRegister"
                             >{{ $t('HOME.JOIN_TOUR') }}</router-link
                         >
                         <header class="row mt-5">
@@ -126,6 +127,7 @@
 <script setup lang="ts">
     import { computed } from 'vue'
     import { useI18n } from 'vue-i18n'
+    import { useRouter } from 'vue-router'
     import LanguageSwitcher from './LanguageSwitcher.vue'
 
     const { t } = useI18n()
@@ -162,6 +164,18 @@
             route: '#teams'
         }
     ])
+
+    const router = useRouter()
+    const goToRegister = () => {
+        const savedUser = localStorage.getItem('user')
+        const user = savedUser ? JSON.parse(savedUser) : null
+
+        if (!user) {
+            router.push('/dang-ky-tai-khoan')
+        } else {
+            router.push('/quan-tri')
+        }
+    }
 
     const getItemPosition = (index: number) => {
         const width = window.innerWidth

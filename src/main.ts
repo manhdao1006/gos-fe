@@ -12,6 +12,7 @@ import Toast, { type PluginOptions, POSITION } from 'vue-toastification'
 import 'vue-toastification/dist/index.css'
 import en from './locales/en'
 import vi from './locales/vi'
+import preventDevTools from './utils/preventDevTools'
 
 const i18n = createI18n({
     legacy: false,
@@ -32,6 +33,10 @@ const app = createApp(App)
 app.use(router)
 app.use(i18n)
 app.use(Toast, options)
+
+if (import.meta.env.PROD) {
+    preventDevTools()
+}
 
 router.afterEach((to) => {
     if (to.meta.title) {
