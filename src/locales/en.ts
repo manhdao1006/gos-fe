@@ -353,5 +353,45 @@ export default {
             required: 'Please enter all required information.'
         },
         success: {}
+    },
+    data: {
+        unknown: 'Unknown',
+        loading: 'Loading...',
+        listUser: 'List of users',
+        table: {
+            no: 'No.',
+            taiKhoan: 'Account',
+            email: 'Email',
+            tenFace: 'Facebook',
+            vaiTro: 'Role',
+            hasGroup: 'Already has a group',
+            nameGroup: 'Group name',
+            status: 'Status',
+            createDate: 'Creation date',
+            active: 'Active',
+            inactive: 'Inactive',
+            member: 'Member',
+            admin: 'Administrator',
+            noData: 'No matching data.',
+            action: 'Action'
+        },
+        button: {
+            search: 'Search by account, email, facebook',
+            filter: {
+                allStatus: 'All statuses',
+                active: 'Active',
+                inactive: 'Inactive',
+                allRole: 'All roles',
+                member: 'Member',
+                admin: 'Administrator'
+            },
+            exportExcel: 'Export Excel',
+            firstPage: 'Previous',
+            lastPage: 'Next'
+        },
+        pagination: {
+            display: 'Display',
+            rowPerPage: 'rows per page'
+        }
     }
 }

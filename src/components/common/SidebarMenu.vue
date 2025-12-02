@@ -28,7 +28,7 @@
             return {
                 collapsed: false,
                 menuItems: [
-                    { to: '/', label: 'Quản lý người dùng' },
+                    { to: '/quan-tri/nguoi-dung', label: 'Quản lý người dùng' },
                     { to: '/', label: 'Quản lý sự kiện' },
                     { to: '/', label: 'Quản lý giải đấu' },
                     { to: '/', label: 'Quản lý trận đấu' }
@@ -58,7 +58,7 @@
 
 <style scoped>
     .sidebar {
-        background-color: #163460;
+        background-color: #116096;
         padding: 5px;
         min-height: 100vh;
         transition: 0.3s;

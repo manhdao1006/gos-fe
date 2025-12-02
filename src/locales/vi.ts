@@ -349,5 +349,45 @@ export default {
             required: 'Vui lòng nhập đầy đủ thông tin bắt buộc.'
         },
         success: {}
+    },
+    data: {
+        unknown: 'Không xác định',
+        loading: 'Đang tải...',
+        listUser: 'Danh sách người dùng',
+        table: {
+            no: 'STT',
+            taiKhoan: 'Tài khoản',
+            email: 'Email',
+            tenFace: 'Facebook',
+            vaiTro: 'Vai trò',
+            hasGroup: 'Đã có group',
+            nameGroup: 'Tên group',
+            status: 'Trạng thái',
+            createDate: 'Ngày tạo',
+            active: 'Hoạt động',
+            inactive: 'Không hoạt động',
+            member: 'Thành viên',
+            admin: 'Quản trị',
+            noData: 'Không có dữ liệu phù hợp.',
+            action: 'Thao tác'
+        },
+        button: {
+            search: 'Tìm kiếm theo tài khoản, email, facebook',
+            filter: {
+                allStatus: 'Tất cả trạng thái',
+                active: 'Hoạt động',
+                inactive: 'Không hoạt động',
+                allRole: 'Tất cả vai trò',
+                member: 'Thành viên',
+                admin: 'Quản trị'
+            },
+            exportExcel: 'Xuất Excel',
+            firstPage: 'Trước',
+            lastPage: 'Sau'
+        },
+        pagination: {
+            display: 'Hiển thị',
+            rowPerPage: 'hàng mỗi trang'
+        }
     }
 }

@@ -132,9 +132,10 @@
                         icon: 'fas fa-home'
                     },
                     {
-                        to: '/map-bus',
-                        label: this.$t('header.navigation.mapBus'),
-                        icon: 'fas fa-map-marked-alt'
+                        to: '/quan-tri/nguoi-dung',
+                        // label: this.$t('header.navigation.mapBus'),
+                        label: 'Quản lý người dùng',
+                        icon: 'fas fa-users-cog'
                     },
                     {
                         to: '/du-lieu',
