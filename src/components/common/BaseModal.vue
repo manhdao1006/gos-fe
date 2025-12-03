@@ -44,7 +44,7 @@
                                             v-model="localModel[field.key]"
                                             class="form-check-input"
                                         />
-                                        <label :for="field.key" class="form-check-label">{{
+                                        <label :for="field.key" class="form-check-label fw-bold">{{
                                             field.label
                                         }}</label>
                                     </div>
@@ -92,9 +92,7 @@
                             Hủy
                         </button>
 
-                        <button type="submit" class="btn btn-success">
-                            {{ isEdit ? 'Lưu thay đổi' : 'Thêm mới' }}
-                        </button>
+                        <button type="submit" class="btn btn-success">Lưu</button>
                     </div>
                 </form>
             </div>

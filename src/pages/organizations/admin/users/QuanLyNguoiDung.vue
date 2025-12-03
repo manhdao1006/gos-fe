@@ -187,6 +187,8 @@
                                     <option :value="5">5</option>
                                     <option :value="10">10</option>
                                     <option :value="20">20</option>
+                                    <option :value="50">50</option>
+                                    <option :value="100">100</option>
                                 </select>
                                 {{ $t('data.pagination.rowPerPage') }}
                             </div>
@@ -265,7 +267,7 @@
     import BaseModalConfirm from '../../../../components/common/BaseModalConfirm.vue'
     import SidebarMenu from '../../../../components/common/SidebarMenu.vue'
     import Footer from '../../../../components/Footer.vue'
-    import { GROUP } from '../../../../utils/constants'
+    import { ACCOUNT_URL, GROUP, ROLE } from '../../../../utils/constants'
 
     export default {
         name: 'QuanLyNguoiDung',
@@ -325,7 +327,7 @@
                     },
                     {
                         key: 'daCoGroup',
-                        label: 'Đã có group',
+                        label: 'Đã có group?',
                         type: 'checkbox',
                         col: 'col-6',
                         padding: 'pe-2'
@@ -382,7 +384,7 @@
                         }
                     })
                 } else {
-                    list.sort((a, b) => new Date(b.ngayTao) - new Date(a.ngayTao))
+                    list.sort((a, b) => this.parseNgayTao(b.ngayTao) - this.parseNgayTao(a.ngayTao))
                 }
 
                 return list
@@ -400,6 +402,12 @@
         },
 
         methods: {
+            parseNgayTao(str) {
+                const [time, date] = str.split(' ')
+                const [hours, minutes, seconds] = time.split(':')
+                const [day, month, year] = date.split('/')
+                return new Date(+year, +month - 1, +day, +hours, +minutes, +seconds)
+            },
             sortBy(key) {
                 if (this.sortKey === key) {
                     this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc'
@@ -449,65 +457,60 @@
                 if (this.isEdit) {
                     console.log('UPDATE:', form)
                 } else {
-                    console.log('CREATE:', form)
-                }
-                this.showModal = false
-            },
-            async saveRow(v) {
-                if (v._editDon < v._editTra) {
-                    this.toast.error('Số lượng trả không được lớn hơn số lượng đón')
-                    return
-                }
-                this.loading = true
+                    this.loading = true
+                    if (!form.taiKhoan || !form.tenFace || !form.linkFace) {
+                        return
+                    }
 
-                try {
+                    const payload = {
+                        action: 'save',
+                        taiKhoan: form.taiKhoan,
+                        matKhau: '123456',
+                        email: form.email || '',
+                        tenFace: form.tenFace,
+                        linkFace: form.linkFace,
+                        vaiTro: ROLE.MEMBER,
+                        daCoGroup: form.daCoGroup ? GROUP.HAS : GROUP.NOT_HAS,
+                        tenGroup: form.daCoGroup ? form.tenGroup : '',
+                        ngayTao: new Date().toLocaleString('vi-VN'),
+                        trangThai: '1'
+                    }
+
+                    const callbackName = 'handleResult_' + Date.now()
+                    window[callbackName] = (data) => {
+                        this.loading = false
+
+                        if (data.status === 'success') {
+                            this.toast.success(data.message)
+                            form.taiKhoan = ''
+                            form.matKhau = ''
+                            form.email = ''
+                            form.tenFace = ''
+                            form.linkFace = ''
+
+                            window.location.reload()
+                        } else {
+                            this.toast.error('message.error.fail' + data.message)
+                        }
+
+                        delete window[callbackName]
+                        document.body.removeChild(script)
+                    }
+
                     const params = new URLSearchParams({
-                        action: 'saveSoLuong',
-                        bienSoXe: v.bienSoXe,
-                        tenXe: v.tenXe,
-                        trangThai: v.trangThai,
-                        lng: v.lng,
-                        lat: v.lat,
-                        nhietDo: v.nhietDo,
-                        maNhanVien: v.maNhanVien,
-                        tenTaiXe: v.tenTaiXe,
-                        soDienThoai: v.soDienThoai,
-                        soLuongDon: v._editDon || 0,
-                        soLuongTra: v._editTra || 0
+                        ...payload,
+                        callback: callbackName
                     }).toString()
 
-                    const baseUrl =
-                        'https://script.google.com/macros/s/AKfycbwsxM1nFX50O9haEMlt1TUE8Lj1ABvpGpwtPyLenEV3P_iiGMRtvkTd99c66uCpbcuwoQ/exec?' +
-                        params
+                    const SHEET_URL = ACCOUNT_URL + params
 
-                    const res = await fetch(baseUrl)
-                    const data = await res.json()
-
-                    if (data.status === 'success') {
-                        this.message = this.$t('notification.successSave')
-                        this.success = true
-                        this.toast.success(this.message)
-                        window.location.reload()
-                    } else {
-                        this.message = this.$t('notification.error') + data.message
-                        this.success = false
-                        this.toast.error(this.message)
-                        window.location.reload()
-                    }
-                    v.soLuongDon = v._editDon
-                    v.soLuongTra = v._editTra
-                    v._isEditing = false
-                } catch (error) {
-                    this.message = this.$t('notification.error') + error.message
-                    this.success = false
-                    this.toast.error(this.message)
-                    window.location.reload()
-                } finally {
-                    this.loading = false
-                    window.location.reload()
+                    const script = document.createElement('script')
+                    script.src = SHEET_URL
+                    document.body.appendChild(script)
                 }
-            },
 
+                this.showModal = false
+            },
             prevPage() {
                 if (this.currentPage > 1) this.currentPage--
             },
