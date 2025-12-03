@@ -61,7 +61,7 @@
     .sidebar {
         background-color: #116096;
         padding: 5px;
-        min-height: 100vh;
+        min-height: 50vh;
         transition: 0.3s;
     }
 

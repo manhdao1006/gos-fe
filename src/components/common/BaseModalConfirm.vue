@@ -2,22 +2,22 @@
     <div v-if="show" class="modal-overlay">
         <div class="modal-dialog-custom">
             <div class="modal-content">
-                <div class="modal-header bg-danger text-white">
+                <div class="modal-header bg-danger text-white p-3">
                     <h5 class="modal-title">{{ title }}</h5>
                     <button
                         type="button"
-                        class="btn-close"
+                        class="btn-close btn-close-white"
                         @click="$emit('update:show', false)"
                     ></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body p-3">
                     <p>{{ message }}</p>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer mb-3 me-3">
                     <button class="btn btn-secondary" @click="$emit('update:show', false)">
                         Hủy
                     </button>
-                    <button class="btn btn-danger" @click="$emit('confirm')">
+                    <button class="btn btn-danger ms-3" @click="$emit('confirm')">
                         {{ confirmText || 'Xác nhận' }}
                     </button>
                 </div>
@@ -55,8 +55,12 @@
         width: 100%;
     }
     .modal-content {
-        background-color: #fff; /* nền trắng chắc chắn */
-        border-radius: 8px; /* bo góc mềm mại */
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* nổi bật hơn */
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    .modal-header {
+        border-top-left-radius: 8px !important;
+        border-top-right-radius: 8px !important;
     }
 </style>

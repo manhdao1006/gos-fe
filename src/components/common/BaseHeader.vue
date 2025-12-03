@@ -194,7 +194,4 @@
         cursor: pointer;
         transition: color 0.2s ease;
     }
-    .logout-btn:hover {
-        color: red;
-    }
 </style>

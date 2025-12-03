@@ -1,5 +1,5 @@
 <template>
-    <footer class="bg-dark text-light py-4 mt-5 w-100">
+    <footer class="bg-dark text-light py-2 w-100">
         <div class="container-fluid">
             <div class="row flex-column flex-md-row">
                 <div class="col-12 col-md-6 text-center text-md-start mb-3 mb-md-0">
@@ -42,8 +42,8 @@
                     </div>
                 </div>
             </div>
-            <hr class="my-4" />
-            <footer class="text-center text-white py-3 copy-right-mobile">
+            <hr class="my-2" />
+            <footer class="text-center text-white py-2 copy-right-mobile">
                 &copy; Copyright 2025 by GOS - Dream League Soccer
             </footer>
         </div>

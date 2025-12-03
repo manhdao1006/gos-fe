@@ -10,7 +10,7 @@
                         @updateCollapsed="collapsed = $event"
                     />
                 </div>
-                <div class="flex-grow-1 ms-3 mt-3 me-3" style="width: 100%; height: 100%">
+                <div class="flex-grow-1 m-3" style="width: 100%; height: 100%">
                     <div
                         class="border border-dark-subtle border-2 rounded-3 p-3 bg-white shadow-sm"
                         style="font-size: 13px"
@@ -77,21 +77,37 @@
                                 <thead class="table-light">
                                     <tr>
                                         <th>{{ $t('data.table.no') }}</th>
-                                        <th>{{ $t('data.table.taiKhoan') }}</th>
-                                        <th>{{ $t('data.table.email') }}</th>
-                                        <th>{{ $t('data.table.tenFace') }}</th>
+                                        <th @click="sortBy('taiKhoan')" style="cursor: pointer">
+                                            {{ $t('data.table.taiKhoan') }}
+                                            <i class="fa fa-sort"></i>
+                                        </th>
+                                        <th @click="sortBy('email')" style="cursor: pointer">
+                                            {{ $t('data.table.email') }}
+                                            <i class="fa fa-sort"></i>
+                                        </th>
+                                        <th @click="sortBy('tenFace')" style="cursor: pointer">
+                                            {{ $t('data.table.tenFace') }}
+                                            <i class="fa fa-sort"></i>
+                                        </th>
                                         <th>{{ $t('data.table.vaiTro') }}</th>
-                                        <th>{{ $t('data.table.nameGroup') }}</th>
+                                        <th @click="sortBy('tenGroup')" style="cursor: pointer">
+                                            {{ $t('data.table.nameGroup') }}
+                                            <i class="fa fa-sort"></i>
+                                        </th>
+
                                         <th>{{ $t('data.table.status') }}</th>
-                                        <th>{{ $t('data.table.createDate') }}</th>
+                                        <th @click="sortBy('ngayTao')" style="cursor: pointer">
+                                            {{ $t('data.table.createDate') }}
+                                            <i class="fa fa-sort"></i>
+                                        </th>
                                         <th v-if="user.email === 'manhdao1006@gmail.com'">
                                             {{ $t('data.table.action') }}
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="(v, index) in filteredUserList" :key="v.bienSoXe">
-                                        <td>{{ index + 1 }}</td>
+                                    <tr v-for="(v, index) in paginatedList" :key="v.taiKhoan">
+                                        <td>{{ (currentPage - 1) * itemsPerPage + index + 1 }}</td>
                                         <td class="text-start">{{ v.taiKhoan }}</td>
                                         <td class="text-start">{{ v.email }}</td>
                                         <td class="text-start">
@@ -144,7 +160,7 @@
                                                 <i class="fa-solid fa-ban"></i>
                                             </button>
                                             <button
-                                                class="btn btn-sm btn-outline-danger"
+                                                class="btn btn-sm text-danger"
                                                 @click="openDeleteModal(v)"
                                             >
                                                 <i class="fa-solid fa-trash"></i>
@@ -207,6 +223,7 @@
                 </div>
             </div>
         </div>
+        <Footer />
 
         <BaseModal
             modalId="modalUser"
@@ -221,15 +238,15 @@
 
         <BaseModalConfirm
             v-model:show="showDeleteModal"
-            title="Xóa người dùng"
-            :message="deleteUser ? `Bạn có chắc muốn xóa người dùng ${deleteUser.taiKhoan}?` : ''"
+            title="Xóa tài khoản"
+            :message="deleteUser ? `Bạn có chắc muốn xóa tài khoản ${deleteUser.taiKhoan}?` : ''"
             @confirm="confirmDelete"
         />
 
         <BaseModalConfirm
             v-model:show="showBanModal"
-            title="Khoá người dùng"
-            :message="banUser ? `Bạn có chắc muốn khoá người dùng ${banUser.taiKhoan}?` : ''"
+            title="Khoá tài khoản"
+            :message="banUser ? `Bạn có chắc muốn khoá tài khoản ${banUser.taiKhoan}?` : ''"
             confirmText="Khoá"
             @confirm="confirmBan"
         />
@@ -247,10 +264,12 @@
     import BaseModal from '../../../../components/common/BaseModal.vue'
     import BaseModalConfirm from '../../../../components/common/BaseModalConfirm.vue'
     import SidebarMenu from '../../../../components/common/SidebarMenu.vue'
+    import Footer from '../../../../components/Footer.vue'
+    import { GROUP } from '../../../../utils/constants'
 
     export default {
         name: 'QuanLyNguoiDung',
-        components: { BaseHeader, SidebarMenu, BaseModal, BaseModalConfirm },
+        components: { BaseHeader, SidebarMenu, BaseModal, BaseModalConfirm, Footer },
 
         data() {
             return {
@@ -273,51 +292,100 @@
                 modalData: {},
                 isEdit: false,
                 modalFields: [
-                    { key: 'taiKhoan', label: 'Tài khoản', type: 'text' },
-                    { key: 'email', label: 'Email', type: 'text' },
-                    { key: 'tenFace', label: 'Tên Facebook', type: 'text' },
                     {
-                        key: 'vaiTro',
-                        label: 'Vai trò',
-                        type: 'select',
-                        options: [
-                            { label: 'Admin', value: 'admin' },
-                            { label: 'Thành viên', value: 'thanhvien' }
-                        ]
+                        key: 'taiKhoan',
+                        label: 'Tên đăng nhập',
+                        type: 'text',
+                        col: 'col-6',
+                        padding: 'pe-2',
+                        required: true
                     },
                     {
-                        key: 'trangThai',
-                        label: 'Trạng thái',
-                        type: 'select',
-                        options: [
-                            { label: 'Hoạt động', value: '1' },
-                            { label: 'Không hoạt động', value: '0' }
-                        ]
+                        key: 'email',
+                        label: 'Email',
+                        type: 'text',
+                        col: 'col-6',
+                        padding: 'ps-2'
+                    },
+                    {
+                        key: 'tenFace',
+                        label: 'Tên Facebook',
+                        type: 'text',
+                        col: 'col-6',
+                        padding: 'pe-2',
+                        required: true
+                    },
+                    {
+                        key: 'linkFace',
+                        label: 'Link Facebook',
+                        type: 'text',
+                        col: 'col-6',
+                        padding: 'ps-2',
+                        required: true
+                    },
+                    {
+                        key: 'daCoGroup',
+                        label: 'Đã có group',
+                        type: 'checkbox',
+                        col: 'col-6',
+                        padding: 'pe-2'
+                    },
+                    {
+                        key: 'tenGroup',
+                        label: 'Tên group',
+                        type: 'text',
+                        col: 'col-6',
+                        padding: 'ps-2',
+                        required: true,
+                        showIf: 'daCoGroup'
                     }
                 ],
                 showDeleteModal: false,
                 deleteUser: null,
                 showBanModal: false,
-                banUser: null
+                banUser: null,
+                sortKey: '',
+                sortOrder: 'asc'
             }
         },
 
         computed: {
             filteredUserList() {
-                return this.userList
-                    .filter((v) => {
-                        const text = this.searchText.trim().toLowerCase()
-                        const matchText =
-                            v.taiKhoan.toLowerCase().includes(text) ||
-                            v.email.toLowerCase().includes(text) ||
-                            v.tenFace.toLowerCase().includes(text)
+                let list = this.userList.filter((v) => {
+                    const text = this.searchText.trim().toLowerCase()
+                    const matchText =
+                        v.taiKhoan.toLowerCase().includes(text) ||
+                        v.email.toLowerCase().includes(text) ||
+                        v.tenFace.toLowerCase().includes(text)
 
-                        const matchStatus = !this.filterStatus || v.trangThai === this.filterStatus
-                        const matchRole = !this.filterRole || v.vaiTro === this.filterRole
+                    const matchStatus = !this.filterStatus || v.trangThai === this.filterStatus
+                    const matchRole = !this.filterRole || v.vaiTro === this.filterRole
 
-                        return matchText && matchStatus && matchRole
+                    return matchText && matchStatus && matchRole
+                })
+
+                if (this.sortKey) {
+                    list.sort((a, b) => {
+                        let valA = a[this.sortKey]
+                        let valB = b[this.sortKey]
+
+                        if (this.sortKey === 'ngayTao') {
+                            valA = new Date(valA)
+                            valB = new Date(valB)
+                            return this.sortOrder === 'asc' ? valA - valB : valB - valA
+                        } else {
+                            valA = valA ? valA.toString() : ''
+                            valB = valB ? valB.toString() : ''
+                            return this.sortOrder === 'asc'
+                                ? valA.localeCompare(valB, 'vi')
+                                : valB.localeCompare(valA, 'vi')
+                        }
                     })
-                    .sort((a, b) => new Date(b.ngayTao).getTime() - new Date(a.ngayTao).getTime())
+                } else {
+                    list.sort((a, b) => new Date(b.ngayTao) - new Date(a.ngayTao))
+                }
+
+                return list
             },
 
             totalPages() {
@@ -332,6 +400,14 @@
         },
 
         methods: {
+            sortBy(key) {
+                if (this.sortKey === key) {
+                    this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc'
+                } else {
+                    this.sortKey = key
+                    this.sortOrder = 'asc'
+                }
+            },
             openDeleteModal(user) {
                 this.deleteUser = user
                 this.showDeleteModal = true
@@ -365,6 +441,8 @@
             openEditModal(item) {
                 this.isEdit = true
                 this.modalData = { ...item }
+
+                this.modalData.daCoGroup = item.daCoGroup === GROUP.HAS || item.daCoGroup === true
                 this.showModal = true
             },
             handleSubmit(form) {

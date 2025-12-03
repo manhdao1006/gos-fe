@@ -355,7 +355,8 @@
                     vaiTro: ROLE.MEMBER,
                     daCoGroup: daCoGroup.value ? GROUP.HAS : GROUP.NOT_HAS,
                     tenGroup: daCoGroup.value ? tenGroup.value : '',
-                    ngayTao: new Date().toLocaleString('vi-VN')
+                    ngayTao: new Date().toLocaleString('vi-VN'),
+                    trangThai: '1'
                 }
 
                 const callbackName = 'handleResult_' + Date.now()

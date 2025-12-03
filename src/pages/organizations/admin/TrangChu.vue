@@ -20,19 +20,22 @@
                 </div>
             </div>
         </div>
+        <Footer />
     </div>
 </template>
 
 <script>
     import BaseHeader from '../../../components/common/BaseHeader.vue'
     import SidebarMenu from '../../../components/common/SidebarMenu.vue'
+    import Footer from '../../../components/Footer.vue'
     import { eventBus } from '../../../eventBus'
 
     export default {
         name: 'TrangChu',
         components: {
             BaseHeader,
-            SidebarMenu
+            SidebarMenu,
+            Footer
         },
         data() {
             return {
