@@ -149,20 +149,11 @@
                     }
                 ]
             },
-            checkLogin(path) {
-                const protectedRoutes = ['/map-bus', '/quan-ly-nguoi-dung']
-                if (!this.user && protectedRoutes.includes(path)) {
-                    this.toast.error(this.$t('notification.checkLogin'))
-                    return
-                }
-
-                this.$router.push(path)
-            },
 
             logout() {
                 this.user = null
                 localStorage.removeItem('user')
-                window.location.reload()
+                this.$router.push('/quan-tri/trang-chu')
             }
         }
     }

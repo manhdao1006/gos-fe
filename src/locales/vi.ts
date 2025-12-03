@@ -374,10 +374,10 @@ export default {
         button: {
             search: 'Tìm kiếm theo tài khoản, email, facebook',
             filter: {
-                allStatus: 'Tất cả trạng thái',
+                allStatus: '--Trạng thái--',
                 active: 'Hoạt động',
                 inactive: 'Không hoạt động',
-                allRole: 'Tất cả vai trò',
+                allRole: '--Vai trò--',
                 member: 'Thành viên',
                 admin: 'Quản trị'
             },

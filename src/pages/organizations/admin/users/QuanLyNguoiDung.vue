@@ -19,7 +19,7 @@
                             {{ $t('data.listUser') }}
                         </div>
                         <div class="row mb-3">
-                            <div class="col-4">
+                            <div class="col-8">
                                 <input
                                     v-model="searchText"
                                     type="text"
@@ -27,9 +27,9 @@
                                     :placeholder="$t('data.button.search')"
                                 />
                             </div>
-                            <div class="col-3 filter-input-status">
+                            <div class="col-2 filter-input">
                                 <select v-model="filterStatus" class="form-select">
-                                    <option value="">
+                                    <option value="" class="text-muted">
                                         {{ $t('data.button.filter.allStatus') }}
                                     </option>
                                     <option value="1">{{ $t('data.button.filter.active') }}</option>
@@ -38,9 +38,11 @@
                                     </option>
                                 </select>
                             </div>
-                            <div class="col-3 filter-input-role">
+                            <div class="col-2">
                                 <select v-model="filterRole" class="form-select">
-                                    <option value="">{{ $t('data.button.filter.allRole') }}</option>
+                                    <option value="" class="text-muted">
+                                        {{ $t('data.button.filter.allRole') }}
+                                    </option>
                                     <option value="admin">
                                         {{ $t('data.button.filter.admin') }}
                                     </option>
@@ -48,6 +50,17 @@
                                         {{ $t('data.button.filter.member') }}
                                     </option>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3 justify-content-end">
+                            <div class="col-2 filter-input">
+                                <button
+                                    class="btn w-100 text-white"
+                                    @click="openAddModal"
+                                    style="background-color: #116096"
+                                >
+                                    <i class="fa-solid fa-plus"></i> Thêm mới
+                                </button>
                             </div>
                             <div class="col-2">
                                 <button class="btn btn-success w-100" @click="exportToExcel">
@@ -68,7 +81,6 @@
                                         <th>{{ $t('data.table.email') }}</th>
                                         <th>{{ $t('data.table.tenFace') }}</th>
                                         <th>{{ $t('data.table.vaiTro') }}</th>
-                                        <th>{{ $t('data.table.hasGroup') }}</th>
                                         <th>{{ $t('data.table.nameGroup') }}</th>
                                         <th>{{ $t('data.table.status') }}</th>
                                         <th>{{ $t('data.table.createDate') }}</th>
@@ -100,7 +112,6 @@
                                                     : $t('data.table.member')
                                             }}
                                         </td>
-                                        <td class="text-start">{{ v.daCoGroup }}</td>
                                         <td class="text-start">{{ v.tenGroup }}</td>
                                         <td>
                                             <span
@@ -120,31 +131,24 @@
                                         </td>
                                         <td>{{ v.ngayTao }}</td>
                                         <td v-if="user.email === 'manhdao1006@gmail.com'">
-                                            <template v-if="v._isEditing">
-                                                <div class="d-flex">
-                                                    <button
-                                                        class="btn btn-sm text-success"
-                                                        @click="saveRow(v)"
-                                                    >
-                                                        <i class="fa-solid fa-floppy-disk"></i>
-                                                    </button>
-                                                    <button
-                                                        class="btn btn-sm text-danger"
-                                                        @click="cancelEdit(v)"
-                                                    >
-                                                        <i class="fa-solid fa-ban"></i>
-                                                    </button>
-                                                </div>
-                                            </template>
-
-                                            <template v-else>
-                                                <button
-                                                    class="btn btn-sm text-warning"
-                                                    @click="editRow(v)"
-                                                >
-                                                    <i class="fa-solid fa-pen-to-square"></i>
-                                                </button>
-                                            </template>
+                                            <button
+                                                class="btn btn-sm text-warning"
+                                                @click="openEditModal(v)"
+                                            >
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </button>
+                                            <button
+                                                class="btn btn-sm text-danger"
+                                                @click="openBanModal(v)"
+                                            >
+                                                <i class="fa-solid fa-ban"></i>
+                                            </button>
+                                            <button
+                                                class="btn btn-sm btn-outline-danger"
+                                                @click="openDeleteModal(v)"
+                                            >
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -203,6 +207,33 @@
                 </div>
             </div>
         </div>
+
+        <BaseModal
+            modalId="modalUser"
+            :title="'Thêm mới người dùng'"
+            :editTitle="'Chỉnh sửa người dùng'"
+            :isEdit="isEdit"
+            :fields="modalFields"
+            v-model:show="showModal"
+            v-model="modalData"
+            @submit="handleSubmit"
+        />
+
+        <BaseModalConfirm
+            v-model:show="showDeleteModal"
+            title="Xóa người dùng"
+            :message="deleteUser ? `Bạn có chắc muốn xóa người dùng ${deleteUser.taiKhoan}?` : ''"
+            @confirm="confirmDelete"
+        />
+
+        <BaseModalConfirm
+            v-model:show="showBanModal"
+            title="Khoá người dùng"
+            :message="banUser ? `Bạn có chắc muốn khoá người dùng ${banUser.taiKhoan}?` : ''"
+            confirmText="Khoá"
+            @confirm="confirmBan"
+        />
+
         <div v-if="loading" class="loading-overlay">
             <div class="spinner"></div>
         </div>
@@ -213,11 +244,13 @@
     import { useToast } from 'vue-toastification'
     import * as XLSX from 'xlsx'
     import BaseHeader from '../../../../components/common/BaseHeader.vue'
+    import BaseModal from '../../../../components/common/BaseModal.vue'
+    import BaseModalConfirm from '../../../../components/common/BaseModalConfirm.vue'
     import SidebarMenu from '../../../../components/common/SidebarMenu.vue'
 
     export default {
         name: 'QuanLyNguoiDung',
-        components: { BaseHeader, SidebarMenu },
+        components: { BaseHeader, SidebarMenu, BaseModal, BaseModalConfirm },
 
         data() {
             return {
@@ -235,7 +268,37 @@
                 message: '',
                 toast: null,
                 success: false,
-                loading: false
+                loading: false,
+                showModal: false,
+                modalData: {},
+                isEdit: false,
+                modalFields: [
+                    { key: 'taiKhoan', label: 'Tài khoản', type: 'text' },
+                    { key: 'email', label: 'Email', type: 'text' },
+                    { key: 'tenFace', label: 'Tên Facebook', type: 'text' },
+                    {
+                        key: 'vaiTro',
+                        label: 'Vai trò',
+                        type: 'select',
+                        options: [
+                            { label: 'Admin', value: 'admin' },
+                            { label: 'Thành viên', value: 'thanhvien' }
+                        ]
+                    },
+                    {
+                        key: 'trangThai',
+                        label: 'Trạng thái',
+                        type: 'select',
+                        options: [
+                            { label: 'Hoạt động', value: '1' },
+                            { label: 'Không hoạt động', value: '0' }
+                        ]
+                    }
+                ],
+                showDeleteModal: false,
+                deleteUser: null,
+                showBanModal: false,
+                banUser: null
             }
         },
 
@@ -269,13 +332,48 @@
         },
 
         methods: {
-            editRow(v) {
-                v._isEditing = true
-                v._editDon = v.soLuongDon
-                v._editTra = v.soLuongTra
+            openDeleteModal(user) {
+                this.deleteUser = user
+                this.showDeleteModal = true
             },
-            cancelEdit(v) {
-                v._isEditing = false
+            confirmDelete() {
+                if (!this.deleteUser) return
+                console.log('Xóa:', this.deleteUser)
+                this.userList = this.userList.filter((u) => u !== this.deleteUser)
+                this.showDeleteModal = false
+                this.deleteUser = null
+                this.toast.success('Xóa thành công!')
+            },
+
+            openBanModal(user) {
+                this.banUser = user
+                this.showBanModal = true
+            },
+            confirmBan() {
+                if (!this.banUser) return
+                console.log('Ban:', this.banUser)
+                this.banUser.trangThai = '0'
+                this.showBanModal = false
+                this.banUser = null
+                this.toast.success('Người dùng đã bị khoá!')
+            },
+            openAddModal() {
+                this.isEdit = false
+                this.modalData = {}
+                this.showModal = true
+            },
+            openEditModal(item) {
+                this.isEdit = true
+                this.modalData = { ...item }
+                this.showModal = true
+            },
+            handleSubmit(form) {
+                if (this.isEdit) {
+                    console.log('UPDATE:', form)
+                } else {
+                    console.log('CREATE:', form)
+                }
+                this.showModal = false
             },
             async saveRow(v) {
                 if (v._editDon < v._editTra) {
@@ -354,7 +452,6 @@
                         v.vaiTro === 'admin'
                             ? this.$t('data.table.admin')
                             : this.$t('data.table.member'),
-                    [this.$t('data.table.hasGroup')]: v.daCoGroup,
                     [this.$t('data.table.nameGroup')]: v.tenGroup,
                     [this.$t('data.table.status')]:
                         v.trangThai === '1'
@@ -384,8 +481,8 @@
                         email: u[2] || '',
                         tenFace: u[3] || '',
                         linkFace: u[4] || '',
-                        vaiTro: u[5] || 'user',
-                        daCoGroup: u[6] || false,
+                        vaiTro: u[5] || '',
+                        daCoGroup: u[6] || '',
                         tenGroup: u[7] || '',
                         ngayTao: u[8] || '',
                         trangThai: u[9] || '',
@@ -420,7 +517,7 @@
 
     .spinner {
         border: 4px solid #f3f3f3;
-        border-top: 4px solid #3490dc;
+        border-top: 4px solid #116096;
         border-radius: 50%;
         width: 50px;
         height: 50px;
@@ -441,15 +538,12 @@
         vertical-align: middle !important;
     }
     .page-item.active .page-link {
-        background-color: #0d6efd;
-        border-color: #0d6efd;
+        background-color: #116096;
+        border-color: #116096;
     }
 
-    .filter-input-status {
+    .filter-input {
         padding-left: 10px !important;
-        padding-right: 10px !important;
-    }
-    .filter-input-role {
         padding-right: 10px !important;
     }
 </style>

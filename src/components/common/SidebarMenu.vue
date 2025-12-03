@@ -8,9 +8,9 @@
 
         <ul class="navbar-nav mt-3 fw-medium text-start" v-if="!collapsed">
             <li class="nav-item" v-for="item in menuItems" :key="item.to">
-                <router-link class="nav-link" :to="item.to" @click.prevent="checkLogin(item.to)">
+                <a href="#" class="nav-link" @click.prevent="checkLogin(item.to)">
                     {{ $t(item.label) }}
-                </router-link>
+                </a>
             </li>
         </ul>
     </div>
@@ -46,11 +46,12 @@
                 this.$emit('updateCollapsed', this.collapsed)
             },
             checkLogin(path) {
-                const protectedRoutes = ['/map-bus', '/du-lieu', '/quan-ly-nguoi-dung']
+                const protectedRoutes = ['/quan-tri/nguoi-dung']
                 if (!this.user && protectedRoutes.includes(path)) {
                     this.toast.error(this.$t('notification.checkLogin'))
                     return
                 }
+                this.$router.push(path)
             }
         }
     }

@@ -378,10 +378,10 @@ export default {
         button: {
             search: 'Search by account, email, facebook',
             filter: {
-                allStatus: 'All statuses',
+                allStatus: '--All statuses--',
                 active: 'Active',
                 inactive: 'Inactive',
-                allRole: 'All roles',
+                allRole: '--All roles--',
                 member: 'Member',
                 admin: 'Administrator'
             },
