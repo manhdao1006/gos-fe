@@ -356,7 +356,8 @@
                     daCoGroup: daCoGroup.value ? GROUP.HAS : GROUP.NOT_HAS,
                     tenGroup: daCoGroup.value ? tenGroup.value : '',
                     ngayTao: new Date().toLocaleString('vi-VN'),
-                    trangThai: '1'
+                    trangThai: '1',
+                    nguoiTao: tenTK.value
                 }
 
                 const callbackName = 'handleResult_' + Date.now()

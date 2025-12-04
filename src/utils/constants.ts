@@ -1,5 +1,5 @@
 export const ACCOUNT_URL =
-    'https://script.google.com/macros/s/AKfycbwoLf8TMbxXUzG_5LqlzBsnvbuk0gIq0CZUY_m2LTiU51g5rHohgzXrN3b7rARYIl1Fwg/exec?'
+    'https://script.google.com/macros/s/AKfycbyR1lOwQMRIG87rTnOmI0mnwNZTKkrUfVjNSX0WVw39ARgbMgi6AdmQilwoEjJhRSzuCw/exec?'
 
 export const GROUP = {
     HAS: 'Có',

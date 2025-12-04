@@ -100,7 +100,7 @@
                                             {{ $t('data.table.createDate') }}
                                             <i class="fa fa-sort"></i>
                                         </th>
-                                        <th v-if="user.email === 'manhdao1006@gmail.com'">
+                                        <th v-if="user.vaiTro === 'admin'">
                                             {{ $t('data.table.action') }}
                                         </th>
                                     </tr>
@@ -146,25 +146,34 @@
                                             </span>
                                         </td>
                                         <td>{{ v.ngayTao }}</td>
-                                        <td v-if="user.email === 'manhdao1006@gmail.com'">
+                                        <td v-if="user.vaiTro === 'admin'">
                                             <button
+                                                v-if="v.trangThai === '1'"
                                                 class="btn btn-sm text-warning"
                                                 @click="openEditModal(v)"
                                             >
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </button>
                                             <button
+                                                v-if="v.trangThai === '1'"
                                                 class="btn btn-sm text-danger"
                                                 @click="openBanModal(v)"
                                             >
                                                 <i class="fa-solid fa-ban"></i>
                                             </button>
                                             <button
+                                                v-if="v.trangThai === '0'"
+                                                class="btn btn-sm text-success"
+                                                @click="openRestoreModal(v)"
+                                            >
+                                                <i class="fa-solid fa-recycle"></i>
+                                            </button>
+                                            <!-- <button
                                                 class="btn btn-sm text-danger"
                                                 @click="openDeleteModal(v)"
                                             >
                                                 <i class="fa-solid fa-trash"></i>
-                                            </button>
+                                            </button> -->
                                         </td>
                                     </tr>
                                 </tbody>
@@ -251,6 +260,15 @@
             :message="banUser ? `Bạn có chắc muốn khoá tài khoản ${banUser.taiKhoan}?` : ''"
             confirmText="Khoá"
             @confirm="confirmBan"
+        />
+
+        <BaseModalConfirm
+            v-model:show="showRestoreModal"
+            title="Khôi phục tài khoản"
+            :message="
+                restoreUser ? `Bạn có chắc muốn khôi phục tài khoản ${restoreUser.taiKhoan}?` : ''
+            "
+            @confirm="confirmRestore"
         />
 
         <div v-if="loading" class="loading-overlay">
@@ -346,6 +364,8 @@
                 deleteUser: null,
                 showBanModal: false,
                 banUser: null,
+                showRestoreModal: false,
+                restoreUser: null,
                 sortKey: '',
                 sortOrder: 'asc'
             }
@@ -372,8 +392,8 @@
                         let valB = b[this.sortKey]
 
                         if (this.sortKey === 'ngayTao') {
-                            valA = new Date(valA)
-                            valB = new Date(valB)
+                            valA = this.parseNgayTao(valA)
+                            valB = this.parseNgayTao(valB)
                             return this.sortOrder === 'asc' ? valA - valB : valB - valA
                         } else {
                             valA = valA ? valA.toString() : ''
@@ -402,11 +422,14 @@
         },
 
         methods: {
-            parseNgayTao(str) {
-                const [time, date] = str.split(' ')
-                const [hours, minutes, seconds] = time.split(':')
-                const [day, month, year] = date.split('/')
-                return new Date(+year, +month - 1, +day, +hours, +minutes, +seconds)
+            parseNgayTao(raw) {
+                if (!raw) return new Date(0)
+
+                const [timeStr, dateStr] = raw.split(' ')
+                const [d, m, y] = dateStr.split('/')
+                const converted = `${y}-${m.padStart(2, '0')}-${d.padStart(2, '0')}T${timeStr}`
+
+                return new Date(converted)
             },
             sortBy(key) {
                 if (this.sortKey === key) {
@@ -416,30 +439,122 @@
                     this.sortOrder = 'asc'
                 }
             },
-            openDeleteModal(user) {
-                this.deleteUser = user
-                this.showDeleteModal = true
-            },
-            confirmDelete() {
-                if (!this.deleteUser) return
-                console.log('Xóa:', this.deleteUser)
-                this.userList = this.userList.filter((u) => u !== this.deleteUser)
-                this.showDeleteModal = false
-                this.deleteUser = null
-                this.toast.success('Xóa thành công!')
-            },
+            // openDeleteModal(user) {
+            //     this.deleteUser = user
+            //     this.showDeleteModal = true
+            // },
+            // confirmDelete() {
+            //     if (!this.deleteUser) return
+            //     console.log('Xóa:', this.deleteUser)
+            //     this.userList = this.userList.filter((u) => u !== this.deleteUser)
+            //     this.showDeleteModal = false
+            //     this.deleteUser = null
+            //     this.toast.success('Xóa thành công!')
+            // },
 
             openBanModal(user) {
                 this.banUser = user
                 this.showBanModal = true
             },
             confirmBan() {
+                this.loading = true
+
                 if (!this.banUser) return
-                console.log('Ban:', this.banUser)
-                this.banUser.trangThai = '0'
+
+                const payload = {
+                    action: 'save',
+                    taiKhoan: this.banUser.taiKhoan,
+                    matKhau: this.banUser.matKhau,
+                    email: this.banUser.email,
+                    tenFace: this.banUser.tenFace,
+                    linkFace: this.banUser.linkFace,
+                    vaiTro: this.banUser.vaiTro,
+                    daCoGroup: this.banUser.daCoGroup,
+                    tenGroup: this.banUser.tenGroup,
+                    ngayTao: new Date().toLocaleString('vi-VN'),
+                    trangThai: '0',
+                    nguoiTao: this.user.taiKhoan
+                }
+
+                const callbackName = 'handleResult_' + Date.now()
+                window[callbackName] = (data) => {
+                    this.loading = false
+
+                    if (data.status === 'success') {
+                        window.location.reload()
+                    } else {
+                        this.toast.error('message.error.fail' + data.message)
+                    }
+
+                    delete window[callbackName]
+                    document.body.removeChild(script)
+                }
+
+                const params = new URLSearchParams({
+                    ...payload,
+                    callback: callbackName
+                }).toString()
+
+                const SHEET_URL = ACCOUNT_URL + params
+
+                const script = document.createElement('script')
+                script.src = SHEET_URL
+                document.body.appendChild(script)
                 this.showBanModal = false
                 this.banUser = null
                 this.toast.success('Người dùng đã bị khoá!')
+            },
+            openRestoreModal(user) {
+                this.restoreUser = user
+                this.showRestoreModal = true
+            },
+            confirmRestore() {
+                this.loading = true
+
+                if (!this.restoreUser) return
+
+                const payload = {
+                    action: 'save',
+                    taiKhoan: this.restoreUser.taiKhoan,
+                    matKhau: this.restoreUser.matKhau,
+                    email: this.restoreUser.email,
+                    tenFace: this.restoreUser.tenFace,
+                    linkFace: this.restoreUser.linkFace,
+                    vaiTro: this.restoreUser.vaiTro,
+                    daCoGroup: this.restoreUser.daCoGroup,
+                    tenGroup: this.restoreUser.tenGroup,
+                    ngayTao: new Date().toLocaleString('vi-VN'),
+                    trangThai: '1',
+                    nguoiTao: this.user.taiKhoan
+                }
+
+                const callbackName = 'handleResult_' + Date.now()
+                window[callbackName] = (data) => {
+                    this.loading = false
+
+                    if (data.status === 'success') {
+                        window.location.reload()
+                    } else {
+                        this.toast.error('message.error.fail' + data.message)
+                    }
+
+                    delete window[callbackName]
+                    document.body.removeChild(script)
+                }
+
+                const params = new URLSearchParams({
+                    ...payload,
+                    callback: callbackName
+                }).toString()
+
+                const SHEET_URL = ACCOUNT_URL + params
+
+                const script = document.createElement('script')
+                script.src = SHEET_URL
+                document.body.appendChild(script)
+                this.showRestoreModal = false
+                this.restoreUser = null
+                this.toast.success('Người dùng đã được khôi phục!')
             },
             openAddModal() {
                 this.isEdit = false
@@ -455,7 +570,57 @@
             },
             handleSubmit(form) {
                 if (this.isEdit) {
-                    console.log('UPDATE:', form)
+                    this.loading = true
+                    if (!form.taiKhoan || !form.tenFace || !form.linkFace) {
+                        return
+                    }
+
+                    const payload = {
+                        action: 'save',
+                        taiKhoan: form.taiKhoan,
+                        matKhau: '123456',
+                        email: form.email || '',
+                        tenFace: form.tenFace,
+                        linkFace: form.linkFace,
+                        vaiTro: ROLE.MEMBER,
+                        daCoGroup: form.daCoGroup ? GROUP.HAS : GROUP.NOT_HAS,
+                        tenGroup: form.daCoGroup ? form.tenGroup : '',
+                        ngayTao: new Date().toLocaleString('vi-VN'),
+                        trangThai: '1',
+                        nguoiTao: this.user.taiKhoan
+                    }
+
+                    const callbackName = 'handleResult_' + Date.now()
+                    window[callbackName] = (data) => {
+                        this.loading = false
+
+                        if (data.status === 'success') {
+                            this.toast.success(data.message)
+                            form.taiKhoan = ''
+                            form.matKhau = ''
+                            form.email = ''
+                            form.tenFace = ''
+                            form.linkFace = ''
+
+                            window.location.reload()
+                        } else {
+                            this.toast.error('message.error.fail' + data.message)
+                        }
+
+                        delete window[callbackName]
+                        document.body.removeChild(script)
+                    }
+
+                    const params = new URLSearchParams({
+                        ...payload,
+                        callback: callbackName
+                    }).toString()
+
+                    const SHEET_URL = ACCOUNT_URL + params
+
+                    const script = document.createElement('script')
+                    script.src = SHEET_URL
+                    document.body.appendChild(script)
                 } else {
                     this.loading = true
                     if (!form.taiKhoan || !form.tenFace || !form.linkFace) {
@@ -473,7 +638,8 @@
                         daCoGroup: form.daCoGroup ? GROUP.HAS : GROUP.NOT_HAS,
                         tenGroup: form.daCoGroup ? form.tenGroup : '',
                         ngayTao: new Date().toLocaleString('vi-VN'),
-                        trangThai: '1'
+                        trangThai: '1',
+                        nguoiTao: this.user.taiKhoan
                     }
 
                     const callbackName = 'handleResult_' + Date.now()
@@ -556,7 +722,7 @@
                     if (!data.values) return
 
                     const rows = data.values.slice(1)
-                    this.userList = rows.map((u) => ({
+                    const list = rows.map((u) => ({
                         taiKhoan: u[0] || '',
                         matKhau: u[1] || '',
                         email: u[2] || '',
@@ -569,6 +735,31 @@
                         trangThai: u[9] || '',
                         _isEditing: false
                     }))
+
+                    const unique = {}
+
+                    list.forEach((u) => {
+                        const [timeStr, dateStr] = u.ngayTao.split(' ')
+                        const [d, m, y] = dateStr.split('/')
+                        const converted = `${y}-${m.padStart(2, '0')}-${d.padStart(2, '0')}T${timeStr}`
+
+                        const newDate = new Date(converted)
+
+                        if (!unique[u.taiKhoan]) {
+                            unique[u.taiKhoan] = u
+                        } else {
+                            const [oldTime, oldDateStr] = unique[u.taiKhoan].ngayTao.split(' ')
+                            const [od, om, oy] = oldDateStr.split('/')
+                            const oldConverted = `${oy}-${om.padStart(2, '0')}-${od.padStart(2, '0')}T${oldTime}`
+                            const oldDate = new Date(oldConverted)
+
+                            if (newDate > oldDate) {
+                                unique[u.taiKhoan] = u
+                            }
+                        }
+                    })
+
+                    this.userList = Object.values(unique)
                 } catch (error) {
                     console.error('Lỗi tải dữ liệu:', error)
                 }
