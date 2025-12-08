@@ -117,12 +117,6 @@
                                             >
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </button>
-                                            <!-- <button
-                                                class="btn btn-sm text-danger"
-                                                @click="openBanModal(v)"
-                                            >
-                                                <i class="fa-solid fa-ban"></i>
-                                            </button> -->
                                             <button
                                                 class="btn btn-sm text-danger"
                                                 @click="openDeleteModal(v)"
@@ -319,8 +313,6 @@
                 ],
                 showDeleteModal: false,
                 deleteEvent: null,
-                showBanModal: false,
-                banEvent: null,
                 showRestoreModal: false,
                 restoreEvent: null,
                 sortKey: '',
@@ -455,9 +447,49 @@
                 this.showDeleteModal = true
             },
             confirmDelete() {
+                this.loading = true
+
                 if (!this.deleteEvent) return
-                console.log('Xóa:', this.deleteEvent)
-                this.eventList = this.eventList.filter((u) => u !== this.deleteEvent)
+
+                const payload = {
+                    action: 'save',
+                    ma: this.deleteEvent.ma,
+                    ten: this.deleteEvent.ten,
+                    loai: this.deleteEvent.loai,
+                    moTa: this.deleteEvent.moTa,
+                    soLuongDoi: this.deleteEvent.soLuongDoi,
+                    ngayBatDau: this.deleteEvent.ngayBatDau,
+                    ngayKetThuc: this.deleteEvent.ngayKetThuc,
+                    ngayTao: new Date().toLocaleString('vi-VN'),
+                    nguoiTao: this.user.taiKhoan,
+                    hinhAnh: this.deleteEvent.hinhAnh,
+                    isDelete: '1'
+                }
+
+                const callbackName = 'handleResult_' + Date.now()
+                window[callbackName] = (data) => {
+                    this.loading = false
+
+                    if (data.status === 'success') {
+                        window.location.reload()
+                    } else {
+                        this.toast.error('message.error.fail' + data.message)
+                    }
+
+                    delete window[callbackName]
+                    document.body.removeChild(script)
+                }
+
+                const params = new URLSearchParams({
+                    ...payload,
+                    callback: callbackName
+                }).toString()
+
+                const SHEET_URL = EVENT_URL + params
+
+                const script = document.createElement('script')
+                script.src = SHEET_URL
+                document.body.appendChild(script)
                 this.showDeleteModal = false
                 this.deleteEvent = null
                 this.toast.success('Xóa thành công!')
@@ -480,78 +512,75 @@
                 this.showModal = true
             },
             async handleSubmit(form) {
-                if (this.isEdit) {
-                } else {
-                    this.loading = true
-                    if (
-                        !form.ten ||
-                        !form.loai ||
-                        !form.soLuongDoi ||
-                        !form.ngayBatDau ||
-                        !form.ngayKetThuc ||
-                        !form.moTa
-                    ) {
-                        return
+                this.loading = true
+                if (
+                    !form.ten ||
+                    !form.loai ||
+                    !form.soLuongDoi ||
+                    !form.ngayBatDau ||
+                    !form.ngayKetThuc ||
+                    !form.moTa
+                ) {
+                    return
+                }
+
+                try {
+                    let imageUrl = form.hinhAnh
+                    if (form.hinhAnh instanceof File) {
+                        imageUrl = await this.uploadToCloudinary(form.hinhAnh, '/gos/su-kien')
                     }
 
-                    try {
-                        let imageUrl = ''
-                        if (form.hinhAnh && form.hinhAnh instanceof File) {
-                            imageUrl = await this.uploadToCloudinary(form.hinhAnh, '/gos/su-kien')
-                        }
+                    const payload = {
+                        action: 'save',
+                        ma: this.isEdit ? form.ma : generateEventCode(),
+                        ten: form.ten,
+                        loai: form.loai,
+                        moTa: form.moTa,
+                        soLuongDoi: form.soLuongDoi,
+                        ngayBatDau: form.ngayBatDau,
+                        ngayKetThuc: form.ngayKetThuc,
+                        ngayTao: new Date().toLocaleString('vi-VN'),
+                        nguoiTao: this.user.taiKhoan,
+                        hinhAnh: imageUrl,
+                        isDelete: form.isDelete
+                    }
 
-                        const payload = {
-                            action: 'save',
-                            ma: generateEventCode(),
-                            ten: form.ten,
-                            loai: form.loai,
-                            moTa: form.moTa,
-                            soLuongDoi: form.soLuongDoi,
-                            ngayBatDau: form.ngayBatDau,
-                            ngayKetThuc: form.ngayKetThuc,
-                            ngayTao: new Date().toLocaleString('vi-VN'),
-                            nguoiTao: this.user.taiKhoan,
-                            hinhAnh: imageUrl,
-                            isDelete: '0'
-                        }
-
-                        const callbackName = 'handleResult_' + Date.now()
-                        window[callbackName] = (data) => {
-                            this.loading = false
-
-                            if (data.status === 'success') {
-                                this.toast.success(data.message)
-                                form.ten = ''
-                                form.loai = ''
-                                form.moTa = ''
-                                form.soLuongDoi = ''
-                                form.ngayBatDau = ''
-                                form.ngayKetThuc = ''
-                                form.hinhAnh = null
-
-                                window.location.reload()
-                            } else {
-                                this.toast.error('message.error.fail: ' + data.message)
-                            }
-
-                            delete window[callbackName]
-                            document.body.removeChild(script)
-                        }
-
-                        const params = new URLSearchParams({
-                            ...payload,
-                            callback: callbackName
-                        }).toString()
-
-                        const SHEET_URL = EVENT_URL + params
-                        const script = document.createElement('script')
-                        script.src = SHEET_URL
-                        document.body.appendChild(script)
-                    } catch (e) {
+                    const callbackName = 'handleResult_' + Date.now()
+                    window[callbackName] = (data) => {
                         this.loading = false
-                        console.error(e)
-                        this.toast.error('Lỗi khi thêm sự kiện')
+
+                        if (data.status === 'success') {
+                            this.toast.success(data.message)
+                            form.ten = ''
+                            form.loai = ''
+                            form.moTa = ''
+                            form.soLuongDoi = ''
+                            form.ngayBatDau = ''
+                            form.ngayKetThuc = ''
+                            form.hinhAnh = null
+
+                            window.location.reload()
+                        } else {
+                            this.toast.error('message.error.fail: ' + data.message)
+                        }
+
+                        delete window[callbackName]
+                        document.body.removeChild(script)
                     }
+
+                    const params = new URLSearchParams({
+                        ...payload,
+                        callback: callbackName
+                    }).toString()
+
+                    const SHEET_URL = EVENT_URL + params
+                    const script = document.createElement('script')
+                    script.src = SHEET_URL
+                    document.body.appendChild(script)
+                } catch (e) {
+                    this.loading = false
+                    console.error(e)
+                    this.toast.error('Lỗi khi thêm sự kiện')
                 }
 
                 this.showModal = false
@@ -571,18 +600,13 @@
             exportToExcel() {
                 const data = this.filteredEventList.map((v, i) => ({
                     STT: i + 1,
-                    [this.$t('suKien.table.taiKhoan')]: v.ma,
-                    [this.$t('suKien.table.email')]: v.ten,
-                    [this.$t('suKien.table.tenFace')]: v.loai,
-                    [this.$t('suKien.table.vaiTro')]:
-                        v.vaiTro === 'admin'
-                            ? this.$t('suKien.table.admin')
-                            : this.$t('suKien.table.member'),
-                    [this.$t('suKien.table.nameGroup')]: v.soLuongDoi,
-                    [this.$t('suKien.table.status')]:
-                        v.trangThai === '1'
-                            ? this.$t('suKien.table.active')
-                            : this.$t('suKien.table.inactive'),
+                    [this.$t('suKien.table.ma')]: v.ma,
+                    [this.$t('suKien.table.ten')]: v.ten,
+                    [this.$t('suKien.table.loai')]: this.$t(getLoaiSuKienLabel(v.loai)),
+                    [this.$t('suKien.table.soLuongDoi')]: v.soLuongDoi,
+                    [this.$t('suKien.table.nguoiTao')]: v.nguoiTao,
+                    [this.$t('suKien.table.ngayBatDau')]: v.ngayBatDau,
+                    [this.$t('suKien.table.ngayKetThuc')]: v.ngayKetThuc,
                     [this.$t('suKien.table.createDate')]: v.ngayTao
                 }))
 
@@ -601,8 +625,10 @@
                     if (!data.values) return
 
                     const rows = data.values.slice(1)
-                    const list = rows
-                        .map((e) => ({
+                    const unique = {}
+
+                    rows.forEach((e) => {
+                        const obj = {
                             ma: e[0] || '',
                             ten: e[1] || '',
                             loai: e[2] || '',
@@ -615,33 +641,23 @@
                             hinhAnh: e[9] || '',
                             isDelete: e[10] || '',
                             _isEditing: false
-                        }))
-                        .filter((e) => e.isDelete === '0')
+                        }
 
-                    const unique = {}
-
-                    list.forEach((e) => {
-                        const [timeStr, dateStr] = e.ngayTao.split(' ')
+                        const [timeStr, dateStr] = obj.ngayTao.split(' ')
                         const [d, m, y] = dateStr.split('/')
                         const converted = `${y}-${m.padStart(2, '0')}-${d.padStart(2, '0')}T${timeStr}`
-
                         const newDate = new Date(converted)
 
-                        if (!unique[e.ma]) {
-                            unique[e.ma] = e
+                        if (!unique[obj.ma]) {
+                            unique[obj.ma] = { ...obj, _dateParsed: newDate }
                         } else {
-                            const [oldTime, oldDateStr] = unique[e.ma].ngayTao.split(' ')
-                            const [od, om, oy] = oldDateStr.split('/')
-                            const oldConverted = `${oy}-${om.padStart(2, '0')}-${od.padStart(2, '0')}T${oldTime}`
-                            const oldDate = new Date(oldConverted)
-
-                            if (newDate > oldDate) {
-                                unique[e.ma] = e
+                            if (newDate > unique[obj.ma]._dateParsed) {
+                                unique[obj.ma] = { ...obj, _dateParsed: newDate }
                             }
                         }
                     })
 
-                    this.eventList = Object.values(unique)
+                    this.eventList = Object.values(unique).filter((e) => e.isDelete === '0')
                 } catch (error) {
                     console.error('Lỗi tải dữ liệu:', error)
                 }

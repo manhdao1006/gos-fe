@@ -170,12 +170,6 @@
                                             >
                                                 <i class="fa-solid fa-recycle"></i>
                                             </button>
-                                            <!-- <button
-                                                class="btn btn-sm text-danger"
-                                                @click="openDeleteModal(v)"
-                                            >
-                                                <i class="fa-solid fa-trash"></i>
-                                            </button> -->
                                         </td>
                                     </tr>
                                 </tbody>
@@ -247,13 +241,6 @@
             v-model:show="showModal"
             v-model="modalData"
             @submit="handleSubmit"
-        />
-
-        <BaseModalConfirm
-            v-model:show="showDeleteModal"
-            title="Xóa tài khoản"
-            :message="deleteUser ? `Bạn có chắc muốn xóa tài khoản ${deleteUser.taiKhoan}?` : ''"
-            @confirm="confirmDelete"
         />
 
         <BaseModalConfirm
@@ -363,8 +350,6 @@
                         showIf: 'daCoGroup'
                     }
                 ],
-                showDeleteModal: false,
-                deleteUser: null,
                 showBanModal: false,
                 banUser: null,
                 showRestoreModal: false,
@@ -442,18 +427,6 @@
                     this.sortOrder = 'asc'
                 }
             },
-            // openDeleteModal(user) {
-            //     this.deleteUser = user
-            //     this.showDeleteModal = true
-            // },
-            // confirmDelete() {
-            //     if (!this.deleteUser) return
-            //     console.log('Xóa:', this.deleteUser)
-            //     this.userList = this.userList.filter((u) => u !== this.deleteUser)
-            //     this.showDeleteModal = false
-            //     this.deleteUser = null
-            //     this.toast.success('Xóa thành công!')
-            // },
 
             openBanModal(user) {
                 this.banUser = user
@@ -572,111 +545,57 @@
                 this.showModal = true
             },
             handleSubmit(form) {
-                if (this.isEdit) {
-                    this.loading = true
-                    if (!form.taiKhoan || !form.tenFace || !form.linkFace) {
-                        return
-                    }
-
-                    const payload = {
-                        action: 'save',
-                        taiKhoan: form.taiKhoan,
-                        matKhau: '123456',
-                        email: form.email || '',
-                        tenFace: form.tenFace,
-                        linkFace: form.linkFace,
-                        vaiTro: ROLE.MEMBER,
-                        daCoGroup: form.daCoGroup ? GROUP.HAS : GROUP.NOT_HAS,
-                        tenGroup: form.daCoGroup ? form.tenGroup : '',
-                        ngayTao: new Date().toLocaleString('vi-VN'),
-                        trangThai: '1',
-                        nguoiTao: this.user.taiKhoan
-                    }
-
-                    const callbackName = 'handleResult_' + Date.now()
-                    window[callbackName] = (data) => {
-                        this.loading = false
-
-                        if (data.status === 'success') {
-                            this.toast.success(data.message)
-                            form.taiKhoan = ''
-                            form.matKhau = ''
-                            form.email = ''
-                            form.tenFace = ''
-                            form.linkFace = ''
-
-                            window.location.reload()
-                        } else {
-                            this.toast.error('message.error.fail' + data.message)
-                        }
-
-                        delete window[callbackName]
-                        document.body.removeChild(script)
-                    }
-
-                    const params = new URLSearchParams({
-                        ...payload,
-                        callback: callbackName
-                    }).toString()
-
-                    const SHEET_URL = ACCOUNT_URL + params
-
-                    const script = document.createElement('script')
-                    script.src = SHEET_URL
-                    document.body.appendChild(script)
-                } else {
-                    this.loading = true
-                    if (!form.taiKhoan || !form.tenFace || !form.linkFace) {
-                        return
-                    }
-
-                    const payload = {
-                        action: 'save',
-                        taiKhoan: form.taiKhoan,
-                        matKhau: '123456',
-                        email: form.email || '',
-                        tenFace: form.tenFace,
-                        linkFace: form.linkFace,
-                        vaiTro: ROLE.MEMBER,
-                        daCoGroup: form.daCoGroup ? GROUP.HAS : GROUP.NOT_HAS,
-                        tenGroup: form.daCoGroup ? form.tenGroup : '',
-                        ngayTao: new Date().toLocaleString('vi-VN'),
-                        trangThai: '1',
-                        nguoiTao: this.user.taiKhoan
-                    }
-
-                    const callbackName = 'handleResult_' + Date.now()
-                    window[callbackName] = (data) => {
-                        this.loading = false
-
-                        if (data.status === 'success') {
-                            this.toast.success(data.message)
-                            form.taiKhoan = ''
-                            form.matKhau = ''
-                            form.email = ''
-                            form.tenFace = ''
-                            form.linkFace = ''
-
-                            window.location.reload()
-                        } else {
-                            this.toast.error('message.error.fail' + data.message)
-                        }
-
-                        delete window[callbackName]
-                        document.body.removeChild(script)
-                    }
-
-                    const params = new URLSearchParams({
-                        ...payload,
-                        callback: callbackName
-                    }).toString()
-
-                    const SHEET_URL = ACCOUNT_URL + params
-
-                    const script = document.createElement('script')
-                    script.src = SHEET_URL
-                    document.body.appendChild(script)
+                this.loading = true
+                if (!form.taiKhoan || !form.tenFace || !form.linkFace) {
+                    return
                 }
+
+                const payload = {
+                    action: 'save',
+                    taiKhoan: form.taiKhoan,
+                    matKhau: this.isEdit ? form.matKhau : '123456',
+                    email: form.email || '',
+                    tenFace: form.tenFace,
+                    linkFace: form.linkFace,
+                    vaiTro: ROLE.MEMBER,
+                    daCoGroup: form.daCoGroup ? GROUP.HAS : GROUP.NOT_HAS,
+                    tenGroup: form.daCoGroup ? form.tenGroup : '',
+                    ngayTao: new Date().toLocaleString('vi-VN'),
+                    trangThai: '1',
+                    nguoiTao: this.user.taiKhoan
+                }
+
+                const callbackName = 'handleResult_' + Date.now()
+                window[callbackName] = (data) => {
+                    this.loading = false
+
+                    if (data.status === 'success') {
+                        this.toast.success(data.message)
+                        form.taiKhoan = ''
+                        form.matKhau = ''
+                        form.email = ''
+                        form.tenFace = ''
+                        form.linkFace = ''
+
+                        window.location.reload()
+                    } else {
+                        this.toast.error('message.error.fail' + data.message)
+                    }
+
+                    delete window[callbackName]
+                    document.body.removeChild(script)
+                }
+
+                const params = new URLSearchParams({
+                    ...payload,
+                    callback: callbackName
+                }).toString()
+
+                const SHEET_URL = ACCOUNT_URL + params
+
+                const script = document.createElement('script')
+                script.src = SHEET_URL
+                document.body.appendChild(script)
 
                 this.showModal = false
             },
