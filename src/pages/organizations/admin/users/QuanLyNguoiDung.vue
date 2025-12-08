@@ -320,6 +320,7 @@
                         type: 'text',
                         col: 'col-6',
                         padding: 'pe-2',
+                        disableOnEdit: true,
                         required: true
                     },
                     {

@@ -4,6 +4,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import { createApp, watch } from 'vue'
 import { createI18n } from 'vue-i18n'
 
+import CKEditor from '@ckeditor/ckeditor5-vue'
 import App from './App.vue'
 import router from './router'
 import './style.css'
@@ -30,6 +31,7 @@ const options: PluginOptions = {
 }
 
 const app = createApp(App)
+app.use(CKEditor)
 app.use(router)
 app.use(i18n)
 app.use(Toast, options)

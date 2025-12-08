@@ -29,6 +29,9 @@
                             </div>
                             <div class="col-3 filter-input">
                                 <select v-model="filterTypeEvent" class="form-select">
+                                    <option value="">
+                                        {{ $t('suKien.button.filter.allType') }}
+                                    </option>
                                     <option
                                         v-for="s in LOAI_SU_KIEN"
                                         :key="s.value"
@@ -80,8 +83,8 @@
                                             {{ $t('suKien.table.soLuongDoi') }}
                                             <i class="fa fa-sort"></i>
                                         </th>
-                                        <th @click="sortBy('moTa')" style="cursor: pointer">
-                                            {{ $t('suKien.table.moTa') }}
+                                        <th @click="sortBy('nguoiTao')" style="cursor: pointer">
+                                            {{ $t('suKien.table.nguoiTao') }}
                                             <i class="fa fa-sort"></i>
                                         </th>
                                         <th @click="sortBy('ngayBatDau')" style="cursor: pointer">
@@ -90,10 +93,6 @@
                                         </th>
                                         <th @click="sortBy('ngayKetThuc')" style="cursor: pointer">
                                             {{ $t('suKien.table.ngayKetThuc') }}
-                                            <i class="fa fa-sort"></i>
-                                        </th>
-                                        <th @click="sortBy('ngayTao')" style="cursor: pointer">
-                                            {{ $t('suKien.table.createDate') }}
                                             <i class="fa fa-sort"></i>
                                         </th>
                                         <th v-if="user.vaiTro === 'admin'">
@@ -108,11 +107,9 @@
                                         <td class="text-start">{{ v.ten }}</td>
                                         <td>{{ $t(getLoaiSuKienLabel(v.loai)) }}</td>
                                         <td>{{ v.soLuongDoi }}</td>
-                                        <td class="text-start">{{ v.moTa }}</td>
-
+                                        <td>{{ v.nguoiTao }}</td>
                                         <td>{{ v.ngayBatDau }}</td>
                                         <td>{{ v.ngayKetThuc }}</td>
-                                        <td>{{ v.ngayTao }}</td>
                                         <td v-if="user.vaiTro === 'admin'">
                                             <button
                                                 class="btn btn-sm text-warning"
@@ -131,6 +128,12 @@
                                                 @click="openDeleteModal(v)"
                                             >
                                                 <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                            <button
+                                                class="btn btn-sm btn-primary"
+                                                @click="$router.push(`/admin/event/${v.ma}`)"
+                                            >
+                                                <i class="fa-solid fa-eye"></i>
                                             </button>
                                         </td>
                                     </tr>
@@ -195,38 +198,23 @@
         <Footer />
 
         <BaseModal
+            ref="baseModal"
             modalId="modalEvent"
-            :title="'Thêm mới người dùng'"
-            :editTitle="'Chỉnh sửa người dùng'"
+            :title="'Thêm mới sự kiện'"
+            :editTitle="'Chỉnh sửa sự kiện'"
             :isEdit="isEdit"
             :fields="modalFields"
             v-model:show="showModal"
             v-model="modalData"
+            @date-change="validateDates"
             @submit="handleSubmit"
         />
 
         <BaseModalConfirm
             v-model:show="showDeleteModal"
-            title="Xóa tài khoản"
-            :message="deleteEvent ? `Bạn có chắc muốn xóa tài khoản ${deleteEvent.taiKhoan}?` : ''"
+            title="Xóa sự kiện"
+            :message="deleteEvent ? `Bạn có chắc muốn xóa sự kiện ${deleteEvent.ma}?` : ''"
             @confirm="confirmDelete"
-        />
-
-        <BaseModalConfirm
-            v-model:show="showBanModal"
-            title="Khoá tài khoản"
-            :message="banEvent ? `Bạn có chắc muốn khoá tài khoản ${banEvent.taiKhoan}?` : ''"
-            confirmText="Khoá"
-            @confirm="confirmBan"
-        />
-
-        <BaseModalConfirm
-            v-model:show="showRestoreModal"
-            title="Khôi phục tài khoản"
-            :message="
-                restoreEvent ? `Bạn có chắc muốn khôi phục tài khoản ${restoreEvent.taiKhoan}?` : ''
-            "
-            @confirm="confirmRestore"
         />
 
         <div v-if="loading" class="loading-overlay">
@@ -243,8 +231,8 @@
     import BaseModalConfirm from '../../../../components/common/BaseModalConfirm.vue'
     import SidebarMenu from '../../../../components/common/SidebarMenu.vue'
     import Footer from '../../../../components/Footer.vue'
-    import { ACCOUNT_URL, GROUP, LOAI_SU_KIEN, ROLE } from '../../../../utils/constants'
-    import { getLoaiSuKienLabel } from '../../../../utils/suKienUtils'
+    import { EVENT_URL, LOAI_SU_KIEN } from '../../../../utils/constants'
+    import { generateEventCode, getLoaiSuKienLabel } from '../../../../utils/suKienUtils'
 
     export default {
         name: 'QuanLySuKien',
@@ -273,51 +261,60 @@
                 isEdit: false,
                 modalFields: [
                     {
-                        key: 'taiKhoan',
-                        label: 'Tên đăng nhập',
+                        key: 'ten',
+                        label: 'Tên sự kiện',
                         type: 'text',
+                        col: 'col-12',
+                        padding: 'px-2',
+                        required: true
+                    },
+                    {
+                        key: 'loai',
+                        label: 'Hình thức tổ chức',
+                        type: 'select',
                         col: 'col-6',
+                        options: LOAI_SU_KIEN,
                         padding: 'pe-2',
                         required: true
                     },
                     {
-                        key: 'email',
-                        label: 'Email',
-                        type: 'text',
-                        col: 'col-6',
-                        padding: 'ps-2'
-                    },
-                    {
-                        key: 'tenFace',
-                        label: 'Tên Facebook',
-                        type: 'text',
-                        col: 'col-6',
-                        padding: 'pe-2',
-                        required: true
-                    },
-                    {
-                        key: 'linkFace',
-                        label: 'Link Facebook',
+                        key: 'soLuongDoi',
+                        label: 'Số lượng đội',
                         type: 'text',
                         col: 'col-6',
                         padding: 'ps-2',
                         required: true
                     },
                     {
-                        key: 'daCoGroup',
-                        label: 'Đã có group?',
-                        type: 'checkbox',
+                        key: 'ngayBatDau',
+                        label: 'Ngày bắt đầu',
+                        type: 'datetime',
                         col: 'col-6',
-                        padding: 'pe-2'
+                        padding: 'pe-2',
+                        required: true
                     },
                     {
-                        key: 'tenGroup',
-                        label: 'Tên group',
-                        type: 'text',
+                        key: 'ngayKetThuc',
+                        label: 'Ngày kết thúc',
+                        type: 'datetime',
                         col: 'col-6',
                         padding: 'ps-2',
-                        required: true,
-                        showIf: 'daCoGroup'
+                        required: true
+                    },
+                    {
+                        key: 'moTa',
+                        label: 'Mô tả',
+                        type: 'ckeditor',
+                        col: 'col-12',
+                        padding: 'px-2',
+                        required: true
+                    },
+                    {
+                        key: 'hinhAnh',
+                        label: 'Hình ảnh',
+                        type: 'file',
+                        col: 'col-12',
+                        padding: 'px-2'
                     }
                 ],
                 showDeleteModal: false,
@@ -336,9 +333,7 @@
                 let list = this.eventList.filter((v) => {
                     const text = this.searchText.trim().toLowerCase()
                     const matchText =
-                        v.ma.toLowerCase().includes(text) ||
-                        v.ten.toLowerCase().includes(text) ||
-                        v.moTa.toLowerCase().includes(text)
+                        v.ma.toLowerCase().includes(text) || v.ten.toLowerCase().includes(text)
 
                     const matchStatus = !this.filterTypeEvent || v.loai === this.filterTypeEvent
 
@@ -380,7 +375,64 @@
             }
         },
 
+        watch: {
+            'modalData.soLuongDoi'(value) {
+                if (value && !/^\d+$/.test(value)) {
+                    this.toast.error('Số lượng đội chỉ được nhập số!')
+                    this.modalData.soLuongDoi = value.replace(/[^0-9]/g, '')
+                }
+            },
+            'modalData.ngayBatDau'(newVal) {
+                this.validateDates('start')
+            },
+            'modalData.ngayKetThuc'(newVal) {
+                this.validateDates('end')
+            }
+        },
+
         methods: {
+            validateDates(changedField) {
+                if (!this.modalData.ngayBatDau || !this.modalData.ngayKetThuc) return
+
+                const start = new Date(this.modalData.ngayBatDau.replace('T', ' '))
+                const end = new Date(this.modalData.ngayKetThuc.replace('T', ' '))
+
+                if (isNaN(start) || isNaN(end)) return
+
+                if (end < start) {
+                    if (changedField === 'start') {
+                        this.toast.error('Ngày bắt đầu phải nhỏ hơn ngày kết thúc!')
+                        this.modalData.ngayBatDau = ''
+                    }
+
+                    if (changedField === 'end') {
+                        this.toast.error('Ngày kết thúc phải lớn hơn ngày bắt đầu!')
+                        this.modalData.ngayKetThuc = ''
+                    }
+                }
+            },
+            async uploadToCloudinary(file, folder = '') {
+                const cloudName = 'springboot-cloud'
+                const uploadPreset = 'ml_default'
+
+                const formData = new FormData()
+                formData.append('file', file)
+                formData.append('upload_preset', uploadPreset)
+
+                if (folder) {
+                    formData.append('folder', folder)
+                }
+                const res = await fetch(
+                    `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+                    {
+                        method: 'POST',
+                        body: formData
+                    }
+                )
+
+                const data = await res.json()
+                return data.secure_url
+            },
             parseNgayTao(raw) {
                 if (!raw) return new Date(0)
 
@@ -411,110 +463,6 @@
                 this.toast.success('Xóa thành công!')
             },
 
-            // openBanModal(event) {
-            //     this.banEvent = event
-            //     this.showBanModal = true
-            // },
-            // confirmBan() {
-            //     this.loading = true
-
-            //     if (!this.banEvent) return
-
-            //     const payload = {
-            //         action: 'save',
-            //         taiKhoan: this.banEvent.taiKhoan,
-            //         matKhau: this.banEvent.matKhau,
-            //         email: this.banEvent.email,
-            //         tenFace: this.banEvent.tenFace,
-            //         linkFace: this.banEvent.linkFace,
-            //         vaiTro: this.banEvent.vaiTro,
-            //         daCoGroup: this.banEvent.daCoGroup,
-            //         tenGroup: this.banEvent.tenGroup,
-            //         ngayTao: new Date().toLocaleString('vi-VN'),
-            //         trangThai: '0',
-            //         nguoiTao: this.user.taiKhoan
-            //     }
-
-            //     const callbackName = 'handleResult_' + Date.now()
-            //     window[callbackName] = (data) => {
-            //         this.loading = false
-
-            //         if (data.status === 'success') {
-            //             window.location.reload()
-            //         } else {
-            //             this.toast.error('message.error.fail' + data.message)
-            //         }
-
-            //         delete window[callbackName]
-            //         document.body.removeChild(script)
-            //     }
-
-            //     const params = new URLSearchParams({
-            //         ...payload,
-            //         callback: callbackName
-            //     }).toString()
-
-            //     const SHEET_URL = ACCOUNT_URL + params
-
-            //     const script = document.createElement('script')
-            //     script.src = SHEET_URL
-            //     document.body.appendChild(script)
-            //     this.showBanModal = false
-            //     this.banEvent = null
-            //     this.toast.success('Người dùng đã bị khoá!')
-            // },
-            // openRestoreModal(event) {
-            //     this.restoreEvent = event
-            //     this.showRestoreModal = true
-            // },
-            // confirmRestore() {
-            //     this.loading = true
-
-            //     if (!this.restoreEvent) return
-
-            //     const payload = {
-            //         action: 'save',
-            //         taiKhoan: this.restoreEvent.taiKhoan,
-            //         matKhau: this.restoreEvent.matKhau,
-            //         email: this.restoreEvent.email,
-            //         tenFace: this.restoreEvent.tenFace,
-            //         linkFace: this.restoreEvent.linkFace,
-            //         vaiTro: this.restoreEvent.vaiTro,
-            //         daCoGroup: this.restoreEvent.daCoGroup,
-            //         tenGroup: this.restoreEvent.tenGroup,
-            //         ngayTao: new Date().toLocaleString('vi-VN'),
-            //         trangThai: '1',
-            //         nguoiTao: this.user.taiKhoan
-            //     }
-
-            //     const callbackName = 'handleResult_' + Date.now()
-            //     window[callbackName] = (data) => {
-            //         this.loading = false
-
-            //         if (data.status === 'success') {
-            //             window.location.reload()
-            //         } else {
-            //             this.toast.error('message.error.fail' + data.message)
-            //         }
-
-            //         delete window[callbackName]
-            //         document.body.removeChild(script)
-            //     }
-
-            //     const params = new URLSearchParams({
-            //         ...payload,
-            //         callback: callbackName
-            //     }).toString()
-
-            //     const SHEET_URL = ACCOUNT_URL + params
-
-            //     const script = document.createElement('script')
-            //     script.src = SHEET_URL
-            //     document.body.appendChild(script)
-            //     this.showRestoreModal = false
-            //     this.restoreEvent = null
-            //     this.toast.success('Người dùng đã được khôi phục!')
-            // },
             openAddModal() {
                 this.isEdit = false
                 this.modalData = {}
@@ -524,114 +472,86 @@
                 this.isEdit = true
                 this.modalData = { ...item }
 
-                this.modalData.daCoGroup = item.daCoGroup === GROUP.HAS || item.daCoGroup === true
+                this.$refs.baseModal.filePreviews = {}
+                this.$nextTick(() => {
+                    const inputs = this.$refs.baseModal.$el.querySelectorAll('input[type="file"]')
+                    inputs.forEach((input) => (input.value = null))
+                })
                 this.showModal = true
             },
-            handleSubmit(form) {
+            async handleSubmit(form) {
                 if (this.isEdit) {
-                    this.loading = true
-                    if (!form.taiKhoan || !form.tenFace || !form.linkFace) {
-                        return
-                    }
-
-                    const payload = {
-                        action: 'save',
-                        taiKhoan: form.taiKhoan,
-                        matKhau: '123456',
-                        email: form.email || '',
-                        tenFace: form.tenFace,
-                        linkFace: form.linkFace,
-                        vaiTro: ROLE.MEMBER,
-                        daCoGroup: form.daCoGroup ? GROUP.HAS : GROUP.NOT_HAS,
-                        tenGroup: form.daCoGroup ? form.tenGroup : '',
-                        ngayTao: new Date().toLocaleString('vi-VN'),
-                        trangThai: '1',
-                        nguoiTao: this.user.taiKhoan
-                    }
-
-                    const callbackName = 'handleResult_' + Date.now()
-                    window[callbackName] = (data) => {
-                        this.loading = false
-
-                        if (data.status === 'success') {
-                            this.toast.success(data.message)
-                            form.taiKhoan = ''
-                            form.matKhau = ''
-                            form.email = ''
-                            form.tenFace = ''
-                            form.linkFace = ''
-
-                            window.location.reload()
-                        } else {
-                            this.toast.error('message.error.fail' + data.message)
-                        }
-
-                        delete window[callbackName]
-                        document.body.removeChild(script)
-                    }
-
-                    const params = new URLSearchParams({
-                        ...payload,
-                        callback: callbackName
-                    }).toString()
-
-                    const SHEET_URL = ACCOUNT_URL + params
-
-                    const script = document.createElement('script')
-                    script.src = SHEET_URL
-                    document.body.appendChild(script)
                 } else {
                     this.loading = true
-                    if (!form.taiKhoan || !form.tenFace || !form.linkFace) {
+                    if (
+                        !form.ten ||
+                        !form.loai ||
+                        !form.soLuongDoi ||
+                        !form.ngayBatDau ||
+                        !form.ngayKetThuc ||
+                        !form.moTa
+                    ) {
                         return
                     }
 
-                    const payload = {
-                        action: 'save',
-                        taiKhoan: form.taiKhoan,
-                        matKhau: '123456',
-                        email: form.email || '',
-                        tenFace: form.tenFace,
-                        linkFace: form.linkFace,
-                        vaiTro: ROLE.MEMBER,
-                        daCoGroup: form.daCoGroup ? GROUP.HAS : GROUP.NOT_HAS,
-                        tenGroup: form.daCoGroup ? form.tenGroup : '',
-                        ngayTao: new Date().toLocaleString('vi-VN'),
-                        trangThai: '1',
-                        nguoiTao: this.user.taiKhoan
-                    }
-
-                    const callbackName = 'handleResult_' + Date.now()
-                    window[callbackName] = (data) => {
-                        this.loading = false
-
-                        if (data.status === 'success') {
-                            this.toast.success(data.message)
-                            form.taiKhoan = ''
-                            form.matKhau = ''
-                            form.email = ''
-                            form.tenFace = ''
-                            form.linkFace = ''
-
-                            window.location.reload()
-                        } else {
-                            this.toast.error('message.error.fail' + data.message)
+                    try {
+                        let imageUrl = ''
+                        if (form.hinhAnh && form.hinhAnh instanceof File) {
+                            imageUrl = await this.uploadToCloudinary(form.hinhAnh, '/gos/su-kien')
                         }
 
-                        delete window[callbackName]
-                        document.body.removeChild(script)
+                        const payload = {
+                            action: 'save',
+                            ma: generateEventCode(),
+                            ten: form.ten,
+                            loai: form.loai,
+                            moTa: form.moTa,
+                            soLuongDoi: form.soLuongDoi,
+                            ngayBatDau: form.ngayBatDau,
+                            ngayKetThuc: form.ngayKetThuc,
+                            ngayTao: new Date().toLocaleString('vi-VN'),
+                            nguoiTao: this.user.taiKhoan,
+                            hinhAnh: imageUrl,
+                            isDelete: '0'
+                        }
+
+                        const callbackName = 'handleResult_' + Date.now()
+                        window[callbackName] = (data) => {
+                            this.loading = false
+
+                            if (data.status === 'success') {
+                                this.toast.success(data.message)
+                                form.ten = ''
+                                form.loai = ''
+                                form.moTa = ''
+                                form.soLuongDoi = ''
+                                form.ngayBatDau = ''
+                                form.ngayKetThuc = ''
+                                form.hinhAnh = null
+
+                                window.location.reload()
+                            } else {
+                                this.toast.error('message.error.fail: ' + data.message)
+                            }
+
+                            delete window[callbackName]
+                            document.body.removeChild(script)
+                        }
+
+                        const params = new URLSearchParams({
+                            ...payload,
+                            callback: callbackName
+                        }).toString()
+
+                        const SHEET_URL = EVENT_URL + params
+                        const script = document.createElement('script')
+                        script.src = SHEET_URL
+                        document.body.appendChild(script)
+                    } catch (e) {
+                        this.loading = false
+                        console.error(e)
+                        this.toast.error('Lỗi khi thêm sự kiện')
                     }
-
-                    const params = new URLSearchParams({
-                        ...payload,
-                        callback: callbackName
-                    }).toString()
-
-                    const SHEET_URL = ACCOUNT_URL + params
-
-                    const script = document.createElement('script')
-                    script.src = SHEET_URL
-                    document.body.appendChild(script)
                 }
 
                 this.showModal = false

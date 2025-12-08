@@ -404,6 +404,7 @@ export default {
             ngayBatDau: 'Ngày bắt đầu',
             ngayKetThuc: 'Ngày kết thúc',
             createDate: 'Ngày tạo',
+            nguoiTao: 'Người tạo',
             active: 'Hoạt động',
             inactive: 'Không hoạt động',
             member: 'Thành viên',
