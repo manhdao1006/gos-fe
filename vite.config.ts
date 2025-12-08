@@ -11,5 +11,19 @@ export default defineConfig({
         __VUE_OPTIONS_API__: true,
         __VUE_PROD_DEVTOOLS__: false,
         __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false
+    },
+
+    build: {
+        chunkSizeWarningLimit: 2000,
+        rollupOptions: {
+            output: {
+                manualChunks: {
+                    vue: ['vue', 'vue-router', 'vue-i18n'],
+                    ckeditor: ['@ckeditor/ckeditor5-build-classic'],
+                    ui: ['bootstrap', '@fortawesome/fontawesome-free'],
+                    vendor: ['mitt', 'xlsx']
+                }
+            }
+        }
     }
 })
