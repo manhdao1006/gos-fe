@@ -173,7 +173,7 @@
         if (!user) {
             router.push('/dang-ky-tai-khoan')
         } else {
-            router.push('/quan-tri')
+            router.push('/ban-quan-tri')
         }
     }
 
@@ -204,7 +204,7 @@
             '#tournaments': '/giai-dau',
             '#history': '/lich-su',
             '#hall-of-fame': '/bang-vang',
-            '#administration': '/quan-tri',
+            '#administration': '/ban-quan-tri',
             '#teams': '/doi-tuyen'
         }
         window.location.href = routesMap[route] || '/'

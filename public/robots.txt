@@ -8,7 +8,7 @@ Sitemap: https://gos-dls.vercel.app/sitemap.xml
 Crawl-delay: 1
 
 # Disallow admin area
-Disallow: /quan-tri/
+Disallow: /ban-quan-tri/
 
 # Allow important pages
 Allow: /giai-dau/

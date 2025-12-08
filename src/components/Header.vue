@@ -42,7 +42,7 @@
                         }}</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link class="nav-link" to="/quan-tri">{{
+                        <router-link class="nav-link" to="/ban-quan-tri">{{
                             $t('HEADER.ADMINISTRATION')
                         }}</router-link>
                     </li>

@@ -159,7 +159,7 @@
             logout() {
                 this.user = null
                 localStorage.removeItem('user')
-                this.$router.push('/quan-tri/trang-chu')
+                this.$router.push('/')
             }
         }
     }
