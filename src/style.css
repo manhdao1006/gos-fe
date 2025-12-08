@@ -182,3 +182,23 @@ button:focus-visible {
         background-color: #f9f9f9;
     }
 }
+
+.ck-content figure.table {
+    margin: 16px 0;
+}
+
+.ck-content table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.ck-content table td,
+.ck-content table th {
+    border: 1px solid #d1d1d1;
+    padding: 6px 10px;
+}
+
+.ck-content table th {
+    background: #f2f2f2;
+    font-weight: 600;
+}
