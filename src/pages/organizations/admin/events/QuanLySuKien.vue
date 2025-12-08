@@ -16,46 +16,31 @@
                         style="font-size: 13px"
                     >
                         <div class="text-black text-uppercase fs-5 fw-bolder text-start">
-                            {{ $t('nguoiDung.listUser') }}
+                            {{ $t('suKien.listEvent') }}
                         </div>
                         <div class="row mb-3">
-                            <div class="col-8">
+                            <div class="col-9">
                                 <input
                                     v-model="searchText"
                                     type="text"
                                     class="form-control"
-                                    :placeholder="$t('nguoiDung.button.search')"
+                                    :placeholder="$t('suKien.button.search')"
                                 />
                             </div>
-                            <div class="col-2 filter-input">
-                                <select v-model="filterStatus" class="form-select">
-                                    <option value="" class="text-muted">
-                                        {{ $t('nguoiDung.button.filter.allStatus') }}
-                                    </option>
-                                    <option value="1">
-                                        {{ $t('nguoiDung.button.filter.active') }}
-                                    </option>
-                                    <option value="0">
-                                        {{ $t('nguoiDung.button.filter.inactive') }}
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="col-2">
-                                <select v-model="filterRole" class="form-select">
-                                    <option value="" class="text-muted">
-                                        {{ $t('nguoiDung.button.filter.allRole') }}
-                                    </option>
-                                    <option value="admin">
-                                        {{ $t('nguoiDung.button.filter.admin') }}
-                                    </option>
-                                    <option value="thanhvien">
-                                        {{ $t('nguoiDung.button.filter.member') }}
+                            <div class="col-3 filter-input">
+                                <select v-model="filterTypeEvent" class="form-select">
+                                    <option
+                                        v-for="s in LOAI_SU_KIEN"
+                                        :key="s.value"
+                                        :value="s.value"
+                                    >
+                                        {{ $t(s.label) }}
                                     </option>
                                 </select>
                             </div>
                         </div>
                         <div class="row mb-3 justify-content-end">
-                            <div class="col-2 filter-input">
+                            <div class="col-2">
                                 <button
                                     class="btn w-100 text-white"
                                     @click="openAddModal"
@@ -64,10 +49,10 @@
                                     <i class="fa-solid fa-plus"></i> Thêm mới
                                 </button>
                             </div>
-                            <div class="col-2">
+                            <div class="col-2 filter-input">
                                 <button class="btn btn-success w-100" @click="exportToExcel">
                                     <i class="fas fa-file-excel"></i>
-                                    {{ $t('nguoiDung.button.exportExcel') }}
+                                    {{ $t('suKien.button.exportExcel') }}
                                 </button>
                             </div>
                         </div>
@@ -78,119 +63,90 @@
                             >
                                 <thead class="table-light">
                                     <tr>
-                                        <th>{{ $t('nguoiDung.table.no') }}</th>
-                                        <th @click="sortBy('taiKhoan')" style="cursor: pointer">
-                                            {{ $t('nguoiDung.table.taiKhoan') }}
+                                        <th>{{ $t('suKien.table.no') }}</th>
+                                        <th @click="sortBy('ma')" style="cursor: pointer">
+                                            {{ $t('suKien.table.ma') }}
                                             <i class="fa fa-sort"></i>
                                         </th>
-                                        <th @click="sortBy('email')" style="cursor: pointer">
-                                            {{ $t('nguoiDung.table.email') }}
+                                        <th @click="sortBy('ten')" style="cursor: pointer">
+                                            {{ $t('suKien.table.ten') }}
                                             <i class="fa fa-sort"></i>
                                         </th>
-                                        <th @click="sortBy('tenFace')" style="cursor: pointer">
-                                            {{ $t('nguoiDung.table.tenFace') }}
+                                        <th @click="sortBy('loai')" style="cursor: pointer">
+                                            {{ $t('suKien.table.loai') }}
                                             <i class="fa fa-sort"></i>
                                         </th>
-                                        <th>{{ $t('nguoiDung.table.vaiTro') }}</th>
-                                        <th @click="sortBy('tenGroup')" style="cursor: pointer">
-                                            {{ $t('nguoiDung.table.nameGroup') }}
+                                        <th @click="sortBy('soLuongDoi')" style="cursor: pointer">
+                                            {{ $t('suKien.table.soLuongDoi') }}
                                             <i class="fa fa-sort"></i>
                                         </th>
-
-                                        <th>{{ $t('nguoiDung.table.status') }}</th>
+                                        <th @click="sortBy('moTa')" style="cursor: pointer">
+                                            {{ $t('suKien.table.moTa') }}
+                                            <i class="fa fa-sort"></i>
+                                        </th>
+                                        <th @click="sortBy('ngayBatDau')" style="cursor: pointer">
+                                            {{ $t('suKien.table.ngayBatDau') }}
+                                            <i class="fa fa-sort"></i>
+                                        </th>
+                                        <th @click="sortBy('ngayKetThuc')" style="cursor: pointer">
+                                            {{ $t('suKien.table.ngayKetThuc') }}
+                                            <i class="fa fa-sort"></i>
+                                        </th>
                                         <th @click="sortBy('ngayTao')" style="cursor: pointer">
-                                            {{ $t('nguoiDung.table.createDate') }}
+                                            {{ $t('suKien.table.createDate') }}
                                             <i class="fa fa-sort"></i>
                                         </th>
                                         <th v-if="user.vaiTro === 'admin'">
-                                            {{ $t('nguoiDung.table.action') }}
+                                            {{ $t('suKien.table.action') }}
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="(v, index) in paginatedList" :key="v.taiKhoan">
+                                    <tr v-for="(v, index) in paginatedList" :key="v.ma">
                                         <td>{{ (currentPage - 1) * itemsPerPage + index + 1 }}</td>
-                                        <td class="text-start">{{ v.taiKhoan }}</td>
-                                        <td class="text-start">{{ v.email }}</td>
-                                        <td class="text-start">
-                                            <template v-if="v.linkFace">
-                                                <a
-                                                    :href="v.linkFace"
-                                                    target="_blank"
-                                                    class="text-danger"
-                                                    >{{ v.tenFace }}</a
-                                                >
-                                            </template>
-                                            <template v-else> {{ v.tenFace }} </template>
-                                        </td>
-                                        <td class="text-start">
-                                            {{
-                                                v.vaiTro === 'admin'
-                                                    ? $t('nguoiDung.table.admin')
-                                                    : $t('nguoiDung.table.member')
-                                            }}
-                                        </td>
-                                        <td class="text-start">{{ v.tenGroup }}</td>
-                                        <td>
-                                            <span
-                                                class="badge"
-                                                :class="
-                                                    v.trangThai === '1'
-                                                        ? 'bg-success'
-                                                        : 'bg-secondary'
-                                                "
-                                            >
-                                                {{
-                                                    v.trangThai === '1'
-                                                        ? $t('nguoiDung.table.active')
-                                                        : $t('nguoiDung.table.inactive')
-                                                }}
-                                            </span>
-                                        </td>
+                                        <td class="text-start">{{ v.ma }}</td>
+                                        <td class="text-start">{{ v.ten }}</td>
+                                        <td>{{ $t(getLoaiSuKienLabel(v.loai)) }}</td>
+                                        <td>{{ v.soLuongDoi }}</td>
+                                        <td class="text-start">{{ v.moTa }}</td>
+
+                                        <td>{{ v.ngayBatDau }}</td>
+                                        <td>{{ v.ngayKetThuc }}</td>
                                         <td>{{ v.ngayTao }}</td>
                                         <td v-if="user.vaiTro === 'admin'">
                                             <button
-                                                v-if="v.trangThai === '1'"
                                                 class="btn btn-sm text-warning"
                                                 @click="openEditModal(v)"
                                             >
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </button>
-                                            <button
-                                                v-if="v.trangThai === '1'"
+                                            <!-- <button
                                                 class="btn btn-sm text-danger"
                                                 @click="openBanModal(v)"
                                             >
                                                 <i class="fa-solid fa-ban"></i>
-                                            </button>
+                                            </button> -->
                                             <button
-                                                v-if="v.trangThai === '0'"
-                                                class="btn btn-sm text-success"
-                                                @click="openRestoreModal(v)"
-                                            >
-                                                <i class="fa-solid fa-recycle"></i>
-                                            </button>
-                                            <!-- <button
                                                 class="btn btn-sm text-danger"
                                                 @click="openDeleteModal(v)"
                                             >
                                                 <i class="fa-solid fa-trash"></i>
-                                            </button> -->
+                                            </button>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
 
                             <div
-                                v-if="filteredUserList.length === 0"
+                                v-if="filteredEventList.length === 0"
                                 class="text-center py-3 text-muted"
                             >
-                                {{ $t('nguoiDung.table.noData') }}
+                                {{ $t('suKien.table.noData') }}
                             </div>
                         </div>
                         <div class="d-flex justify-content-between align-items-center mt-3">
                             <div>
-                                {{ $t('nguoiDung.pagination.display') }}
+                                {{ $t('suKien.pagination.display') }}
                                 <select
                                     v-model.number="itemsPerPage"
                                     class="form-select d-inline w-auto mx-2"
@@ -201,14 +157,14 @@
                                     <option :value="50">50</option>
                                     <option :value="100">100</option>
                                 </select>
-                                {{ $t('nguoiDung.pagination.rowPerPage') }}
+                                {{ $t('suKien.pagination.rowPerPage') }}
                             </div>
 
                             <nav>
                                 <ul class="pagination mb-0">
                                     <li class="page-item" :class="{ disabled: currentPage === 1 }">
                                         <button class="page-link" @click="prevPage">
-                                            {{ $t('nguoiDung.button.firstPage') }}
+                                            {{ $t('suKien.button.firstPage') }}
                                         </button>
                                     </li>
                                     <li
@@ -226,7 +182,7 @@
                                         :class="{ disabled: currentPage === totalPages }"
                                     >
                                         <button class="page-link" @click="nextPage">
-                                            {{ $t('nguoiDung.button.lastPage') }}
+                                            {{ $t('suKien.button.lastPage') }}
                                         </button>
                                     </li>
                                 </ul>
@@ -239,7 +195,7 @@
         <Footer />
 
         <BaseModal
-            modalId="modalUser"
+            modalId="modalEvent"
             :title="'Thêm mới người dùng'"
             :editTitle="'Chỉnh sửa người dùng'"
             :isEdit="isEdit"
@@ -252,14 +208,14 @@
         <BaseModalConfirm
             v-model:show="showDeleteModal"
             title="Xóa tài khoản"
-            :message="deleteUser ? `Bạn có chắc muốn xóa tài khoản ${deleteUser.taiKhoan}?` : ''"
+            :message="deleteEvent ? `Bạn có chắc muốn xóa tài khoản ${deleteEvent.taiKhoan}?` : ''"
             @confirm="confirmDelete"
         />
 
         <BaseModalConfirm
             v-model:show="showBanModal"
             title="Khoá tài khoản"
-            :message="banUser ? `Bạn có chắc muốn khoá tài khoản ${banUser.taiKhoan}?` : ''"
+            :message="banEvent ? `Bạn có chắc muốn khoá tài khoản ${banEvent.taiKhoan}?` : ''"
             confirmText="Khoá"
             @confirm="confirmBan"
         />
@@ -268,7 +224,7 @@
             v-model:show="showRestoreModal"
             title="Khôi phục tài khoản"
             :message="
-                restoreUser ? `Bạn có chắc muốn khôi phục tài khoản ${restoreUser.taiKhoan}?` : ''
+                restoreEvent ? `Bạn có chắc muốn khôi phục tài khoản ${restoreEvent.taiKhoan}?` : ''
             "
             @confirm="confirmRestore"
         />
@@ -287,21 +243,23 @@
     import BaseModalConfirm from '../../../../components/common/BaseModalConfirm.vue'
     import SidebarMenu from '../../../../components/common/SidebarMenu.vue'
     import Footer from '../../../../components/Footer.vue'
-    import { ACCOUNT_URL, GROUP, ROLE } from '../../../../utils/constants'
+    import { ACCOUNT_URL, GROUP, LOAI_SU_KIEN, ROLE } from '../../../../utils/constants'
+    import { getLoaiSuKienLabel } from '../../../../utils/suKienUtils'
 
     export default {
-        name: 'QuanLyNguoiDung',
+        name: 'QuanLySuKien',
         components: { BaseHeader, SidebarMenu, BaseModal, BaseModalConfirm, Footer },
 
         data() {
             return {
-                userList: [],
+                getLoaiSuKienLabel,
+                LOAI_SU_KIEN,
+                eventList: [],
                 searchText: '',
-                filterStatus: '',
-                filterRole: '',
+                filterTypeEvent: '',
                 sheetId: '1Uk85jm8ouKJEC3dJRfCotpYQqkKuayXm9z89OliGRrY',
                 apiKey: 'AIzaSyBJOLTWvnRRegbkw1rRvr0K2dzV9SZ_Mwk',
-                range: 'account!A:J',
+                range: 'event!A:K',
                 currentPage: 1,
                 itemsPerPage: 10,
                 user: JSON.parse(localStorage.getItem('user') || 'null'),
@@ -363,29 +321,28 @@
                     }
                 ],
                 showDeleteModal: false,
-                deleteUser: null,
+                deleteEvent: null,
                 showBanModal: false,
-                banUser: null,
+                banEvent: null,
                 showRestoreModal: false,
-                restoreUser: null,
+                restoreEvent: null,
                 sortKey: '',
                 sortOrder: 'asc'
             }
         },
 
         computed: {
-            filteredUserList() {
-                let list = this.userList.filter((v) => {
+            filteredEventList() {
+                let list = this.eventList.filter((v) => {
                     const text = this.searchText.trim().toLowerCase()
                     const matchText =
-                        v.taiKhoan.toLowerCase().includes(text) ||
-                        v.email.toLowerCase().includes(text) ||
-                        v.tenFace.toLowerCase().includes(text)
+                        v.ma.toLowerCase().includes(text) ||
+                        v.ten.toLowerCase().includes(text) ||
+                        v.moTa.toLowerCase().includes(text)
 
-                    const matchStatus = !this.filterStatus || v.trangThai === this.filterStatus
-                    const matchRole = !this.filterRole || v.vaiTro === this.filterRole
+                    const matchStatus = !this.filterTypeEvent || v.loai === this.filterTypeEvent
 
-                    return matchText && matchStatus && matchRole
+                    return matchText && matchStatus
                 })
 
                 if (this.sortKey) {
@@ -413,13 +370,13 @@
             },
 
             totalPages() {
-                return Math.ceil(this.filteredUserList.length / this.itemsPerPage)
+                return Math.ceil(this.filteredEventList.length / this.itemsPerPage)
             },
 
             paginatedList() {
                 const start = (this.currentPage - 1) * this.itemsPerPage
                 const end = start + this.itemsPerPage
-                return this.filteredUserList.slice(start, end)
+                return this.filteredEventList.slice(start, end)
             }
         },
 
@@ -441,123 +398,123 @@
                     this.sortOrder = 'asc'
                 }
             },
-            // openDeleteModal(user) {
-            //     this.deleteUser = user
-            //     this.showDeleteModal = true
+            openDeleteModal(event) {
+                this.deleteEvent = event
+                this.showDeleteModal = true
+            },
+            confirmDelete() {
+                if (!this.deleteEvent) return
+                console.log('Xóa:', this.deleteEvent)
+                this.eventList = this.eventList.filter((u) => u !== this.deleteEvent)
+                this.showDeleteModal = false
+                this.deleteEvent = null
+                this.toast.success('Xóa thành công!')
+            },
+
+            // openBanModal(event) {
+            //     this.banEvent = event
+            //     this.showBanModal = true
             // },
-            // confirmDelete() {
-            //     if (!this.deleteUser) return
-            //     console.log('Xóa:', this.deleteUser)
-            //     this.userList = this.userList.filter((u) => u !== this.deleteUser)
-            //     this.showDeleteModal = false
-            //     this.deleteUser = null
-            //     this.toast.success('Xóa thành công!')
+            // confirmBan() {
+            //     this.loading = true
+
+            //     if (!this.banEvent) return
+
+            //     const payload = {
+            //         action: 'save',
+            //         taiKhoan: this.banEvent.taiKhoan,
+            //         matKhau: this.banEvent.matKhau,
+            //         email: this.banEvent.email,
+            //         tenFace: this.banEvent.tenFace,
+            //         linkFace: this.banEvent.linkFace,
+            //         vaiTro: this.banEvent.vaiTro,
+            //         daCoGroup: this.banEvent.daCoGroup,
+            //         tenGroup: this.banEvent.tenGroup,
+            //         ngayTao: new Date().toLocaleString('vi-VN'),
+            //         trangThai: '0',
+            //         nguoiTao: this.user.taiKhoan
+            //     }
+
+            //     const callbackName = 'handleResult_' + Date.now()
+            //     window[callbackName] = (data) => {
+            //         this.loading = false
+
+            //         if (data.status === 'success') {
+            //             window.location.reload()
+            //         } else {
+            //             this.toast.error('message.error.fail' + data.message)
+            //         }
+
+            //         delete window[callbackName]
+            //         document.body.removeChild(script)
+            //     }
+
+            //     const params = new URLSearchParams({
+            //         ...payload,
+            //         callback: callbackName
+            //     }).toString()
+
+            //     const SHEET_URL = ACCOUNT_URL + params
+
+            //     const script = document.createElement('script')
+            //     script.src = SHEET_URL
+            //     document.body.appendChild(script)
+            //     this.showBanModal = false
+            //     this.banEvent = null
+            //     this.toast.success('Người dùng đã bị khoá!')
             // },
+            // openRestoreModal(event) {
+            //     this.restoreEvent = event
+            //     this.showRestoreModal = true
+            // },
+            // confirmRestore() {
+            //     this.loading = true
 
-            openBanModal(user) {
-                this.banUser = user
-                this.showBanModal = true
-            },
-            confirmBan() {
-                this.loading = true
+            //     if (!this.restoreEvent) return
 
-                if (!this.banUser) return
+            //     const payload = {
+            //         action: 'save',
+            //         taiKhoan: this.restoreEvent.taiKhoan,
+            //         matKhau: this.restoreEvent.matKhau,
+            //         email: this.restoreEvent.email,
+            //         tenFace: this.restoreEvent.tenFace,
+            //         linkFace: this.restoreEvent.linkFace,
+            //         vaiTro: this.restoreEvent.vaiTro,
+            //         daCoGroup: this.restoreEvent.daCoGroup,
+            //         tenGroup: this.restoreEvent.tenGroup,
+            //         ngayTao: new Date().toLocaleString('vi-VN'),
+            //         trangThai: '1',
+            //         nguoiTao: this.user.taiKhoan
+            //     }
 
-                const payload = {
-                    action: 'save',
-                    taiKhoan: this.banUser.taiKhoan,
-                    matKhau: this.banUser.matKhau,
-                    email: this.banUser.email,
-                    tenFace: this.banUser.tenFace,
-                    linkFace: this.banUser.linkFace,
-                    vaiTro: this.banUser.vaiTro,
-                    daCoGroup: this.banUser.daCoGroup,
-                    tenGroup: this.banUser.tenGroup,
-                    ngayTao: new Date().toLocaleString('vi-VN'),
-                    trangThai: '0',
-                    nguoiTao: this.user.taiKhoan
-                }
+            //     const callbackName = 'handleResult_' + Date.now()
+            //     window[callbackName] = (data) => {
+            //         this.loading = false
 
-                const callbackName = 'handleResult_' + Date.now()
-                window[callbackName] = (data) => {
-                    this.loading = false
+            //         if (data.status === 'success') {
+            //             window.location.reload()
+            //         } else {
+            //             this.toast.error('message.error.fail' + data.message)
+            //         }
 
-                    if (data.status === 'success') {
-                        window.location.reload()
-                    } else {
-                        this.toast.error('message.error.fail' + data.message)
-                    }
+            //         delete window[callbackName]
+            //         document.body.removeChild(script)
+            //     }
 
-                    delete window[callbackName]
-                    document.body.removeChild(script)
-                }
+            //     const params = new URLSearchParams({
+            //         ...payload,
+            //         callback: callbackName
+            //     }).toString()
 
-                const params = new URLSearchParams({
-                    ...payload,
-                    callback: callbackName
-                }).toString()
+            //     const SHEET_URL = ACCOUNT_URL + params
 
-                const SHEET_URL = ACCOUNT_URL + params
-
-                const script = document.createElement('script')
-                script.src = SHEET_URL
-                document.body.appendChild(script)
-                this.showBanModal = false
-                this.banUser = null
-                this.toast.success('Người dùng đã bị khoá!')
-            },
-            openRestoreModal(user) {
-                this.restoreUser = user
-                this.showRestoreModal = true
-            },
-            confirmRestore() {
-                this.loading = true
-
-                if (!this.restoreUser) return
-
-                const payload = {
-                    action: 'save',
-                    taiKhoan: this.restoreUser.taiKhoan,
-                    matKhau: this.restoreUser.matKhau,
-                    email: this.restoreUser.email,
-                    tenFace: this.restoreUser.tenFace,
-                    linkFace: this.restoreUser.linkFace,
-                    vaiTro: this.restoreUser.vaiTro,
-                    daCoGroup: this.restoreUser.daCoGroup,
-                    tenGroup: this.restoreUser.tenGroup,
-                    ngayTao: new Date().toLocaleString('vi-VN'),
-                    trangThai: '1',
-                    nguoiTao: this.user.taiKhoan
-                }
-
-                const callbackName = 'handleResult_' + Date.now()
-                window[callbackName] = (data) => {
-                    this.loading = false
-
-                    if (data.status === 'success') {
-                        window.location.reload()
-                    } else {
-                        this.toast.error('message.error.fail' + data.message)
-                    }
-
-                    delete window[callbackName]
-                    document.body.removeChild(script)
-                }
-
-                const params = new URLSearchParams({
-                    ...payload,
-                    callback: callbackName
-                }).toString()
-
-                const SHEET_URL = ACCOUNT_URL + params
-
-                const script = document.createElement('script')
-                script.src = SHEET_URL
-                document.body.appendChild(script)
-                this.showRestoreModal = false
-                this.restoreUser = null
-                this.toast.success('Người dùng đã được khôi phục!')
-            },
+            //     const script = document.createElement('script')
+            //     script.src = SHEET_URL
+            //     document.body.appendChild(script)
+            //     this.showRestoreModal = false
+            //     this.restoreEvent = null
+            //     this.toast.success('Người dùng đã được khôi phục!')
+            // },
             openAddModal() {
                 this.isEdit = false
                 this.modalData = {}
@@ -692,30 +649,30 @@
             },
 
             exportToExcel() {
-                const data = this.filteredUserList.map((v, i) => ({
+                const data = this.filteredEventList.map((v, i) => ({
                     STT: i + 1,
-                    [this.$t('nguoiDung.table.taiKhoan')]: v.taiKhoan,
-                    [this.$t('nguoiDung.table.email')]: v.email,
-                    [this.$t('nguoiDung.table.tenFace')]: v.tenFace,
-                    [this.$t('nguoiDung.table.vaiTro')]:
+                    [this.$t('suKien.table.taiKhoan')]: v.ma,
+                    [this.$t('suKien.table.email')]: v.ten,
+                    [this.$t('suKien.table.tenFace')]: v.loai,
+                    [this.$t('suKien.table.vaiTro')]:
                         v.vaiTro === 'admin'
-                            ? this.$t('nguoiDung.table.admin')
-                            : this.$t('nguoiDung.table.member'),
-                    [this.$t('nguoiDung.table.nameGroup')]: v.tenGroup,
-                    [this.$t('nguoiDung.table.status')]:
+                            ? this.$t('suKien.table.admin')
+                            : this.$t('suKien.table.member'),
+                    [this.$t('suKien.table.nameGroup')]: v.soLuongDoi,
+                    [this.$t('suKien.table.status')]:
                         v.trangThai === '1'
-                            ? this.$t('nguoiDung.table.active')
-                            : this.$t('nguoiDung.table.inactive'),
-                    [this.$t('nguoiDung.table.createDate')]: v.ngayTao
+                            ? this.$t('suKien.table.active')
+                            : this.$t('suKien.table.inactive'),
+                    [this.$t('suKien.table.createDate')]: v.ngayTao
                 }))
 
                 const ws = XLSX.utils.json_to_sheet(data)
                 const wb = XLSX.utils.book_new()
-                XLSX.utils.book_append_sheet(wb, ws, 'users')
-                XLSX.writeFile(wb, 'Danh sách người dùng - GOS.xlsx')
+                XLSX.utils.book_append_sheet(wb, ws, 'events')
+                XLSX.writeFile(wb, 'Danh sách sự kiện - GOS.xlsx')
             },
 
-            async fetchUsers() {
+            async fetchEvents() {
                 try {
                     const res = await fetch(
                         `https://sheets.googleapis.com/v4/spreadsheets/${this.sheetId}/values/${this.range}?key=${this.apiKey}`
@@ -724,44 +681,47 @@
                     if (!data.values) return
 
                     const rows = data.values.slice(1)
-                    const list = rows.map((u) => ({
-                        taiKhoan: u[0] || '',
-                        matKhau: u[1] || '',
-                        email: u[2] || '',
-                        tenFace: u[3] || '',
-                        linkFace: u[4] || '',
-                        vaiTro: u[5] || '',
-                        daCoGroup: u[6] || '',
-                        tenGroup: u[7] || '',
-                        ngayTao: u[8] || '',
-                        trangThai: u[9] || '',
-                        _isEditing: false
-                    }))
+                    const list = rows
+                        .map((e) => ({
+                            ma: e[0] || '',
+                            ten: e[1] || '',
+                            loai: e[2] || '',
+                            soLuongDoi: e[3] || '',
+                            moTa: e[4] || '',
+                            ngayBatDau: e[5] || '',
+                            ngayKetThuc: e[6] || '',
+                            ngayTao: e[7] || '',
+                            nguoiTao: e[8] || '',
+                            hinhAnh: e[9] || '',
+                            isDelete: e[10] || '',
+                            _isEditing: false
+                        }))
+                        .filter((e) => e.isDelete === '0')
 
                     const unique = {}
 
-                    list.forEach((u) => {
-                        const [timeStr, dateStr] = u.ngayTao.split(' ')
+                    list.forEach((e) => {
+                        const [timeStr, dateStr] = e.ngayTao.split(' ')
                         const [d, m, y] = dateStr.split('/')
                         const converted = `${y}-${m.padStart(2, '0')}-${d.padStart(2, '0')}T${timeStr}`
 
                         const newDate = new Date(converted)
 
-                        if (!unique[u.taiKhoan]) {
-                            unique[u.taiKhoan] = u
+                        if (!unique[e.ma]) {
+                            unique[e.ma] = e
                         } else {
-                            const [oldTime, oldDateStr] = unique[u.taiKhoan].ngayTao.split(' ')
+                            const [oldTime, oldDateStr] = unique[e.ma].ngayTao.split(' ')
                             const [od, om, oy] = oldDateStr.split('/')
                             const oldConverted = `${oy}-${om.padStart(2, '0')}-${od.padStart(2, '0')}T${oldTime}`
                             const oldDate = new Date(oldConverted)
 
                             if (newDate > oldDate) {
-                                unique[u.taiKhoan] = u
+                                unique[e.ma] = e
                             }
                         }
                     })
 
-                    this.userList = Object.values(unique)
+                    this.eventList = Object.values(unique)
                 } catch (error) {
                     console.error('Lỗi tải dữ liệu:', error)
                 }
@@ -769,7 +729,7 @@
         },
 
         mounted() {
-            this.fetchUsers()
+            this.fetchEvents()
             this.toast = useToast()
         }
     }
@@ -818,6 +778,5 @@
 
     .filter-input {
         padding-left: 10px !important;
-        padding-right: 10px !important;
     }
 </style>

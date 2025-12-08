@@ -354,7 +354,7 @@ export default {
         },
         success: {}
     },
-    data: {
+    nguoiDung: {
         unknown: 'Unknown',
         loading: 'Loading...',
         listUser: 'List of users',

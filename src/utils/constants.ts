@@ -10,3 +10,11 @@ export const ROLE = {
     ADMIN: 'admin',
     MEMBER: 'thanhvien'
 }
+
+export const LOAI_SU_KIEN = [
+    { value: '', label: 'suKien.button.filter.allType' },
+    { value: '0', label: 'suKien.button.filter.table' },
+    { value: '1', label: 'suKien.button.filter.league' },
+    { value: '2', label: 'suKien.button.filter.leagueAndTable' },
+    { value: '3', label: 'suKien.button.filter.swiss' }
+]

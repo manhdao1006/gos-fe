@@ -350,7 +350,7 @@ export default {
         },
         success: {}
     },
-    data: {
+    nguoiDung: {
         unknown: 'Không xác định',
         loading: 'Đang tải...',
         listUser: 'Danh sách người dùng',
@@ -380,6 +380,45 @@ export default {
                 allRole: '--Vai trò--',
                 member: 'Thành viên',
                 admin: 'Quản trị'
+            },
+            exportExcel: 'Xuất Excel',
+            firstPage: 'Trước',
+            lastPage: 'Sau'
+        },
+        pagination: {
+            display: 'Hiển thị',
+            rowPerPage: 'hàng mỗi trang'
+        }
+    },
+    suKien: {
+        unknown: 'Không xác định',
+        loading: 'Đang tải...',
+        listEvent: 'Danh sách sự kiện',
+        table: {
+            no: 'STT',
+            ma: 'Mã',
+            ten: 'Tên',
+            loai: 'Loại',
+            soLuongDoi: 'Số lượng đội',
+            moTa: 'Mô tả',
+            ngayBatDau: 'Ngày bắt đầu',
+            ngayKetThuc: 'Ngày kết thúc',
+            createDate: 'Ngày tạo',
+            active: 'Hoạt động',
+            inactive: 'Không hoạt động',
+            member: 'Thành viên',
+            admin: 'Quản trị',
+            noData: 'Không có dữ liệu phù hợp.',
+            action: 'Thao tác'
+        },
+        button: {
+            search: 'Tìm kiếm theo mã, tên sự kiện',
+            filter: {
+                allType: '--Loại sự kiện--',
+                table: 'Bảng đấu',
+                league: 'Xếp hạng',
+                leagueAndTable: 'Hạng + Bảng',
+                swiss: 'Swiss Stage'
             },
             exportExcel: 'Xuất Excel',
             firstPage: 'Trước',

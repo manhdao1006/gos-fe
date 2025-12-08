@@ -5,6 +5,7 @@ import RegisterPage from '../components/auth/RegisterPage.vue'
 import Administration from '../pages/Administration.vue'
 import HallOfFame from '../pages/HallOfFame.vue'
 import History from '../pages/History.vue'
+import QuanLySuKien from '../pages/organizations/admin/events/QuanLySuKien.vue'
 import TrangChu from '../pages/organizations/admin/TrangChu.vue'
 import QuanLyNguoiDung from '../pages/organizations/admin/users/QuanLyNguoiDung.vue'
 import Teams from '../pages/Teams.vue'
@@ -30,6 +31,14 @@ export const routes: AppRoute[] = [
         path: '/quan-tri/nguoi-dung',
         name: 'QuanLyNguoiDung',
         component: QuanLyNguoiDung,
+        meta: {
+            title: 'GOS - Dream League Soccer'
+        }
+    },
+    {
+        path: '/quan-tri/su-kien',
+        name: 'QuanLySuKien',
+        component: QuanLySuKien,
         meta: {
             title: 'GOS - Dream League Soccer'
         }

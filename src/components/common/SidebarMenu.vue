@@ -29,7 +29,7 @@
                 collapsed: false,
                 menuItems: [
                     { to: '/quan-tri/nguoi-dung', label: 'Quản lý người dùng' },
-                    { to: '/', label: 'Quản lý sự kiện' },
+                    { to: '/quan-tri/su-kien', label: 'Quản lý sự kiện' },
                     { to: '/', label: 'Quản lý giải đấu' },
                     { to: '/', label: 'Quản lý trận đấu' }
                     // { to: '/', label: 'header.navigation.homePage' },
@@ -46,7 +46,7 @@
                 this.$emit('updateCollapsed', this.collapsed)
             },
             checkLogin(path) {
-                const protectedRoutes = ['/quan-tri/nguoi-dung']
+                const protectedRoutes = ['/quan-tri/nguoi-dung', '/quan-tri/su-kien']
                 if (!this.user && protectedRoutes.includes(path)) {
                     this.toast.error(this.$t('notification.checkLogin'))
                     return

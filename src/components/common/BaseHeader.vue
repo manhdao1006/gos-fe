@@ -138,6 +138,12 @@
                         icon: 'fas fa-users-cog'
                     },
                     {
+                        to: '/quan-tri/su-kien',
+                        // label: this.$t('header.navigation.mapBus'),
+                        label: 'Quản lý sự kiện',
+                        icon: 'far fa-calendar-alt'
+                    },
+                    {
                         to: '/du-lieu',
                         label: this.$t('header.navigation.data'),
                         icon: 'fas fa-database'
