@@ -8,7 +8,7 @@ import History from '../pages/History.vue'
 import QuanLySuKien from '../pages/organizations/admin/events/QuanLySuKien.vue'
 import TrangChu from '../pages/organizations/admin/TrangChu.vue'
 import QuanLyNguoiDung from '../pages/organizations/admin/users/QuanLyNguoiDung.vue'
-import ChiTietSuKien from '../pages/organizations/tournament/events/ChiTietSuKien.vue'
+import ChiTietSuKien from '../pages/organizations/user/events/ChiTietSuKien.vue'
 import Teams from '../pages/Teams.vue'
 import Achievement from '../pages/teams/Achievement.vue'
 import Coach from '../pages/teams/Coach.vue'
@@ -45,7 +45,7 @@ export const routes: AppRoute[] = [
         }
     },
     {
-        path: '/admin/event/:ma',
+        path: '/su-kien/:ma',
         name: 'ChiTietSuKien',
         component: ChiTietSuKien,
         meta: { requiresAuth: true }

@@ -80,10 +80,10 @@
 
 <script>
     import { useToast } from 'vue-toastification'
-    import LanguageSwitcher from '../../views/LanguageSwitcher.vue'
+    import LanguageSwitcher from '../../../views/LanguageSwitcher.vue'
 
     export default {
-        name: 'BaseHeader',
+        name: 'AdminHeader',
         components: {
             LanguageSwitcher
         },

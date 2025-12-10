@@ -1,6 +1,6 @@
 <template>
     <div>
-        <BaseHeader />
+        <AdminHeader />
         <div class="container-fluid px-0">
             <div class="d-flex h-100">
                 <div :style="{ width: collapsed ? '60px' : '220px', transition: 'width 0.3s' }">
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-    import BaseHeader from '../../../components/common/BaseHeader.vue'
+    import AdminHeader from '../../../components/common/admin/AdminHeader.vue'
     import SidebarMenu from '../../../components/common/SidebarMenu.vue'
     import Footer from '../../../components/Footer.vue'
     import { eventBus } from '../../../eventBus'
@@ -33,7 +33,7 @@
     export default {
         name: 'TrangChu',
         components: {
-            BaseHeader,
+            AdminHeader,
             SidebarMenu,
             Footer
         },

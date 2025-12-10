@@ -1,6 +1,6 @@
 <template>
     <div>
-        <BaseHeader />
+        <AdminHeader />
         <div class="container-fluid px-0">
             <div class="d-flex h-100">
                 <div :style="{ width: collapsed ? '60px' : '220px', transition: 'width 0.3s' }">
@@ -125,7 +125,7 @@
                                             </button>
                                             <button
                                                 class="btn btn-sm btn-primary"
-                                                @click="$router.push(`/admin/event/${v.ma}`)"
+                                                @click="$router.push(`/su-kien/${v.ma}`)"
                                             >
                                                 <i class="fa-solid fa-eye"></i>
                                             </button>
@@ -220,7 +220,7 @@
 <script>
     import { useToast } from 'vue-toastification'
     import * as XLSX from 'xlsx'
-    import BaseHeader from '../../../../components/common/BaseHeader.vue'
+    import AdminHeader from '../../../../components/common/admin/AdminHeader.vue'
     import BaseModal from '../../../../components/common/BaseModal.vue'
     import BaseModalConfirm from '../../../../components/common/BaseModalConfirm.vue'
     import SidebarMenu from '../../../../components/common/SidebarMenu.vue'
@@ -230,7 +230,7 @@
 
     export default {
         name: 'QuanLySuKien',
-        components: { BaseHeader, SidebarMenu, BaseModal, BaseModalConfirm, Footer },
+        components: { AdminHeader, SidebarMenu, BaseModal, BaseModalConfirm, Footer },
 
         data() {
             return {
