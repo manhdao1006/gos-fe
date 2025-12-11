@@ -9,6 +9,7 @@ import QuanLySuKien from '../pages/organizations/admin/events/QuanLySuKien.vue'
 import TrangChu from '../pages/organizations/admin/TrangChu.vue'
 import QuanLyNguoiDung from '../pages/organizations/admin/users/QuanLyNguoiDung.vue'
 import ChiTietSuKien from '../pages/organizations/user/events/ChiTietSuKien.vue'
+import DanhSachSuKien from '../pages/organizations/user/events/DanhSachSuKien.vue'
 import Teams from '../pages/Teams.vue'
 import Achievement from '../pages/teams/Achievement.vue'
 import Coach from '../pages/teams/Coach.vue'
@@ -43,6 +44,12 @@ export const routes: AppRoute[] = [
         meta: {
             title: 'GOS - Dream League Soccer'
         }
+    },
+    {
+        path: '/su-kien',
+        name: 'DanhSachSuKien',
+        component: DanhSachSuKien,
+        meta: { requiresAuth: true }
     },
     {
         path: '/su-kien/:ma',

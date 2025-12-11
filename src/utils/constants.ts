@@ -4,6 +4,9 @@ export const ACCOUNT_URL =
 export const EVENT_URL =
     'https://script.google.com/macros/s/AKfycbynoLhx9XbGlsl9Z7O4QDU8ziqNyMoxAimn6xruL1CNMG3akHonYIjYT_Fuoq_ihR1q/exec?'
 
+export const TOUR_URL =
+    'https://script.google.com/macros/s/AKfycbz_p6f0StijIJ_M7BjZ-qa8gxOVC9S0ZbELhJsalY3IF32hN9nPH6KZFZP5p_8i2HU6/exec?'
+
 export const GROUP = {
     HAS: 'Có',
     NOT_HAS: 'Chưa'

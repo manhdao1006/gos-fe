@@ -1,6 +1,6 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-dark bg-danger w-100 p-0 hero-section">
-        <div class="container-fluid row fw-bolder" style="font-size: 12px">
+        <div class="container-fluid row fw-bolder header-mobile-flex" style="font-size: 12px">
             <div class="col-6 row">
                 <div class="col-6">
                     <router-link class="navbar-brand fw-bold d-flex align-items-center" to="/">
@@ -15,7 +15,7 @@
                 <div class="col-6"></div>
             </div>
 
-            <div class="col-6 row text-end align-items-center">
+            <div class="col-6 row text-end align-items-center right-mobile-group">
                 <template v-if="!user">
                     <div
                         class="col-4 text-white d-flex justify-content-end align-items-center"
@@ -217,31 +217,60 @@
         }
     }
 
+    /* --- MOBILE: max-width 768px --- */
     @media (max-width: 768px) {
-        .hero-section {
-            height: 50px;
+        /* Ẩn chữ GOS - Dream League Soccer */
+        .brand-title {
+            display: none !important;
         }
+
+        /* Gom toàn bộ header thành 1 hàng */
+        .header-mobile-flex {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            width: 100%;
+            padding: 0 10px;
+        }
+
+        /* Bỏ cấu trúc grid cũ để tránh vỡ layout */
+        .navbar .container-fluid.row {
+            display: flex !important;
+            flex-wrap: nowrap !important;
+        }
+
+        .navbar .col-6,
+        .navbar .row,
+        .navbar .col-4 {
+            width: auto !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            text-align: unset !important;
+        }
+
+        /* Logo nhỏ lại tí */
         .logo-navbar {
             width: 40px;
             height: 40px;
         }
-        .nav-link {
-            font-size: 13px;
-            padding: 0 8px !important;
+
+        /* Nguyên cụm user + logout + language hiển thị ngang */
+        .right-mobile-group {
+            display: flex !important;
+            align-items: center;
+            gap: 10px;
         }
-        .navbar .container-fluid > .row {
-            flex-wrap: wrap;
-        }
-        .navbar .col-6 {
-            width: 100%;
-            margin-bottom: 5px;
-            text-align: center;
-        }
-        .navbar .col-6.text-end {
-            text-align: center !important;
-        }
+
         .logout-btn {
-            margin-top: 5px;
+            white-space: nowrap;
+        }
+
+        /* Fix LanguageSwitcher bị position absolute */
+        .right-mobile-group .position-absolute {
+            position: relative !important;
+            top: unset !important;
+            right: unset !important;
+            margin: 0 !important;
         }
     }
 </style>
