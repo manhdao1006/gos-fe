@@ -65,7 +65,11 @@
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                 <ul class="navbar-nav text-capitalize">
                     <li class="nav-item">
-                        <router-link class="nav-link" to="/" @click.prevent="checkLogin('/')">
+                        <router-link
+                            class="nav-link"
+                            to="/su-kien"
+                            @click.prevent="checkLogin('/')"
+                        >
                             <!-- {{
                             $t('header.navigation.homePage')
                         }} -->

@@ -14,7 +14,22 @@ const router = createRouter({
     }
 })
 
-// Setup router guards
+router.beforeEach((to, from, next) => {
+    const user = JSON.parse(localStorage.getItem('user') || 'null')
+
+    if (to.path.startsWith('/quan-tri')) {
+        if (!user) {
+            return next('/noPermission')
+        }
+
+        if (user.vaiTro !== 'admin') {
+            return next('/noPermission')
+        }
+    }
+
+    next()
+})
+
 setupRouterGuards(router)
 
 export default router

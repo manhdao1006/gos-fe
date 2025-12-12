@@ -1,5 +1,5 @@
 export const ACCOUNT_URL =
-    'https://script.google.com/macros/s/AKfycbyR1lOwQMRIG87rTnOmI0mnwNZTKkrUfVjNSX0WVw39ARgbMgi6AdmQilwoEjJhRSzuCw/exec?'
+    'https://script.google.com/macros/s/AKfycbwMQufK6BqxReZAjavxpI63p_6wZebIna5dlbk1Oju1KbRcXwySWHsFbN0SdhoRURZWug/exec?'
 
 export const EVENT_URL =
     'https://script.google.com/macros/s/AKfycbynoLhx9XbGlsl9Z7O4QDU8ziqNyMoxAimn6xruL1CNMG3akHonYIjYT_Fuoq_ihR1q/exec?'

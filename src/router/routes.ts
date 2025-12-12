@@ -2,6 +2,7 @@ import type { AppRoute } from './types'
 
 import LoginPage from '../components/auth/LoginPage.vue'
 import RegisterPage from '../components/auth/RegisterPage.vue'
+import NoPermission from '../components/common/NoPermission.vue'
 import Administration from '../pages/Administration.vue'
 import HallOfFame from '../pages/HallOfFame.vue'
 import History from '../pages/History.vue'
@@ -10,6 +11,7 @@ import TrangChu from '../pages/organizations/admin/TrangChu.vue'
 import QuanLyNguoiDung from '../pages/organizations/admin/users/QuanLyNguoiDung.vue'
 import ChiTietSuKien from '../pages/organizations/user/events/ChiTietSuKien.vue'
 import DanhSachSuKien from '../pages/organizations/user/events/DanhSachSuKien.vue'
+import TrangChuUser from '../pages/organizations/user/TrangChu.vue'
 import Teams from '../pages/Teams.vue'
 import Achievement from '../pages/teams/Achievement.vue'
 import Coach from '../pages/teams/Coach.vue'
@@ -21,6 +23,22 @@ import Tournaments from '../pages/Tournaments.vue'
 import Home from '../views/Home.vue'
 
 export const routes: AppRoute[] = [
+    {
+        path: '/trang-chu',
+        name: 'TrangChuUser',
+        component: TrangChuUser,
+        meta: {
+            title: 'GOS - Dream League Soccer'
+        }
+    },
+    {
+        path: '/noPermission',
+        name: 'noPermission',
+        component: NoPermission,
+        meta: {
+            title: 'No Permission 403'
+        }
+    },
     {
         path: '/quan-tri/trang-chu',
         name: 'TrangChu',

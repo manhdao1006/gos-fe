@@ -181,8 +181,7 @@
                 const payload = {
                     action: 'login',
                     taiKhoan: tenTK.value,
-                    matKhau: matKhau.value,
-                    trangThai: '1'
+                    matKhau: matKhau.value
                 }
 
                 const callbackName = 'handleLoginResult_' + Date.now()
