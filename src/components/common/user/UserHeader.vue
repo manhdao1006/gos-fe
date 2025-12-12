@@ -3,7 +3,10 @@
         <div class="container-fluid row fw-bolder header-mobile-flex" style="font-size: 12px">
             <div class="col-6 row">
                 <div class="col-6">
-                    <router-link class="navbar-brand fw-bold d-flex align-items-center" to="/">
+                    <router-link
+                        class="navbar-brand fw-bold d-flex align-items-center"
+                        to="/trang-chu"
+                    >
                         <img
                             src="https://res.cloudinary.com/springboot-cloud/image/upload/v1753505199/logo-group_jz2ezw.jpg"
                             alt="GOS"
@@ -163,7 +166,7 @@
             logout() {
                 this.user = null
                 localStorage.removeItem('user')
-                this.$router.push('/')
+                this.$router.push('/trang-chu')
             }
         }
     }
