@@ -4,7 +4,7 @@
             <h1>403 PAGE</h1>
             <p id="credit">
                 Quay về
-                <a href="/">Trang chủ</a>
+                <a href="/trang-chu">Trang chủ</a>
             </p>
         </div>
     </div>
