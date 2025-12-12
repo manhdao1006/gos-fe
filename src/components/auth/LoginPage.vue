@@ -201,7 +201,7 @@
                         if (data.user?.vaiTro === 'admin') {
                             router.push('/quan-tri/trang-chu')
                         } else {
-                            router.push('/')
+                            router.push('/trang-chu')
                         }
                     } else {
                         toast.error(data.message)
