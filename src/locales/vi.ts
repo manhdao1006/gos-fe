@@ -281,7 +281,8 @@ export default {
             TITLE: 'Thành tích tuyển GOS',
             CONTENT: {
                 FIRST_ACHIEVEMENT: 'Giải khuyến khích cúp Liên Group DPC mùa 4',
-                SECOND_ACHIEVEMENT: 'Giải nhì cúp Tứ hùng 36TH'
+                SECOND_ACHIEVEMENT: 'Giải nhì cúp Tứ hùng 36TH',
+                THIRD_ACHIEVEMENT: 'Quý quân giải đấu DLS VIETNAM CUP 2025'
             }
         },
         COACH: {
