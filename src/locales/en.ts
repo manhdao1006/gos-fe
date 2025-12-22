@@ -288,7 +288,8 @@ export default {
             TITLE: 'GOS Team Achievements',
             CONTENT: {
                 FIRST_ACHIEVEMENT: 'Incentive prize of Inter-Group DPC Cup season 4',
-                SECOND_ACHIEVEMENT: 'Second prize of the 36TH Four Heroes Cup'
+                SECOND_ACHIEVEMENT: 'Second prize of the 36TH Four Heroes Cup',
+                THIRD_ACHIEVEMENT: 'Prestigious team of the DLS VIETNAM CUP 2025'
             }
         },
         COACH: {
