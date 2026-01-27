@@ -415,6 +415,10 @@
     }
 
     @media (max-width: 768px) {
+        .grid-avatar {
+            width: 100% !important;
+            height: 80px !important;
+        }
         .custom-modal {
             max-width: 100vw;
             height: 100vh;
@@ -438,6 +442,10 @@
     }
 
     @media (min-width: 768px) and (max-width: 1024px) {
+        .grid-avatar {
+            width: 90% !important;
+            height: 170px !important;
+        }
         .custom-modal {
             max-width: 90vw;
             height: 85vh;
