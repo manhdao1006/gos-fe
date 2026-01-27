@@ -137,12 +137,16 @@ export default {
                 BINH_NGUYEN: 'Support in managing and operating group activities',
                 PHAM_THANG: 'Human resource management',
                 THANH_HIEN: 'Tournament management',
+                QUANG_MINH: 'Support management',
                 MANH_DAO: 'Graphic design and website administration'
             },
             SLOGAN: {
                 NGUYEN_THANG: 'Exchange - share - learn - develop together',
                 BINH_NGUYEN: 'Learn together, develop together',
-                THANH_HIEN: 'Only I am right'
+                THANH_HIEN: 'Only I am right',
+                QUANG_MINH: 'The man from the land of my ancestors won my heart',
+                VAN_HOANG: 'Say it and do it',
+                DOAN_LONG: 'If you work hard enough, I will marry you'
             }
         },
         SUPPORT: {
@@ -280,7 +284,9 @@ export default {
         ACHIEVEMENT: {
             TITLE: 'GOS Team Achievements',
             CONTENT: {
-                FIRST_ACHIEVEMENT: 'Incentive prize of Inter-Group DPC Cup season 4'
+                FIRST_ACHIEVEMENT: 'Incentive prize of Inter-Group DPC Cup season 4',
+                SECOND_ACHIEVEMENT: 'Second prize of the 36TH Four Heroes Cup',
+                THIRD_ACHIEVEMENT: 'Prestigious team of the DLS VIETNAM CUP 2025'
             }
         },
         COACH: {
@@ -288,7 +294,10 @@ export default {
         },
         PLAYER: {
             TITLE: 'GOS Player',
-            VIEW_CONTRACT: 'View Contract'
+            VIEW_CONTRACT: 'View Contract',
+            SOLD: 'Sold out',
+            LIQUID: 'Liquidated',
+            LOAN: 'Loan'
         },
         YOUTH_TEAM: {
             TITLE: 'GOS Youth Team'

@@ -199,8 +199,6 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-2 mb-4"></div>
-
                     <div class="col-lg-4 mb-4 border border-1">
                         <div class="card admin-card h-100">
                             <div class="card-body text-center p-0">
@@ -246,6 +244,63 @@
                                     <button class="btn btn-danger btn-sm me-2">
                                         <a
                                             href="https://www.facebook.com/thanh.hien.155432"
+                                            class="text-white"
+                                            target="_blank"
+                                        >
+                                            <i class="bi bi-envelope"></i>
+                                            {{ $t('ADMIN.MANAGEMENT.TITLE.CONTACT') }}
+                                        </a>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 mb-4 border border-1">
+                        <div class="card admin-card h-100">
+                            <div class="card-body text-center p-0">
+                                <div class="admin-avatar">
+                                    <img
+                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1762870792/ad-le-quang-minh_wq1x3j.jpg"
+                                        alt="Lê Quang Minh"
+                                        title="Lê Quang Minh"
+                                        class="logo-member-admin border border-3 border-info rounded-circle"
+                                    />
+                                </div>
+                                <h4>Lê Quang Minh</h4>
+                                <h4 class="mt-3">
+                                    <span class="badge bg-info">{{
+                                        $t('ADMIN.MANAGEMENT.POSITION.ADMIN')
+                                    }}</span>
+                                </h4>
+                                <p class="text-muted fw-bolder">Admin League D</p>
+                                <div class="admin-info text-start">
+                                    <p>
+                                        <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.MISSON') }}:</strong>
+                                        {{ $t('ADMIN.MANAGEMENT.MISSON.QUANG_MINH') }}
+                                    </p>
+                                    <p>
+                                        <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.DOB') }}:</strong>
+                                        13/11/2008
+                                    </p>
+                                    <p>
+                                        <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.ADDRESS') }}:</strong>
+                                        Hà Nội
+                                    </p>
+                                    <p>
+                                        <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.FAVOR') }}:</strong>
+                                        Arsenal
+                                    </p>
+                                    <p>
+                                        <strong>Slogan:</strong> "{{
+                                            $t('ADMIN.MANAGEMENT.SLOGAN.QUANG_MINH')
+                                        }}"
+                                    </p>
+                                </div>
+                                <div class="contact-info mt-3">
+                                    <button class="btn btn-danger btn-sm me-2">
+                                        <a
+                                            href="https://www.facebook.com/minh.lecong.391082"
                                             class="text-white"
                                             target="_blank"
                                         >
@@ -310,8 +365,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-lg-2 mb-4"></div>
                 </div>
             </section>
 
@@ -349,9 +402,13 @@
                                     </p>
                                     <p>
                                         <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.FAVOR') }}:</strong>
-                                        Real Madrid
+                                        Real Madrid - Fan A7
                                     </p>
-                                    <p><strong>Slogan:</strong> "..."</p>
+                                    <p>
+                                        <strong>Slogan:</strong> "{{
+                                            $t('ADMIN.MANAGEMENT.SLOGAN.VAN_HOANG')
+                                        }}"
+                                    </p>
                                 </div>
                                 <div class="contact-info mt-3">
                                     <button class="btn btn-danger btn-sm me-2">
@@ -402,7 +459,11 @@
                                         <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.FAVOR') }}:</strong>
                                         Fan A7 - Pepe
                                     </p>
-                                    <p><strong>Slogan:</strong> "Long Lạc Quang"</p>
+                                    <p>
+                                        <strong>Slogan:</strong> "{{
+                                            $t('ADMIN.MANAGEMENT.SLOGAN.DOAN_LONG')
+                                        }}"
+                                    </p>
                                 </div>
                                 <div class="contact-info mt-3">
                                     <button class="btn btn-danger btn-sm me-2">
@@ -484,6 +545,7 @@
                                         <p class="badge bg-danger">Lý Bình Nguyên</p>
                                         <p class="badge bg-danger">Phạm Đăng Thắng</p>
                                         <p class="badge bg-danger">Lý Thanh Hiền</p>
+                                        <p class="badge bg-danger">Lê Quang Minh</p>
                                         <p class="badge bg-danger">Mạnh Đào</p>
                                     </div>
                                 </div>
@@ -569,6 +631,7 @@
                                     </p>
                                     <div class="skills text-center">
                                         <p class="badge bg-danger">Mạnh Đào</p>
+                                        <p class="badge bg-danger">Nguyễn Văn Hoàng</p>
                                     </div>
                                 </div>
                             </div>
@@ -599,6 +662,7 @@
                                         <p class="badge bg-danger">Lý Bình Nguyên</p>
                                         <p class="badge bg-danger">Phạm Đăng Thắng</p>
                                         <p class="badge bg-danger">Lý Thanh Hiền</p>
+                                        <p class="badge bg-danger">Lê Quang Minh</p>
                                         <p class="badge bg-danger">Mạnh Đào</p>
                                     </div>
                                 </div>

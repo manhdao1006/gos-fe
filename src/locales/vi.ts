@@ -134,12 +134,16 @@ export default {
                 BINH_NGUYEN: 'Hỗ trợ quản lý và điều hành hoạt động nhóm',
                 PHAM_THANG: 'Quản lý nhân sự',
                 THANH_HIEN: 'Quản lý giải đấu',
+                QUANG_MINH: 'Hỗ trợ quản lý ',
                 MANH_DAO: 'Thiết kế đồ họa và quản trị website'
             },
             SLOGAN: {
                 NGUYEN_THANG: 'Giao lưu- chia sẻ - học hỏi - cùng phát triển',
                 BINH_NGUYEN: 'Cùng học hỏi, cùng phát triển',
-                THANH_HIEN: 'Chỉ mình là đúng'
+                THANH_HIEN: 'Chỉ mình là đúng',
+                QUANG_MINH: 'Trai đất tổ tán đổ tim em',
+                VAN_HOANG: 'Nói được làm được',
+                DOAN_LONG: 'Anh chăm chỉ nào đủ trăm chỉ anh cưới em nha'
             }
         },
         SUPPORT: {
@@ -276,7 +280,9 @@ export default {
         ACHIEVEMENT: {
             TITLE: 'Thành tích tuyển GOS',
             CONTENT: {
-                FIRST_ACHIEVEMENT: 'Giải khuyến khích cúp Liên Group DPC mùa 4'
+                FIRST_ACHIEVEMENT: 'Giải khuyến khích cúp Liên Group DPC mùa 4',
+                SECOND_ACHIEVEMENT: 'Giải nhì cúp Tứ hùng 36TH',
+                THIRD_ACHIEVEMENT: 'Quý quân giải đấu DLS VIETNAM CUP 2025'
             }
         },
         COACH: {
@@ -284,7 +290,10 @@ export default {
         },
         PLAYER: {
             TITLE: 'Tuyển thủ GOS',
-            VIEW_CONTRACT: 'Xem hợp đồng'
+            VIEW_CONTRACT: 'Xem hợp đồng',
+            SOLD: 'Đã bán',
+            LIQUID: 'Thanh lý',
+            LOAN: 'Cho mượn'
         },
         YOUTH_TEAM: {
             TITLE: 'Đội trẻ GOS'
