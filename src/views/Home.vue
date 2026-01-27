@@ -48,6 +48,13 @@
                                 </a>
                             </div>
                         </div>
+                        <div class="d-flex flex-wrap w-100 text-black fw-bolder text-center">
+                            <footer class="w-100 w-md-50">
+                                Email: gosdls.1306.ctvn@gmail.com.vn
+                            </footer>
+                            <footer class="w-100 w-md-50">Hotline: 0911.889.491 (Nguyên)</footer>
+                        </div>
+
                         <div class="row">
                             <footer class="text-start text-white py-3 copy-right-mobile">
                                 © Copyright 2025 by GOS - Dream League Soccer
