@@ -178,8 +178,7 @@
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341818/vu-duong-dao_agtadg.jpg',
             name: '5 Vũ Dương Đạo',
-            avt: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1769504187/vuduongdao_zwuuc7.jpg',
-            liquidated: true
+            avt: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1769504187/vuduongdao_zwuuc7.jpg'
         }
     ])
 
