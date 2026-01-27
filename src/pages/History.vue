@@ -174,14 +174,14 @@
             id: 2,
             icon: 'bi bi-trophy-fill',
             color: 'warning',
-            value: '12',
+            value: '15',
             label: t('HISTORY.STATISTICS.SEASON')
         },
         {
             id: 3,
             icon: 'bi bi-calendar-event-fill',
             color: 'success',
-            value: '3',
+            value: '4',
             label: t('HISTORY.STATISTICS.YEAR_ACTIVITY')
         }
     ])
