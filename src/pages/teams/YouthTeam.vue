@@ -27,15 +27,32 @@
         <div class="container-fluid p-0">
             <div class="gallery-grid">
                 <div
-                    class="grid-item d-flex align-items-center justify-content-center bg-success text-white fw-bold"
+                    class="grid-item d-flex align-items-center justify-content-center bg-white text-white fw-bold"
                     v-for="(img, index) in images"
                     :key="index"
-                    @click="openModal(index)"
-                    data-bs-toggle="modal"
-                    data-bs-target="#imageModal"
+                    @click="!img.soldOut && !img.liquidated && !img.loan && openModal(index)"
+                    :data-bs-toggle="!img.soldOut && !img.liquidated && !img.loan ? 'modal' : null"
+                    :data-bs-target="
+                        !img.soldOut && !img.liquidated && !img.loan ? '#imageModal' : null
+                    "
+                    :class="{
+                        'sold-out': img.soldOut || img.liquidated,
+                        loan: img.loan
+                    }"
                 >
-                    <span class="item-name">{{ img.name }}</span>
-                    <div class="overlay">{{ $t('TEAM.PLAYER.VIEW_CONTRACT') }}</div>
+                    <img v-if="img.avt" :src="img.avt" :alt="img.name" class="grid-avatar" />
+                    <div v-if="img.soldOut" class="sold-out-overlay">
+                        <span>{{ $t('TEAM.PLAYER.SOLD') }}</span>
+                    </div>
+                    <div v-else-if="img.liquidated" class="sold-out-overlay">
+                        <span>{{ $t('TEAM.PLAYER.LIQUID') }}</span>
+                    </div>
+                    <div v-else-if="img.loan" class="loan-overlay">
+                        <span>{{ $t('TEAM.PLAYER.LOAN') }}</span>
+                    </div>
+                    <div v-else class="overlay">
+                        {{ $t('TEAM.PLAYER.VIEW_CONTRACT') }}
+                    </div>
                 </div>
             </div>
 
@@ -88,34 +105,81 @@
     import Footer from '../../components/Footer.vue'
     import Header from '../../components/Header.vue'
 
-    const images = ref<{ url: string; name: string }[]>([
+    const images = ref<
+        {
+            url: string
+            name: string
+            avt: string
+            soldOut?: boolean
+            liquidated?: boolean
+            loan?: boolean
+        }[]
+    >([
+        {
+            url: '',
+            name: '21 Lê Văn Trí',
+            avt: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1769504197/levantri_eu0vqm.jpg'
+        },
+        {
+            url: '',
+            name: '98 Huỳnh Đoàn Quang',
+            avt: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1769504188/huynhdoanquang_e1uehl.jpg'
+        },
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341818/tran-hai-phong_y2wgdt.jpg',
-            name: '16 Trần Hải Phong'
+            name: '16 Trần Hải Phong',
+            avt: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1769504188/tranhaiphong_y45axv.jpg'
         },
         {
-            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1756868932/nguyen-trung-thanh_nq0ish.jpg',
-            name: '98 Nguyễn Trung Thành '
-        },
-        {
-            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1756868933/dao-minh-duc_ncudkp.jpg',
-            name: '95 Đào Minh Đức'
-        },
-        {
-            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1757075944/nguyen-van-dung_nhxswq.jpg',
-            name: '96 Nguyễn Văn Dũng'
+            url: '',
+            name: '97 Nguyễn Minh Khôi',
+            avt: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1769504188/nguyenminhkhoi_c22lgk.jpg'
         },
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1756869445/tran-hoai-vu_j6tc9w.jpg',
-            name: '14 Trần Hoài Vũ'
+            name: '14 Trần Hoài Vũ',
+            avt: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1769504188/tranhoaivu_dbwudm.jpg'
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1757075944/nguyen-van-dung_nhxswq.jpg',
+            name: '96 Nguyễn Văn Dũng',
+            avt: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1769504188/nguyenvandung_bd2vjt.jpg'
         },
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341818/luong-xuan-viet_cwmzzs.jpg',
-            name: '8 Lương Xuân Việt'
+            name: '8 Lương Xuân Việt',
+            avt: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1769504187/luongxuanviet_o28yqo.jpg'
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1756868933/dao-minh-duc_ncudkp.jpg',
+            name: '94 Đào Minh Đức',
+            avt: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1769504187/daominhduc_vzu44w.jpg'
+        },
+        {
+            url: '',
+            name: '99 Đậu Xuân Danh',
+            avt: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1769504188/dauxuandanh_v3ghcg.jpg'
+        },
+        {
+            url: '',
+            name: '91 Thanh Hiếu',
+            avt: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1769504187/thanhhieu_m4dqnp.jpg'
+        },
+        {
+            url: '',
+            name: '93 Đoàn Nhật Bảo Khang',
+            avt: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1769504187/baokhang_sgr7z7.jpg'
+        },
+        {
+            url: '',
+            name: '95 Lê Văn Quốc Khánh',
+            avt: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1769504187/quockhanh_aqsxst.jpg'
         },
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341818/vu-duong-dao_agtadg.jpg',
-            name: '5 Vũ Dương Đạo'
+            name: '5 Vũ Dương Đạo',
+            avt: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1769504187/vuduongdao_zwuuc7.jpg',
+            liquidated: true
         }
     ])
 
@@ -188,7 +252,7 @@
     .gallery-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        height: 100vh;
+        grid-template-rows: repeat(6, 1fr);
         gap: 8px;
         padding: 8px;
     }
@@ -197,7 +261,7 @@
         cursor: pointer;
         font-size: 1.2rem;
         text-align: center;
-        padding: 12px;
+        padding: 0px;
         position: relative;
         background: #212529;
         color: #fff;
@@ -206,6 +270,12 @@
         align-items: center;
         justify-content: center;
         overflow: hidden;
+    }
+
+    .grid-avatar {
+        width: 70% !important;
+        height: 230px !important;
+        object-fit: contain !important;
     }
 
     .item-name {
@@ -233,7 +303,99 @@
         opacity: 0;
     }
 
+    .grid-item.sold-out {
+        border: 2px solid red;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .sold-out-overlay {
+        position: absolute;
+        inset: 0;
+        background-color: rgba(255, 0, 0, 0.246);
+        pointer-events: none;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .sold-out-overlay span {
+        position: absolute;
+        top: 20px;
+        left: -40px;
+        width: 150px;
+        text-align: center;
+        transform: rotate(-45deg);
+        color: red;
+        font-weight: bold;
+        font-size: 14px;
+        border: 2px solid red;
+        background: transparent;
+        padding: 6px 0;
+        pointer-events: none;
+        text-transform: uppercase;
+        font-family: Arial, sans-serif;
+        z-index: 3;
+    }
+
+    .grid-item.sold-out:hover .item-name {
+        opacity: 1 !important;
+    }
+
+    .grid-item.sold-out:hover .overlay {
+        opacity: 0 !important;
+    }
+
+    .grid-item.loan {
+        border: 2px solid yellow;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .loan-overlay {
+        position: absolute;
+        inset: 0;
+        background-color: rgba(251, 255, 0, 0.246);
+        pointer-events: none;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .loan-overlay span {
+        position: absolute;
+        top: 20px;
+        left: -40px;
+        width: 150px;
+        text-align: center;
+        transform: rotate(-45deg);
+        color: yellow;
+        font-weight: bold;
+        font-size: 14px;
+        border: 2px solid yellow;
+        background: transparent;
+        padding: 6px 0;
+        pointer-events: none;
+        text-transform: uppercase;
+        font-family: Arial, sans-serif;
+        z-index: 3;
+    }
+
+    .grid-item.loan:hover .item-name {
+        opacity: 1 !important;
+    }
+
+    .grid-item.loan:hover .overlay {
+        opacity: 0 !important;
+    }
+
     @media (max-width: 768px) {
+        .grid-avatar {
+            width: 100% !important;
+            height: 80px !important;
+        }
         .custom-modal {
             max-width: 100vw;
             height: 100vh;
@@ -257,6 +419,10 @@
     }
 
     @media (min-width: 768px) and (max-width: 1024px) {
+        .grid-avatar {
+            width: 90% !important;
+            height: 170px !important;
+        }
         .custom-modal {
             max-width: 90vw;
             height: 85vh;
