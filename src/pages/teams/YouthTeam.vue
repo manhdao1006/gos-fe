@@ -90,6 +90,10 @@
 
     const images = ref<{ url: string; name: string }[]>([
         {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341818/tran-hai-phong_y2wgdt.jpg',
+            name: '16 Trần Hải Phong'
+        },
+        {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1756868932/nguyen-trung-thanh_nq0ish.jpg',
             name: '98 Nguyễn Trung Thành '
         },
@@ -100,6 +104,18 @@
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1757075944/nguyen-van-dung_nhxswq.jpg',
             name: '96 Nguyễn Văn Dũng'
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1756869445/tran-hoai-vu_j6tc9w.jpg',
+            name: '14 Trần Hoài Vũ'
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341818/luong-xuan-viet_cwmzzs.jpg',
+            name: '8 Lương Xuân Việt'
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341818/vu-duong-dao_agtadg.jpg',
+            name: '5 Vũ Dương Đạo'
         }
     ])
 
@@ -172,7 +188,6 @@
     .gallery-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(1, 1fr);
         height: 100vh;
         gap: 8px;
         padding: 8px;
