@@ -27,7 +27,7 @@
         <div class="container-fluid p-0">
             <div class="gallery-grid">
                 <div
-                    class="grid-item d-flex align-items-center justify-content-center bg-success text-white fw-bold"
+                    class="grid-item d-flex align-items-center justify-content-center bg-black text-white fw-bold"
                     v-for="(img, index) in images"
                     :key="index"
                     @click="!img.soldOut && !img.liquidated && !img.loan && openModal(index)"
@@ -284,7 +284,7 @@
         cursor: pointer;
         font-size: 1.2rem;
         text-align: center;
-        padding: 12px;
+        padding: 0px;
         position: relative;
         background: #212529;
         color: #fff;
