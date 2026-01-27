@@ -161,7 +161,7 @@
             avt: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1769483033/nguyenvanchien_jeyppg.jpg'
         },
         {
-            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1757560710/dao-huu-hung_fwszjo.jpg',
+            url: '',
             name: '17 Đoàn Thanh Dũng',
             avt: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1769483033/doanthanhdung_p8g7gu.jpg'
         },
