@@ -79,16 +79,28 @@
 
     const images = computed(() => [
         {
-            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755698822/first-achievement_zt2q0m.jpg',
-            content: t('TEAM.ACHIEVEMENT.CONTENT.FIRST_ACHIEVEMENT')
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1772157599/achie6_qxilwk.jpg',
+            content: t('TEAM.ACHIEVEMENT.CONTENT.SIX_ACHIEVEMENT')
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1772158016/achie5_n5siqt.jpg',
+            content: t('TEAM.ACHIEVEMENT.CONTENT.FIVE_ACHIEVEMENT')
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1772158016/achie4_tl5bc5.jpg',
+            content: t('TEAM.ACHIEVEMENT.CONTENT.FOURTH_ACHIEVEMENT')
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1766370549/achie3_xj0jon.jpg',
+            content: t('TEAM.ACHIEVEMENT.CONTENT.THIRD_ACHIEVEMENT')
         },
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1763259652/nhucac_w3ygea.jpg',
             content: t('TEAM.ACHIEVEMENT.CONTENT.SECOND_ACHIEVEMENT')
         },
         {
-            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1766370549/achie3_xj0jon.jpg',
-            content: t('TEAM.ACHIEVEMENT.CONTENT.THIRD_ACHIEVEMENT')
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755698822/first-achievement_zt2q0m.jpg',
+            content: t('TEAM.ACHIEVEMENT.CONTENT.FIRST_ACHIEVEMENT')
         }
     ])
 

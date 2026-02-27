@@ -176,9 +176,20 @@
             avt: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1769504187/quockhanh_aqsxst.jpg'
         },
         {
+            url: '',
+            name: '2 Nguyễn Khắc Trọng',
+            avt: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1772158015/nguyenkhactrong_vkso1f.jpg'
+        },
+        {
+            url: '',
+            name: '5 Nguyễn Văn Hòa',
+            avt: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1772158015/nguyenvanhoa_bsjb7f.jpg'
+        },
+        {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341818/vu-duong-dao_agtadg.jpg',
             name: '5 Vũ Dương Đạo',
-            avt: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1769504187/vuduongdao_zwuuc7.jpg'
+            avt: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1769504187/vuduongdao_zwuuc7.jpg',
+            liquidated: true
         }
     ])
 
@@ -251,7 +262,6 @@
     .gallery-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(6, 1fr);
         gap: 8px;
         padding: 8px;
     }
