@@ -7,6 +7,8 @@ import Administration from '../pages/Administration.vue'
 import HallOfFame from '../pages/HallOfFame.vue'
 import History from '../pages/History.vue'
 import QuanLySuKien from '../pages/organizations/admin/events/QuanLySuKien.vue'
+import QuanLyBangDau from '../pages/organizations/admin/groups/QuanLyBangDau.vue'
+import QuanLyGiaiDau from '../pages/organizations/admin/tours/QuanLyGiaiDau.vue'
 import TrangChu from '../pages/organizations/admin/TrangChu.vue'
 import QuanLyNguoiDung from '../pages/organizations/admin/users/QuanLyNguoiDung.vue'
 import ChiTietSuKien from '../pages/organizations/user/events/ChiTietSuKien.vue'
@@ -59,6 +61,22 @@ export const routes: AppRoute[] = [
         path: '/quan-tri/su-kien',
         name: 'QuanLySuKien',
         component: QuanLySuKien,
+        meta: {
+            title: 'GOS - Dream League Soccer'
+        }
+    },
+    {
+        path: '/quan-tri/giai-dau',
+        name: 'QuanLyGiaiDau',
+        component: QuanLyGiaiDau,
+        meta: {
+            title: 'GOS - Dream League Soccer'
+        }
+    },
+    {
+        path: '/quan-tri/bang-dau',
+        name: 'QuanLyBangDau',
+        component: QuanLyBangDau,
         meta: {
             title: 'GOS - Dream League Soccer'
         }

@@ -30,7 +30,8 @@
                 menuItems: [
                     { to: '/quan-tri/nguoi-dung', label: 'Quản lý người dùng' },
                     { to: '/quan-tri/su-kien', label: 'Quản lý sự kiện' },
-                    { to: '/', label: 'Quản lý giải đấu' },
+                    { to: '/quan-tri/giai-dau', label: 'Quản lý giải đấu' },
+                    { to: '/quan-tri/bang-dau', label: 'Quản lý bảng đấu' },
                     { to: '/', label: 'Quản lý trận đấu' }
                     // { to: '/', label: 'header.navigation.homePage' },
                     // { to: '/map-bus', label: 'header.navigation.mapBus' },

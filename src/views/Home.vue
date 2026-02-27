@@ -11,7 +11,7 @@
                     <div class="col-12 col-md-6 text-center order-1 order-md-1">
                         <LanguageSwitcher class="position-absolute top-0 end-0 m-3 z-3" />
                         <router-link
-                            to="/"
+                            to="/trang-chu"
                             class="nav-link position-absolute top-0 start-0 m-3 bg-white text-uppercase text-black p-3 rounded fw-bolder"
                             @click.prevent="goToRegister"
                             >{{ $t('HOME.JOIN_TOUR') }}</router-link
@@ -180,7 +180,7 @@
         if (!user) {
             router.push('/dang-ky-tai-khoan')
         } else {
-            router.push('/ban-quan-tri')
+            router.push('/trang-chu')
         }
     }
 

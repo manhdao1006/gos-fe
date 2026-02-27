@@ -430,5 +430,37 @@ export default {
             display: 'Hiển thị',
             rowPerPage: 'hàng mỗi trang'
         }
+    },
+    giaiDau: {
+        unknown: 'Không xác định',
+        loading: 'Đang tải...',
+        listEvent: 'Danh sách giải đấu',
+        table: {
+            no: 'STT',
+            ma: 'Mã giải đấu',
+            taiKhoan: 'Tài khoản',
+            maEvent: 'Mã sự kiện',
+            tenEvent: 'Tên sự kiện',
+            ngayDangKy: 'Ngày đăng ký',
+            noData: 'Không có dữ liệu phù hợp.',
+            action: 'Thao tác'
+        },
+        button: {
+            search: 'Tìm kiếm theo mã, tên sự kiện',
+            filter: {
+                allType: '--Loại sự kiện--',
+                table: 'Bảng đấu',
+                league: 'Xếp hạng',
+                leagueAndTable: 'Hạng + Bảng',
+                swiss: 'Swiss Stage'
+            },
+            exportExcel: 'Xuất Excel',
+            firstPage: 'Trước',
+            lastPage: 'Sau'
+        },
+        pagination: {
+            display: 'Hiển thị',
+            rowPerPage: 'hàng mỗi trang'
+        }
     }
 }
