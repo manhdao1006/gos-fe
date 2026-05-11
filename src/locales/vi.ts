@@ -11,7 +11,7 @@ export default {
             COACH: 'Ban huấn luyện GOS',
             PLAYER: 'Tuyển thủ GOS',
             MATCH: 'Trận đấu tuyển GOS',
-            YOUTH_TEAM: 'Đội trẻ GOS'
+            YOUTH_TEAM: 'Học viện GOS'
         }
     },
     HOME: {
@@ -226,7 +226,7 @@ export default {
                 COACH: 'Ban huấn luyện',
                 PLAYER: 'Tuyển thủ',
                 MATCH: 'Trận đấu',
-                YOUTH_TEAM: 'Đội trẻ'
+                YOUTH_TEAM: 'Học viện'
             }
         },
         HISTORY: {
@@ -300,7 +300,7 @@ export default {
             LOAN: 'Cho mượn'
         },
         YOUTH_TEAM: {
-            TITLE: 'Đội trẻ GOS'
+            TITLE: 'Học viện GOS'
         },
         MATCH: {
             TITLE: 'Trận đấu tuyển GOS'

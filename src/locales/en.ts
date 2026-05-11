@@ -11,7 +11,7 @@ export default {
             COACH: 'GOS Coaching Board',
             PLAYER: 'GOS Players',
             MATCH: 'GOS Team Match',
-            YOUTH_TEAM: 'GOS Youth Team'
+            YOUTH_TEAM: 'GOS Academy'
         }
     },
     HOME: {
@@ -229,7 +229,7 @@ export default {
                 COACH: 'Coaching staff',
                 PLAYER: 'Players',
                 MATCH: 'Match',
-                YOUTH_TEAM: 'Youth Team'
+                YOUTH_TEAM: 'Academy'
             }
         },
         HISTORY: {
@@ -304,7 +304,7 @@ export default {
             LOAN: 'Loan'
         },
         YOUTH_TEAM: {
-            TITLE: 'GOS Youth Team'
+            TITLE: 'GOS Academy'
         },
         MATCH: {
             TITLE: 'GOS Team Match'
