@@ -283,9 +283,10 @@ export default {
                 FIRST_ACHIEVEMENT: 'Giải khuyến khích cúp Liên Group DPC mùa 4',
                 SECOND_ACHIEVEMENT: 'Giải nhì cúp Tứ hùng 36TH',
                 THIRD_ACHIEVEMENT: 'Quý quân giải đấu DLS VIETNAM CUP 2025',
-                SIX_ACHIEVEMENT: 'Giải ba giải Tứ hùng LAC năm 2026',
+                FOURTH_ACHIEVEMENT: 'Quán quân giải đấu DLS SIF CUP 2026',
                 FIVE_ACHIEVEMENT: 'Hạng 2 NS CUP SS1',
-                FOURTH_ACHIEVEMENT: 'Quán quân giải đấu DLS SIF CUP 2026'
+                SIX_ACHIEVEMENT: 'Giải ba giải Tứ hùng LAC năm 2026',
+                SEVEN_ACHIEVEMENT: 'Quý quân giải đấu DLS VIETNAM CUP 2026'
             }
         },
         COACH: {

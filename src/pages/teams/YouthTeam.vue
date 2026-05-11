@@ -121,11 +121,6 @@
             avt: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1769504197/levantri_eu0vqm.jpg'
         },
         {
-            url: '',
-            name: '98 Huỳnh Đoàn Quang',
-            avt: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1769504188/huynhdoanquang_e1uehl.jpg'
-        },
-        {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341818/tran-hai-phong_y2wgdt.jpg',
             name: '16 Trần Hải Phong',
             avt: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1769504188/tranhaiphong_y45axv.jpg'
@@ -134,11 +129,6 @@
             url: '',
             name: '97 Nguyễn Minh Khôi',
             avt: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1769504188/nguyenminhkhoi_c22lgk.jpg'
-        },
-        {
-            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1756869445/tran-hoai-vu_j6tc9w.jpg',
-            name: '14 Trần Hoài Vũ',
-            avt: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1769504188/tranhoaivu_dbwudm.jpg'
         },
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1757075944/nguyen-van-dung_nhxswq.jpg',
@@ -162,11 +152,6 @@
         },
         {
             url: '',
-            name: '91 Thanh Hiếu',
-            avt: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1769504187/thanhhieu_m4dqnp.jpg'
-        },
-        {
-            url: '',
             name: '93 Đoàn Nhật Bảo Khang',
             avt: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1769504187/baokhang_sgr7z7.jpg'
         },
@@ -184,6 +169,24 @@
             url: '',
             name: '5 Nguyễn Văn Hòa',
             avt: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1772158015/nguyenvanhoa_bsjb7f.jpg'
+        },
+        {
+            url: '',
+            name: '98 Huỳnh Đoàn Quang',
+            avt: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1769504188/huynhdoanquang_e1uehl.jpg',
+            loan: true
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1756869445/tran-hoai-vu_j6tc9w.jpg',
+            name: '14 Trần Hoài Vũ',
+            avt: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1769504188/tranhoaivu_dbwudm.jpg',
+            loan: true
+        },
+        {
+            url: '',
+            name: '91 Thanh Hiếu',
+            avt: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1769504187/thanhhieu_m4dqnp.jpg',
+            loan: true
         },
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755341818/vu-duong-dao_agtadg.jpg',
