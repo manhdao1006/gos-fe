@@ -24,16 +24,16 @@
 
         <Header />
 
-        <div class="container-fluid p-0">
-            <div class="gallery-grid">
-                <div
-                    class="grid-item d-flex align-items-center justify-content-center bg-white border border-1 text-white fw-bold"
-                    v-for="(img, index) in images"
-                    :key="index"
-                    data-bs-toggle="modal"
-                    data-bs-target="#imageModal"
-                >
-                    <img :src="img.url" :alt="img.name" />
+        <div class="container py-4">
+            <div class="row g-4">
+                <div class="col-12 col-sm-6 col-lg-3" v-for="(img, index) in images" :key="index">
+                    <div class="member-card" data-bs-toggle="modal" data-bs-target="#imageModal">
+                        <div class="image-wrapper">
+                            <img :src="img.url" :alt="img.name" />
+                        </div>
+
+                        <div class="member-info"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -49,20 +49,36 @@
 
     const images = ref<{ url: string; name: string }[]>([
         {
-            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755698754/ad-nguyen-thang_adllh7.jpg',
-            name: 'Nguyễn Thắng'
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1778470536/idcard-nvt_dghqvo.jpg',
+            name: 'Nguyễn Văn Thắng'
         },
         {
-            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755698754/ad-binh-nguyen_suyfit.jpg',
-            name: 'Bình Nguyên'
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1778470509/idcard-lbn_uvmee8.jpg',
+            name: 'Lý Bình Nguyên'
         },
         {
-            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755698752/ad-pham-dang-thang_o6aiua.jpg',
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1778470478/idcard-pdt_bqsb9b.jpg',
             name: 'Phạm Đăng Thắng'
         },
         {
-            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1755698753/ad-ly-thanh-hien_edc0tv.jpg',
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1778470478/idcard-lth_u7gkd2.jpg',
             name: 'Lý Thanh Hiền'
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1778470440/idcard-lcm_m0yviy.jpg',
+            name: 'Lê Công Minh'
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1778470441/idcard-ddm_qbkr3p.jpg',
+            name: 'Đào Đức Mạnh'
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1778470486/idcard-nvh_sxvw3l.jpg',
+            name: 'Nguyễn Văn Hoàng'
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1778470509/idcard-dvpl_x5u56z.jpg',
+            name: 'Đoàn Vũ Phi Long'
         }
     ])
 </script>
@@ -118,43 +134,57 @@
         font-size: 0.9rem;
     }
 
-    .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(1, 1fr);
-        height: 100vh;
-        gap: 8px;
-        padding: 8px;
+    .member-card {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        height: 100%;
     }
 
-    .grid-item {
-        cursor: pointer;
-        font-size: 1.2rem;
-        text-align: center;
-        padding: 12px;
-        position: relative;
-        background: #212529;
-        color: #fff;
-        font-weight: bold;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    .member-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .image-wrapper {
+        width: 100%;
+        height: 320px;
         overflow: hidden;
     }
 
-    .grid-item img {
+    .image-wrapper img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        display: block;
+        transition: transform 0.4s ease;
+    }
+
+    .member-card:hover img {
+        transform: scale(1.05);
+    }
+
+    .member-info {
+        padding: 18px;
+        text-align: center;
+    }
+
+    .member-info h5 {
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 6px;
+        color: #212529;
+    }
+
+    .member-info p {
+        margin: 0;
+        color: #6c757d;
+        font-size: 0.9rem;
     }
 
     @media (max-width: 768px) {
-        .gallery-grid {
-            grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: repeat(2, 1fr);
-        }
-
         .logo-admin {
             width: 60px;
         }
@@ -169,11 +199,6 @@
     }
 
     @media (min-width: 768px) and (max-width: 1024px) {
-        .gallery-grid {
-            grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: repeat(2, 1fr);
-        }
-
         .logo-admin {
             width: 80px;
         }

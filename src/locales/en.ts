@@ -287,9 +287,10 @@ export default {
                 FIRST_ACHIEVEMENT: 'Incentive prize of Inter-Group DPC Cup season 4',
                 SECOND_ACHIEVEMENT: 'Second prize of the 36TH Four Heroes Cup',
                 THIRD_ACHIEVEMENT: 'Prestigious team of the DLS VIETNAM CUP 2025',
-                SIX_ACHIEVEMENT: 'Third place in the 2026 Four-Team Tournament',
+                FOURTH_ACHIEVEMENT: 'Champion of the DLS SIF CUP 2026 Tournament',
                 FIVE_ACHIEVEMENT: '2nd place in NS CUP SS1',
-                FOURTH_ACHIEVEMENT: 'Champion of the DLS SIF CUP 2026 Tournament'
+                SIX_ACHIEVEMENT: 'Third place in the 2026 Four-Team Tournament',
+                SEVEN_ACHIEVEMENT: 'Prestigious team of the DLS VIETNAM CUP 2026'
             }
         },
         COACH: {

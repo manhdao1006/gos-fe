@@ -24,23 +24,23 @@
 
         <Header />
 
-        <div class="container-fluid p-0">
-            <div class="gallery-grid">
-                <div
-                    class="grid-item d-flex align-items-center justify-content-center bg-white border border-1"
-                    v-for="(img, index) in images"
-                    :key="index"
-                >
-                    <div
-                        class="img-wrap"
-                        data-bs-toggle="modal"
-                        data-bs-target="#imageModal"
-                        @click="openImage(img)"
-                    >
-                        <img :src="img.url" :alt="img.content" />
-                    </div>
+        <div class="container-fluid px-4 py-4">
+            <div class="row gx-5 gy-4">
+                <div class="col-12 col-sm-6 col-lg-4" v-for="(img, index) in images" :key="index">
+                    <div class="achievement-card">
+                        <div
+                            class="img-wrap"
+                            data-bs-toggle="modal"
+                            data-bs-target="#imageModal"
+                            @click="openImage(img)"
+                        >
+                            <img :src="img.url" :alt="img.content" />
+                        </div>
 
-                    <div class="grid-caption">{{ img.content }}</div>
+                        <div class="achievement-content">
+                            {{ img.content }}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -78,6 +78,10 @@
     const { t } = useI18n()
 
     const images = computed(() => [
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1778470375/achievement_nbvijb.jpg',
+            content: t('TEAM.ACHIEVEMENT.CONTENT.SEVEN_ACHIEVEMENT')
+        },
         {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1772157599/achie6_qxilwk.jpg',
             content: t('TEAM.ACHIEVEMENT.CONTENT.SIX_ACHIEVEMENT')
@@ -174,34 +178,48 @@
         font-size: 0.9rem;
     }
 
-    .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(1, 1fr);
-        height: 100vh;
-        width: 100% !important;
-        gap: 8px;
-        padding: 8px;
-    }
-
-    .grid-item {
-        cursor: pointer;
-        font-size: 1.2rem;
-        text-align: center;
-        padding: 12px;
-        background: #212529;
-        color: #fff;
-        font-weight: bold;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    .achievement-card {
+        background: white;
+        border-radius: 20px;
         overflow: hidden;
-        flex-direction: column;
+        transition: all 0.3s ease;
+        height: 100%;
+        margin-bottom: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     }
 
-    .grid-item:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    .achievement-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .img-wrap {
+        width: 100%;
+        aspect-ratio: 16/9;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    .img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+        border-radius: 0 !important;
+    }
+
+    .achievement-card:hover img {
+        transform: scale(1.05);
+    }
+
+    .achievement-content {
+        padding: 18px;
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #212529;
+        text-align: center;
+        font-weight: 500;
+        background: white;
     }
 
     .img-wrap {
@@ -220,22 +238,7 @@
         border-radius: 0 !important;
     }
 
-    .grid-caption {
-        padding: 8px;
-        font-size: 1rem;
-        font-weight: 500;
-        color: #000;
-        text-align: center;
-        background: #f8f9fa;
-        width: 100%;
-    }
-
     @media (max-width: 768px) {
-        .gallery-grid {
-            grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: repeat(2, 1fr);
-        }
-
         .logo-admin {
             width: 60px;
         }
@@ -250,11 +253,6 @@
     }
 
     @media (min-width: 768px) and (max-width: 1024px) {
-        .gallery-grid {
-            grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: repeat(2, 1fr);
-        }
-
         .logo-admin {
             width: 80px;
         }

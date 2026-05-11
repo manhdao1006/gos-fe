@@ -38,7 +38,7 @@
                             <div class="card-body text-center p-0">
                                 <div class="admin-avatar">
                                     <img
-                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1755841901/admin-nguyen-thang_ykuocr.jpg"
+                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1778470536/idcard-nvt_dghqvo.jpg"
                                         alt="Nguyễn Văn Thắng"
                                         title="Nguyễn Văn Thắng"
                                         class="logo-member-admin border border-3 border-danger rounded-circle"
@@ -48,7 +48,6 @@
                                 <h4 class="mt-3">
                                     <span class="badge bg-danger">CEO</span>
                                 </h4>
-                                <p class="text-muted fw-bolder">Admin League A</p>
                                 <div class="admin-info text-start">
                                     <p>
                                         <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.MISSON') }}:</strong>
@@ -93,7 +92,7 @@
                             <div class="card-body text-center p-0">
                                 <div class="admin-avatar">
                                     <img
-                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1755846190/admin-binh-nguyen_lvkf3n.jpg"
+                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1778470509/idcard-lbn_uvmee8.jpg"
                                         alt="Lý Bình Nguyên"
                                         title="Lý Bình Nguyên"
                                         class="logo-member-admin border border-3 border-success rounded-circle"
@@ -105,7 +104,6 @@
                                         $t('ADMIN.MANAGEMENT.POSITION.ADMIN')
                                     }}</span>
                                 </h4>
-                                <p class="text-muted fw-bolder">Admin League B</p>
                                 <div class="admin-info text-start">
                                     <p>
                                         <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.MISSON') }}:</strong>
@@ -150,7 +148,7 @@
                             <div class="card-body text-center p-0">
                                 <div class="admin-avatar">
                                     <img
-                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1755843559/admin-pham-dang-thang_n4jvqx.jpg"
+                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1778470478/idcard-pdt_bqsb9b.jpg"
                                         alt="Phạm Đăng Thắng"
                                         title="Phạm Đăng Thắng"
                                         class="logo-member-admin border border-3 border-warning rounded-circle"
@@ -162,7 +160,6 @@
                                         $t('ADMIN.MANAGEMENT.POSITION.ADMIN')
                                     }}</span>
                                 </h4>
-                                <p class="text-muted fw-bolder">Admin League C</p>
                                 <div class="admin-info text-start">
                                     <p>
                                         <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.MISSON') }}:</strong>
@@ -204,7 +201,7 @@
                             <div class="card-body text-center p-0">
                                 <div class="admin-avatar">
                                     <img
-                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1755841901/admin-thanh-hien_ddj2so.jpg"
+                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1778470478/idcard-lth_u7gkd2.jpg"
                                         alt="Lý Thanh Hiền"
                                         title="Lý Thanh Hiền"
                                         class="logo-member-admin border border-3 border-primary rounded-circle"
@@ -216,7 +213,6 @@
                                         $t('ADMIN.MANAGEMENT.POSITION.ADMIN')
                                     }}</span>
                                 </h4>
-                                <p class="text-muted fw-bolder">Admin League D</p>
                                 <div class="admin-info text-start">
                                     <p>
                                         <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.MISSON') }}:</strong>
@@ -261,19 +257,18 @@
                             <div class="card-body text-center p-0">
                                 <div class="admin-avatar">
                                     <img
-                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1762870792/ad-le-quang-minh_wq1x3j.jpg"
-                                        alt="Lê Quang Minh"
-                                        title="Lê Quang Minh"
+                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1778470440/idcard-lcm_m0yviy.jpg"
+                                        alt="Lê Công Minh"
+                                        title="Lê Công Minh"
                                         class="logo-member-admin border border-3 border-info rounded-circle"
                                     />
                                 </div>
-                                <h4>Lê Quang Minh</h4>
+                                <h4>Lê Công Minh</h4>
                                 <h4 class="mt-3">
                                     <span class="badge bg-info">{{
                                         $t('ADMIN.MANAGEMENT.POSITION.ADMIN')
                                     }}</span>
                                 </h4>
-                                <p class="text-muted fw-bolder">Admin League D</p>
                                 <div class="admin-info text-start">
                                     <p>
                                         <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.MISSON') }}:</strong>
@@ -318,7 +313,7 @@
                             <div class="card-body text-center p-0">
                                 <div class="admin-avatar">
                                     <img
-                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1755841901/admin-manh-dao_fgew6w.jpg"
+                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1778470441/idcard-ddm_qbkr3p.jpg"
                                         alt="Đào Đức Mạnh"
                                         title="Đào Đức Mạnh"
                                         class="logo-member-admin border border-3 border-black rounded-circle"
@@ -330,7 +325,6 @@
                                         $t('ADMIN.MANAGEMENT.POSITION.TECH')
                                     }}</span>
                                 </h4>
-                                <p class="text-muted fw-bolder">Admin</p>
                                 <div class="admin-info text-start">
                                     <p>
                                         <strong>{{ $t('ADMIN.MANAGEMENT.TITLE.MISSON') }}:</strong>
@@ -379,7 +373,7 @@
                             <div class="card-body text-center p-0">
                                 <div class="admin-avatar">
                                     <img
-                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1755841901/admin-nguyen-van-hoang_peaaom.jpg"
+                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1778470486/idcard-nvh_sxvw3l.jpg"
                                         alt="Nguyễn Văn Hoàng"
                                         title="Nguyễn Văn Hoàng"
                                         class="logo-member-admin border border-3 border-warning rounded-circle"
@@ -434,13 +428,13 @@
                             <div class="card-body text-center p-0">
                                 <div class="admin-avatar">
                                     <img
-                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1755841902/admin-doan-long_ciszqw.jpg"
-                                        alt="Đoàn Long"
-                                        title="Đoàn Long"
+                                        src="https://res.cloudinary.com/springboot-cloud/image/upload/v1778470509/idcard-dvpl_x5u56z.jpg"
+                                        alt="Đoàn Vũ Phi Long"
+                                        title="Đoàn Vũ Phi Long"
                                         class="logo-member-admin border border-3 border-warning rounded-circle"
                                     />
                                 </div>
-                                <h4>Đoàn Long</h4>
+                                <h4>Đoàn Vũ Phi Long</h4>
                                 <h4 class="mt-3">
                                     <span class="badge bg-warning">{{
                                         $t('ADMIN.MANAGEMENT.POSITION.FINANCE')
