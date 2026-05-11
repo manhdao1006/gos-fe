@@ -172,6 +172,16 @@
         },
         {
             url: '',
+            name: '12 Trần Tiến Đạt',
+            avt: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1778484698/trantiendat_cnlyae.jpg'
+        },
+        {
+            url: '',
+            name: '5 Lương Nguyễn Công Thành',
+            avt: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1778484698/luongnguyencongthanh_x56bfb.jpg'
+        },
+        {
+            url: '',
             name: '98 Huỳnh Đoàn Quang',
             avt: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1769504188/huynhdoanquang_e1uehl.jpg',
             loan: true
