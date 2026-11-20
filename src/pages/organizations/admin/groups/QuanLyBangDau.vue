@@ -282,14 +282,14 @@
 
 <script>
     import { useToast } from 'vue-toastification'
-import * as XLSX from 'xlsx'
-import AdminHeader from '../../../../components/common/admin/AdminHeader.vue'
-import BaseModal from '../../../../components/common/BaseModal.vue'
-import BaseModalConfirm from '../../../../components/common/BaseModalConfirm.vue'
-import SidebarMenu from '../../../../components/common/SidebarMenu.vue'
-import Footer from '../../../../components/Footer.vue'
-import { EVENT_URL, LOAI_SU_KIEN } from '../../../../utils/constants'
-import { generateEventCode, getLoaiSuKienLabel } from '../../../../utils/suKienUtils'
+    import * as XLSX from 'xlsx'
+    import AdminHeader from '../../../../components/common/admin/AdminHeader.vue'
+    import BaseModal from '../../../../components/common/BaseModal.vue'
+    import BaseModalConfirm from '../../../../components/common/BaseModalConfirm.vue'
+    import SidebarMenu from '../../../../components/common/SidebarMenu.vue'
+    import Footer from '../../../../components/Footer.vue'
+    import { EVENT_URL, LOAI_SU_KIEN } from '../../../../utils/constants'
+    import { generateEventCode, getLoaiSuKienLabel } from '../../../../utils/suKienUtils'
 
     export default {
         name: 'QuanLySuKien',

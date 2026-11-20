@@ -143,6 +143,10 @@
                 this.$router.push(`/su-kien`)
             },
             handleSubmit() {
+                if (!this.user || !this.user.taiKhoan) {
+                    this.$router.push(`/dang-nhap`)
+                    return
+                }
                 this.loading = true
 
                 const payload = {

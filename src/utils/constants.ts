@@ -7,6 +7,9 @@ export const EVENT_URL =
 export const TOUR_URL =
     'https://script.google.com/macros/s/AKfycbz_p6f0StijIJ_M7BjZ-qa8gxOVC9S0ZbELhJsalY3IF32hN9nPH6KZFZP5p_8i2HU6/exec?'
 
+export const MATCH_URL =
+    'https://script.google.com/macros/s/AKfycbxHs9-nSwZdkuHdWk42ZyRDYnrA5Vl5hSiOAu7RHOVPIZLQXuQimwGptT--SmHUdkEt/exec?'
+
 export const GROUP = {
     HAS: 'Có',
     NOT_HAS: 'Chưa'
@@ -19,7 +22,7 @@ export const ROLE = {
 
 export const LOAI_SU_KIEN = [
     { value: '0', label: 'suKien.button.filter.table' },
-    { value: '1', label: 'suKien.button.filter.league' },
-    { value: '2', label: 'suKien.button.filter.leagueAndTable' },
-    { value: '3', label: 'suKien.button.filter.swiss' }
+    { value: '1', label: 'suKien.button.filter.league' }
+    // { value: '2', label: 'suKien.button.filter.leagueAndTable' },
+    // { value: '3', label: 'suKien.button.filter.swiss' }
 ]
