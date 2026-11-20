@@ -79,6 +79,18 @@
 
     const images = computed(() => [
         {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1795152299/ea_champion_tm_cc02j0.jpg',
+            content: ''
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1795152299/ea_champion_team_5_uyjbkw.jpg',
+            content: ''
+        },
+        {
+            url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1795152299/sif_cup_tiamy4.jpg',
+            content: ''
+        },
+        {
             url: 'https://res.cloudinary.com/springboot-cloud/image/upload/v1778470375/achievement_nbvijb.jpg',
             content: t('TEAM.ACHIEVEMENT.CONTENT.SEVEN_ACHIEVEMENT')
         },
